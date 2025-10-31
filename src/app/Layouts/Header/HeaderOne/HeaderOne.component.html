@@ -169,60 +169,59 @@
 
   <!-- Mat Menus -->
   <mat-menu #loginuser="matMenu">
-    <button mat-menu-item [routerLink]="['/account/profile']" (click)="onMenuClick('Cuenta')"><i class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></button>
-    <button mat-menu-item [routerLink]="['/account/order-history']" (click)="onMenuClick('compras')"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>compras</span></button>
-    <button mat-menu-item [routerLink]="['/account/address']" (click)="onMenuClick('ubicaciones')"><i class="material-icons mr-1 col_icon">location_on</i><span>ubicaciones</span></button>
+    <a mat-menu-item [routerLink]="['/account/profile']" (click)="onMenuClick('Cuenta')"><i class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></a>
+    <a mat-menu-item [routerLink]="['/account/order-history']" (click)="onMenuClick('compras')"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>compras</span></a>
+    <a mat-menu-item [routerLink]="['/account/address']" (click)="onMenuClick('ubicaciones')"><i class="material-icons mr-1 col_icon">location_on</i><span>ubicaciones</span></a>
     <button mat-menu-item (click)="exit_store_front(); onMenuClick('Salir')"><i class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
   </mat-menu>
 
   <!-- Commerce Menu -->
   <mat-menu #loginuser_commerce="matMenu">
-    <button mat-menu-item [routerLink]="['/account/profile']" (click)="onCommerceMenuClick('Tu Información')"><i class="material-icons mr-1 col_icon">account_circle</i><span>Tu Información</span></button>
-    <button mat-menu-item [routerLink]="['/account/order-history']" (click)="onCommerceMenuClick('Compras')"><i class="material-icons mr-1 col_icon">history</i><span>Compras</span></button>
-    <button mat-menu-item [routerLink]="['/account/address']" (click)="onCommerceMenuClick('Ubicaciones')"><i class="material-icons mr-1 col_icon">location_on</i><span>Ubicaciones</span></button>
-    <button mat-menu-item [routerLink]="['/account/invoice_adm']" (click)="onCommerceMenuClick('Facturas')"><i class="material-icons mr-1 col_icon">fact_check</i><span>Facturas</span></button>
-    <button mat-menu-item [routerLink]="['/account/store_adm']" (click)="onCommerceMenuClick('Tu tienda')"><i class="material-icons mr-1 col_icon">account_balance</i><span>Tu tienda<span *ngIf="validate_img" class="material-icons" style="color:red;margin-left: 5px;">warning</span></span></button>
-    <button mat-menu-item [routerLink]="['/account/product_adm']" (click)="onCommerceMenuClick('Productos')"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>Productos</span></button>
+    <a mat-menu-item [routerLink]="['/account/profile']" (click)="onCommerceMenuClick('Tu Información')"><i class="material-icons mr-1 col_icon">account_circle</i><span>Tu Información</span></a>
+    <a mat-menu-item [routerLink]="['/account/order-history']" (click)="onCommerceMenuClick('Compras')"><i class="material-icons mr-1 col_icon">history</i><span>Compras</span></a>
+    <a mat-menu-item [routerLink]="['/account/address']" (click)="onCommerceMenuClick('Ubicaciones')"><i class="material-icons mr-1 col_icon">location_on</i><span>Ubicaciones</span></a>
+    <a mat-menu-item [routerLink]="['/account/invoice_adm']" (click)="onCommerceMenuClick('Facturas')"><i class="material-icons mr-1 col_icon">fact_check</i><span>Facturas</span></a>
+    <a mat-menu-item [routerLink]="['/account/store_adm']" (click)="onCommerceMenuClick('Tu tienda')"><i class="material-icons mr-1 col_icon">account_balance</i><span>Tu tienda<span *ngIf="validate_img" class="material-icons" style="color:red;margin-left: 5px;">warning</span></span></a>
+    <a mat-menu-item [routerLink]="['/account/product_adm']" (click)="onCommerceMenuClick('Productos')"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>Productos</span></a>
     <button mat-menu-item (click)="exit_store_front(); onCommerceMenuClick('Salir')"><i class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
   </mat-menu>
 
   <!-- Categorías -->
   <mat-menu #cat="matMenu" class="custom-menu">
-    <button mat-menu-item *ngFor="let item of get_categories" [routerLink]="['/searchstorebycategories/', item.id]">
+    <a mat-menu-item *ngFor="let item of get_categories" [routerLink]="['/searchstorebycategories/', item.id]">
       {{ item.name_category }}
-    </button>
+    </a>
   </mat-menu>
 
   <!-- Info -->
   <mat-menu #info_business="matMenu" class="custom-menu">
-    <button mat-menu-item [routerLink]="['/terms_conditions']">Términos y Condiciones</button>
-    <button mat-menu-item [routerLink]="['/data_protection']">Protección de datos</button>
-    <button mat-menu-item [routerLink]="['/payment_information']">Proceso de pago</button>
-    <button mat-menu-item [routerLink]="['/assisted_buy']">Compra asistida</button>
-    <button mat-menu-item [routerLink]="['/calculator2']">Calculadora de tarifas</button>
+    <a mat-menu-item [routerLink]="['/terms_conditions']">Términos y Condiciones</a>
+    <a mat-menu-item [routerLink]="['/data_protection']">Protección de datos</a>
+    <a mat-menu-item [routerLink]="['/payment_information']">Proceso de pago</a>
+    <a mat-menu-item [routerLink]="['/calculator2']">Calculadora de tarifas</a>
   </mat-menu>
 </header>
 
 <!-- MOBILE MENU OVERLAY -->
 <div class="mainMenu" [class.act]="isMobileMenuOpen" (click)="closeMobileMenuOnBackdrop($event)">
-  <div class="table-cell">
-    <ul class="list-unstyled" (click)="$event.stopPropagation()">
-      <li><a [routerLink]="['/']" (click)="toggleMobileMenu()">INICIO</a></li>
+  <div class="table-cell" (click)="$event.stopPropagation()">
+    <ul class="list-unstyled">
+      <li><a [routerLink]="['/']" (click)="closeMobileMenu()">INICIO</a></li>
       <li>
         <a *ngIf="show_info" [matMenuTriggerFor]="cat_mobile">
           CATEGORÍAS <i class="fa fa-chevron-down"></i>
         </a>
       </li>
-      <li><a [routerLink]="['/offers']" (click)="toggleMobileMenu()">OFERTAS</a></li>
-      <li><a [routerLink]="['/storelist']" (click)="toggleMobileMenu()">TIENDAS OFICIALES</a></li>
-      <li><a *ngIf="show_acces_sell" [routerLink]="['/sell']" (click)="toggleMobileMenu()">VENDER</a></li>
-      <li><a [routerLink]="['/help_pqr']" (click)="toggleMobileMenu()">AYUDA / PQR</a></li>
+      <li><a [routerLink]="['/offers']" (click)="closeMobileMenu()">OFERTAS</a></li>
+      <li><a [routerLink]="['/storelist']" (click)="closeMobileMenu()">TIENDAS OFICIALES</a></li>
+      <li><a *ngIf="show_acces_sell" [routerLink]="['/sell']" (click)="closeMobileMenu()">VENDER</a></li>
+      <li><a [routerLink]="['/help_pqr']" (click)="closeMobileMenu()">AYUDA / PQR</a></li>
       <li>
         <a *ngIf="show_info" [matMenuTriggerFor]="info_business_mobile">
           INFORMACIÓN <i class="fa fa-chevron-down"></i>
         </a>
       </li>
-      <li><a *ngIf="show_add" [routerLink]="['/session/signin']" (click)="toggleMobileMenu()">ACCEDER / REGISTRAR</a></li>
+      <li><a *ngIf="show_add" [routerLink]="['/session/signin']" (click)="closeMobileMenu()">ACCEDER / REGISTRAR</a></li>
       <li>
         <a *ngIf="show" [matMenuTriggerFor]="loginuser_mobile">
           <span>MI SWIFTLY</span> <i class="fa fa-chevron-down"></i>
@@ -238,38 +237,37 @@
 </div>
 
 <!-- MOBILE MENU DROPDOWNS -->
-<!-- Categorías Mobile -->
+  <!-- Categorías Mobile -->
 <mat-menu #cat_mobile="matMenu" class="custom-menu">
-  <button mat-menu-item *ngFor="let item of get_categories" [routerLink]="['/searchstorebycategories/', item.id]">
+  <a mat-menu-item *ngFor="let item of get_categories" [routerLink]="['/searchstorebycategories/', item.id]" (click)="closeMobileMenu()">
     {{ item.name_category }}
-  </button>
+  </a>
 </mat-menu>
 
 <!-- Info Mobile -->
 <mat-menu #info_business_mobile="matMenu" class="custom-menu">
-  <button mat-menu-item [routerLink]="['/terms_conditions']">Términos y Condiciones</button>
-  <button mat-menu-item [routerLink]="['/data_protection']">Protección de datos</button>
-  <button mat-menu-item [routerLink]="['/payment_information']">Proceso de pago</button>
-  <button mat-menu-item [routerLink]="['/assisted_buy']">Compra asistida</button>
-  <button mat-menu-item [routerLink]="['/calculator2']">Calculadora de tarifas</button>
+  <a mat-menu-item [routerLink]="['/terms_conditions']" (click)="closeMobileMenu()">Términos y Condiciones</a>
+  <a mat-menu-item [routerLink]="['/data_protection']" (click)="closeMobileMenu()">Protección de datos</a>
+  <a mat-menu-item [routerLink]="['/payment_information']" (click)="closeMobileMenu()">Proceso de pago</a>
+  <a mat-menu-item [routerLink]="['/calculator2']" (click)="closeMobileMenu()">Calculadora de tarifas</a>
 </mat-menu>
 
 <mat-menu #loginuser_mobile="matMenu" class="custom-menu">
-  <button mat-menu-item [routerLink]="['/account/profile']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></button>
-  <button mat-menu-item [routerLink]="['/account/order-history']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>compras</span></button>
-  <button mat-menu-item [routerLink]="['/account/address']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">location_on</i><span>ubicaciones</span></button>
-  <button mat-menu-item (click)="exit_store_front(); toggleMobileMenu()"><i class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
+  <a mat-menu-item [routerLink]="['/account/profile']" (click)="closeMobileMenu()"><i class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></a>
+  <a mat-menu-item [routerLink]="['/account/order-history']" (click)="closeMobileMenu()"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>compras</span></a>
+  <a mat-menu-item [routerLink]="['/account/address']" (click)="closeMobileMenu()"><i class="material-icons mr-1 col_icon">location_on</i><span>ubicaciones</span></a>
+  <button mat-menu-item (click)="exit_store_front(); closeMobileMenu()"><i class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
 </mat-menu>
 
 
 <mat-menu #loginuser_commerce_mobile="matMenu" class="custom-menu">
-  <button mat-menu-item [routerLink]="['/account/profile']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">account_circle</i><span>Tu Información</span></button>
-  <button mat-menu-item [routerLink]="['/account/order-history']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">history</i><span>Compras</span></button>
-  <button mat-menu-item [routerLink]="['/account/address']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">location_on</i><span>Ubicaciones</span></button>
-  <button mat-menu-item [routerLink]="['/account/invoice_adm']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">fact_check</i><span>Facturas</span></button>
-  <button mat-menu-item [routerLink]="['/account/store_adm']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">account_balance</i><span>Tu tienda<span *ngIf="validate_img" class="material-icons" style="color:red;margin-left: 5px;">warning</span></span></button>
-  <button mat-menu-item [routerLink]="['/account/product_adm']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>Productos</span></button>
-  <button mat-menu-item (click)="exit_store_front(); toggleMobileMenu()"><i class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
+  <a mat-menu-item [routerLink]="['/account/profile']" (click)="closeMobileMenu()"><i class="material-icons mr-1 col_icon">account_circle</i><span>Tu Información</span></a>
+  <a mat-menu-item [routerLink]="['/account/order-history']" (click)="closeMobileMenu()"><i class="material-icons mr-1 col_icon">history</i><span>Compras</span></a>
+  <a mat-menu-item [routerLink]="['/account/address']" (click)="closeMobileMenu()"><i class="material-icons mr-1 col_icon">location_on</i><span>Ubicaciones</span></a>
+  <a mat-menu-item [routerLink]="['/account/invoice_adm']" (click)="closeMobileMenu()"><i class="material-icons mr-1 col_icon">fact_check</i><span>Facturas</span></a>
+  <a mat-menu-item [routerLink]="['/account/store_adm']" (click)="closeMobileMenu()"><i class="material-icons mr-1 col_icon">account_balance</i><span>Tu tienda<span *ngIf="validate_img" class="material-icons" style="color:red;margin-left: 5px;">warning</span></span></a>
+  <a mat-menu-item [routerLink]="['/account/product_adm']" (click)="closeMobileMenu()"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>Productos</span></a>
+  <button mat-menu-item (click)="exit_store_front(); closeMobileMenu()"><i class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
 </mat-menu>
 
 

@@ -306,6 +306,8 @@
   
   svg {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    width: 120px;
+    height: 120px;
   }
 }
 
@@ -470,6 +472,20 @@
   
   .pay-button-security {
     font-size: 0.65rem;
+  }
+  
+  .empty-checkout-state {
+    padding: 2rem 1rem;
+    min-height: 50vh;
+  }
+  
+  .empty-checkout-icon {
+    margin-bottom: 1.5rem;
+    
+    svg {
+      width: 80px;
+      height: 80px;
+    }
   }
   
   .empty-checkout-title {

@@ -517,27 +517,110 @@ video:hover {
   }
 }
 
-/* Global overrides for promo dialog to remove rounded corners */
+/* Global overrides for promo dialog with rounded corners */
 .promo-dialog-panel .mat-dialog-container {
-  border-radius: 0 !important;
+  border-radius: 12px !important;
   padding: 0 !important;
-  overflow: visible !important;
+  overflow: hidden !important;
 }
 
 .promo-dialog-panel .cdk-overlay-pane,
 .cdk-overlay-pane.promo-dialog-panel {
-  border-radius: 0 !important;
+  border-radius: 12px !important;
 }
 
-/* Ensure promo image never gets rounded corners */
+/* Ensure promo image has rounded corners */
 .promo-dialog-panel .promo-image,
 .mat-dialog-container .promo-image {
-  border-radius: 0 !important;
+  border-radius: 12px !important;
 }
 
-/* Angular Material MDC dialogs: remove rounded corners globally */
+/* Angular Material MDC dialogs: rounded corners for promo dialogs */
 .mat-mdc-dialog-container .mdc-dialog__surface {
-  border-radius: 0 !important;
+  border-radius: 12px !important;
   padding: 0 !important;
-  overflow: visible !important;
+  overflow: hidden !important;
+}
+
+/* Material Menu - Ensure menus close on outside click */
+.cdk-overlay-backdrop.cdk-menu-backdrop {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  background-color: transparent !important;
+}
+
+.cdk-overlay-backdrop.cdk-menu-backdrop.cdk-overlay-backdrop-showing {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Ensure menu backdrop is clickable */
+.cdk-overlay-container .cdk-overlay-backdrop {
+  pointer-events: auto !important;
+}
+
+/* Fix for cdk-overlay-connected-position-bounding-box - allow clicks outside */
+.cdk-overlay-connected-position-bounding-box {
+  pointer-events: none !important;
+}
+
+.cdk-overlay-connected-position-bounding-box .mat-menu-panel {
+  pointer-events: auto !important;
+}
+
+/* Material Menu Panel - ensure it doesn't block backdrop clicks */
+.mat-menu-panel {
+  pointer-events: auto !important;
+}
+
+/* Ensure menu items are clickable */
+.mat-menu-item {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Fix for mat-mdc-menu (Material Design Components) */
+.mdc-menu-surface {
+  pointer-events: auto !important;
+}
+
+.mdc-list-item {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Ensure overlay pane doesn't block backdrop clicks for menus only */
+.cdk-overlay-pane:has(.mat-menu-panel) {
+  pointer-events: none !important;
+}
+
+.cdk-overlay-pane:has(.mat-menu-panel) .mat-menu-panel {
+  pointer-events: auto !important;
+}
+
+/* Ensure backdrop is always clickable for menus */
+.cdk-overlay-backdrop + .cdk-overlay-connected-position-bounding-box {
+  pointer-events: none !important;
+}
+
+.cdk-overlay-backdrop + .cdk-overlay-connected-position-bounding-box > .mat-menu-panel {
+  pointer-events: auto !important;
+}
+
+/* Alternative selector for browsers that don't support :has() */
+.cdk-overlay-connected-position-bounding-box:has(.mat-menu-panel) {
+  pointer-events: none !important;
+}
+
+.cdk-overlay-connected-position-bounding-box:has(.mat-menu-panel) .mat-menu-panel {
+  pointer-events: auto !important;
+}
+
+/* Fallback for browsers without :has() support */
+.cdk-overlay-connected-position-bounding-box[style*="width: 100%"] {
+  pointer-events: none !important;
+}
+
+.cdk-overlay-connected-position-bounding-box[style*="width: 100%"] .mat-menu-panel {
+  pointer-events: auto !important;
 }

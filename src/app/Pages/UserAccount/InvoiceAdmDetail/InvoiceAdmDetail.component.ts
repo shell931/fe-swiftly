@@ -11,7 +11,6 @@ import { MatButtonModule } from '@angular/material/button';
 // import { MaterialFileInputModule } from 'ngx-material-file-input'; // Temporarily disabled - missing dependency
 import { ApiService } from '../../../Services/api.service';
 import { Invoice } from '../../../Models/Invoice';
-import { element } from 'protractor';
 import { EmbryoService } from '../../../Services/Embryo.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UntypedFormControl, UntypedFormGroup, UntypedFormBuilder, FormArray, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
