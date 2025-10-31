@@ -25,10 +25,10 @@
                     <i class="material-icons">more_vert</i>
                 </button>
                 <mat-menu #locationMenu="matMenu">
-                    <button mat-menu-item [routerLink]="['/account/address/edit', location.id]">
+                    <a mat-menu-item [routerLink]="['/account/address/edit', location.id]">
                         <i class="material-icons">edit</i>
                         <span>Editar</span>
-                    </button>
+                    </a>
                     <button mat-menu-item (click)="predetermined(location.id)">
                         <i class="material-icons">done_outline</i>
                         <span>Establecer predeterminada</span>

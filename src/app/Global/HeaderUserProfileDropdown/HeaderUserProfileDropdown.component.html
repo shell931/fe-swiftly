@@ -19,14 +19,14 @@
 <mat-menu #loginuser="matMenu">
         <!-- <button mat-menu-item fxLayoutAlign="start center" [routerLink]="['/account/profile']"><i class="material-icons mr-1">account_circle</i> <span>Perfil</span>
   </button> -->
-        <button mat-menu-item [routerLink]="['/account/profile']"><i
-                        class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></button>
-        <button mat-menu-item [routerLink]="['/account/order-history']"><i
+        <a mat-menu-item [routerLink]="['/account/profile']"><i
+                        class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></a>
+        <a mat-menu-item [routerLink]="['/account/order-history']"><i
                         class="material-icons mr-1 col_icon">add_shopping_cart</i><span>Mis
-                        compras</span></button>
-        <button mat-menu-item [routerLink]="['/account/address']"><i
+                        compras</span></a>
+        <a mat-menu-item [routerLink]="['/account/address']"><i
                         class="material-icons mr-1 col_icon">location_on</i><span>Mis
-                        ubicaciones</span></button>
+                        ubicaciones</span></a>
         <!-- <button mat-menu-item [routerLink]="['/account/profile']"> <i class="material-icons mr-1">local_post_office</i> <span>Messages</span></button> -->
         <button mat-menu-item (click)="exit_store_front()"><i
                         class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
@@ -47,18 +47,18 @@
 </button>
 
 <mat-menu #loginuser_commerce="matMenu">
-        <button mat-menu-item [routerLink]="['/account/profile']"><i
-                        class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></button>
-        <button mat-menu-item [routerLink]="['/account/order-history']"><i
+        <a mat-menu-item [routerLink]="['/account/profile']"><i
+                        class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></a>
+        <a mat-menu-item [routerLink]="['/account/order-history']"><i
                         class="material-icons mr-1 col_icon">add_shopping_cart</i><span>Mis
-                        compras</span></button>
-        <button mat-menu-item [routerLink]="['/account/address']"><i
+                        compras</span></a>
+        <a mat-menu-item [routerLink]="['/account/address']"><i
                         class="material-icons mr-1 col_icon">location_on</i><span>Mis
-                        ubicaciones</span></button>
-        <button mat-menu-item [routerLink]="['/admin-panel/products']"><i
-                        class="material-icons mr-1 col_icon">queue_play_next</i><span>Productos</span></button>
-        <button mat-menu-item [routerLink]="['/admin-panel/invoices_store']"><i
-                        class="material-icons mr-1 col_icon">fact_check</i><span>Facturas</span></button>
+                        ubicaciones</span></a>
+        <a mat-menu-item [routerLink]="['/admin-panel/products']"><i
+                        class="material-icons mr-1 col_icon">queue_play_next</i><span>Productos</span></a>
+        <a mat-menu-item [routerLink]="['/admin-panel/invoices_store']"><i
+                        class="material-icons mr-1 col_icon">fact_check</i><span>Facturas</span></a>
         <button mat-menu-item (click)="exit_store_front()"><i
                         class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
 </mat-menu>

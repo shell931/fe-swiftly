@@ -335,6 +335,18 @@ trackByCategoryId(index: number, item: any): any {
       console.log('=== TOGGLE MOBILE MENU ===', this.isMobileMenuOpen);
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
    }
+   
+   public closeMobileMenu() {
+      this.isMobileMenuOpen = false;
+   }
+   
+   @HostListener('document:keydown.escape', ['$event'])
+   onEscapeKey(event: KeyboardEvent) {
+      if (this.isMobileMenuOpen) {
+         this.closeMobileMenu();
+      }
+   }
+   
 
    public onMenuClick(menuItem: string) {
       console.log('=== MENU CLICK ===', menuItem);
@@ -347,8 +359,17 @@ trackByCategoryId(index: number, item: any): any {
    }
 
    public closeMobileMenuOnBackdrop(event: Event) {
-      // Solo cerrar si el click es en el backdrop, no en el contenido
-      if (event.target === event.currentTarget) {
+      // Cerrar si el click es en el backdrop (mainMenu) o fuera del contenido
+      const target = event.target as HTMLElement;
+      const currentTarget = event.currentTarget as HTMLElement;
+      
+      // Si el click es en el div mainMenu directamente (backdrop) o fuera de la lista
+      if (target === currentTarget || target.classList.contains('mainMenu')) {
+         this.isMobileMenuOpen = false;
+      }
+      
+      // También cerrar si el click es fuera de .table-cell (el contenido)
+      if (!target.closest('.table-cell') && target.closest('.mainMenu')) {
          this.isMobileMenuOpen = false;
       }
    }
