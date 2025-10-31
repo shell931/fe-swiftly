@@ -1,0 +1,75 @@
+<ng-container *ngIf="storeList && storeList.length>0; else elseBlock">
+    <div fxLayout="column">
+        <mat-card class="matcard_admin">
+            <div class="dash-title mb-4 mt-4">
+                <h2><b>Administración de comercios</b></h2>
+            </div>
+            <div class="buttonIn">
+                <input class="inputsearch" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar" autocomplete="off" type="search">
+                <button class="btn btn-primary button-search class_search" type="submit" tabindex="-1">
+                    <span class="mat-button-wrapper">
+                        <i class="fa fa-search"></i>
+                    </span></button>
+            </div>
+            <div class="table-responsive-x mt-3">
+                <table mat-table [dataSource]="dataSource" class="w-100 table-scroll-wrap">
+
+                    <ng-container matColumnDef="action">
+                        <th class="px-3 text-nowrap table-left" mat-header-cell *matHeaderCellDef><b class="title_table">Action</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
+                            <button mat-icon-button [routerLink]="['validation_store',element.id_store]" color="primary">
+                                <i class="material-icons">remove_red_eye</i>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="name_store">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Comercio</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.name_store}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="state_store">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef><b class="title_table">Estado</b></th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            <div *ngIf="element.state_store === true" class="class_aprobed" align="center">Aprobada</div>
+                            <div *ngIf="element.state_store === false" class="class_reject" align="center"> Rechazada</div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="address">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Dirección</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.address}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="telephone">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Teléfono</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.telephone}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="email">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Email</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="number_identifier">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Identificación</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.number_identifier}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="manager">
+                        <th class="px-3 text-nowrap table-right" mat-header-cell *matHeaderCellDef> <b class="title_table">Representante</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.manager}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+            <!-- table-responsive -->
+        </mat-card>
+    </div>
+</ng-container>
+<ng-template #elseBlock>
+    <h5 class="ml-5">No data found</h5>
+</ng-template>

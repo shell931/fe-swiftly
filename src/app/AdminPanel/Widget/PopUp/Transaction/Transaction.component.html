@@ -1,0 +1,49 @@
+<div *ngIf="data.ValidInvoiceOnTransfer != 1">
+    <div class="btn-group" *ngIf="data.state == '1'">
+        <button mat-raised-button color="accent" class="button" (click)="anul_transaction(data.id)" [disabled]="buttdisa">Anular</button>
+        <button mat-raised-button color="accent" class="button" (click)="contra_c(data.id)" [disabled]="buttdisacontra">Contracargo</button>
+    </div>
+</div>
+<div *ngIf="data.ValidInvoiceOnTransfer == 1">
+    <div *ngIf="data.state == '1'">
+        <p><label style="color:red;"><b>Esta transacción contiene facturas en transferencia favor ejecutar la transferencia para poder anular o marcar como contra cargo</b></label></p>
+    </div>
+</div>
+<p><label style="color:red;" *ngIf="failcanceltx"><b>La transaccion no pudo ser cancelada</b></label></p>
+<p><label style="color:red;" *ngIf="failcanceltx"><b>Mensaje: {{msjcanceltx}}</b></label></p>
+<p><label style="color:red;" *ngIf="failservercanceltx"><b>Core transaccion o canal de transacción caido, consulte con administrador</b></label></p>
+
+<div class="row" style="margin-left: 0px;">
+    <div class="col-md-4">
+        <label><b>Franquicia</b></label>
+        <p><label>{{data.brand}}</label></p>
+    </div>
+    <div class="col-md-4">
+        <label><b>Cod respuesta</b></label>
+        <p><label>{{data.cod_reply}}</label></p>
+    </div>
+    <div class="col-md-4">
+        <label><b>Fecha</b></label>
+        <p><label>{{data.created_at}}</label></p>
+    </div>
+    <div class="col-md-4">
+        <label><b>Num aprobación</b></label>
+        <p><label>{{data.num_aprob}}</label></p>
+    </div>
+    <div class="col-md-4">
+        <label><b>Num recibo</b></label>
+        <p><label>{{data.num_recibo}}</label></p>
+    </div>
+    <div class="col-md-4">
+        <label><b>Cuotas</b></label>
+        <p><label>{{data.quot}}</label></p>
+    </div>
+    <div class="col-md-4">
+        <label><b>Referencia Tx</b></label>
+        <p><label>{{data.reference}}</label></p>
+    </div>
+    <div class="col-md-4">
+        <label><b>Total</b></label>
+        <p><label>{{data.total_tx}}</label></p>
+    </div>
+</div>

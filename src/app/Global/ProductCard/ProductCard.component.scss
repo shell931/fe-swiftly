@@ -1,0 +1,118 @@
+/* Wishlist button styles */
+.wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 40;
+    
+    a {
+        display: inline-block;
+        width: 38px;
+        height: 38px;
+        line-height: 38px;
+        text-align: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #79dc78;
+        color: #79dc78;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        
+        i {
+            font-size: 16px;
+            line-height: 38px;
+        }
+        
+        &:hover {
+            background: #79dc78;
+            color: white;
+            transform: scale(1.1);
+        }
+    }
+}
+
+/* Estado activo cuando está en la lista de deseos */
+.wishlist-icon.wishlist-active a {
+    background: #ff6b6b;
+    border-color: #ff6b6b;
+    color: white;
+    
+    &:hover {
+        background: #e55a5a;
+        border-color: #e55a5a;
+        color: white;
+    }
+}
+
+/* Product card hover effects */
+.product-card:hover .wishlist-icon a {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.wishlist-icon a {
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .wishlist-icon {
+        top: 8px;
+        right: 8px;
+        
+        a {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #79dc78;
+            color: #79dc78;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+            
+            i {
+                font-size: 18px;
+                line-height: 40px;
+            }
+            
+            &:active {
+                transform: scale(0.95);
+                background: #79dc78;
+                color: white;
+            }
+        }
+    }
+    
+    .wishlist-icon.wishlist-active a {
+        background: #ff6b6b;
+        border-color: #ff6b6b;
+        color: white;
+        
+        &:active {
+            background: #e55a5a;
+            border-color: #e55a5a;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .wishlist-icon {
+        top: 6px;
+        right: 6px;
+        
+        a {
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            
+            i {
+                font-size: 16px;
+                line-height: 36px;
+            }
+        }
+    }
+}

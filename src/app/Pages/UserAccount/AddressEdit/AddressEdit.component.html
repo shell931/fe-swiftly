@@ -1,0 +1,101 @@
+<div class="address-edit-container">
+    <div class="address-edit-header">
+        <b>Editar ubicación</b>
+    </div>
+      <form [formGroup]="formLocationEdit" class="address-edit-form">
+         <div class="form-container">
+
+               <mat-form-field class="w-100 mb-3" [hidden]="true">
+                  <input matInput formControlName="id" maxlength="50">
+               </mat-form-field>
+
+            <div class="form-row">
+               <div class="form-group">
+                  <label>Departamento</label>
+                  <ng-select [items]="depart$ | async" bindLabel="departament" bindValue="id_departament"
+                     [formControl]="departamentFilterCtrl" formControlName="departamentCtrll"
+                     (change)="citieChangeAction($event)" (selectionChange)="citieChangeAction($event)" required [(ngModel)]="selectedValue">
+                  </ng-select>
+                  <mat-error
+                     *ngIf="formLocationEdit.get('departamentCtrll').hasError('required') && formLocationEdit.get('departamentCtrll').touched">
+                     Este campo es obligatorio.</mat-error>
+               </div>
+               <div class="form-group">
+                  <label>Ciudad</label>
+                  <ng-select [items]="city$ | async" bindLabel="city" bindValue="id_city"
+                     [formControl]="citieFilterCtrl" formControlName="citieCtrl" required [(ngModel)]="selectedCityValue">
+                  </ng-select>
+                  <mat-error
+                     *ngIf="formLocationEdit.get('citieCtrl').hasError('required') && formLocationEdit.get('citieCtrl').touched">
+                     Este campo es obligatorio.</mat-error>
+               </div>
+            </div>
+            
+            <div class="form-row">
+               <div class="form-group">
+                  <label>Via</label>
+                  <input placeholder="Via" formControlName="via" maxlength="50" class="form-control">
+                  <mat-error
+                     *ngIf="formLocationEdit.get('via').hasError('required') && formLocationEdit.get('via').touched">
+                     Este campo es obligatorio.</mat-error>
+               </div>
+               <div class="form-group">
+                  <label>#</label>
+                  <input placeholder="#" formControlName="number" maxlength="50" class="form-control">
+                  <mat-error
+                     *ngIf="formLocationEdit.get('number').hasError('required') && formLocationEdit.get('number').touched">
+                     Este campo es obligatorio.</mat-error>
+               </div>
+            </div>
+            
+            <div class="form-row">
+               <div class="form-group">
+                  <mat-label>-</mat-label>
+                  <input placeholder="-" formControlName="sn" maxlength="50" class="form-control">
+                  <mat-error *ngIf="formLocationEdit.get('sn').hasError('required') && formLocationEdit.get('sn').touched">
+                     Este campo es obligatorio.</mat-error>
+               </div>
+               <div class="form-group">
+                  <label>Barrio</label>
+                  <input placeholder="Barrio" formControlName="neighborhood" maxlength="50" class="form-control">
+                  <mat-error
+                     *ngIf="formLocationEdit.get('neighborhood').hasError('required') && formLocationEdit.get('neighborhood').touched">
+                     Este campo es obligatorio.</mat-error>
+               </div>
+            </div>
+            
+            <div class="form-row">
+               <div class="form-group">
+                  <label>Contacto (Quien recibe)</label>
+                  <input placeholder="Contacto (Quien recibe)" formControlName="contact" maxlength="50"
+                     class="form-control">
+                  <mat-error
+                     *ngIf="formLocationEdit.get('contact').hasError('required') && formLocationEdit.get('contact').touched">
+                     Este campo es obligatorio.</mat-error>
+               </div>
+               <div class="form-group">
+                  <label>Teléfono</label>
+                  <input placeholder="Teléfono" formControlName="phone" maxlength="50" class="form-control">
+                  <mat-error
+                     *ngIf="formLocationEdit.get('phone').hasError('required') && formLocationEdit.get('phone').touched">
+                     Este campo es obligatorio.</mat-error>
+               </div>
+            </div>
+            
+            <div class="form-row">
+               <div class="form-group">
+                  <label>Datos adicionales</label>
+                  <textarea placeholder="Datos adicionales" formControlName="additional_data" maxlength="500" class="form-control"></textarea>
+                  <mat-error
+                     *ngIf="formLocationEdit.get('additional_data').hasError('required') && formLocationEdit.get('additional_data').touched">
+                     Este campo es obligatorio.</mat-error>
+               </div>
+               <div class="form-group">
+                  <div class="form-actions">
+                     <button mat-raised-button color="accent" (click)="updateLocationUserFront()">Actualizar</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </form>
+</div>

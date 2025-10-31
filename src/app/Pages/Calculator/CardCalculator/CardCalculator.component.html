@@ -1,0 +1,35 @@
+<mat-card class="calculator-card-modern">
+  <mat-card-header class="card-header-modern">
+    <div class="card-header-content">
+      <div class="card-icon">
+        <i class="fa" [ngClass]="title.includes('Descuentos') ? 'fa-percentage' : 'fa-hand-holding-usd'"></i>
+      </div>
+      <mat-card-title class="card-title-modern">{{title}}</mat-card-title>
+    </div>
+  </mat-card-header>
+  
+  <mat-card-content class="card-content-modern">
+    <div class="items-list">
+      <div class="item-row" *ngFor="let item of items; let i = index">
+        <div class="item-info">
+          <span class="item-text">{{item.text}}</span>
+        </div>
+        <div class="item-value">
+          {{item.value | currency : 'USD' : 'symbol' : '1.2-2'}}
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  
+  <mat-card-footer class="card-footer-modern" *ngIf="footer">
+    <div class="footer-content">
+      <div class="footer-info">
+        <i class="fa fa-calculator"></i>
+        <span class="footer-text">{{footer?.text}}</span>
+      </div>
+      <div class="footer-value">
+        {{footer?.value | currency : 'USD' : 'symbol' : '1.2-2'}}
+      </div>
+    </div>
+  </mat-card-footer>
+</mat-card>

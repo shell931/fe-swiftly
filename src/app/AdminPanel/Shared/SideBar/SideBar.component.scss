@@ -1,0 +1,27 @@
+.sidebar-container {
+  max-width: 300px;
+  width: 100%;
+  min-width: 80px;
+}
+
+.sidebar-container img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  display: block;
+  margin: 20px auto 0 auto;
+}
+
+img {
+    height: auto;
+    max-width: 10%;
+    vertical-align: middle;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
+
+.mat-drawer {
+    background-color: #162226;
+    color: white;
+}

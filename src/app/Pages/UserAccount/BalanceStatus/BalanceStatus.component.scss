@@ -1,0 +1,336 @@
+// Contenedor principal
+.balance-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+// Header
+.balance-header {
+  margin-bottom: 1.5rem;
+  
+  .header-content {
+    text-align: center;
+    
+    b {
+      display: block;
+      font-size: 20px;
+      font-weight: 500;
+      color: #2c3e50;
+      margin-bottom: 0.25rem;
+    }
+    
+    .balance-status {
+      display: block;
+      font-size: 13px;
+      color: #6c757d;
+      background: rgba(121, 220, 120, 0.1);
+      padding: 0.375rem 0.75rem;
+      border-radius: 16px;
+      border: 1px solid rgba(121, 220, 120, 0.2);
+    }
+  }
+}
+
+// Contenido principal
+.balance-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+// Tarjeta de saldo
+.balance-card {
+  background: linear-gradient(135deg, #79dc78 0%, #6bc86b 100%);
+  border-radius: 10px;
+  padding: 1.5rem;
+  color: white;
+  box-shadow: 0 6px 24px rgba(121, 220, 120, 0.25);
+  
+  .balance-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .balance-amount {
+    .balance-title {
+      font-size: 16px;
+      font-weight: 400;
+      margin: 0 0 0.25rem 0;
+      opacity: 0.9;
+    }
+    
+    .balance-value {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .balance-actions {
+    .summary-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      i {
+        font-size: 16px;
+      }
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
+
+// Tarjeta de información bancaria
+.bank-info-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.25rem;
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e9ecef;
+  
+  .bank-info-header {
+    margin-bottom: 1rem;
+    
+    h3 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #2c3e50;
+      margin: 0 0 0.25rem 0;
+    }
+    
+    p {
+      font-size: 13px;
+      color: #6c757d;
+      margin: 0;
+    }
+  }
+  
+  .bank-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .bank-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border-left: 3px solid #79dc78;
+    
+    label {
+      font-size: 11px;
+      font-weight: 400;
+      color: #6c757d;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    
+    span {
+      font-size: 13px;
+      font-weight: 500;
+      color: #2c3e50;
+    }
+  }
+}
+
+// Sección de transferencia
+.transfer-section {
+  background: white;
+  border-radius: 10px;
+  padding: 1.25rem;
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e9ecef;
+  
+  .transfer-actions {
+    text-align: center;
+    margin-bottom: 0.75rem;
+    
+    .transfer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: #79dc78;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 3px 8px rgba(121, 220, 120, 0.25);
+      
+      i {
+        font-size: 18px;
+      }
+      
+      &:hover {
+        background: #6bc86b;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(121, 220, 120, 0.3);
+      }
+      
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+  
+  .transfer-error {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    color: #721c24;
+    font-size: 13px;
+    
+    i {
+      font-size: 16px;
+      color: #dc3545;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .balance-container {
+    padding: 0.75rem;
+  }
+  
+  .balance-card {
+    padding: 1.25rem;
+    
+    .balance-info {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .balance-amount {
+      .balance-value {
+        font-size: 24px;
+      }
+    }
+  }
+  
+  .bank-info-card {
+    .bank-details {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .transfer-section {
+    .transfer-actions {
+      .transfer-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .balance-header {
+    .header-content {
+      b {
+        font-size: 18px;
+      }
+    }
+  }
+  
+  .balance-card {
+    .balance-amount {
+      .balance-value {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+// Estilos para SweetAlert2
+::ng-deep .swal2-popup {
+  font-family: inherit !important;
+  
+  .swal2-title {
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    color: #2c3e50 !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .swal2-html-container {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #6c757d !important;
+    margin: 0 !important;
+  }
+  
+  .swal2-actions {
+    gap: 0.5rem !important;
+    margin-top: 1rem !important;
+  }
+  
+  .swal2-confirm {
+    background-color: #79dc78 !important;
+    border: none !important;
+    border-radius: 6px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    padding: 0.5rem 1rem !important;
+    box-shadow: 0 2px 8px rgba(121, 220, 120, 0.3) !important;
+    
+    &:hover {
+      background-color: #6bc86b !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 12px rgba(121, 220, 120, 0.4) !important;
+    }
+    
+    &:active {
+      transform: translateY(0) !important;
+    }
+  }
+  
+  .swal2-cancel {
+    background-color: #6c757d !important;
+    border: none !important;
+    border-radius: 6px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    padding: 0.5rem 1rem !important;
+    
+    &:hover {
+      background-color: #5a6268 !important;
+      transform: translateY(-1px) !important;
+    }
+    
+    &:active {
+      transform: translateY(0) !important;
+    }
+  }
+}

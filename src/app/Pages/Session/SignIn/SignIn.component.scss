@@ -1,0 +1,172 @@
+
+.swiftly-signin-container {
+  min-height: auto;
+  background-color: white;
+  display: flex;
+  align-items: flex-center;
+  justify-content: center;
+  padding: 10px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+.swiftly-signin-content {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+
+.swiftly-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 0px;
+  
+}
+
+.swiftly-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.3;
+}
+
+.swiftly-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  opacity: 0.8;
+}
+
+/* Form Container */
+.swiftly-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .swiftly-signin-container {
+    padding: 20px 15px;
+    padding-top: 30px;
+  }
+  
+  .swiftly-signin-content {
+    max-width: 100%;
+    gap: 12px;
+  }
+  
+  .swiftly-title {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+  
+  .swiftly-subtitle {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .swiftly-signin-container {
+    padding: 15px 10px;
+    padding-top: 25px;
+  }
+  
+  .swiftly-signin-content {
+    gap: 10px;
+  }
+  
+  .swiftly-title {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  
+  .swiftly-subtitle {
+    font-size: 12px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .swiftly-signin-container {
+    padding: 10px 8px;
+    padding-top: 20px;
+  }
+  
+  .swiftly-title {
+    font-size: 18px;
+  }
+  
+  .swiftly-subtitle {
+    font-size: 11px;
+  }
+}
+
+/* Global Overrides */
+body {
+  background: white !important;
+  padding-top: 0 !important;
+}
+
+/* Force white backgrounds on all form elements */
+::ng-deep .mat-mdc-form-field {
+  background: white !important;
+  background-color: white !important;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  background: white !important;
+  background-color: white !important;
+  background-image: none !important;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-input-element {
+  background: white !important;
+  background-color: white !important;
+  background-image: none !important;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-form-field-infix {
+  background: white !important;
+  background-color: white !important;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-form-field-subscript-wrapper {
+  background: white !important;
+  background-color: white !important;
+}
+
+/* Override any blue/lavender backgrounds globally */
+::ng-deep input[type="email"],
+::ng-deep input[type="password"],
+::ng-deep input[type="text"] {
+  background: white !important;
+  background-color: white !important;
+  background-image: none !important;
+}
+
+/* Remove all focus effects and green halos globally */
+::ng-deep input:focus,
+::ng-deep input:focus-visible,
+::ng-deep input:focus-within {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Override the global green focus effect */
+::ng-deep input:focus {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}

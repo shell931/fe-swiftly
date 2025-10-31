@@ -1,0 +1,121 @@
+/* ===========================================
+   VER MAS PRODUCTOS BUTTON - IMPROVED STYLING
+   =========================================== */
+
+/* Main button container */
+.ver-mas-productos-section {
+    text-align: center;
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+/* Enhanced button styling - BIGGER AND MORE VISIBLE */
+.ver-mas-productos-section .btn {
+    background: linear-gradient(135deg, #79dc78 0%, #6bc86a 100%);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 20px 40px;
+    text-transform: uppercase;
+    box-shadow: 0 6px 20px rgba(121, 220, 120, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-width: 250px;
+    cursor: pointer !important;
+    display: inline-block;
+    text-decoration: none;
+    width: auto;
+    height: auto;
+}
+
+/* Hover effects with cursor pointer */
+.ver-mas-productos-section .btn:hover {
+    background: linear-gradient(135deg, #6bc86a 0%, #5bb85a 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(121, 220, 120, 0.5);
+    color: white;
+    cursor: pointer !important;
+}
+
+/* Active state */
+.ver-mas-productos-section .btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(121, 220, 120, 0.4);
+    cursor: pointer !important;
+}
+
+/* Focus state for accessibility */
+.ver-mas-productos-section .btn:focus {
+    outline: none;
+    box-shadow: 0 6px 20px rgba(121, 220, 120, 0.4), 0 0 0 4px rgba(121, 220, 120, 0.3);
+    cursor: pointer !important;
+}
+
+/* Ripple effect */
+.ver-mas-productos-section .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.ver-mas-productos-section .btn:active::before {
+    width: 400px;
+    height: 400px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .ver-mas-productos-section {
+        margin: 30px 0;
+        padding: 0 15px;
+    }
+    
+    .ver-mas-productos-section .btn {
+        font-size: 1.1rem;
+        padding: 18px 35px;
+        min-width: 220px;
+        cursor: pointer !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .ver-mas-productos-section {
+        margin: 25px 0;
+        padding: 0 10px;
+    }
+    
+    .ver-mas-productos-section .btn {
+        font-size: 1rem;
+        padding: 16px 30px;
+        min-width: 200px;
+        border-radius: 12px;
+        cursor: pointer !important;
+    }
+}
+
+/* Animation for button appearance */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ver-mas-productos-section {
+    animation: fadeInUp 0.6s ease-out;
+}

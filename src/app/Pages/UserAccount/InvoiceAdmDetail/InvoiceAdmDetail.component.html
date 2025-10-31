@@ -1,0 +1,166 @@
+<div class="form-row-horizontal">
+    <form *ngIf="state_id === '1'" [formGroup]="ShippmentForm">
+        <div>
+            <b>Carga comprobante de envío</b><b class="obligatory"> *</b>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <!-- ngx-mat-file-input temporarily replaced with native input -->
+                <input matInput type="file" formControlName="cam_com" placeholder="Comprobante" 
+                    (change)="onChangeCamCom($event)" accept="image/*,.pdf">
+                <mat-icon matSuffix>folder</mat-icon>
+                <mat-hint>(Sube aquí el comprobante de envío)</mat-hint>
+                <mat-error
+                    *ngIf="ShippmentForm.get('cam_com').hasError('required') && ShippmentForm.get('cam_com').touched">
+                    Este campo es obligatorio.</mat-error>
+            </mat-form-field>
+        </div>
+        <button class="mb-3 color_button_ac" mat-raised-button color="accent" (click)="ShippingVoucherRequest()">Enviar
+            comprobante de envío</button>
+    </form>
+
+    <form *ngIf="state_id != '4'" [formGroup]="ShippmentForm">
+        <div>
+            <b>Carga carta de recibido </b><b class="obligatory"> *</b>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <!-- ngx-mat-file-input temporarily replaced with native input -->
+                <input matInput type="file" formControlName="cam_com" placeholder="Comprobante" 
+                    (change)="onChangeCamCom($event)" accept="image/*,.pdf">
+                <mat-icon matSuffix>folder</mat-icon>
+                <mat-hint>(Sube aquí la carta de recibido)</mat-hint>
+                <mat-error
+                    *ngIf="ShippmentForm.get('cam_com').hasError('required') && ShippmentForm.get('cam_com').touched">
+                    Este campo es obligatorio.</mat-error>
+            </mat-form-field>
+        </div>
+        <button class="mb-3 color_button_ac" mat-raised-button color="accent" (click)="SendLetterReceived()">Enviar
+            carta de recibido</button>
+    </form>
+</div>
+
+
+<div class="">
+    <table>
+        <tr>
+            <td colspan="8"><b>DATOS DEL COMPRADOR</b></td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo identificación</th>
+            <th>Identificación</th>
+            <th>Email</th>
+            <th>Departamento</th>
+            <th>Ciudad</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+        </tr>
+        <tr>
+            <td>{{name_client}} {{first_name_client}}</td>
+            <td>{{type_identifier}}</td>
+            <td>{{number_identifier}}</td>
+            <td>{{email}}</td>
+            <td>{{departament}}</td>
+            <td>{{nameci}}</td>
+            <td>{{adress}}</td>
+            <td>{{phone}}</td>
+        </tr>
+        <tr>
+            <td colspan="8"><b>DATOS DE TRANSACCIÓN Y FACTURA</b></td>
+        </tr>
+        <tr>
+            <th>Referencia Tx</th>
+            <th>Método de pago</th>
+            <th>Total</th>
+            <th>Cuotas</th>
+            <th>Estado</th>
+            <th>Franquicia</th>
+            <th>Rete icb</th>
+            <th>Num aprobación</th>
+        </tr>
+        <tr>
+            <td>{{reference_invoice}}</td>
+            <td>{{paymentmethod}}</td>
+            <td>{{total_price|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+            <td>{{quot}}</td>
+            <td>{{name_state}}</td>
+            <td>{{brand}}</td>
+            <td>{{val_percentage_rete_ica|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+            <td>{{num_aprob}}</td>
+        </tr>
+        <tr>
+            <th>Rete fuente</th>
+            <th>Cod respuesta</th>
+            <th>Comisión pago</th>
+            <th>Mensaje respuesta</th>
+            <th>Comisión venta</th>
+            <th>Num recibo</th>
+            <th>Iva sobre comisión</th>
+            <th>Estado</th>
+        </tr>
+        <tr>
+            <td>{{val_percentage_rete_fuente|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+            <td>{{cod_reply}}</td>
+            <td>{{val_percentage_commision_payment|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+            <td>{{messaje_reply}}</td>
+            <td>{{val_percentage_sale|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+            <td>{{num_recibo}}</td>
+            <td>{{val_percentage_commision_tax|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+            <td>{{name_state}}</td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+<div class="py-1">
+    <div fxLayout="row wrap" fxLayoutAlign="start center" class="col-gap">
+        <!-- <div *ngFor="let item of image_gallery">
+                <img width="626" height="800" class="img_size" src="{{ item }}" alt="cart Image">
+            </div> -->
+        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100" class="size_card">
+            <div class="text-right">
+                <div class="table-responsive-x">
+                    <table class="mb-3">
+                        <thead>
+                            <tr>
+                                <th>Prod</th>
+                                <th *ngIf="type_service_id == 1">Cod</th>
+                                <th>Precio</th>
+                                <th>cantidad</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of adminprList">
+
+                                <th><label class="color_res">
+                                        <img class="img-circle inline-block" src="{{img_product_rout}}{{item.image}}"
+                                            style=" border-radius: 10%; width: 30px;" *ngIf="type_service_id == 1">
+                                        {{ item.name_pr }}
+                                    </label></th>
+
+                                <th *ngIf="type_service_id == 1"><label class="color_res">{{ item.product_code
+                                        }}</label> </th>
+                                <th><label class="color_res">{{ item.unit_price|currency : 'USD' : 'symbol' :
+                                        '1.0-0' }}</label></th>
+                                <th><label class="color_res">{{ item.quantity }}</label></th>
+                                <th><label class="color_res">{{ item.total_price|currency : 'USD' : 'symbol' : '1.0-0'
+                                        }}</label></th>
+                            </tr>
+                            <tr>
+                                <td colspan="4" *ngIf="type_service_id == 1"><b>Total</b></td>
+                                <td colspan="3" *ngIf="type_service_id == 2"><b>Total</b></td>
+                                <td>
+                                    <strong>{{total_price|currency : 'USD' : 'symbol' : '1.0-0'}}</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

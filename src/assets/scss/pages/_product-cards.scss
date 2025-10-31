@@ -1,0 +1,533 @@
+.mat-flat-button.mat-accent,
+.mat-raised-button.mat-accent,
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent {
+    color: #fff;
+    text-transform: capitalize;
+    background-color: #79dc78;
+}
+
+
+/*== Block policy ==*/
+
+.block-policy1 .mat-card-content {
+    padding: 1.5rem;
+    border-radius: 0.3rem !important;
+}
+
+.block-policy1 i {
+    font-size: 3rem;
+    float: left;
+    color: #222;
+}
+
+.block-policy1 .item-inner p {
+    float: left;
+    text-align: left;
+    position: relative;
+    margin-left: 1rem;
+}
+
+.block-policy1 .item-inner .content b {
+    color: #222;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.item-1,
+.item-2,
+.item-3,
+.item-4,
+.item-5 {
+    margin-bottom: 0.5rem;
+}
+
+.card_store_prod {
+    margin-top: 20px;
+    margin-left: 0px;
+}
+
+.mat-card-content {
+    border-radius: 0px;
+    border: 0px;
+    background: #fff !important;
+    padding: 1rem;
+}
+
+.mat-card {
+    border: 0px !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.mat-card-content {
+    overflow: hidden;
+}
+
+.card_store_prod h5 {
+    overflow: hidden;
+    height: auto;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+    color: #666;
+    margin-top: 1.5rem;
+}
+
+.mat-card-header,
+.desc_tienda {
+    margin: 0px;
+    min-height: 4rem;
+    text-align: justify;
+}
+
+.mat-card-header-text {
+    margin: 0px !important;
+}
+
+.mat-card-image {
+    width: 100%;
+    margin: 0px;
+    border-radius: 0px !important;
+}
+
+.producto_destacado .wishlist.btn-button {
+    position: absolute;
+    top: -100px;
+    left: 30px;
+    border: 1px solid #79dc78;
+    display: inline-block;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 50%;
+    color: #79dc78;
+    width: 45px;
+    height: 45px;
+    line-height: 34px;
+    text-align: center;
+    margin: 0 1px;
+    font-size: 14px;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    transition: 0.2s;
+}
+
+.producto_destacado .btn_comprar .btn-button {
+    position: absolute;
+    top: -100px;
+    right: 30px;
+    border: 1px solid #79dc78;
+    display: inline-block;
+    padding: 0;
+    background-color: #79dc78;
+    border-radius: 50%;
+    color: #fff;
+    width: 45px !important;
+    height: 45px !important;
+    line-height: 34px !important;
+    text-align: center !important;
+    margin: 0 1px;
+    font-size: 14px !important;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    transition: 0.2s;
+}
+
+.producto_destacado .btn_comprar i,
+.wishlist.btn-button i {
+    font-size: 21px;
+    margin: 0;
+    padding: 0;
+    line-height: 0px;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0px;
+}
+
+.producto_destacado:hover {
+    background: #fff;
+}
+
+.producto_destacado .mat-card-image {
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    transition: 0.2s;
+}
+
+.producto_destacado:hover .mat-card-image {
+    opacity: 0.1;
+    z-index: 0 !important;
+    position: relative;
+}
+
+.producto_destacado:hover .wishlist.btn-button,
+.producto_destacado:hover .btn_comprar .btn-button {
+    display: block !important;
+    top: 40%;
+}
+
+.producto_destacado .mat-card-content {
+    min-height: 300px;
+}
+
+.producto_destacado .mat-card-content h6 {
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    border: 0px;
+}
+
+.mat-card-image:first-child {
+    margin: 0px !important;
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+}
+
+.titulo_producto {
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    margin: 0 0 7px 0;
+    font-weight: 300 !important;
+    font-size: 0.8rem;
+}
+
+.price {
+    margin: 0;
+    line-height: 21px;
+    color: #111;
+    font-size: 0.9rem !important;
+    font-weight: 500;
+    text-align: left !important;
+    display: block;
+}
+
+.price-red {
+    color: #FD0000;
+}
+
+.deliveryicon {
+    color: #111;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.deliveryicon img {
+    height: 25px;
+    vertical-align: middle;
+    background: #79dc78;
+    padding: 5px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.titulo {
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: 400;
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.mat-fab .mat-button-wrapper {
+    padding: 16px 0;
+    display: flex;
+    line-height: 24px;
+    justify-content: center;
+}
+
+.cards {
+    height: 25px;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    overflow: hidden;
+}
+
+figure:hover+span {
+    bottom: -36px;
+    opacity: 1;
+}
+
+.banners figure {
+    position: relative;
+    cursor: pointer;
+}
+
+.banners figure::before {
+    position: absolute;
+    top: 0;
+    left: -75%;
+    z-index: 2;
+    display: block;
+    content: '';
+    width: 50%;
+    height: 100%;
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
+    -webkit-transform: skewX( -25deg);
+    transform: skewX( -25deg);
+}
+
+.banners figure:hover::before {
+    -webkit-animation: shine .75s;
+    animation: shine .75s;
+}
+
+.mat-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+    color: black;
+}
+
+@-webkit-keyframes shine {
+    100% {
+        left: 125%;
+    }
+}
+
+@keyframes shine {
+    100% {
+        left: 125%;
+    }
+}
+
+//// BANNER
+#bill-pay-ad {
+    position: relative;
+    color: #FFF;
+    .bp-ad-content-wrap {
+        top: -20px;
+    }
+    .bp-ad-content {
+        margin-top: 20px;
+    }
+    //button
+    .btn-bp-ad {
+        padding: 10px 40px 10px 40px;
+        font-size: 1.2em;
+        margin-top: 15px;
+        background: #333;
+        color: #fff;
+        /* @brand-primary ? */
+    }
+    //image
+    #bp-img-container {
+        height: 170px;
+        img {
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+            position: relative;
+            vertical-align: bottom;
+        }
+    }
+}
+
+.reset-wrap {
+    text-align: center;
+}
+
+#reset {
+    display: block;
+    padding: 30px;
+}
+
+.cerrar {
+    background: #0000003d;
+    color: #fff;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    margin-left: 5px;
+    margin-top: 5px;
+    z-index: 9;
+}
+
+.hide {
+    opacity: 0;
+    display: none;
+    transition: opacity 1000ms;
+}
+
+.subheader {
+    max-height: 30rem;
+    display: block;
+}
+
+.subheader h1 {
+    font-size: 2rem;
+    text-align: center;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.icon_arrow_forward_ios {
+    color: #bcbbbb
+}
+
+.nav-li {
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.image-li {
+    max-width: 20%;
+    padding-right: 10px;
+}
+
+mat-tree-node {
+    padding-left: 0px
+}
+
+@media screen and (max-width: 1280px) {
+    .block-policy1 .mat-card-content {
+        padding: 1rem;
+        border-radius: 0rem !important;
+    }
+    .block-policy1 i {
+        font-size: 1.5rem;
+        float: left;
+        color: #222;
+    }
+    .block-policy1 .item-inner p {
+        float: left;
+        text-align: left;
+        position: relative;
+        margin-left: 1rem;
+    }
+    .block-policy1 .item-inner .content b {
+        color: #222;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+    .card_store_prod {
+        flex: 1 1 25% !important;
+        width: 25% !important;
+        max-width: 25% !important;
+    }
+    .producto_destacado .link_producto {
+        height: 130px !important;
+        overflow: hidden !important;
+        display: block !important;
+    }
+    .producto_destacado .link_producto .mat-card-image {
+        height: 100% !important;
+        overflow: hidden !important;
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .container {
+        width: 100%;
+    }
+    .block-policy1 .mat-card-content {
+        padding: 0.5rem;
+        border-radius: 0.3rem !important;
+    }
+    .block-policy1 i {
+        font-size: 0.9rem;
+        float: left;
+        color: #222;
+    }
+    .block-policy1 .item-inner p {
+        float: left;
+        text-align: left;
+        position: relative;
+        margin-left: 0.5rem;
+    }
+    .block-policy1 .item-inner .content b {
+        color: #222;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+    .card_store_prod {
+        flex: 1 1 33% !important;
+        width: 33% !important;
+        max-width: 33% !important;
+    }
+    .producto_destacado .link_producto {
+        height: 200px !important;
+        overflow: hidden !important;
+        display: block !important;
+    }
+    .producto_destacado .link_producto .mat-card-image {
+        height: 100% !important;
+        overflow: hidden !important;
+        display: block !important;
+    }
+}
+
+@media (max-width: 960px) {
+    .link_tiendas {
+        display: block !important;
+        max-height: 150px !important;
+        overflow: hidden !important;
+    }
+    .link_tiendas .mat-card-image {
+        height: 100% !important;
+    }
+    .producto_destacado .link_producto {
+        height: 180px !important;
+        overflow: hidden !important;
+        display: block !important;
+    }
+    .producto_destacado .link_producto .mat-card-image {
+        height: 100% !important;
+        overflow: hidden !important;
+        display: block !important;
+    }
+    .col-sm-12 {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .producto_destacado .link_producto {
+        height: 190px !important;
+        .mat-card-image {
+            object-fit: cover !important;
+        }
+    }
+}
+
+@media (max-width:640px) {
+    .card_store_prod {
+        flex: 1 1 50% !important;
+        width: 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+@media (min-width: 1080px) and (max-width: 1279px) {
+    .producto_destacado .link_producto {
+        height: 170px !important;
+    }
+}
+
+@media (min-width:1280px) {
+    .producto_destacado .link_producto {
+        height: 150px !important;
+        overflow: hidden !important;
+        display: block !important;
+    }
+    .producto_destacado .link_producto .mat-card-image {
+        height: 100% !important;
+        overflow: hidden !important;
+        display: block !important;
+    }
+}
+
+@media (min-width:1440px) {
+    .producto_destacado .link_producto {
+        height: 180px !important;
+    }
+}
+
+.slider_home {
+    margin-top: 0.9rem;
+}

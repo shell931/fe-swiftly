@@ -1,0 +1,57 @@
+.cardpage {
+
+    border-radius: 15px !important;
+    padding: 3rem !important;
+    --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) !important;
+  }
+
+  .titulo{
+      margin-bottom:2rem;
+  }
+
+  .titulo span{
+    font-weight: 400;
+}
+
+label{
+    display:block;
+    margin-top: 1rem;
+}
+
+label  b {
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 400 16px/28px ;
+    color: #333;
+    font-weight: 400;
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 5rem;
+}
+
+h4 {
+    margin: 2rem 0;
+}
+
+h4:after {
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 2px;
+    background-color: #79dc78;
+    bottom: -10px;
+    z-index: 99;
+    left: 0;
+}
+
+.mat-card{
+    color:#555 !important;
+}
+
+.mat-form-field-infix{
+    width:100% !important;
+}
+

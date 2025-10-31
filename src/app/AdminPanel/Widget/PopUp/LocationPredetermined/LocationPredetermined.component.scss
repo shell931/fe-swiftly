@@ -1,0 +1,23 @@
+.img_size {
+    height: 400px;
+    max-width: 100%;
+    vertical-align: middle;
+  }
+
+ .size_card{
+    flex: 1 1 100%;box-sizing: border-box;max-width: 100%;height: 193px;width: 732px;  
+ } 
+
+
+ .plabel{
+   color: #fa001b;
+}
+
+.edit_loc{
+   margin-left: 379px;
+}
+
+.mat-grid-tile .mat-figure {
+   justify-content: flex-start !important ;
+   align-items: flex-start !important;
+}

@@ -1,0 +1,244 @@
+<div class="container mt-5" fxFlex.xs="95" fxFlex.sm="95" fxFlex.md="80" fxFlex.lg="80" fxFlex.xl="80" fxLayoutAlign="center center">
+
+
+    <div class="overlay" *ngIf="show_spinner">
+        <div class="center_spinner">
+            <mat-progress-spinner diameter=70 mode="indeterminate" color="accent">
+            </mat-progress-spinner>
+        </div>
+    </div>
+
+
+    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="80" fxFlex.lg="80" fxFlex.xl="80">
+
+
+        <form [formGroup]="registerForm">
+            <mat-card class="register-form cardpage">
+                <h3 class="titulo mt-5"><span>1. RESPONSABLE DEL TRATAMIENTO DE LA INFORMACIÓN.</span></h3>
+                <div class="row">
+                    <div class="col-sm">
+                        <div style="text-align:justify;">
+                            <strong>Swiftly</strong>, con domicilio en la ciudad de Bogotá, ubicada en la Calle 79 No. 16a – 20.
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="titulo mt-5"><span>2. OBJETIVOS DEL TRATAMIENTO SOMETIDOS LOS DATOS PERSONALES.</span></h3>
+                <div class="row">
+                    <div class="col-sm">
+                        <div style="text-align:justify;">
+                            <p>En coherencia con la legislación vigente en materia de protección de datos, en especial la Ley 1581 de 2012 (y demás normas que la modifiquen, adicionen, complementen o desarrollen) y al Decreto 1377 de 2013, damos a conocer
+                                a todos los titulares de los datos que reposan en las bases de datos de Swiftly, sobre los aspectos de importancia en relación con la recolección, almacenamiento, uso, circulación, supresión, manejo y/o transferencia de
+                                datos personales que la organización realiza con los datos, derivado de la autorización otorgada por usted para administrar dicho tratamiento.
+                            </p>
+                            <p>
+                                En general, la política de privacidad y manejo de sus datos personales tiene como objetivo informarle que la obtención, manejo y utilización de información personal de terceros, que tengan una relación comercial con nuestra organización recolectados con
+                                ocasión de los servicios prestados en desarrollo del objeto social para efectos principalmente de establecer y mantener una relación comercial con nuestros clientes, se llevará a cabo, única y exclusivamente, si ésta se
+                                ha suministrado de manera voluntaria, bajo su pleno conocimiento y aprobación.
+                            </p>
+                            <p>
+                                En esta política de tratamiento se plasman las consideraciones empresariales de acuerdo con las cuales Swiftly realiza el tratamiento de sus datos, la finalidad del tratamiento, sus derechos como titular, así como los mecanismos previstos en la Ley para
+                                el ejercicio de tales derechos. De acuerdo con el artículo 15 de la Constitución Política de Colombia, la Ley 1266 de 2008, Ley 1581 de 2012, Decreto 1377 de 2013 y todas aquellas normas que las reglamenten, adicionen,
+                                deroguen o modifiquen.
+                            </p>
+                            <p>
+                                El Titular de los datos personales cuenta con el derecho de la privacidad, Swiftly informa que los datos personales recolectados se utilizarán para los siguientes fines:
+                            </p>
+                            <div style="margin-top: 25px;">
+                                <li> Con propósitos de seguridad o prevención de fraude.</li>
+                                <li> Envío de avisos publicitarios o comerciales sobre los servicios de Swiftly.</li>
+                                <li> Establecer y mantener una relación comercial.</li>
+                                <li> Realizar retroalimentación de la atención brindada con el fin de proporcionar un efectivo servicio al cliente.</li>
+                                <li> Cobro de cuentas por pagar debido a los servicios prestados.</li>
+                                <li> Contacto con Clientes, Empleados o Proveedores para el envío de información relacionado con la relación contractual, comercial y obligacional que tenga lugar.</li>
+                                <li> Recolección de datos para el cumplimiento de los deberes que como responsable de la información y datos personales, le corresponde a Swiftly.</li>
+                                <li> La remisión de cualquier información de carácter financiero, comercial, crediticio o de servicios con fines estadísticos, de control, o supervisión que deban suministrarse, procesarse, reportarse o actualizarse ante las
+                                    centrales de riesgo información en los términos y durante el tiempo que los sistemas de bases de datos, las normas y las autoridades lo establezcan.</li>
+
+                                <li> Solución de dudas o inquietudes, preguntas generales.</li>
+                                <li> Cualquier otra finalidad que resulte en el desarrollo del contrato o la relación comercial existente entre el Titular y Swiftly.</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="titulo mt-5"><span>2.1 BASE DE DATOS DE TRABAJADORES Y/O CONTRATISTAS.</span></h3>
+                <div class="row">
+                    <div class="col-sm">
+                        <div style="text-align:justify;">
+                            El tratamiento de los datos lo realiza la empresa en calidad de persona jurídica, para la vinculación, desempeño de funciones o prestación de servicios, retiro o terminación, dependiendo del tipo de relación establecida con nuestra organización (incluye
+                            entre otros, trabajadores, aprendices y aspirantes a cargos).
+                        </div>
+                    </div>
+                </div>
+                <h3 class="titulo mt-5"><span>2.2 BASE DE DATOS DE PROVEEDORES.</span></h3>
+                <div class="row">
+                    <div class="col-sm">
+                        <div style="text-align:justify;">
+                            Esta base de datos corresponde a la información relacionada con los proveedores de la empresa en calidad de persona jurídica, en distintos frentes desde infraestructura física, tecnológica y servicios.
+                        </div>
+                    </div>
+                </div>
+                <h3 class="titulo mt-5"><span>2.3 BASE DE DATOS DE CLIENTES.</span></h3>
+                <div class="row">
+                    <div class="col-sm">
+                        <div style="text-align:justify;">
+                            El área comercial de la empresa en calidad de persona jurídica, para gestión de mercadeo y gestión de servicios específicos dirigidos a los clientes.
+                        </div>
+                    </div>
+                </div>
+                <h3 class="titulo mt-5"><span>3. DERECHOS DEL TITULAR.</span></h3>
+                <div class="row">
+                    <div class="col-sm">
+                        <div style="text-align:justify;">
+                            De acuerdo a la legislación vigente, el Titular de los datos personales que son objeto de tratamiento puede ejercer los siguientes derechos:
+                            <div style="margin-top: 25px;">
+                                <li> Ser informado por el responsable del Tratamiento o el encargado del tratamiento, con previa solicitud, respecto al uso que les ha dado a sus datos personales.
+                                </li>
+                                <li> Actualizar y rectificar sus datos personales frente a los responsables del tratamiento o encargados.</li>
+                                <li> Solicitar prueba de la autorización otorgada al responsable del tratamiento salvo cuando expresamente se exceptúe como requisito, de conformidad con lo previsto en la legislación vigente.</li>
+                                <li> Presentar ante la Superintendencia de Industria y Comercio quejas por infracciones a lo dispuesto en la presente ley y las demás normas que la modifiquen, adicionen o complementen.</li>
+                                <li> Revocar la autorización y/o solicitar la supresión del dato cuando en el tratamiento no se respeten los principios, derechos y garantías constitucionales y legales.</li>
+                                <li> Acceder en forma gratuita a sus datos personales que hayan sido objeto de tratamiento.
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="titulo mt-5"><span>4. AUTORIZACIÓN DEL TITULAR.</span></h3>
+                <div class="row">
+                    <div class="col-sm">
+                        <div style="text-align:justify;">
+                            Para ejercer el correcto tratamiento de los datos personales, se requiere la autorización previa, expresa e informada del Titular, la cual deberá ser obtenida por cualquier medio que pueda ser objeto de consulta y verificación posterior.
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="titulo mt-5"><span>5. EJERCICIO DE LOS DERECHOS DEL TITULAR.</span></h3>
+                <div class="row">
+                    <div class="col-sm">
+                        <div style="text-align:justify;">
+                            <p>
+                                Las solicitudes presentadas ante el área correspondiente, y que versen sobre el tratamiento de datos personales, podrán ser presentadas por medio físico o electrónico a través del correo electrónico seguridad@kompralo.club en comunicación dirigida a Swiftly,
+                                siendo necesario que se indique de forma clara los datos de contacto físicos y electrónicos con la finalidad de responder la solicitud.
+                            </p>
+                            <p>
+                                La organización contará con un término de diez (10) días hábiles, desde el recibo de la petición, para atender la solicitud o tomar las medidas que el titular exija.
+                            </p>
+                            <p>
+                                Si la solicitud no expresa de forma clara o si carece de algún elemento de validación, la organización le comunicará tal situación al remitente dentro de los cinco (5) días siguientes al recibo de la solicitud para efectos de presentar la información
+                                necesaria dentro de los diez (10) días hábiles siguientes al recibo del requerimiento, so pena de considerarse desistida la petición.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="titulo mt-5"><span>6. DATOS SENSIBLES</span></h3>
+                <div class="row">
+                    <div class="col-sm">
+                        <div style="text-align:justify;">
+                            El Titular tiene derecho a optar por no suministrar cualquier información sensible solicitada por Swiftly, relacionada con datos sobre su origen racial o étnico, la pertenencia a sindicatos, organizaciones sociales o de derechos humanos, convicciones
+                            políticas, religiosas, de la vida sexual, biométricos o datos de salud.
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="titulo mt-5"><span>7. MENORES DE EDAD. </span></h3>
+                <div class="row">
+                    <div class="col-sm">
+                        <div style="text-align:justify;">
+                            El suministro de los datos personales de menores de edad es facultativo y debe realizarse con autorización de los padres de familia o representantes legales del menor.
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="titulo mt-5"><span>8. VIGENCIA. </span></h3>
+                <div class="row">
+                    <div class="col-sm">
+                        <div style="text-align:justify;">
+                            <P>
+                                Swiftly se reserva el derecho de modificar esta política en cualquier momento, previa comunicación electrónica dirigida a los titulares de la información, razón por la cual le invitamos a consultar periódicamente nuestra página web www.Swiftly.club,
+                                a través de la que se mantendrá a su disposición la última versión de esta Política.
+                            </P>
+                            <P>
+                                La presente Política de tratamiento de datos se ejerce a partir del primero de enero de dos mil veinte y uno (2021).
+                            </P>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="titulo mt-5"><span>9. GLOSARIO. </span></h3>
+                <table class="tftable" border="1">
+                    <tr>
+                        <td><strong>Autorización: </strong></td>
+                        <td>Consentimiento previo, expreso e informado del Titular para llevar a cabo el tratamiento de datos personales.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aviso de privacidad: </strong></td>
+                        <td>Comunicación verbal o escrita generada por el responsable, dirigida al titular para el tratamiento de sus datos personales, mediante la cual se le informa acerca de la existencia de las políticas de tratamiento de información que
+                            le serán aplicables, la forma de acceder a las mismas y las finalidades del tratamiento que se pretende dar a los datos personales</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Base de datos: </strong></td>
+                        <td>Conjunto organizado de datos personales que sea objeto de tratamiento.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dato Personal: </strong></td>
+                        <td>Cualquier información vinculada o que pueda asociarse a una o varias personas naturales determinadas o determinables.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dato Público: </strong></td>
+                        <td>Son considerados datos públicos, entre otros, los datos relativos al estado civil de las personas, a su profesión u oficio y a su calidad de comerciante o de servidor público. Por su naturaleza, los datos públicos pueden estar
+                            contenidos, entre otros, en registros públicos, documentos públicos, gacetas y boletines oficiales y sentencias judiciales debidamente ejecutoriadas que no estén sometidas a reserva. </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Datos Sensibles: </strong></td>
+                        <td>Se entiende por datos sensibles aquellos que afectan la intimidad del titular o cuyo uso indebido puede generar su discriminación, tales como aquellos que revelen el origen racial o étnico, la orientación política, las convicciones
+                            religiosas o filosóficas, la pertenencia a sindicatos, organizaciones sociales, de derechos humanos o que promueva intereses de cualquier partido político o que garanticen los derechos y garantías de partidos políticos de oposición,
+                            así como los datos relativos a la salud, a la vida sexual, y los datos biométricos. </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Encargado del Tratamiento:</strong></td>
+                        <td>Persona natural o jurídica, pública o privada, que por sí misma o en asocio con otros, realice el tratamiento de datos personales por cuenta del responsable del tratamiento</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Responsable del Tratamiento: </strong></td>
+                        <td>Persona natural o jurídica, pública o privada, que por sí misma o en asocio con otros, decida sobre la base de datos y/o el Tratamiento de los datos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Titular: </strong></td>
+                        <td>Persona natural cuyos datos personales sean objeto de Tratamiento.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transferencia: </strong></td>
+                        <td>La transferencia de datos tiene lugar cuando el responsable y/o encargado del tratamiento de datos personales, ubicado en Colombia, envía la información o los datos personales a un receptor, que a su vez es Responsable del Tratamiento
+                            y se encuentra dentro o fuera del país.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transmisión: </strong></td>
+                        <td>Tratamiento de datos personales que implica la comunicación de los mismos dentro o fuera del territorio de la República de Colombia cuando tenga por objeto la realización de un Tratamiento por el Encargado por cuenta del responsable.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tratamiento: </strong></td>
+                        <td>Cualquier operación o conjunto de operaciones sobre datos personales, tales como la recolección, almacenamiento, uso, circulación o supresión.</td>
+                    </tr>
+
+                </table>
+                <h3 class="titulo mt-5"><span>10. CONTROL DE CAMBIOS. </span></h3>
+                <table class="tftable" border="1">
+                    <tr>
+                        <td><strong>Cambio </strong></td>
+                        <td><strong>Fecha y responsable </strong> </td>
+                    </tr>
+                    <tr>
+                        <td>Creación del Documento </td>
+                        <td> 07/01/2021 Oficial de Seguridad de la Información</td>
+                    </tr>
+                </table>
+            </mat-card>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="sidebar-panel" fxLayout="column">
+    <nav class="app-side-nav">
+        <div class="">
+            <div class="side-cart-head mb-3">
+
+                <p>
+                    <button (click)="close()" mat-fab color="accent" style="width: 40px;height: 40px;">
+                        <span class="material-icons">close</span>
+                    </button>
+                </p>
+
+                <div class="mb-3"> <i class="material-icons color-black-font">
+                    currency_exchange
+                    </i></div>
+                <h5 class="color-black-font" *ngIf="(embryoService.localStorageCartProducts && embryoService.localStorageCartProducts.length>0); else elseCartBlock;">
+                    Ventas que componen el saldo disponible:</h5>
+                <ng-template #elseCartBlock>
+                </ng-template>
+            </div>
+
+            <div class="side-cart-list px-4" *ngFor="let location of allbalanceGrid">
+                <div style="display: flex;justify-content: space-between">
+                    <div style="flex-shrink: 1;">
+
+                        <p class="data-ubication"><b>Referencia factura:</b></p>
+                        <p class="data-ubication">{{location.reference }}</p>
+
+                        <p class="data-ubication"><b>Fecha:</b></p>
+                        <p class="data-ubication">{{location.created_at }}</p>
+
+                        <p class="data-ubication"><b>Estado:</b></p>
+                        <p class="data-ubication">{{location.state }}</p>
+
+                        <p class="data-ubication"><b>Total:</b></p>
+                        <p class="data-ubication">{{location.total_balance|currency : 'USD' : 'symbol' : '1.0-0'}} COP</p>
+
+                    </div>
+                </div>
+                <hr class="spacer">
+            </div>
+            <hr class="spacer">
+            <div class="mb-4">
+                <h4>Total</h4><span fxFlex></span>
+                <h4> {{balance_store|currency : 'USD' : 'symbol' : '1.0-0'}} COP </h4>
+            </div>
+
+
+
+
+
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,34 @@
+<form [formGroup]="loginfrontForm">
+  <div class="mb-4">
+    <mat-form-field class="w-100" appearance="outline">
+      <input matInput type="text" formControlName="username" placeholder="Email">
+      <mat-error *ngIf="loginfrontForm.controls['username'].touched && !loginfrontForm.controls['username'].valid">
+        <mat-error *ngIf="loginfrontForm.controls['username'].hasError('required')" class="required alert-error">
+          Debes ingresar un email.
+        </mat-error>
+        <mat-error *ngIf="loginfrontForm.controls['username'].hasError('pattern')">
+          Formato email no valido
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="mb-2">
+    <mat-form-field class="w-100" appearance="outline">
+      <input matInput type="password" placeholder="Password" formControlName="password" required>
+      <mat-error *ngIf="loginfrontForm.get('password').hasError('required') && loginfrontForm.get('password').touched">
+        Este campo es obligatorio.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="mb-3" align="center" *ngIf="show">
+    <label class="incorrec_user_pass">!Usuario o contraseña incorrectos!</label>
+  </div>
+
+  <div class="mb-3">
+    <mat-checkbox>Recordar</mat-checkbox>
+    <span fxFlex></span> <a [routerLink]="['/session/forgot-password']">Olvidaste tu contraseña?</a>
+  </div>
+  <!-- <button color="accent" class="button-lg mb-3" mat-raised-button [routerLink]="['/checkout/payment']">Ingresar</button> -->
+  <button class="mb-3 color_button_ac" mat-raised-button (click)="login_front()">Ingresar!</button>
+  <p>No tienes una cuenta? <a [routerLink]="['/session/signup']">Click aqui para crear cuenta</a></p>
+</form>

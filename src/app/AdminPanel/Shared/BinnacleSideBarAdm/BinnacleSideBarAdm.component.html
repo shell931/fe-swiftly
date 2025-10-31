@@ -1,0 +1,38 @@
+<div class="sidebar-panel" fxLayout="column">
+    <nav class="app-side-nav">
+        <div class="">
+            <div class="side-cart-head mb-3">
+
+                <p>
+                    <button (click)="close()" mat-fab color="accent" style="width: 40px;height: 40px;">
+                        <span class="material-icons">close</span>
+                    </button>
+                </p>
+
+                <form [formGroup]="newForm">
+                    <textarea [value]="searchValue" id="message" placeholder="Ingrese el mensaje en este campo de texto" formControlName="observation" class="form-control"></textarea>
+                    <div class="mb-3" align="center" *ngIf="show">
+                        <label class="incorrec_user_pass">!Ingrese un mensaje!</label>
+                    </div>
+                    <div class="mt-3">
+                        <button mat-raised-button color="accent" (click)="sendBinnacle()">Enviar Observacion</button>
+                    </div>
+                </form>
+
+                <ng-template #elseCartBlock>
+                </ng-template>
+            </div>
+
+            <div class="side-cart-list px-4" *ngFor="let ob of getData()">
+                <div style="display: flex;justify-content: space-between">
+                    <div style="flex-shrink: 1;">
+                        <p class="data-ubication"><b>{{ob.user_id }} - {{ob.created_at | date :'short' }}:</b></p>
+                        <p class="data-ubication">{{ob.observation }}</p>
+                    </div>
+                </div>
+                <hr class="spacer">
+            </div>
+
+        </div>
+    </nav>
+</div>

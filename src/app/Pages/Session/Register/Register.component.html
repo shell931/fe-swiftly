@@ -1,0 +1,325 @@
+<div class="register-container">
+    <mat-card class="register-card">
+        <mat-card-header class="register-header">
+            <mat-card-title class="register-title">REGISTRA TUS DATOS</mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content class="register-content">
+            <form [formGroup]="registerForm" (ngSubmit)="register_user_front()" class="register-form">
+                
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h4 class="section-title">
+                        Información Personal
+                    </h4>
+                    
+                    <div class="form-row">
+                        <!-- First Name -->
+                        <div class="form-field">
+                            <label class="field-label">Nombres *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <input matInput 
+                                       type="text" 
+                                       formControlName="name" 
+                                       placeholder="Nombres"
+                                       maxlength="30"
+                                       required>
+                                <mat-error *ngIf="registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched">
+                                    Los nombres son obligatorios
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="form-field">
+                            <label class="field-label">Apellidos *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <input matInput 
+                                       type="text" 
+                                       formControlName="second_name" 
+                                       placeholder="Apellidos"
+                                       maxlength="30"
+                                       required>
+                                <mat-error *ngIf="registerForm.get('second_name')?.hasError('required') && registerForm.get('second_name')?.touched">
+                                    Los apellidos son obligatorios
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <!-- ID Type -->
+                        <div class="form-field">
+                            <label class="field-label">Tipo de identificación *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <mat-select formControlName="identifiersCtrl" [(ngModel)]="selectIdentifiers" placeholder="Tipo de identificación" required>
+                                    <mat-option *ngFor="let identifier of identifier$ | async" [value]="identifier.id">
+                                        {{identifier.type_identifier}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-hint>Selecciona el tipo de documento</mat-hint>
+                                <mat-error *ngIf="registerForm.get('identifiersCtrl')?.hasError('required') && registerForm.get('identifiersCtrl')?.touched">
+                                    El tipo de identificación es obligatorio
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- ID Number -->
+                        <div class="form-field">
+                            <label class="field-label">Número de identificación *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <input matInput 
+                                       type="text" 
+                                       formControlName="number_identifier" 
+                                       placeholder="Número de identificación"
+                                       maxlength="10"
+                                       required>
+                                <mat-error *ngIf="registerForm.get('number_identifier')?.hasError('required') && registerForm.get('number_identifier')?.touched">
+                                    El número de identificación es obligatorio
+                                </mat-error>
+                                <mat-error *ngIf="registerForm.get('number_identifier')?.hasError('pattern') && registerForm.get('number_identifier')?.touched">
+                                    Solo se aceptan números
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <!-- Email -->
+                        <div class="form-field">
+                            <label class="field-label">Email *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <input matInput 
+                                       type="email" 
+                                       formControlName="email" 
+                                       placeholder="Email"
+                                       maxlength="50"
+                                       required>
+                                <mat-error *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched">
+                                    El correo electrónico es obligatorio
+                                </mat-error>
+                                <mat-error *ngIf="registerForm.get('email')?.hasError('pattern') && registerForm.get('email')?.touched">
+                                    Formato de email inválido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-field">
+                            <label class="field-label">Password *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <input matInput 
+                                       type="password" 
+                                       formControlName="password" 
+                                       placeholder="Password"
+                                       maxlength="50"
+                                       required>
+                                <mat-error *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched">
+                                    La contraseña es obligatoria
+                                </mat-error>
+                                <mat-error *ngIf="registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.touched">
+                                    La contraseña debe tener al menos 6 caracteres
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address Section -->
+                <div class="form-section">
+                    <h4 class="section-title">
+                        Agrega un domicilio
+                    </h4>
+                    
+                    <div class="form-row">
+                        <!-- Department -->
+                        <div class="form-field">
+                            <label class="field-label">Departamento *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <mat-select formControlName="departamentCtrl" placeholder="Departamento" 
+                                            (selectionChange)="citieChangeAction($event.value)"
+                                            required>
+                                    <mat-option *ngFor="let dept of depart$ | async" [value]="dept">
+                                        {{dept.departament}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-hint>Selecciona tu departamento</mat-hint>
+                                <mat-error *ngIf="registerForm.get('departamentCtrl')?.hasError('required') && registerForm.get('departamentCtrl')?.touched">
+                                    El departamento es obligatorio
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- City -->
+                        <div class="form-field">
+                            <label class="field-label">Ciudad *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <mat-select formControlName="citieCtrl" placeholder="Ciudad" [(ngModel)]="selectedCity" required>
+                                    <mat-option *ngFor="let city of city$ | async" [value]="city">
+                                        {{city.city}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-hint>Selecciona tu ciudad</mat-hint>
+                                <mat-error *ngIf="registerForm.get('citieCtrl')?.hasError('required') && registerForm.get('citieCtrl')?.touched">
+                                    La ciudad es obligatoria
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <!-- Neighborhood -->
+                    <div class="form-field full-width">
+                        <label class="field-label">Barrio *</label>
+                        <mat-form-field appearance="fill" class="input-field">
+                            <input matInput 
+                                   type="text" 
+                                   formControlName="neighborhood" 
+                                   placeholder="Barrio"
+                                   maxlength="80"
+                                   required>
+                            <mat-error *ngIf="registerForm.get('neighborhood')?.hasError('required') && registerForm.get('neighborhood')?.touched">
+                                El barrio es obligatorio
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-row-three">
+                        <!-- Street -->
+                        <div class="form-field-wide">
+                            <label class="field-label">Via *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <input matInput 
+                                       type="text" 
+                                       formControlName="via" 
+                                       placeholder="Via"
+                                       maxlength="20"
+                                       required>
+                                <mat-error *ngIf="registerForm.get('via')?.hasError('required') && registerForm.get('via')?.touched">
+                                    La vía es obligatoria
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Number -->
+                        <div class="form-field-narrow">
+                            <label class="field-label"># *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <input matInput 
+                                       type="text" 
+                                       formControlName="number_streeth" 
+                                       placeholder="#"
+                                       maxlength="20"
+                                       required>
+                                <mat-error *ngIf="registerForm.get('number_streeth')?.hasError('required') && registerForm.get('number_streeth')?.touched">
+                                    El número es obligatorio
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Complement -->
+                        <div class="form-field-narrow">
+                            <label class="field-label">- *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <input matInput 
+                                       type="text" 
+                                       formControlName="sn" 
+                                       placeholder="-"
+                                       maxlength="20"
+                                       required>
+                                <mat-error *ngIf="registerForm.get('sn')?.hasError('required') && registerForm.get('sn')?.touched">
+                                    El complemento es obligatorio
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <!-- Additional Data -->
+                    <div class="form-field full-width">
+                        <label class="field-label">Datos adicionales *</label>
+                        <mat-form-field appearance="fill" class="input-field">
+                            <textarea matInput 
+                                      formControlName="aditional_data" 
+                                      placeholder="Datos adicionales"
+                                      maxlength="200"
+                                      rows="3"
+                                      required></textarea>
+                            <mat-error *ngIf="registerForm.get('aditional_data')?.hasError('required') && registerForm.get('aditional_data')?.touched">
+                                Los datos adicionales son obligatorios
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="form-section">
+                    <h4 class="section-title">
+                        Información de Contacto
+                    </h4>
+                    
+                    <div class="form-row">
+                        <!-- Phone -->
+                        <div class="form-field">
+                            <label class="field-label">Teléfono *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <input matInput 
+                                       type="tel" 
+                                       formControlName="phone" 
+                                       placeholder="Teléfono"
+                                       maxlength="50"
+                                       minlength="7"
+                                       required>
+                                <mat-hint>Mas de 7 digitos</mat-hint>
+                                <mat-error *ngIf="registerForm.get('phone')?.hasError('required') && registerForm.get('phone')?.touched">
+                                    El teléfono es obligatorio
+                                </mat-error>
+                                <mat-error *ngIf="registerForm.get('phone')?.hasError('minlength') && registerForm.get('phone')?.touched">
+                                    El teléfono debe tener más de 7 dígitos
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Contact Person -->
+                        <div class="form-field">
+                            <label class="field-label">Persona de contacto *</label>
+                            <mat-form-field appearance="fill" class="input-field">
+                                <input matInput 
+                                       type="text" 
+                                       formControlName="contact" 
+                                       placeholder="Persona de contacto"
+                                       maxlength="50"
+                                       required>
+                                <mat-error *ngIf="registerForm.get('contact')?.hasError('required') && registerForm.get('contact')?.touched">
+                                    La persona de contacto es obligatoria
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <div class="error-message" *ngIf="validate_user">
+                    <span>El usuario ya se encuentra registrado</span>
+                </div>
+
+                <!-- Submit Button -->
+                <button mat-raised-button 
+                        type="submit" 
+                        class="register-button"
+                        [disabled]="registerForm.invalid || isLoading">
+                    <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+                    <span>{{isLoading ? 'Registrando...' : 'Crear tu cuenta'}}</span>
+                </button>
+
+                <!-- Login Link -->
+                <div class="login-section">
+                    <p class="login-text">
+                        ¿Ya tienes una cuenta? 
+                        <a [routerLink]="['/session/signin']" class="login-link">
+                            Entonces Ingresa
+                        </a>
+                    </p>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

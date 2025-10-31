@@ -1,0 +1,178 @@
+<div class="products-container">
+    <div class="products-header">
+        <div class="header-content">
+            <b>Administra tus productos o servicios</b>
+            <span class="products-status">Gestiona tu inventario</span>
+        </div>
+        <button class="create-product-btn" 
+                mat-raised-button 
+                [routerLink]="['/account/product_create']">
+            <i class="material-icons">add</i>
+            Crear producto
+        </button>
+    </div>
+
+    <div class="products-content">
+        <div class="products-controls">
+            <div class="view-toggle">
+                <button mat-icon-button (click)="productShowType('grid')" [class.active]="showType === 'grid'">
+                    <mat-icon>apps</mat-icon>
+                </button>
+                <button mat-icon-button (click)="productShowType('list')" [class.active]="showType === 'list'">
+                    <mat-icon>list</mat-icon>
+                </button>
+            </div>
+        </div>
+
+
+
+
+        <ng-container *ngIf="showType == 'list';else gridtype">
+            <div class="product-list-container">
+                <div class="search-container">
+                    <div class="search-box">
+                        <input class="search-input" 
+                               matInput 
+                               (keyup)="applyFilter($event.target.value)" 
+                               placeholder="Buscar productos..." 
+                               autocomplete="off" 
+                               type="search">
+                        <button class="search-btn" type="submit">
+                            <i class="material-icons">search</i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="products-table" mat-table [dataSource]="productsList" matSort>
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
+                            <td mat-cell *matCellDef="let element">{{element.produc_code}}</td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="image">
+                            <th mat-header-cell *matHeaderCellDef>Imagen</th>
+                            <td mat-cell *matCellDef="let element">
+                                <img class="product-image" src="{{element.image}}" alt="Product">
+                            </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+                            <td mat-cell *matCellDef="let element">{{element.name_product}}</td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="brand">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>
+                            <td mat-cell *matCellDef="let element">{{element.brand}}</td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="category">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoría</th>
+                            <td mat-cell *matCellDef="let element">{{element.category}}</td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="price">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.total_price|currency : 'USD' : 'symbol' : '1.0-0'}}
+                            </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="actions">
+                            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="action-buttons">
+                                    <button mat-icon-button 
+                                            [routerLink]="['/account/product_adm/edit',element.id_product]" 
+                                            class="edit-btn"
+                                            title="Editar">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                    <swal #deleteSwal 
+                                          title="Eliminar producto" 
+                                          text="¿Está seguro que desea eliminar este producto?" 
+                                          [showCancelButton]="true" 
+                                          [focusCancel]="true" 
+                                          (confirm)="getDeleteResponse(element)">
+                                    </swal>
+                                    <button mat-icon-button 
+                                            [swal]="deleteSwal" 
+                                            class="delete-btn"
+                                            title="Eliminar">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                </div>
+                            </td>
+                        </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="displayedProductColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedProductColumns"></tr>
+                    </table>
+                </div>
+                <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+            </div>
+        </ng-container>
+
+
+
+        <ng-template #gridtype>
+            <div class="product-grid-container">
+                <div class="search-container">
+                    <div class="search-box">
+                        <input class="search-input" 
+                               matInput 
+                               [(ngModel)]="searchText" 
+                               placeholder="Buscar productos..." 
+                               autocomplete="off" 
+                               type="search">
+                        <button class="search-btn" type="submit">
+                            <i class="material-icons">search</i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="products-grid">
+                    <div class="product-card" *ngFor="let card of obs | async">
+                        <div class="product-image-container">
+                            <img class="product-image" 
+                                 [src]="card?.image" 
+                                 [ngClass]="{ transparent: !loaded }" 
+                                 alt="Product">
+                            <div class="product-overlay">
+                                <button class="overlay-btn edit-overlay" 
+                                        [routerLink]="['/account/product_adm/edit',card.id_product]"
+                                        title="Editar">
+                                    <i class="material-icons">edit</i>
+                                </button>
+                                <swal #deleteSwal 
+                                      title="Eliminar producto"
+                                      text="¿Está seguro que desea eliminar este producto?"
+                                      [showCancelButton]="true" 
+                                      [focusCancel]="true"
+                                      (confirm)="getDeleteResponse(card)">
+                                </swal>
+                                <button class="overlay-btn delete-overlay" 
+                                        [swal]="deleteSwal"
+                                        title="Eliminar">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="product-info">
+                            <h6 class="product-name">{{card?.name_product}}</h6>
+                            <p class="product-price">
+                                {{card?.total_price | currency : 'USD' : 'symbol' : '1.0-0'}}
+                            </p>
+                            <div class="product-rating">
+                                <embryo-Rating [rate]="card.rating"></embryo-Rating>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+            </div>
+        </ng-template>
+    </div>
+</div>

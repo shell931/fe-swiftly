@@ -1,0 +1,198 @@
+<!-- FAVORITOS PREMIUM -->
+<div class="wishlist-wrapper" *ngIf="(mobWidth >= mobScreenSize) else elseButtonBlock">
+    <!-- BOTÓN ELEGANTE -->
+    <button (click)="togglePopup()" class="wishlist-trigger-modern" [class.has-items]="count > 0">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span class="wishlist-badge" *ngIf="count > 0">{{count}}</span>
+        <div class="wishlist-pulse" *ngIf="count > 0"></div>
+    </button>
+
+    <!-- POPUP PROFESIONAL -->
+    <div class="premium-popup" [class.popup-open]="isPopupOpen" (click)="$event.stopPropagation()">
+        <!-- HEADER DEL POPUP -->
+        <div class="popup-header">
+            <h3>Mis Favoritos</h3>
+            <button class="close-btn" (click)="closePopup()">✕</button>
+        </div>
+
+        <div *ngIf="(wishListProducts && wishListProducts.length > 0); else elseBlock">
+            <!-- PRODUCTOS -->
+            <div class="products-container">
+                <div class="product-card" *ngFor="let product of wishListProducts;">
+                    <div class="product-image">
+                        <img [src]="product?.image" [alt]="product?.name" loading="lazy">
+                        <div class="favorite-badge">♥</div>
+                    </div>
+                    
+                    <div class="product-details">
+                        <h4 class="product-name">{{product?.name}}</h4>
+                        <div class="product-price">
+                            <span class="current-price">{{product?.price | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-actions">
+                        <button type="button" class="add-to-cart-btn" (click)="addToCartProduct(product)" title="Agregar al carrito">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                            </svg>
+                        </button>
+                        <button type="button" class="remove-btn" (click)="handleRemoveClick($event, product)" title="Eliminar">
+                            <span>×</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESUMEN Y ACCIÓN -->
+            <div class="popup-footer">
+                <div class="wishlist-summary">
+                    <div class="total-items">{{wishListProducts.length}} producto(s)</div>
+                </div>
+                <button class="add-all-btn" (click)="addAllToCart()">
+                    <span>Agregar todos al carrito</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <ng-template #elseBlock>
+            <div class="empty-wishlist">
+                <h4>Tu lista de favoritos está vacía</h4>
+                <p>¡Agrega algunos productos y vuelve aquí!</p>
+                <button class="browse-btn" (click)="closePopup()">Seguir comprando</button>
+            </div>
+        </ng-template>
+    </div>
+
+    <!-- OVERLAY CON EFECTO - SOLO EN DESKTOP -->
+    <div class="popup-overlay" [class.overlay-open]="isPopupOpen" (click)="closePopup()" *ngIf="isPopupOpen && mobWidth >= mobScreenSize"></div>
+</div>
+
+<!-- DIÁLOGO DE CONFIRMACIÓN ELEGANTE - SOLO EN DESKTOP -->
+<div class="confirmation-overlay" [class.show]="showConfirmation" (click)="cancelRemove()" *ngIf="mobWidth >= mobScreenSize">
+    <div class="confirmation-dialog" (click)="$event.stopPropagation()">
+        <div class="dialog-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#ff6b6b" stroke-width="2"/>
+                <path d="m15 9-6 6" stroke="#ff6b6b" stroke-width="2"/>
+                <path d="m9 9 6 6" stroke="#ff6b6b" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="dialog-content">
+            <h3>¿Eliminar de favoritos?</h3>
+            <p>Se eliminará <strong>{{productToRemove?.name}}</strong> de tus favoritos</p>
+        </div>
+        <div class="dialog-actions">
+            <button class="confirm-btn" (click)="confirmRemove()">
+                <span>Eliminar</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                </svg>
+            </button>
+            <button class="cancel-btn" (click)="cancelRemove()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- DIÁLOGO MÓVIL SIN OVERLAY -->
+<div class="mobile-confirmation-dialog" [class.show]="showConfirmation && mobWidth < mobScreenSize">
+    <div class="mobile-dialog-content">
+        <div class="dialog-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#ff6b6b" stroke-width="2"/>
+                <path d="m15 9-6 6" stroke="#ff6b6b" stroke-width="2"/>
+                <path d="m9 9 6 6" stroke="#ff6b6b" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="dialog-content">
+            <h3>¿Eliminar de favoritos?</h3>
+            <p>Se eliminará <strong>{{productToRemove?.name}}</strong> de tus favoritos</p>
+        </div>
+        <div class="dialog-actions">
+            <button class="confirm-btn" (click)="confirmRemove()">
+                <span>Eliminar</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                </svg>
+            </button>
+            <button class="cancel-btn" (click)="cancelRemove()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<ng-template #elseButtonBlock>
+    <!-- BOTÓN MOBILE CON POPUP -->
+    <button class="wishlist-trigger-mobile" (click)="togglePopup()" [class.has-items]="count > 0">
+        <i class="fa fa-heart wishlistbtn" aria-hidden="true"></i>
+        <span class="wishlist-badge-mobile" *ngIf="count > 0">{{count}}</span>
+    </button>
+    
+    <!-- POPUP MOBILE -->
+    <div class="premium-popup mobile-popup" [class.popup-open]="isPopupOpen" (click)="$event.stopPropagation()">
+        <!-- HEADER DEL POPUP -->
+        <div class="popup-header">
+            <h3>Mis Favoritos</h3>
+            <button class="close-btn" (click)="closePopup()">✕</button>
+        </div>
+
+        <div *ngIf="(wishListProducts && wishListProducts.length > 0); else mobileElseBlock">
+            <!-- PRODUCTOS -->
+            <div class="products-container">
+                <div class="product-card" *ngFor="let product of wishListProducts;">
+                    <div class="product-image">
+                        <img [src]="product?.image" [alt]="product?.name" loading="lazy">
+                        <div class="favorite-badge">♥</div>
+                    </div>
+
+                    <div class="product-details">
+                        <h4 class="product-name">{{product?.name}}</h4>
+                        <div class="product-price">
+                            <span class="current-price">{{product?.price | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button type="button" class="add-to-cart-btn" (click)="addToCartProduct(product)" [attr.data-product-id]="product?.id_product" title="Agregar al carrito">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                            </svg>
+                        </button>
+                        <button type="button" class="remove-btn" (click)="handleRemoveClick($event, product)" [attr.data-product-id]="product?.id_product" title="Eliminar">
+                            <span>×</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESUMEN Y ACCIÓN -->
+            <div class="popup-footer">
+                <div class="wishlist-summary">
+                    <div class="total-items">{{wishListProducts.length}} producto(s)</div>
+                </div>
+                <button class="add-all-btn" (click)="addAllToCart()">
+                    <span>Agregar todos al carrito</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <ng-template #mobileElseBlock>
+            <div class="empty-wishlist">
+                <h4>Tu lista de favoritos está vacía</h4>
+                <p>¡Agrega algunos productos y vuelve aquí!</p>
+                <button class="browse-btn" (click)="closePopup()">Seguir comprando</button>
+            </div>
+        </ng-template>
+    </div>
+</ng-template>

@@ -1,0 +1,337 @@
+/* Address Component Styling - Compact */
+.address-container {
+  background: transparent;
+  border-radius: 4px;
+  padding: 0.75rem;
+  box-shadow: none;
+  border: 1px solid rgba(233, 236, 239, 0.3);
+}
+
+.address-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.address-header b {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.address-card {
+  background: rgba(248, 249, 250, 0.5);
+  border-radius: 4px;
+  padding: 0.375rem;
+  margin-bottom: 0.375rem;
+  border: 1px solid rgba(233, 236, 239, 0.3);
+  border-left: 3px solid #79dc78;
+  transition: all 0.2s ease;
+  position: relative;
+  max-width: 400px;
+}
+
+.address-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.address-card.predetermined {
+  border-left-color: #79dc78;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+}
+
+.predetermined-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: #79dc78;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.address-info {
+  margin-bottom: 0.5rem;
+}
+
+.address-info p {
+  margin: 0.125rem 0;
+  font-size: 11px;
+  color: #495057;
+  line-height: 1.3;
+}
+
+.address-info p:first-child {
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 12px;
+}
+
+.address-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.address-actions button {
+  background: transparent;
+  border: 1px solid #79dc78;
+  color: #79dc78;
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin-left: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  transition: all 0.2s ease;
+  height: 28px;
+}
+
+.address-actions button:hover {
+  background: #79dc78;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.add-address-btn {
+  background: #79dc78;
+  color: white !important;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(121, 220, 120, 0.3);
+  margin-top: 0.75rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+}
+
+.add-address-btn:hover {
+  background: #6bc86a;
+  color: white !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(121, 220, 120, 0.3);
+}
+
+.add-address-btn:focus {
+  color: white !important;
+}
+
+.add-address-btn:active {
+  color: white !important;
+}
+
+.add-address-btn i {
+  color: white !important;
+}
+
+.add-address-btn span {
+  color: white !important;
+}
+
+
+.add-address-btn:focus {
+  color: white !important;
+}
+
+.add-address-btn:active {
+  color: white !important;
+}
+
+.add-address-btn i {
+  color: white !important;
+}
+
+.add-address-btn span {
+  color: white !important;
+}
+
+.add-address-btn mat-icon {
+  color: white !important;
+}
+
+/* Override Material Button styles */
+button[mat-raised-button] {
+  background: #79dc78 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 6px 12px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 3px rgba(121, 220, 120, 0.3) !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  height: 28px !important;
+}
+
+button[mat-raised-button]:hover {
+  background: #6bc86a !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 4px rgba(121, 220, 120, 0.4) !important;
+}
+
+button[mat-raised-button]:focus {
+  background: #79dc78 !important;
+  color: white !important;
+  outline: none !important;
+}
+
+button[mat-raised-button]:active {
+  background: #6bc86a !important;
+  color: white !important;
+}
+
+button[mat-raised-button] i {
+  color: white !important;
+}
+
+button[mat-raised-button] span {
+  color: white !important;
+}
+
+/* Global overrides for all buttons in address container */
+.address-container button {
+  background: #79dc78 !important;
+  color: white !important;
+  border: none !important;
+}
+
+.address-container button:hover {
+  background: #6bc86a !important;
+  color: white !important;
+}
+
+.address-container button:focus {
+  background: #79dc78 !important;
+  color: white !important;
+}
+
+.address-container button:active {
+  background: #6bc86a !important;
+  color: white !important;
+}
+
+.address-container button i {
+  color: white !important;
+}
+
+.address-container button span {
+  color: white !important;
+}
+
+/* Override Material Card styles */
+mat-card {
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+mat-card p {
+  box-shadow: none !important;
+}
+
+/* Global overrides */
+.prede {
+  color: #79dc78 !important;
+  font-weight: 400 !important;
+}
+
+/* Menu button styling */
+.menu-trigger {
+  background: #79dc78 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  box-shadow: 0 1px 3px rgba(121, 220, 120, 0.3) !important;
+  transition: all 0.2s ease !important;
+}
+
+.menu-trigger:hover {
+  background: #6bc86a !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 4px rgba(121, 220, 120, 0.4) !important;
+}
+
+.menu-trigger i {
+  color: white !important;
+  font-size: 18px !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .address-container {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  .address-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .address-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  
+  .address-actions button {
+    margin-left: 0;
+    width: auto;
+  }
+  
+  .menu-trigger {
+    background: #79dc78 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    box-shadow: 0 1px 3px rgba(121, 220, 120, 0.3) !important;
+    transition: all 0.2s ease !important;
+  }
+  
+  .menu-trigger:hover {
+    background: #6bc86a !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 4px rgba(121, 220, 120, 0.4) !important;
+  }
+  
+  .menu-trigger i {
+    color: white !important;
+    font-size: 18px !important;
+  }
+}

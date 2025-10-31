@@ -1,0 +1,131 @@
+<div class="invoice-dialog-container">
+    <!-- Header with close button -->
+    <div class="dialog-header">
+        <h2 class="dialog-title">Detalles de la Compra</h2>
+        <button class="close-button" (click)="onClose()" aria-label="Cerrar">
+            <i class="material-icons">close</i>
+        </button>
+    </div>
+
+    <!-- Purchase Information -->
+    <div class="purchase-info-section">
+        <h3 class="section-title">Información de la Compra</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Referencia:</label>
+                <span class="info-value">{{data?.reference || 'N/A'}}</span>
+            </div>
+            <div class="info-item">
+                <label>Fecha:</label>
+                <span class="info-value">{{data?.created_at || 'N/A'}}</span>
+            </div>
+            <div class="info-item">
+                <label>Estado:</label>
+                <span class="status-badge" [ngClass]="getStatusClass(data?.name_state)">{{data?.name_state || 'N/A'}}</span>
+            </div>
+            <div class="info-item">
+                <label>Total:</label>
+                <span class="total-amount">{{data?.total_price|currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Information -->
+    <div class="customer-info-section">
+        <h3 class="section-title">Información del Cliente</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Nombre:</label>
+                <span class="info-value">{{data?.name_client || 'N/A'}}</span>
+            </div>
+            <div class="info-item">
+                <label>Tipo de Identificación:</label>
+                <span class="info-value">{{data?.type_identifier || 'N/A'}}</span>
+            </div>
+            <div class="info-item">
+                <label>Identificación:</label>
+                <span class="info-value">{{data?.number_identifier || 'N/A'}}</span>
+            </div>
+            <div class="info-item">
+                <label>Teléfono:</label>
+                <span class="info-value">{{data?.phone || 'N/A'}}</span>
+            </div>
+            <div class="info-item">
+                <label>Email:</label>
+                <span class="info-value">{{data?.email || 'N/A'}}</span>
+            </div>
+            <div class="info-item">
+                <label>Departamento:</label>
+                <span class="info-value">{{data?.departament || 'N/A'}}</span>
+            </div>
+            <div class="info-item">
+                <label>Ciudad:</label>
+                <span class="info-value">{{data?.nameci || 'N/A'}}</span>
+            </div>
+            <div class="info-item full-width">
+                <label>Dirección:</label>
+                <span class="info-value">{{data?.adress || 'N/A'}}</span>
+            </div>
+            <div class="info-item">
+                <label>Método de Pago:</label>
+                <span class="info-value">{{data?.paymentmethod || 'N/A'}}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="products-section">
+        <h3 class="section-title">Productos Comprados</h3>
+        
+        <!-- Product Images Gallery -->
+        <div class="product-gallery" *ngIf="data?.image_gallery && data.image_gallery.length > 0">
+            <div class="gallery-title">Imágenes de los Productos</div>
+            <div class="gallery-container">
+                <div *ngFor="let item of data.image_gallery" class="gallery-item">
+                    <img [src]="item" alt="Producto" class="product-image" (error)="$event.target.style.display='none'">
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Table -->
+        <div class="products-table-container">
+            <div class="table-wrapper">
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th class="product-col">Producto</th>
+                            <th class="code-col">Código</th>
+                            <th class="price-col">Precio Unit.</th>
+                            <th class="quantity-col">Cantidad</th>
+                            <th class="total-col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of adminprList; trackBy: trackByProduct" class="product-row">
+                            <td class="product-cell">
+                                <div class="product-info">
+                                    <img class="product-thumbnail"
+                                        [src]="img_product_rout + item.image" 
+                                        [alt]="item.name_product"
+                                        width="40" height="40"
+                                        (error)="$event.target.src='assets/images/no-image.png'">
+                                    <span class="product-name">{{ item.name_product || 'Producto sin nombre' }}</span>
+                                </div>
+                            </td>
+                            <td class="code-cell">{{ item.product_code || 'N/A' }}</td>
+                            <td class="price-cell">{{ item.unit_price|currency : 'USD' : 'symbol' : '1.0-0' }}</td>
+                            <td class="quantity-cell">{{ item.quantity || 0 }}</td>
+                            <td class="total-cell">{{ item.total_price|currency : 'USD' : 'symbol' : '1.0-0' }}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td colspan="4" class="total-label">Total de la Compra</td>
+                            <td class="total-amount">{{data?.total_price|currency : 'USD' : 'symbol' : '1.0-0' }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

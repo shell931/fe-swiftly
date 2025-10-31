@@ -1,0 +1,47 @@
+<div class=" ">
+    <div class="col-gap div_produc mb-5 ">
+        <mat-card style=" overflow-y: auto" class="scrollable-content example-card" *ngFor="let item of data | async; let i = index">
+            <mat-card-content *ngIf="i < 5">
+                <p><b>{{item.user_id}} - {{item.created_at | date :'short'}}</b></p>
+                <p>{{item.observation}}</p>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- <mat-paginator class="mb-5 " [pageSizeOptions]="[5, 10, 25, 100] "></mat-paginator> -->
+</div>
+
+
+
+
+
+
+
+<!-- <table class="table table-hover">
+    <thead>
+        <tr>
+            <td>Usuario</td>
+            <td>Observacion</td>
+            <td>Fecha</td>
+        </tr>
+    </thead>
+    <tbody *ngFor="let item of data">
+        <tr>
+            <td>{{item.user_id}}</td>
+            <td>{{item.observation}}</td>
+            <td>{{item.created_at | date :'short'}}</td>
+        </tr>
+    </tbody>
+</table> -->
+<div>
+    <p>*Insertar mensaje</p>
+</div>
+<form [formGroup]="newForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Agrege una Observacion</mat-label>
+        <textarea matInput id="message" placeholder="Ingrese el mensaje en este campo de texto" formControlName="observation"></textarea>
+    </mat-form-field>
+    <div class="mb-4">
+        <button mat-raised-button color="accent" (click)="sendBinnacle()" [disabled]="!newForm.valid">Enviar Observacion</button>
+    </div>
+</form>

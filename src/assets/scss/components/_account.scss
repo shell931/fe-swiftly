@@ -1,0 +1,39 @@
+.user-nav-list{
+   box-shadow:$card-shadow;
+   border-radius:5px;
+   max-width: 15% !important;
+   width: 15% !important;
+   flex: 0 0 15% !important;
+   .mat-list-item-content a i {
+      vertical-align: top;
+      width: 40px;
+      text-align: center;
+   }
+}
+
+//login-user-img
+.login-user-img img{
+   border-radius: 100%;
+}
+.edit-profile {
+   background-repeat: no-repeat;
+   background-position: center center;
+   opacity: 0.2;
+}
+//account
+.final-receipt-page{
+   .account-info{
+      .reason-wrap{
+         .mat-form-field{
+            line-height:.4rem;
+         }
+      }
+   }
+}
+@media (max-width:991px){
+   .account-info{
+      .user-info{
+         margin-bottom:1rem;
+      }
+   }
+}

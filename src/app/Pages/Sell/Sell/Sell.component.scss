@@ -1,0 +1,960 @@
+// Form container and wrapper for centering - MORE PADDING
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cardpage {
+  border-radius: 3px !important;
+  padding: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  --tw-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1), 0 1px 1px -1px rgba(0, 0, 0, 0.06) !important;
+  box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) !important;
+  background: white;
+}
+
+.titulo {
+  margin-bottom: 0.25rem;
+  margin-top: 0.05rem;
+  font-size: 0.8rem;
+  color: #1a1a1a;
+  padding-bottom: 0.1rem;
+  position: relative;
+  font-weight: 200;
+}
+
+.titulo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 10%;
+  height: 0.5px;
+  background-color: #28a745;
+}
+
+.titulo span {
+  font-weight: 200;
+}
+
+label {
+  display: block;
+  margin-top: 0.3rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  color: #1a1a1a;
+  font-weight: 400;
+}
+
+label b {
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.obligatory {
+  color: #e74c3c;
+}
+
+h4 {
+  font-size: 0.9rem;
+  color: #2c3e50;
+  font-weight: 400;
+  text-transform: uppercase;
+  position: relative;
+  margin: 0.375rem 0 0.25rem 0;
+}
+
+h4:after {
+  position: absolute;
+  content: "";
+  width: 60px;
+  height: 2px;
+  background-color: #79dc78;
+  bottom: -8px;
+  z-index: 99;
+  left: 0;
+}
+
+.mat-card {
+  color: #555 !important;
+}
+
+.mat-form-field-infix {
+  width: 100% !important;
+}
+
+// Form controls styling - SMALLER SIZE
+.form-control {
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.8rem;
+  height: 1.8rem;
+  line-height: 1.2;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-bottom: 0.3rem;
+  color: #1a1a1a;
+}
+
+.form-control:focus {
+  border-color: #79dc78;
+  box-shadow: 0 0 0 0.15rem rgba(121, 220, 120, 0.25);
+  outline: 0;
+}
+
+// Row spacing optimization - MORE SPACING
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+// Column spacing for better input separation - MORE SPACING
+.col-sm, .col-6, .col-4, .col-12 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+// Ensure col-sm creates proper two-column layout
+.col-sm {
+  flex: 0 0 50%;
+  max-width: 50%;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+// Individual field spacing - MORE SPACING
+.row > div {
+  margin-bottom: 0.75rem;
+}
+
+// Standalone field spacing (fields not in rows) - MORE SPACING
+.cardpage > div:not(.row) {
+  margin-bottom: 1rem;
+}
+
+// Specific spacing for form controls - SMALLER SPACING
+.form-control, ng-select, .mat-form-field {
+  margin-bottom: 0.3rem;
+}
+
+// Smaller field styling
+.compact-field {
+  margin-bottom: 0.3rem;
+  
+  .mat-form-field-wrapper {
+    padding-bottom: 0.15em;
+  }
+  
+  .mat-form-field-infix {
+    padding: 0.3em 0;
+    min-height: 1.8rem;
+  }
+  
+  .mat-form-field-subscript-wrapper {
+    margin-top: 0.15em;
+  }
+  
+  .mat-form-field-outline {
+    top: 0.15em;
+  }
+}
+
+// ng-select SMALLER styling
+ng-select {
+  margin-bottom: 0.3rem;
+  
+  .ng-select-container {
+    min-height: 1.8rem !important;
+    height: 1.8rem !important;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    padding: 0.3rem 0.5rem;
+  }
+  
+  .ng-placeholder {
+    line-height: 1.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .ng-value {
+    line-height: 1.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .ng-input {
+    height: 1.8rem;
+    line-height: 1.8rem;
+  }
+  
+  .ng-input input {
+    height: 1.8rem;
+    line-height: 1.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+// Smaller mat-hint and mat-error styling
+mat-hint {
+  font-size: 0.65rem !important;
+  line-height: 1.0 !important;
+  margin-top: 0.15rem !important;
+  margin-bottom: 0.15rem !important;
+  color: #4a4a4a !important;
+}
+
+mat-error {
+  font-size: 0.65rem !important;
+  line-height: 1.0 !important;
+  margin-top: 0.15rem !important;
+  margin-bottom: 0.15rem !important;
+  color: #ef4444 !important;
+}
+
+// Hide "No file chosen" text in file inputs
+.mat-form-field .mat-form-field-infix .mat-input-element[type="file"] {
+  &::before {
+    content: none !important;
+  }
+  
+  &::-webkit-file-upload-button {
+    display: none !important;
+  }
+}
+
+// Hide default file input text
+input[type="file"] {
+  &::before {
+    content: none !important;
+  }
+  
+  &::-webkit-file-upload-button {
+    display: none !important;
+  }
+  
+  color: transparent !important;
+  
+  &::-webkit-file-upload-button {
+    display: none !important;
+  }
+}
+
+// Custom file input styling - Like the image
+.custom-file-input {
+  position: relative;
+  width: 100%;
+  
+  input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .file-label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 1.3rem;
+    border: 0.5px solid #ddd;
+    border-radius: 2px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.15s ease-in-out;
+    
+    &:hover {
+      border-color: #bbb;
+    }
+    
+    .file-button {
+      background: #f5f5f5;
+      border-right: 0.5px solid #ddd;
+      padding: 0.2rem 0.4rem;
+      font-size: 0.75rem;
+      color: #1a1a1a;
+      font-weight: normal;
+      white-space: nowrap;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .file-text {
+      flex: 1;
+      padding: 0.2rem 0.4rem;
+      font-size: 0.75rem;
+      color: #1a1a1a;
+      font-style: italic;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  
+  .file-hint {
+    font-size: 0.55rem;
+    color: #4a4a4a;
+    margin-top: 0.15rem;
+    line-height: 1.1;
+  }
+  
+  .file-error {
+    font-size: 0.55rem;
+    color: #ef4444;
+    margin-top: 0.15rem;
+    line-height: 1.1;
+  }
+}
+
+::ng-deep .mat-form-field-outline {
+  border-color: #ddd !important;
+  border-width: 0.5px !important;
+  border-radius: 2px !important;
+}
+
+::ng-deep .mat-form-field-outline-thick {
+  border-color: #ddd !important;
+  border-width: 0.5px !important;
+  border-radius: 2px !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-outline-thick {
+  border-color: #ddd !important;
+  border-width: 0.5px !important;
+  border-radius: 2px !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-outline {
+  border-color: #ddd !important;
+  border-width: 0.5px !important;
+  border-radius: 2px !important;
+}
+
+::ng-deep .mat-form-field:hover .mat-form-field-outline {
+  border-color: #ddd !important;
+  border-width: 0.5px !important;
+  border-radius: 2px !important;
+}
+
+// Mobile register button styling
+.mobile-register-btn {
+  width: 100% !important;
+  max-width: 200px !important;
+  height: 2.5rem !important;
+  font-size: 0.85rem !important;
+  font-weight: normal !important;
+  padding: 0.5rem 1rem !important;
+  margin: 1rem auto !important;
+  display: block !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+  
+  &:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  &:active {
+    transform: translateY(0) !important;
+  }
+}
+
+// Checkbox spacing - MORE SPACING
+mat-checkbox {
+  margin-bottom: 0.5rem !important;
+  display: block !important;
+}
+
+// Button styling - COMPACT
+.color_button_ac {
+  background-color: #79dc78 !important;
+  color: white !important;
+  border: none;
+  padding: 0.25rem 1rem;
+  border-radius: 2px;
+  font-weight: normal;
+  margin-top: 0.375rem !important;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.color_button_ac:hover {
+  background-color: #6bc86a !important;
+}
+
+// Responsive design - EXTREME COMPACT MOBILE
+@media (max-width: 768px) {
+  // On tablets, keep two columns but reduce spacing
+  .col-sm {
+    flex: 0 0 50%;
+    max-width: 50%;
+    width: 50%;
+  }
+  .form-container {
+    padding: 0.75rem 1rem;
+  }
+  
+  .cardpage {
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .form-wrapper {
+    max-width: 100%;
+  }
+  
+  .titulo {
+    margin-bottom: 0.25rem;
+    margin-top: 0.03125rem;
+    font-size: 0.8rem;
+  }
+  
+  label {
+    margin-top: 0.1875rem;
+    margin-bottom: 0.03125rem;
+    font-size: 0.75rem;
+  }
+  
+  .form-control {
+    height: 1.375rem;
+    font-size: 0.75rem;
+    padding: 0.1875rem 0.25rem;
+    margin-bottom: 0.125rem;
+  }
+  
+  ng-select {
+    margin-bottom: 0.125rem;
+    
+    .ng-select-container {
+      min-height: 1.375rem !important;
+      height: 1.375rem !important;
+      font-size: 0.75rem;
+      padding: 0.1875rem 0.25rem;
+    }
+  }
+  
+  .compact-field {
+    margin-bottom: 0.125rem;
+    
+    .mat-form-field-infix {
+      min-height: 1.375rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .form-container {
+    padding: 1rem 1.25rem;
+  }
+  
+  .cardpage {
+    padding: 1.25rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+  
+  .row {
+    margin-bottom: 0.5rem;
+  }
+  
+  .col-sm, .col-6, .col-4, .col-12 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  // On very small screens, make col-sm stack vertically
+  .col-sm {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .titulo {
+    font-size: 0.75rem;
+    margin-bottom: 0.1875rem;
+    margin-top: 0.015625rem;
+  }
+  
+  label {
+    font-size: 0.7rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.125rem;
+  }
+  
+  .form-control {
+    height: 1.25rem;
+    font-size: 0.7rem;
+    padding: 0.125rem 0.1875rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  ng-select {
+    margin-bottom: 0.25rem;
+    
+    .ng-select-container {
+      min-height: 1.25rem !important;
+      height: 1.25rem !important;
+      font-size: 0.7rem;
+      padding: 0.125rem 0.1875rem;
+    }
+  }
+  
+  .compact-field {
+    margin-bottom: 0.25rem;
+    
+    .mat-form-field-infix {
+      min-height: 1.25rem;
+    }
+  }
+  
+  mat-hint, mat-error {
+    font-size: 0.65rem !important;
+    margin-top: 0.0625rem !important;
+    margin-bottom: 0.0625rem !important;
+  }
+  
+  .color_button_ac {
+    padding: 0.1875rem 0.625rem;
+    font-size: 0.65rem;
+    margin-top: 0.25rem !important;
+  }
+}
+
+// Extra small mobile devices - MORE SPACING FROM EDGES
+@media (max-width: 480px) {
+  .form-container {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .cardpage {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .col-sm, .col-6, .col-4, .col-12 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .form-control {
+    height: 1.5rem;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.375rem;
+    margin-bottom: 0.375rem;
+  }
+  
+  ng-select {
+    margin-bottom: 0.375rem;
+    
+    .ng-select-container {
+      min-height: 1.5rem !important;
+      height: 1.5rem !important;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.375rem;
+    }
+  }
+  
+  .compact-field {
+    margin-bottom: 0.375rem;
+    
+    .mat-form-field-infix {
+      min-height: 1.5rem;
+    }
+  }
+  
+  label {
+    font-size: 0.8rem;
+    margin-top: 0.375rem;
+    margin-bottom: 0.25rem;
+  }
+}
+
+/* Clean and simple ng-select styling - COMPACT */
+ng-select {
+  width: 100%;
+  margin-bottom: 0.25rem;
+  
+  .ng-select-container {
+    background: white;
+    border: 0.5px solid #ddd;
+    border-radius: 2px;
+    min-height: 1.3rem;
+    padding: 0.2rem 0.3rem;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      border-color: #34d399;
+    }
+    
+    &.ng-select-focused {
+      border-color: #34d399;
+      border-width: 2px;
+      box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+    }
+  }
+  
+  .ng-placeholder {
+    color: #4a4a4a;
+    font-style: italic;
+    font-size: 0.75rem;
+  }
+  
+  .ng-value {
+    color: #1a1a1a;
+    font-weight: normal;
+    font-size: 0.75rem;
+  }
+  
+  .ng-value-label {
+    color: #1a1a1a;
+    font-weight: normal;
+    font-size: 0.75rem;
+  }
+  
+  .ng-arrow-wrapper {
+    color: #34d399;
+  }
+  
+  .ng-clear-wrapper {
+    color: #6b7280;
+    
+    &:hover {
+      color: #ef4444;
+    }
+  }
+  
+  .ng-dropdown-panel {
+    background: white !important;
+    background-color: white !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0 !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    
+    .ng-option {
+      padding: 0.75rem 1rem !important;
+      color: #374151 !important;
+      background: white !important;
+      background-color: white !important;
+      transition: all 0.2s ease !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      
+      &:hover {
+        background: #f3f4f6 !important;
+        background-color: #f3f4f6 !important;
+        color: #1f2937 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      &.ng-option-selected {
+        background: #34d399 !important;
+        background-color: #34d399 !important;
+        color: white !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      &.ng-option-highlighted {
+        background: #f3f4f6 !important;
+        background-color: #f3f4f6 !important;
+        color: #1f2937 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+    }
+  }
+}
+
+/* Simple global overrides for ng-select - SMALLER */
+::ng-deep .ng-select-container {
+  background: white !important;
+  border: 1px solid #ddd !important;
+  border-radius: 3px !important;
+  padding: 0.3rem 0.5rem !important;
+  min-height: 1.8rem !important;
+}
+
+::ng-deep .ng-placeholder {
+  color: #4a4a4a !important;
+  font-style: italic !important;
+}
+
+/* Hide placeholder when value is selected */
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-placeholder {
+  display: none !important;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container:not(.ng-placeholder) .ng-placeholder {
+  display: none !important;
+}
+
+/* More specific selectors to hide placeholder when value exists */
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value ~ .ng-placeholder {
+  display: none !important;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container:has(.ng-value) .ng-placeholder {
+  display: none !important;
+}
+
+/* Force hide placeholder when ng-value is present */
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+  display: block !important;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value + .ng-placeholder {
+  display: none !important;
+}
+
+::ng-deep .ng-value {
+  color: #1a1a1a !important;
+  font-weight: normal !important;
+  font-size: 0.8rem !important;
+}
+
+::ng-deep .ng-value-label {
+  color: #1a1a1a !important;
+  font-weight: normal !important;
+  font-size: 0.8rem !important;
+}
+
+/* Fix dropdown panel transparency */
+::ng-deep .ng-dropdown-panel {
+  background: white !important;
+  background-color: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 0 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+::ng-deep .ng-dropdown-panel .ng-option {
+  background: white !important;
+  background-color: white !important;
+  color: #374151 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  padding: 0.75rem 1rem !important;
+}
+
+::ng-deep .ng-dropdown-panel .ng-option:hover {
+  background: #f3f4f6 !important;
+  background-color: #f3f4f6 !important;
+  color: #1f2937 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+::ng-deep .ng-dropdown-panel .ng-option.ng-option-selected {
+  background: #34d399 !important;
+  background-color: #34d399 !important;
+  color: white !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+::ng-deep .ng-dropdown-panel .ng-option.ng-option-highlighted {
+  background: #f3f4f6 !important;
+  background-color: #f3f4f6 !important;
+  color: #1f2937 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Mobile responsive for ng-select */
+@media (max-width: 768px) {
+  ng-select {
+    .ng-select-container {
+      min-height: 2.2rem !important;
+      padding: 0.4rem 0.6rem !important;
+      font-size: 0.9rem !important;
+    }
+    
+    .ng-dropdown-panel {
+      .ng-option {
+        padding: 0.6rem 0.8rem !important;
+        font-size: 0.9rem !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  ng-select {
+    .ng-select-container {
+      min-height: 2rem !important;
+      padding: 0.35rem 0.5rem !important;
+      font-size: 0.85rem !important;
+    }
+    
+    .ng-dropdown-panel {
+      .ng-option {
+        padding: 0.5rem 0.7rem !important;
+        font-size: 0.85rem !important;
+      }
+    }
+  }
+}
+
+/* Compact File Upload Styles - Integrated with Form */
+.file-upload-wrapper {
+  .compact-file-field {
+    width: 100%;
+    
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+    
+    .mat-form-field-outline {
+      border-radius: 2px;
+      border: 1px solid #ddd;
+      transition: all 0.2s ease;
+    }
+    
+    .mat-form-field-outline-thick {
+      border-color: #ddd;
+      border-width: 1px;
+    }
+    
+    .mat-form-field-infix {
+      padding: 0.25rem 0.375rem;
+      border-top: none;
+      min-height: 1.5rem;
+    }
+    
+    .mat-input-element {
+      font-size: 0.8rem;
+      color: #374151;
+      font-weight: normal;
+      
+      &::placeholder {
+        color: #9ca3af;
+        font-style: italic;
+      }
+    }
+    
+    .mat-form-field-label {
+      color: #6b7280;
+      font-weight: normal;
+      font-size: 0.8rem;
+    }
+    
+    .mat-form-field-label.mat-focused {
+      color: #6b7280;
+    }
+    
+    .mat-icon {
+      color: #34d399;
+      font-size: 1.2rem;
+      transition: all 0.2s ease;
+    }
+    
+    .mat-hint {
+      color: #6b7280;
+      font-size: 0.6rem;
+      margin-top: 0.25rem;
+      line-height: 1.2;
+    }
+    
+    .mat-error {
+      color: #ef4444;
+      font-size: 0.6rem;
+      margin-top: 0.25rem;
+    }
+    
+    &:hover {
+      .mat-form-field-outline {
+        border-color: #ddd;
+      }
+      
+      .mat-icon {
+        transform: scale(1.05);
+      }
+    }
+    
+    &.mat-focused {
+      .mat-form-field-outline-thick {
+        border-color: #ddd;
+        border-width: 1px;
+      }
+    }
+  }
+}
+
+/* Mobile Responsive for File Uploads */
+@media (max-width: 768px) {
+  .file-upload-wrapper {
+    .compact-file-field {
+      .mat-form-field-infix {
+        padding: 0.4rem 0.6rem;
+        min-height: 2.2rem;
+      }
+      
+      .mat-input-element {
+        font-size: 0.85rem;
+      }
+      
+      .mat-form-field-label {
+        font-size: 0.85rem;
+      }
+      
+      .mat-icon {
+        font-size: 1.1rem;
+      }
+      
+      .mat-hint {
+        font-size: 0.7rem;
+      }
+      
+      .mat-error {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .file-upload-wrapper {
+    .compact-file-field {
+      .mat-form-field-infix {
+        padding: 0.35rem 0.5rem;
+        min-height: 2rem;
+      }
+      
+      .mat-input-element {
+        font-size: 0.8rem;
+      }
+      
+      .mat-form-field-label {
+        font-size: 0.8rem;
+      }
+      
+      .mat-icon {
+        font-size: 1rem;
+      }
+      
+      .mat-hint {
+        font-size: 0.65rem;
+      }
+      
+      .mat-error {
+        font-size: 0.65rem;
+      }
+    }
+  }
+}
+

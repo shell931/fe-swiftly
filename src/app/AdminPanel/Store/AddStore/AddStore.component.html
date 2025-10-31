@@ -1,0 +1,133 @@
+<div class="inner-container">
+    <div class="final-receipt-page section-gap">
+        <div class="account-info">
+            <div class="container">
+                <div class="mb-4 user-info">
+                    <div fxLayoutAlign="flex-start">
+                        <!-- <div class="login-user-img">
+                            <img src="assets/images/user-4.jpg" width="70" alt="Active User">
+                        </div> -->
+                        <!-- login-user-img -->
+                        <div class="px-3">
+                            <h4>Crear un comercio</h4>
+                            <div class="text-muted text-xl">Diligencia el formulario para crear un nuevo comercio
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row wrap" class="col-gap">
+                    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="30" fxFlex.lg="20" fxFlex.xl="20"
+                        class="user-nav-list bg-white">
+
+                    </div>
+                    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="70" fxFlex.lg="80" fxFlex.xl="80"
+                        class="user-content-wrapper my-0">
+                        <div class="tab-container">
+
+                            <div fxLayout="row wrap" class="col-gap">
+                                <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
+
+                                    <form [formGroup]="storeForm">
+                                        <div class="example-container">
+
+                                            <mat-form-field class="w-100 mb-3">
+                                                <input matInput placeholder="Nombre comercio"
+                                                    formControlName="name_store" maxlength="100">
+                                                <mat-error
+                                                    *ngIf="storeForm.get('name_store').hasError('required') && storeForm.get('name_store').touched">
+                                                    Este campo es obligatorio.</mat-error>
+                                            </mat-form-field>
+
+
+
+                                            <mat-form-field class="w-100 mb-3">
+                                                <input matInput placeholder="Dirección" formControlName="address"
+                                                    maxlength="100">
+                                                <mat-error
+                                                    *ngIf="storeForm.get('address').hasError('required') && storeForm.get('address').touched">
+                                                    Este campo es obligatorio.</mat-error>
+                                            </mat-form-field>
+
+                                            <mat-form-field class="w-100 mb-3">
+                                                <input matInput placeholder="Teléfono" formControlName="telephone"
+                                                    maxlength="100">
+                                                <mat-error
+                                                    *ngIf="storeForm.get('telephone').hasError('required') && storeForm.get('telephone').touched">
+                                                    Este campo es obligatorio.</mat-error>
+                                            </mat-form-field>
+
+                                            <mat-form-field class="w-100 mb-3">
+                                                <input matInput placeholder="Email" formControlName="email"
+                                                    maxlength="100">
+                                                <mat-error
+                                                    *ngIf="storeForm.get('email').hasError('required') && storeForm.get('email').touched">
+                                                    Este campo es obligatorio.</mat-error>
+                                            </mat-form-field>
+
+                                            <mat-form-field class="w-100 mb-3">
+                                                <input matInput placeholder="Número identificación"
+                                                    formControlName="number_identifier" maxlength="100">
+                                                <mat-error
+                                                    *ngIf="storeForm.get('number_identifier').hasError('required') && storeForm.get('number_identifier').touched">
+                                                    Este campo es obligatorio.</mat-error>
+                                            </mat-form-field>
+
+                                            <mat-form-field class="w-100 mb-3">
+                                                <input matInput placeholder="Representante" formControlName="manager"
+                                                    maxlength="100">
+                                                <mat-error
+                                                    *ngIf="storeForm.get('manager').hasError('required') && storeForm.get('manager').touched">
+                                                    Este campo es obligatorio.</mat-error>
+                                            </mat-form-field>
+
+                                            <mat-form-field class="w-100 mb-3">
+                                                <!-- <mat-label>Leave a comment</mat-label> -->
+                                                <textarea matInput placeholder="Descripción de tu comercio"
+                                                    formControlName="description" maxlength="500"></textarea>
+                                                <mat-error
+                                                    *ngIf="storeForm.get('description').hasError('required') && storeForm.get('description').touched">
+                                                    Este campo es obligatorio.</mat-error>
+                                            </mat-form-field>
+
+                                            <div>
+                                                <button mat-raised-button color="accent"
+                                                    (click)="submitStoreInfo()">Save</button>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+                                <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md=50 fxFlex.lg="50" fxFlex.xl="50">
+                                    <div fxLayout='row wrap'>
+                                        <div fxFlex.xs="85" fxFlex.sm="85" fxFlex.md="85" fxFlex.lg="85" fxFlex.xl="85"
+                                            class="relative">
+                                            <ngx-dropzone (change)="selectFile($event)" [expandable]="true"
+                                                [disableClick]="true">
+                                                <ngx-dropzone-label>Arrastar icono de comercio aqui!
+                                                </ngx-dropzone-label>
+                                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
+                                                    *ngFor="let f of files" [file]="f" [removable]="true"
+                                                    (removed)="onRemove(f)">
+                                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                                </ngx-dropzone-image-preview>
+                                            </ngx-dropzone>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- tab-container -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- account-info -->
+    </div>
+    <!-- final-receipt-page -->
+</div>
+<!-- inner-container -->

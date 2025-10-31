@@ -1,0 +1,64 @@
+<cdk-virtual-scroll-viewport style="height: 600px">
+   <div class="bg-white final-receipt-page">
+      <div class="final-receipt">
+         <mat-card class="pt-0 w-100 m-0">
+            <div id="payment-receipt">
+               <mat-card>
+                  <div class="text-center bg-grey p-4 mat-card-pad-none">
+                     <img src="{{data.logo_store}}" width="300px" height="300px" alt="Success">
+                  </div>
+               </mat-card>
+               <div class="py-1">
+                  <mat-card>
+                     <div><strong>Tienda:</strong> {{data.name_store}}</div>
+                     <div><strong>Departamento:</strong> {{data.departament}}</div>
+                     <div><strong>Ciudad:</strong> {{data.city}}</div>
+                     <div><strong>Ubicación:</strong> {{data.address}}</div>
+                     <div><strong>Teléfono:</strong> {{data.telephone}}</div>
+                     <div><strong>Email:</strong> {{data.email}}</div>
+                     <div><strong>Identificación:</strong> {{data.number_identifier}}</div>
+                     <div><strong>Contacto:</strong> {{data.manager}}</div>
+                     <div><strong>Descripción:</strong> {{data.description}}</div>
+                  </mat-card>
+                  <div class="row">
+                     <div class="col-12" *ngFor="let doc of docs_data; last as last">
+                        <p mat-line class="demo-2"> {{doc.type}}</p>
+                        <div class="row">
+                           <div class="col-8">
+                              <div *ngIf="doc.extension != 'pdf'">
+                                 <img src="{{doc.url_document}}" alt="">
+                              </div>
+                              <div *ngIf="doc.extension == 'pdf'">
+                                 {{doc.extension}}
+                                 <a [href]="doc.url_document" target="_blank">Open PDF</a>
+                              </div>
+                           </div>
+                           <div class="col-4">
+                              Botones
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <mat-list class="d-none">
+                     <mat-list-item *ngFor="let doc of docs_data; last as last">
+                        <p mat-line class="demo-2"> {{doc.type}}</p>
+                        <div *ngIf="doc.extension == 'png'">
+                           <img src="{{doc.url_document}}" alt="">
+                        </div>
+                        <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+                     </mat-list-item>
+                  </mat-list>
+
+
+                  <div style="display: flex; flex-flow: row wrap;">
+                     <div style="flex: 1 1 100%; box-sizing: border-box; max-width: 100%;"
+                        class="size_card">
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </mat-card>
+      </div>
+   </div>
+</cdk-virtual-scroll-viewport>

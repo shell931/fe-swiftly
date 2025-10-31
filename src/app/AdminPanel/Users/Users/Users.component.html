@@ -1,0 +1,74 @@
+<ng-container *ngIf="userList && userList.length>0; else elseBlock">
+    <div fxLayout="column">
+        <mat-card class="matcard_admin">
+
+            <h2><b>Administración de usuarios</b></h2>
+
+            <div class="mb-4">
+                <button mat-raised-button color="accent" [routerLink]="['create']">Crear</button>
+            </div>
+
+            <div class="buttonIn">
+                <input class="inputsearch" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar" autocomplete="off" type="search">
+                <button class="btn btn-primary button-search class_search" type="submit" tabindex="-1">
+                    <span class="mat-button-wrapper">
+                        <i class="fa fa-search"></i>
+                    </span></button>
+            </div>
+
+
+            <div class="table-responsive-x mt-3">
+                <table mat-table [dataSource]="dataSource" class="w-100 table-scroll-wrap">
+
+                    <ng-container matColumnDef="action">
+                        <th class="px-3 text-nowrap table-left" mat-header-cell *matHeaderCellDef> <b class="title_table">Action</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
+                            <button mat-icon-button [routerLink]="['edit/',element.id]" color="primary">
+                                <i class="material-icons">remove_red_eye</i>
+                            </button>
+                            <!-- <button color="warn" mat-icon-button (click)="onDelete(i)">
+                                <mat-icon class="">delete</mat-icon>
+                            </button> -->
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="username">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef><b class="title_table">Usuario</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.username}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="first_name">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Nombre</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="last_name">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Apellidos</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="email">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Email</b>
+                        </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="is_active">
+                        <th class="px-3 text-nowrap table-right" mat-header-cell *matHeaderCellDef> <b class="title_table">Estado</b> </th>
+                        <!-- <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.is_active}} </td> -->
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            <div *ngIf="element.is_active === true" class="class_aprobed" align="center">Activo</div>
+                            <div *ngIf="element.is_active === false" class="class_reject" align="center"> Desactivo
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+            <!-- table-responsive -->
+        </mat-card>
+    </div>
+</ng-container>
+<ng-template #elseBlock>
+    <h5 class="ml-5">No data found</h5>
+</ng-template>

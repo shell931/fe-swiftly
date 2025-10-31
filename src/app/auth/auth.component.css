@@ -1,0 +1,480 @@
+/* Layout compacto - siguiendo el mismo patrón que Search */
+.compact-layout {
+    padding: 10px !important;
+    margin: 0 !important;
+    min-height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.container_login {
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Grid compacto para login */
+.login-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Login Card compacto - siguiendo el estilo de product-card */
+.login-card.compact {
+    width: 100% !important;
+    max-width: 400px !important;
+    min-width: 0;
+    height: auto;
+    min-height: auto;
+    margin: 0;
+    border-radius: 16px !important;
+    background: #fff;
+    display: block !important;
+    position: relative !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    border: 1px solid #f0f0f0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+}
+
+/* Header compacto */
+.login-header {
+    text-align: center !important;
+    padding: 20px 20px 15px 20px !important;
+    background: transparent !important;
+    border-bottom: none !important;
+    margin: 0 !important;
+    position: relative !important;
+}
+
+.logo-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.logo-icon {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, #79dc78, #5cb85c) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 12px rgba(121, 220, 120, 0.2) !important;
+}
+
+.logo-icon mat-icon {
+    font-size: 24px !important;
+    color: white !important;
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.login-title {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    color: #333 !important;
+    font-family: 'Poppins', sans-serif !important;
+    letter-spacing: -0.3px !important;
+}
+
+.login-subtitle {
+    font-size: 13px !important;
+    color: #666 !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+    font-family: 'Poppins', sans-serif !important;
+    opacity: 0.8 !important;
+}
+
+/* Content compacto */
+.login-content {
+    padding: 0 20px 20px 20px !important;
+    background: transparent !important;
+}
+
+.login-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+}
+
+/* Form Fields compactos */
+.full-width {
+    width: 100% !important;
+}
+
+/* Material Form Field Overrides - estilo compacto */
+.mat-mdc-form-field {
+    font-size: 14px !important;
+    font-family: 'Poppins', sans-serif !important;
+    width: 100% !important;
+}
+
+.mat-mdc-form-field .mat-mdc-text-field-wrapper {
+    border-radius: 8px !important;
+    border: 1px solid #f0f0f0 !important;
+    background: #fff !important;
+    padding: 0 12px !important;
+    transition: all 0.3s ease !important;
+}
+
+.mat-mdc-form-field .mat-mdc-text-field-wrapper:hover {
+    border-color: #79dc78 !important;
+    box-shadow: 0 2px 8px rgba(121, 220, 120, 0.1) !important;
+}
+
+.mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-outline {
+    display: none !important;
+}
+
+.mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-outline-start,
+.mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-outline-end,
+.mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-outline-gap {
+    display: none !important;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
+    border-color: #79dc78 !important;
+    box-shadow: 0 0 0 2px rgba(121, 220, 120, 0.2) !important;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-label {
+    color: #333 !important;
+    font-size: 14px !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    opacity: 0.7 !important;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-label {
+    color: #79dc78 !important;
+    opacity: 1 !important;
+}
+
+.mat-mdc-form-field .mat-mdc-input-element {
+    font-size: 14px !important;
+    color: #333 !important;
+    font-family: 'Poppins', sans-serif !important;
+    padding: 16px 0 8px 0 !important;
+    font-weight: 400 !important;
+}
+
+.mat-mdc-form-field .mat-mdc-input-element::placeholder {
+    color: #666 !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    opacity: 0.6 !important;
+}
+
+.mat-mdc-error {
+    font-size: 12px !important;
+    color: #FD0000 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    margin-top: 4px !important;
+}
+
+/* Error Message compacto */
+.error-message {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 12px 16px !important;
+    background: rgba(253, 0, 0, 0.1) !important;
+    border: 1px solid rgba(253, 0, 0, 0.2) !important;
+    border-radius: 8px !important;
+    color: #FD0000 !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    margin: 8px 0 !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.error-icon {
+    font-size: 18px !important;
+    color: #FD0000 !important;
+}
+
+/* Form Options compactos */
+.form-options {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin: 16px 0 !important;
+}
+
+.remember-checkbox {
+    font-size: 13px !important;
+    font-family: 'Poppins', sans-serif !important;
+    color: #333 !important;
+    font-weight: 500 !important;
+}
+
+.forgot-password-link {
+    color: #79dc78 !important;
+    text-decoration: none !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Poppins', sans-serif !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+}
+
+.forgot-password-link:hover {
+    color: #5cb85c !important;
+    background: rgba(121, 220, 120, 0.1) !important;
+    text-decoration: none !important;
+}
+
+/* Login Button compacto - siguiendo el estilo de btn_comprar */
+.login-button {
+    height: 44px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    margin: 20px 0 !important;
+    background: #79dc78 !important;
+    color: white !important;
+    border: 1px solid #79dc78 !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    font-family: 'Poppins', sans-serif !important;
+    box-shadow: 0 2px 8px rgba(121, 220, 120, 0.2) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.login-button:hover:not(:disabled) {
+    background: #5cb85c !important;
+    border-color: #5cb85c !important;
+    box-shadow: 0 4px 12px rgba(121, 220, 120, 0.3) !important;
+    transform: translateY(-1px) !important;
+}
+
+.login-button:active:not(:disabled) {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(121, 220, 120, 0.2) !important;
+}
+
+.login-button:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+/* Ensure button text is always white */
+.login-button,
+.login-button span,
+.login-button mat-icon {
+    color: white !important;
+}
+
+.login-button:hover,
+.login-button:hover span,
+.login-button:hover mat-icon {
+    color: white !important;
+}
+
+/* Register Section compacto */
+.register-section {
+    text-align: center !important;
+    margin-top: 20px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid #f0f0f0 !important;
+}
+
+.register-text {
+    margin: 0 !important;
+    color: #666 !important;
+    font-size: 13px !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 400 !important;
+    opacity: 0.8 !important;
+}
+
+.register-link {
+    color: #79dc78 !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Poppins', sans-serif !important;
+    padding: 2px 4px !important;
+    border-radius: 4px !important;
+}
+
+.register-link:hover {
+    color: #5cb85c !important;
+    background: rgba(121, 220, 120, 0.1) !important;
+    text-decoration: none !important;
+}
+
+/* Responsive Design - siguiendo los breakpoints de Search */
+@media (max-width: 991px) {
+    .container_login {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .login-grid {
+        padding: 15px;
+    }
+    
+    .login-card.compact {
+        max-width: 100% !important;
+        border-radius: 12px !important;
+    }
+    
+    .login-header {
+        padding: 18px 18px 12px 18px !important;
+    }
+    
+    .login-content {
+        padding: 0 18px 18px 18px !important;
+    }
+    
+    .login-title {
+        font-size: 18px !important;
+    }
+    
+    .logo-icon {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    .logo-icon mat-icon {
+        font-size: 22px !important;
+        width: 22px !important;
+        height: 22px !important;
+    }
+    
+    .form-options {
+        flex-direction: column !important;
+        gap: 10px !important;
+        align-items: flex-start !important;
+    }
+    
+    .login-button {
+        height: 42px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .compact-layout {
+        padding: 8px !important;
+    }
+    
+    .login-grid {
+        padding: 8px;
+    }
+    
+    .login-header {
+        padding: 15px 15px 10px 15px !important;
+    }
+    
+    .login-content {
+        padding: 0 15px 15px 15px !important;
+    }
+    
+    .login-title {
+        font-size: 16px !important;
+    }
+    
+    .login-form {
+        gap: 12px !important;
+    }
+    
+    .logo-icon {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .logo-icon mat-icon {
+        font-size: 20px !important;
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    .login-button {
+        height: 40px !important;
+        font-size: 13px !important;
+    }
+    
+    .mat-mdc-form-field {
+        font-size: 13px !important;
+    }
+    
+    .mat-mdc-form-field .mat-mdc-input-element {
+        font-size: 13px !important;
+        padding: 14px 0 6px 0 !important;
+    }
+    
+    .mat-mdc-form-field .mat-mdc-form-field-label {
+        font-size: 13px !important;
+    }
+}
+
+/* Loading Spinner */
+.mat-mdc-progress-spinner {
+    margin: 0 6px !important;
+}
+
+/* Global Overrides */
+body {
+    background: white !important;
+    padding-top: 0 !important;
+}
+
+/* Force override any global styles */
+.compact-layout * {
+    box-sizing: border-box !important;
+}
+
+/* Material Card Overrides */
+.mat-mdc-card {
+    background: white !important;
+    border: 1px solid #f0f0f0 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+
+.mat-mdc-card-header {
+    background: white !important;
+    border-bottom: none !important;
+    padding: 0 !important;
+}
+
+.mat-mdc-card-content {
+    background: white !important;
+    padding: 0 !important;
+}
+
+/* Legacy Support */
+.conta {
+    display: none !important;
+}
+
+.incorrec_user_pass {
+    display: none !important;
+}

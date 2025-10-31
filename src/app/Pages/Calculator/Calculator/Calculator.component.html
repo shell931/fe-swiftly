@@ -1,0 +1,148 @@
+<div class="calculator-container">
+  <div class="calculator-wrapper">
+    <mat-card class="calculator-card">
+      <!-- Compact Header -->
+      <div class="calculator-header">
+        <div class="header-content">
+          <div class="header-icon">
+            <i class="fa fa-calculator"></i>
+          </div>
+          <div class="header-text">
+            <h2 class="calculator-title">{{calculateData?.title}}</h2>
+            <p class="calculator-description">Calcula fácilmente la tarifa de una venta</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="calculator-content">
+        <!-- Form Section -->
+        <div class="form-section">
+          <div class="form-header">
+            <i class="fa fa-edit"></i>
+            <h3>Valores de Entrada</h3>
+          </div>
+          
+          <form (ngSubmit)='calculate()' [formGroup]='form' novalidate class="calculator-form">
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fa fa-dollar-sign"></i>
+                Valor de la venta
+              </label>
+              <div class="input-group">
+                <span class="input-prefix">$</span>
+                <input 
+                  class="form-input" 
+                  formControlName='amount' 
+                  mask="separator" 
+                  thousandSeparator="."  
+                  type="text" 
+                  placeholder="Ingrese valor" 
+                />
+              </div>
+              <div class="error-message" *ngIf="form.get('amount').hasError('required') && form.get('amount').touched">
+                <i class="fa fa-exclamation-circle"></i>
+                El valor es requerido
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fa fa-percentage"></i>
+                IVA de la venta (%)
+              </label>
+              <div class="input-group">
+                <input 
+                  class="form-input" 
+                  formControlName='vatPercentage' 
+                  mask="separator" 
+                  thousandSeparator="."  
+                  type="text" 
+                  placeholder="Ingrese porcentaje" 
+                />
+                <span class="input-suffix">%</span>
+              </div>
+              <div class="error-message" *ngIf="form.get('vatPercentage').hasError('required') && form.get('vatPercentage').touched">
+                <i class="fa fa-exclamation-circle"></i>
+                El porcentaje es requerido
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button 
+                mat-raised-button 
+                color="primary" 
+                [disabled]='form.invalid' 
+                class="calculate-button"
+              >
+                <i class="fa fa-calculator"></i>
+                CALCULAR TARIFA
+              </button>
+            </div>
+          </form>
+
+          <!-- Summary Section -->
+          <div class="summary-section" *ngIf="hasCalculated">
+            <div class="summary-header">
+              <i class="fa fa-chart-line"></i>
+              <h4>Resumen de Cálculo</h4>
+            </div>
+            <div class="summary-items">
+              <div class="summary-item">
+                <span class="summary-label">Base gravable:</span>
+                <span class="summary-value">{{calculateData?.taxableBase | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">IVA:</span>
+                <span class="summary-value">{{calculateData?.vat | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+              </div>
+              <div class="summary-item total">
+                <span class="summary-label">Valor total (Venta + IVA):</span>
+                <span class="summary-value">{{(calculateData?.taxableBase + calculateData?.vat) | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <div class="results-section" *ngIf="hasCalculated">
+        <div class="cards-grid">
+          <app-card-calculator
+            title="Descuentos Swiftly"
+            [items]="itemsKompralo"
+            [footer]="footerCommissions"
+          ></app-card-calculator>
+          <app-card-calculator
+            title="Retenciones"
+            [items]="itemsWithHoldings"
+            [footer]="footerWithHoldings"
+          ></app-card-calculator>
+        </div>
+
+        <div class="totals-section">
+          <div class="total-item secondary">
+            <div class="total-content">
+              <i class="fa fa-receipt"></i>
+              <span>Total Retenciones y Comisiones:</span>
+            </div>
+            <span class="summary-value">{{calculateData?.totalWithholdingCommissions | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+          </div>
+
+          <div class="total-item primary">
+            <div class="total-content">
+              <i class="fa fa-money-bill-wave"></i>
+              <span>*TOTAL A TRANSFERIR:</span>
+            </div>
+            <span class="summary-value">{{calculateData?.totalTransfer | currency: 'USD' : 'symbol' : '1.0-0'}}</span>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          <i class="fa fa-info-circle"></i>
+          <small>*Este valor es por transacción, no incluye costo de transferencia más IVA.</small>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

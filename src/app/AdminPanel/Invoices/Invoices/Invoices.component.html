@@ -1,0 +1,199 @@
+<mat-sidenav-container>
+    <mat-sidenav class="em-sidebar" #binnacleAdmSidenav [(opened)]="embryoService.binnacleSidenavAdmOpen" position="end" mode="over">
+        <embryo-BinnacleSideBarAdm></embryo-BinnacleSideBarAdm>
+    </mat-sidenav>
+</mat-sidenav-container>
+
+
+<ng-container *ngIf="invoiceList && invoiceList.length>0; else elseBlock">
+    <div fxLayout="column">
+        <mat-card class="matcard_admin">
+
+            <div class="dash-title mb-4 mt-4">
+                <h2><b>Administración Facturas y Pedidos</b></h2>
+            </div>
+
+            <div class="buttonIn">
+                <input class="inputsearch" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar facturas pedidos" autocomplete="off" type="search">
+                <button class="btn btn-primary button-search class_search" type="submit" tabindex="-1">
+                    <span class="mat-button-wrapper">
+                        <i class="fa fa-search"></i>
+                    </span></button>
+            </div>
+
+
+            <div class="table-responsive-x mt-3">
+                <table mat-table [dataSource]="dataSource" class="w-100 table-scroll-wrap">
+
+                    <!-- <ng-container matColumnDef="action">
+                  <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Action </th>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
+                     <button mat-icon-button (click)="onSeeDialog(element)" color="primary">
+                        <i class="material-icons">remove_red_eye</i>
+                     </button>
+                  </td>
+               </ng-container> -->
+
+
+                    <ng-container matColumnDef="action2">
+                        <th class="px-3 text-nowrap table-left" mat-header-cell *matHeaderCellDef> <b class="title_table">
+                                Action</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
+                            <!-- <button mat-icon-button [routerLink]="['validation_invoice',element.id]" color="primary">
+                                <i class="material-icons">article</i>
+                            </button> -->
+                            <a [routerLink]="['validation_invoice',element.id]"><i class="material-icons">article</i></a>
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="canceled">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Cancelada</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            <div align="center">
+                                <div *ngIf="element.canceled === true">
+                                    <mat-checkbox [disabled]=true class="class_check" color='primary' [(ngModel)]='CheckedValid'></mat-checkbox>
+                                </div>
+                                <div *ngIf="element.canceled === false">
+                                    <mat-checkbox [disabled]=true class="class_check" color='primary' [(ngModel)]='CheckedValidFalse'></mat-checkbox>
+                                </div>
+                            </div>
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="messaje">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Mensaje</b></th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
+                            <button style="height: 25px;" mat-raised-button matBadge="{{element.getBinnacleFalse}}" [matBadgeHidden]="hidden" (click)="getBinnacles(element)">
+                                <i style="margin-bottom: 10px;color: #fff !important;" class="material-icons">chat</i>
+                            </button>
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="reference_invoice">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Referencia inv</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.reference_invoice}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="created_at">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Fecha</b>
+                        </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name_store">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Comercio</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.name_store}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="join_name">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Comprador</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.join_name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="service">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Servicio</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.service}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name_state">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Estado</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            <div *ngIf="element.state_id === 1" class="class_platform" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state_id === 2" class="class_reject" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state_id === 3" class="class_reject" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state_id === 4" class="class_aprobed" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state_id === 5" class="class_platform" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state_id === 6" class="class_platform" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state_id === 7" class="class_reject" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state_id === 8" class="class_platform" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state_id === 9" class="class_aprobed" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state_id === 10" class="class_reject" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state_id === 11" class="class_reject" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state_id === 12" class="class_reject" align="center">
+                                {{element.name_state}}
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ScoreValdation">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Comprobantes(%)</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            <div align="center">
+                                <mat-progress-bar style="height: 10px;border-radius: 5px" class="green-progress" mode="determinate" [value]=element.ScoreValdation></mat-progress-bar>
+                            </div>
+                        </td>
+
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="type_identifier">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Tipo Iden</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.type_identifier}} </td>
+                    </ng-container> -->
+
+
+                    <ng-container matColumnDef="number_identifier">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Identificación</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.number_identifier}}
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="reference">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Referencia trx</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.reference}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="total_price">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Total</b>
+                        </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            {{element.total_price|currency}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="total_balance">
+                        <th class="px-3 text-nowrap table-right" mat-header-cell *matHeaderCellDef> <b class="title_table">Total
+                                abono</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            {{element.total_balance|currency}}
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+            <!-- table-responsive -->
+        </mat-card>
+    </div>
+</ng-container>
+<ng-template #elseBlock>
+    <h5 class="ml-5">No data found</h5>
+</ng-template>

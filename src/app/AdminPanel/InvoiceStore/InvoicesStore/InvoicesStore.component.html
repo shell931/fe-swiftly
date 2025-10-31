@@ -1,0 +1,90 @@
+<div class="dash-title mb-4 ml-3">
+   Facturas
+</div>
+<mat-card class="m-3">
+   <div fxLayout="row wrap">
+      <div fxFlex.gt-md="600px" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+         <mat-form-field class="w-100">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+         </mat-form-field>
+      </div>
+   </div>
+</mat-card>
+<ng-container *ngIf="invoiceList && invoiceList.length>0; else elseBlock">
+   <div fxLayout="column">
+      <mat-card>
+         <div class="table-responsive-x">
+            <table mat-table [dataSource]="dataSource" class="w-100 table-scroll-wrap">
+
+               <ng-container matColumnDef="reference_invoice">
+                  <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Referencia inv </th>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.reference_invoice}} </td>
+               </ng-container>
+
+
+
+               <ng-container matColumnDef="created_at">
+                  <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Fecha </th>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+               </ng-container>
+
+
+               <ng-container matColumnDef="name_store">
+                  <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Comercio </th>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.name_store}} </td>
+               </ng-container>
+
+               <ng-container matColumnDef="name_state">
+                  <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Estado </th>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                      <div *ngIf="element.name_state === 'Aprobada'" class="class_aprobed">{{element.name_state}}</div>
+                      <div *ngIf="element.name_state === 'Plataforma'" class="class_platform">{{element.name_state}}</div>
+                      <div *ngIf="element.name_state === 'Rechazada'" class="class_reject">{{element.name_state}}</div>
+                  </td>
+              </ng-container>
+
+               <ng-container matColumnDef="type_identifier">
+                  <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Tipo Iden </th>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.type_identifier}} </td>
+               </ng-container>
+
+               <ng-container matColumnDef="number_identifier">
+                  <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Identificación </th>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.number_identifier}} </td>
+               </ng-container>
+
+               <ng-container matColumnDef="paymentmethod">
+                  <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Metodo pago </th>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentmethod}} </td>
+               </ng-container>
+
+               <ng-container matColumnDef="reference">
+                  <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Referencia trx </th>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.reference}} </td>
+               </ng-container>
+
+               <ng-container matColumnDef="total_price">
+                  <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Total </th>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.total_price|currency : 'USD' : 'symbol' : '1.0-0'}}
+                  </td>
+               </ng-container>
+
+               <ng-container matColumnDef="action">
+                  <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Action </th>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
+                     <button mat-icon-button (click)="onSeeDialog(element)" color="primary">
+                        <i class="material-icons">remove_red_eye</i>
+                     </button>
+                  </td>
+               </ng-container>
+               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+         </div>
+         <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+      </mat-card>
+   </div>
+</ng-container>
+<ng-template #elseBlock>
+   <h5 class="ml-5">No data found</h5>
+</ng-template>

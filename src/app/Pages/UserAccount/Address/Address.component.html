@@ -1,0 +1,52 @@
+<div class="address-container">
+    <div class="address-header">
+        <b>Ubicaciones</b>
+    </div>
+    
+    <div class="address-list">
+        <div *ngFor="let location of locationsGrid" 
+             class="address-card" 
+             [class.predetermined]="location.predetermined">
+            
+            <div *ngIf="location.predetermined" class="predetermined-badge">
+                Predeterminada
+            </div>
+            
+            <div class="address-info">
+                <p><strong>{{location.via}} #{{location.number}} - {{location.sn}}</strong></p>
+                <p>{{location.neighborhood}}</p>
+                <p>{{location.nameci}} - {{location.departament}}</p>
+                <p *ngIf="location.additional_data">{{location.additional_data}}</p>
+                <p><strong>Contacto:</strong> {{location.contact}} - {{location.phone}}</p>
+            </div>
+            
+            <div class="address-actions">
+                <button mat-mini-fab [matMenuTriggerFor]="locationMenu" class="menu-trigger">
+                    <i class="material-icons">more_vert</i>
+                </button>
+                <mat-menu #locationMenu="matMenu">
+                    <button mat-menu-item [routerLink]="['/account/address/edit', location.id]">
+                        <i class="material-icons">edit</i>
+                        <span>Editar</span>
+                    </button>
+                    <button mat-menu-item (click)="predetermined(location.id)">
+                        <i class="material-icons">done_outline</i>
+                        <span>Establecer predeterminada</span>
+                    </button>
+                    <button mat-menu-item (click)="deleteLocation(location.id)">
+                        <i class="material-icons">delete</i>
+                        <span>Eliminar</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+        
+        <button class="add-address-btn" 
+                mat-raised-button 
+                [routerLink]="['/account/address/create']" 
+                [queryParams]="{type:'info'}">
+            <i class="material-icons" style="margin-right: 8px;">add_location</i>
+            Agregar nueva ubicación
+        </button>
+    </div>
+</div>

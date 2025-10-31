@@ -1,0 +1,39 @@
+<div class="add-to-cart-dialog">
+    <div class="dialog-overlay" (click)="onContinueShopping()"></div>
+    <div class="dialog-container">
+        <div class="dialog-content">
+            <!-- Success Icon -->
+            <div class="success-icon">
+                <svg class="checkmark" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="m14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+
+            <!-- Header -->
+            <div class="dialog-header">
+                <h3 class="dialog-title">¡Producto agregado!</h3>
+                <p class="dialog-subtitle">Se ha añadido a tu carrito de compras</p>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-section">
+                <div class="product-image-wrapper">
+                    <img [src]="data.image" [alt]="data.name" class="product-image">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="product-details">
+                    <h4 class="product-name">{{data.name}}</h4>
+                    <p class="product-price">{{data.price | currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="dialog-actions">
+                <button class="btn-primary" (click)="onContinueShopping()">
+                    <span>Continuar comprando</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

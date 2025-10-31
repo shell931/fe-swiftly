@@ -1,0 +1,129 @@
+.example-card {
+    max-width: 200px;
+  }
+  
+  .product-card {
+    max-width: 200px;
+  }
+  
+  .card_store_prod{
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  
+  .container_store_prod{
+    margin-left: 193px;
+    padding-left: 200px;
+    margin-top: 60px;
+  }
+  
+  .style_toolbar{
+    border-radius: 25px;
+  }
+  .div_produc{
+    margin-left: 15px;
+  }
+  
+  @media (max-width: 767px) {
+    .container_store_prod {
+      margin-left: 0px;
+      padding-left: 0px;
+    }
+    .div_produc{
+      margin-left: 15px;
+    }
+  }
+  
+  .img_size {
+    height: 170px;
+    max-width: 100%;
+    vertical-align: middle;
+  }
+  
+  .mat-mini-fab .mat-button-wrapper {
+    display: inline;
+  }
+  
+  .product-card {
+    max-width: 200px;
+    // max-height: 300px;
+  }
+  
+  .rowprod{
+    margin-top: 20px;
+  }
+  
+  .borderdiv {
+    border: 2px solid red;
+    padding: 10px;
+    border-radius: 25px;
+  }
+  
+  .example-tree-invisible {
+    display: none;
+  }
+  
+  .example-tree ul,
+  .example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+  }
+  
+  
+  .wishlist-icon a {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.mat-icon {
+    background-repeat: no-repeat;
+    background-color: white;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+    border-radius: 6px;
+}
+  
+  
+.title-edit-pr{
+  margin-left: 90px;
+}
+
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: black;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.overlay {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.286);
+    z-index: 10;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+.mat-drawer-container {
+    background-color: #687492;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+
+  
+  .header {    
+    text-align: center;    
+    background:blue;    
+    color: white;    
+    font-size: 20px;    
+  }   

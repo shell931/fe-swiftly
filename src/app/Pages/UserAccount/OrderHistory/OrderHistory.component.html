@@ -1,0 +1,79 @@
+<div class="orders-container">
+    <div class="orders-header">
+        <b>Tus compras</b>
+    </div>
+    
+    <div class="search-container">
+        <input class="search-input" 
+               matInput 
+               (keyup)="applyFilter($event.target.value)" 
+               placeholder="Buscar por referencia, estado o fecha..." 
+               autocomplete="off" 
+               type="search">
+    </div>
+
+    <div class="orders-table">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Acción</th>
+                <td mat-cell *matCellDef="let element">
+                    <button class="action-button" (click)="onSeeDialog(element)">
+                        <i class="material-icons" style="margin-right: 4px;">visibility</i>
+                        Ver
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="reference">
+                <th mat-header-cell *matHeaderCellDef>Referencia</th>
+                <td mat-cell *matCellDef="let element">
+                    <strong>{{element.reference}}</strong>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name_external_state">
+                <th mat-header-cell *matHeaderCellDef>Estado</th>
+                <td mat-cell *matCellDef="let element">
+                    <div *ngIf="element.ex_state_id === 1" class="status-badge status-pending">
+                        {{element.name_external_state}}
+                    </div>
+                    <div *ngIf="element.ex_state_id === 2" class="status-badge status-rejected">
+                        {{element.name_external_state}}
+                    </div>
+                    <div *ngIf="element.ex_state_id === 3" class="status-badge status-rejected">
+                        {{element.name_external_state}}
+                    </div>
+                    <div *ngIf="element.ex_state_id === 4" class="status-badge status-rejected">
+                        {{element.name_external_state}}
+                    </div>
+                    <div *ngIf="element.ex_state_id === 5" class="status-badge status-approved">
+                        {{element.name_external_state}}
+                    </div>
+                    <div *ngIf="element.ex_state_id === 6" class="status-badge status-rejected">
+                        {{element.name_external_state}}
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="created_at">
+                <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                <td mat-cell *matCellDef="let element">{{element.created_at}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="total_p">
+                <th mat-header-cell *matHeaderCellDef>Total</th>
+                <td mat-cell *matCellDef="let element">
+                    <strong>{{element.total_p|currency : 'USD' : 'symbol' : '1.0-0'}}</strong>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    
+    <div class="pagination-container">
+        <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+    </div>
+</div>

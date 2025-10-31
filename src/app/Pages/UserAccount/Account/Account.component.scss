@@ -1,0 +1,213 @@
+/* Main Container */
+.account-info {
+    max-width: 100%;
+    margin: 0;
+    background: transparent;
+    border-radius: 12px;
+    box-shadow: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* User Info Header - Minimalist */
+.user-info-header {
+    background: transparent;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(233, 236, 239, 0.3);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    color: #495057;
+}
+
+.login-user-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.login-user-img::before {
+    content: '👤';
+    font-size: 18px;
+    color: #6c757d;
+}
+
+.bienvenida b {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    color: #495057;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.bienvenida p {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #6c757d;
+    margin: 0;
+}
+
+/* Horizontal Navigation - Minimalist */
+.horizontal-nav {
+    background: transparent;
+    border-bottom: 1px solid rgba(233, 236, 239, 0.3);
+    padding: 0.5rem 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.horizontal-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-container {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0 1rem;
+    min-width: max-content;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    color: #6c757d;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    min-width: 70px;
+    position: relative;
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+.nav-item:hover {
+    background: #f8f9fa;
+    color: #495057;
+}
+
+.nav-item.nav-active {
+    background: #e9ecef;
+    color: #495057;
+    border-color: #dee2e6;
+}
+
+.nav-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.nav-item span {
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+/* Content Area */
+.content-wrapper {
+    padding: 1.5rem;
+    min-height: 60vh;
+}
+
+/* Global text styling improvements */
+p {
+    color: #2c3e50 !important;
+    line-height: 1.5;
+}
+
+b {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: #2c3e50;
+}
+
+span {
+    font-weight: 400;
+    color: #34495e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .account-info {
+        border-radius: 0;
+        margin: 0;
+    }
+    
+    .user-info-header {
+        border-radius: 0;
+        padding: 1rem;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .login-user-img {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .nav-container {
+        padding: 0 0.5rem;
+        gap: 0.25rem;
+    }
+    
+    .nav-item {
+        min-width: 70px;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .nav-item i {
+        font-size: 18px;
+    }
+    
+    .nav-item span {
+        font-size: 11px;
+    }
+    
+    .content-wrapper {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-item {
+        min-width: 60px;
+        padding: 0.5rem;
+    }
+    
+    .nav-item span {
+        font-size: 10px;
+    }
+    
+    .nav-item i {
+        font-size: 16px;
+    }
+}

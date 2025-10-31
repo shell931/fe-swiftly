@@ -1,0 +1,70 @@
+.mat-card-image{
+    border: 1px solid #eee;
+        padding: 10px;
+        border-radius: 10px;
+ 
+        margin-right: 2rem;
+ 
+    }
+
+    mat-card{
+        box-shadow:none !important;
+
+    }
+
+    mat-card p{
+        box-shadow:none !important;
+        
+    }
+
+    .mat-line {
+        font-size: 1rem;
+        border-bottom: 1px solid #eee;
+        padding: 0.5em 0;
+    }
+
+    h4{
+        font-size: 1.1rem;
+        font-weight: 500;
+        }
+
+        .mat-fab{
+            width:30px;
+            height: 30px;
+            background: #79dc78 !important;
+        }
+
+        .mat-fab i{
+           font-size: 15px;
+        }
+
+        .borrar {
+            background-repeat: no-repeat;
+            display: inline-block;
+            fill: currentColor;
+            height: 30px;
+            width: 30px;
+            position: absolute;
+            background: #ff5722;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 20px;
+            padding-top: 5px;
+        }
+
+
+        .borrar i{
+            font-size: 15px;
+            color:#fff;
+         }
+
+
+         .mat-card  {
+            box-shadow: none !important;
+        }
+.title_balance{
+    color: #009e30de;
+}
+.black_subtitle{
+    color: black;
+}

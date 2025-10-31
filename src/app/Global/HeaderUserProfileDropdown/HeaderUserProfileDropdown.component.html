@@ -1,0 +1,109 @@
+<!-- <button mat-mini-fab class="log-in-user" [matMenuTriggerFor]="loginuser" *ngIf="show">
+        <span class="material-icons">
+                account_circle
+        </span>
+</button> -->
+<button _ngcontent-embryo-seo-pre-c19="" aria-haspopup="true"
+        class="mat-badge mat-menu-trigger mat-mini-fab mat-button-base mat-accent mat-badge-accent mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium mat-badge-hidden"
+        [matMenuTriggerFor]="loginuser" *ngIf="show" mat-mini-fab="" matbadgecolor="accent" matbadgeposition="after"
+        ng-reflect-color="accent" ng-reflect-position="after" ng-reflect-content="0" ng-reflect-hidden="true"
+        ng-reflect-menu="[object Object]"><span class="mat-button-wrapper"><i _ngcontent-embryo-seo-pre-c19=""
+                        class="material-icons notranslate"> account_circle </i></span>
+        <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple="" ng-reflect-centered="false"
+                ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]">
+        </div>
+        <div class="mat-button-focus-overlay">
+        </div><span _ngcontent-embryo-seo-pre-c19="" id="mat-badge-content-0"
+                class="mat-badge-content mat-badge-active">0</span>
+</button>
+<mat-menu #loginuser="matMenu">
+        <!-- <button mat-menu-item fxLayoutAlign="start center" [routerLink]="['/account/profile']"><i class="material-icons mr-1">account_circle</i> <span>Perfil</span>
+  </button> -->
+        <button mat-menu-item [routerLink]="['/account/profile']"><i
+                        class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></button>
+        <button mat-menu-item [routerLink]="['/account/order-history']"><i
+                        class="material-icons mr-1 col_icon">add_shopping_cart</i><span>Mis
+                        compras</span></button>
+        <button mat-menu-item [routerLink]="['/account/address']"><i
+                        class="material-icons mr-1 col_icon">location_on</i><span>Mis
+                        ubicaciones</span></button>
+        <!-- <button mat-menu-item [routerLink]="['/account/profile']"> <i class="material-icons mr-1">local_post_office</i> <span>Messages</span></button> -->
+        <button mat-menu-item (click)="exit_store_front()"><i
+                        class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
+</mat-menu>
+
+<button _ngcontent-embryo-seo-pre-c19="" aria-haspopup="true"
+        class="mat-badge mat-menu-trigger mat-mini-fab mat-button-base mat-accent mat-badge-accent mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium mat-badge-hidden"
+        [matMenuTriggerFor]="loginuser_commerce" *ngIf="show_store_pr" mat-mini-fab="" matbadgecolor="accent"
+        matbadgeposition="after" ng-reflect-color="accent" ng-reflect-position="after" ng-reflect-content="0"
+        ng-reflect-hidden="true" ng-reflect-menu="[object Object]"><span class="mat-button-wrapper"><i
+                        _ngcontent-embryo-seo-pre-c19="" class="material-icons notranslate"> account_circle </i></span>
+        <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple="" ng-reflect-centered="false"
+                ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]">
+        </div>
+        <div class="mat-button-focus-overlay">
+        </div><span _ngcontent-embryo-seo-pre-c19="" id="mat-badge-content-0"
+                class="mat-badge-content mat-badge-active">0</span>
+</button>
+
+<mat-menu #loginuser_commerce="matMenu">
+        <button mat-menu-item [routerLink]="['/account/profile']"><i
+                        class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></button>
+        <button mat-menu-item [routerLink]="['/account/order-history']"><i
+                        class="material-icons mr-1 col_icon">add_shopping_cart</i><span>Mis
+                        compras</span></button>
+        <button mat-menu-item [routerLink]="['/account/address']"><i
+                        class="material-icons mr-1 col_icon">location_on</i><span>Mis
+                        ubicaciones</span></button>
+        <button mat-menu-item [routerLink]="['/admin-panel/products']"><i
+                        class="material-icons mr-1 col_icon">queue_play_next</i><span>Productos</span></button>
+        <button mat-menu-item [routerLink]="['/admin-panel/invoices_store']"><i
+                        class="material-icons mr-1 col_icon">fact_check</i><span>Facturas</span></button>
+        <button mat-menu-item (click)="exit_store_front()"><i
+                        class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
+</mat-menu>
+
+
+
+<!-- Register -->
+<!-- <button mat-mini-fab class="log-in-user" *ngIf="show_add" [routerLink]="['/session/signup']">
+        <span class="material-icons">
+                person_add
+        </span>
+</button> -->
+
+<button _ngcontent-embryo-seo-pre-c19="" aria-haspopup="true"
+        class="mat-badge mat-menu-trigger mat-mini-fab mat-button-base mat-accent mat-badge-accent mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium mat-badge-hidden"
+        *ngIf="show_add" [routerLink]="['/session/signup']" mat-mini-fab="" matbadgecolor="accent"
+        matbadgeposition="after" ng-reflect-color="accent" ng-reflect-position="after" ng-reflect-content="0"
+        ng-reflect-hidden="true" ng-reflect-menu="[object Object]"><span class="mat-button-wrapper"><i
+                        _ngcontent-embryo-seo-pre-c19="" class="material-icons notranslate"> person_add </i></span>
+        <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple="" ng-reflect-centered="false"
+                ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]">
+        </div>
+        <div class="mat-button-focus-overlay">
+        </div><span _ngcontent-embryo-seo-pre-c19="" id="mat-badge-content-0"
+                class="mat-badge-content mat-badge-active">0</span>
+</button>
+
+
+<!-- Login -->
+<!-- <button mat-mini-fab class="log-in-user mat-flat-button" *ngIf="show_add" [routerLink]="['/session/signin']">
+        <span class="material-icons">
+                fingerprint
+        </span>
+</button> -->
+
+<button _ngcontent-embryo-seo-pre-c19="" aria-haspopup="true"
+        class="mat-badge mat-menu-trigger mat-mini-fab mat-button-base mat-accent mat-badge-accent mat-badge-overlap mat-badge-above mat-badge-after mat-badge-medium mat-badge-hidden"
+        *ngIf="show_add" [routerLink]="['/session/signin']" mat-mini-fab="" matbadgecolor="accent"
+        matbadgeposition="after" ng-reflect-color="accent" ng-reflect-position="after" ng-reflect-content="0"
+        ng-reflect-hidden="true" ng-reflect-menu="[object Object]"><span class="mat-button-wrapper"><i
+                        _ngcontent-embryo-seo-pre-c19="" class="material-icons notranslate"> fingerprint </i></span>
+        <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple="" ng-reflect-centered="false"
+                ng-reflect-disabled="false" ng-reflect-trigger="[object HTMLButtonElement]">
+        </div>
+        <div class="mat-button-focus-overlay">
+        </div><span _ngcontent-embryo-seo-pre-c19="" id="mat-badge-content-0"
+                class="mat-badge-content mat-badge-active">0</span>
+</button>

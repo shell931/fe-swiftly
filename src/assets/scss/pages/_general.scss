@@ -1,0 +1,22 @@
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+    background-color: #3eb06c;
+    border-color: #3eb06c;
+    color: white;
+}
+
+.mat-ex-wrapper .mat-expansion-panel-header {
+    height: 70px !important;
+    // background: #3f456d;
+    background-color: #3eb06c;
+    border-color: #3eb06c;
+    color: white;
+}
+
+.mat-ex-wrapper .mat-expansion-panel-header.mat-expanded:focus, .mat-ex-wrapper .mat-expansion-panel-header.mat-expanded:hover {
+    background: #3eb06c;
+    color: #fff;
+}
+
+.mat-ex-wrapper .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]).cdk-keyboard-focused, .mat-ex-wrapper .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]).cdk-program-focused, .mat-ex-wrapper .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover {
+    background: #3eb06c;
+}

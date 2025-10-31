@@ -1,0 +1,317 @@
+
+<!-- HEADER -->
+<header id="header" class="dark kompraloheader">
+  <!-- HEADER FIXED - REDESIGNED COMPLETELY -->
+  <div class="header-middle fixedheader">
+    <div class="container-fluid">
+      <!-- MOBILE LAYOUT -->
+      <div class="mobile-layout" fxShow="true" fxHide.gt-md="true">
+        <!-- Top row: Logo and Hamburger -->
+        <div class="mobile-top-row">
+          <div class="mobile-logo">
+            <embryo-AppLogo></embryo-AppLogo>
+          </div>
+          <div class="mobile-hamburger">
+            <a class="mobile-menu-btn menuBtn" (click)="toggleMobileMenu()">
+              <i class="fa fa-bars menu-icon" [class.fa-bars]="!isMobileMenuOpen" [class.fa-times]="isMobileMenuOpen"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Bottom row: Search bar -->
+        <div class="mobile-search-row">
+          <form class="modern-search search-form" (ngSubmit)="getPostsEnter($event)">
+            <div class="search-wrapper">
+              <input 
+                placeholder="Buscar productos"
+                class="search-input"
+                #searchInput
+                type="search"
+                matInput
+                (keyup.enter)="getPostsEnter($event)"
+                [formControl]="myControl"
+                [matAutocomplete]="auto"
+                (keyup)="updated($event)"
+                [(ngModel)]="data"
+                autocomplete="off">
+              <button (click)="getPostsEnter($event)" class="search-button" type="submit" aria-label="Buscar">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getPosts($event.option.value)">
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </form>
+        </div>
+      </div>
+
+      <!-- DESKTOP LAYOUT -->
+      <div class="desktop-layout" fxShow.gt-md="true" fxHide.md="true" fxHide.sm="true" fxHide.xs="true">
+        <div class="row">
+          <!-- LOGO SECTION -->
+          <div class="col-xl-2 col-lg-2 col-md-3">
+            <div class="logo-container">
+              <embryo-AppLogo></embryo-AppLogo>
+            </div>
+          </div>
+
+          <!-- SEARCH SECTION -->
+          <div class="col-xl-7 col-lg-7 col-md-6 search-column">
+            <div class="search-container">
+              <form class="modern-search search-form" (ngSubmit)="getPostsEnter($event)">
+                <div class="search-wrapper">
+                  <input 
+                    placeholder="Buscar productos"
+                    class="search-input"
+                    #searchInput
+                    type="search"
+                    matInput
+                    (keyup.enter)="getPostsEnter($event)"
+                    [formControl]="myControl"
+                    [matAutocomplete]="auto"
+                    (keyup)="updated($event)"
+                    [(ngModel)]="data"
+                    autocomplete="off">
+                  <button (click)="getPostsEnter($event)" class="search-button" type="submit" aria-label="Buscar">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getPosts($event.option.value)">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </form>
+            </div>
+          </div>
+
+          <!-- USER ACTIONS SECTION -->
+          <div class="col-xl-3 col-lg-3 col-md-3">
+            <div class="user-actions-container">
+              <!-- Cart -->
+              <div class="action-item cart-wrapper" *ngIf="!isOnCartPage">
+                <embryo-HeaderCart
+                  [currency]="embryoService?.currency"
+                  [cartProducts]="embryoService?.localStorageCartProducts"
+                  [count]="embryoService?.navbarCartCount"
+                  (removeProductData)="directRemoveProduct($event)"
+                  (editProductData)="handleEditProduct($event)"
+                  (updateQuantityData)="handleUpdateQuantity($event)">
+                </embryo-HeaderCart>
+              </div>
+
+              <!-- Wishlist -->
+              <div class="action-item wishlist-wrapper">
+                <embryo-WishList
+                  [currency]="embryoService?.currency"
+                  [wishListProducts]="embryoService?.localStorageWishlist"
+                  [count]="embryoService?.navbarWishlistProdCount"
+                  (removeWishListData)="openWishlistConfirmationPopup($event)"
+                  (addAllWishlistToCart)="addAllWishlistToCart($event)"
+                  (addToCart)="addToCart($event)">
+                </embryo-WishList>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Navigation Bar -->
+    <div class="navigation-bar">
+      <div class="container-fluid">
+        <div class="megamenu-wrapper" [class.logged-in]="show">
+          <ul class="megamenu">
+            <li><a [routerLink]="['/']">INICIO</a></li>
+            <li>
+              <a *ngIf="show_info" [matMenuTriggerFor]="cat" class="space_menus pointer">
+                CATEGORÍAS <i class="fa fa-chevron-down"></i>
+              </a>
+            </li>
+            <li><a [routerLink]="['/offers']">OFERTAS</a></li>
+            <li><a [routerLink]="['/storelist']">TIENDAS OFICIALES</a></li>
+            <li><a *ngIf="show_acces_sell" [routerLink]="['/sell']">VENDER</a></li>
+            <li><a [routerLink]="['/help_pqr']">AYUDA / PQR</a></li>
+            <li>
+              <a *ngIf="show_info" [matMenuTriggerFor]="info_business" class="space_menus pointer">
+                INFORMACIÓN <i class="fa fa-chevron-down"></i>
+              </a>
+            </li>
+          </ul>
+          
+          <ul class="menu3 top-link list-inline">
+            <li class="account">
+              <a *ngIf="show_add" [routerLink]="['/session/signin']" class="btn-xs">ACCEDER / REGISTRAR</a>
+            </li>
+            <li class="account">
+              <a *ngIf="show" [matMenuTriggerFor]="loginuser" class="btn-xs">
+                <span>MI SWIFTLY</span> <i class="fa fa-chevron-down" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li class="account">
+              <a *ngIf="show" [routerLink]="['/checkout']" class="btn-xs">
+                <span>CHECKOUT</span> <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li class="account">
+              <a *ngIf="show_store_pr" [matMenuTriggerFor]="loginuser_commerce" class="space_menus pointer" (click)="onCommerceMenuClick('Abrir menú comercio')">
+                MI SWIFTLY<span *ngIf="validate_img" class="material-icons" style="color:red;margin-left: 5px;">warning</span><i class="fa fa-chevron-down" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Mat Menus -->
+  <mat-menu #loginuser="matMenu">
+    <button mat-menu-item [routerLink]="['/account/profile']" (click)="onMenuClick('Cuenta')"><i class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></button>
+    <button mat-menu-item [routerLink]="['/account/order-history']" (click)="onMenuClick('compras')"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>compras</span></button>
+    <button mat-menu-item [routerLink]="['/account/address']" (click)="onMenuClick('ubicaciones')"><i class="material-icons mr-1 col_icon">location_on</i><span>ubicaciones</span></button>
+    <button mat-menu-item (click)="exit_store_front(); onMenuClick('Salir')"><i class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
+  </mat-menu>
+
+  <!-- Commerce Menu -->
+  <mat-menu #loginuser_commerce="matMenu">
+    <button mat-menu-item [routerLink]="['/account/profile']" (click)="onCommerceMenuClick('Tu Información')"><i class="material-icons mr-1 col_icon">account_circle</i><span>Tu Información</span></button>
+    <button mat-menu-item [routerLink]="['/account/order-history']" (click)="onCommerceMenuClick('Compras')"><i class="material-icons mr-1 col_icon">history</i><span>Compras</span></button>
+    <button mat-menu-item [routerLink]="['/account/address']" (click)="onCommerceMenuClick('Ubicaciones')"><i class="material-icons mr-1 col_icon">location_on</i><span>Ubicaciones</span></button>
+    <button mat-menu-item [routerLink]="['/account/invoice_adm']" (click)="onCommerceMenuClick('Facturas')"><i class="material-icons mr-1 col_icon">fact_check</i><span>Facturas</span></button>
+    <button mat-menu-item [routerLink]="['/account/store_adm']" (click)="onCommerceMenuClick('Tu tienda')"><i class="material-icons mr-1 col_icon">account_balance</i><span>Tu tienda<span *ngIf="validate_img" class="material-icons" style="color:red;margin-left: 5px;">warning</span></span></button>
+    <button mat-menu-item [routerLink]="['/account/product_adm']" (click)="onCommerceMenuClick('Productos')"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>Productos</span></button>
+    <button mat-menu-item (click)="exit_store_front(); onCommerceMenuClick('Salir')"><i class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
+  </mat-menu>
+
+  <!-- Categorías -->
+  <mat-menu #cat="matMenu" class="custom-menu">
+    <button mat-menu-item *ngFor="let item of get_categories" [routerLink]="['/searchstorebycategories/', item.id]">
+      {{ item.name_category }}
+    </button>
+  </mat-menu>
+
+  <!-- Info -->
+  <mat-menu #info_business="matMenu" class="custom-menu">
+    <button mat-menu-item [routerLink]="['/terms_conditions']">Términos y Condiciones</button>
+    <button mat-menu-item [routerLink]="['/data_protection']">Protección de datos</button>
+    <button mat-menu-item [routerLink]="['/payment_information']">Proceso de pago</button>
+    <button mat-menu-item [routerLink]="['/assisted_buy']">Compra asistida</button>
+    <button mat-menu-item [routerLink]="['/calculator2']">Calculadora de tarifas</button>
+  </mat-menu>
+</header>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mainMenu" [class.act]="isMobileMenuOpen" (click)="closeMobileMenuOnBackdrop($event)">
+  <div class="table-cell">
+    <ul class="list-unstyled" (click)="$event.stopPropagation()">
+      <li><a [routerLink]="['/']" (click)="toggleMobileMenu()">INICIO</a></li>
+      <li>
+        <a *ngIf="show_info" [matMenuTriggerFor]="cat_mobile">
+          CATEGORÍAS <i class="fa fa-chevron-down"></i>
+        </a>
+      </li>
+      <li><a [routerLink]="['/offers']" (click)="toggleMobileMenu()">OFERTAS</a></li>
+      <li><a [routerLink]="['/storelist']" (click)="toggleMobileMenu()">TIENDAS OFICIALES</a></li>
+      <li><a *ngIf="show_acces_sell" [routerLink]="['/sell']" (click)="toggleMobileMenu()">VENDER</a></li>
+      <li><a [routerLink]="['/help_pqr']" (click)="toggleMobileMenu()">AYUDA / PQR</a></li>
+      <li>
+        <a *ngIf="show_info" [matMenuTriggerFor]="info_business_mobile">
+          INFORMACIÓN <i class="fa fa-chevron-down"></i>
+        </a>
+      </li>
+      <li><a *ngIf="show_add" [routerLink]="['/session/signin']" (click)="toggleMobileMenu()">ACCEDER / REGISTRAR</a></li>
+      <li>
+        <a *ngIf="show" [matMenuTriggerFor]="loginuser_mobile">
+          <span>MI SWIFTLY</span> <i class="fa fa-chevron-down"></i>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="show_store_pr" [matMenuTriggerFor]="loginuser_commerce_mobile">
+          MI SWIFTLY<span *ngIf="validate_img" class="material-icons" style="color:red;margin-left: 5px;">warning</span><i class="fa fa-chevron-down" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- MOBILE MENU DROPDOWNS -->
+<!-- Categorías Mobile -->
+<mat-menu #cat_mobile="matMenu" class="custom-menu">
+  <button mat-menu-item *ngFor="let item of get_categories" [routerLink]="['/searchstorebycategories/', item.id]">
+    {{ item.name_category }}
+  </button>
+</mat-menu>
+
+<!-- Info Mobile -->
+<mat-menu #info_business_mobile="matMenu" class="custom-menu">
+  <button mat-menu-item [routerLink]="['/terms_conditions']">Términos y Condiciones</button>
+  <button mat-menu-item [routerLink]="['/data_protection']">Protección de datos</button>
+  <button mat-menu-item [routerLink]="['/payment_information']">Proceso de pago</button>
+  <button mat-menu-item [routerLink]="['/assisted_buy']">Compra asistida</button>
+  <button mat-menu-item [routerLink]="['/calculator2']">Calculadora de tarifas</button>
+</mat-menu>
+
+<mat-menu #loginuser_mobile="matMenu" class="custom-menu">
+  <button mat-menu-item [routerLink]="['/account/profile']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">settings</i><span>Cuenta</span></button>
+  <button mat-menu-item [routerLink]="['/account/order-history']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>compras</span></button>
+  <button mat-menu-item [routerLink]="['/account/address']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">location_on</i><span>ubicaciones</span></button>
+  <button mat-menu-item (click)="exit_store_front(); toggleMobileMenu()"><i class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
+</mat-menu>
+
+
+<mat-menu #loginuser_commerce_mobile="matMenu" class="custom-menu">
+  <button mat-menu-item [routerLink]="['/account/profile']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">account_circle</i><span>Tu Información</span></button>
+  <button mat-menu-item [routerLink]="['/account/order-history']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">history</i><span>Compras</span></button>
+  <button mat-menu-item [routerLink]="['/account/address']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">location_on</i><span>Ubicaciones</span></button>
+  <button mat-menu-item [routerLink]="['/account/invoice_adm']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">fact_check</i><span>Facturas</span></button>
+  <button mat-menu-item [routerLink]="['/account/store_adm']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">account_balance</i><span>Tu tienda<span *ngIf="validate_img" class="material-icons" style="color:red;margin-left: 5px;">warning</span></span></button>
+  <button mat-menu-item [routerLink]="['/account/product_adm']" (click)="toggleMobileMenu()"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>Productos</span></button>
+  <button mat-menu-item (click)="exit_store_front(); toggleMobileMenu()"><i class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
+</mat-menu>
+
+
+<div class="footermobile hidden-lg hidden-xl" fxShow="true" fxHide.gt-md="true">
+  <ul class="list-inline">
+    <li>
+      <a [routerLink]="['/home']">
+        <i class="fa fa-home" aria-hidden="true"></i>
+      </a>
+    </li>
+
+    <li>
+      <a [routerLink]="['/account/profile']">
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+      </a>
+    </li>
+
+    <li *ngIf="!isOnCartPage">
+      <div class="action-item cart-wrapper">
+        <embryo-HeaderCart
+          [currency]="embryoService?.currency"
+          [cartProducts]="embryoService?.localStorageCartProducts"
+          [count]="embryoService?.navbarCartCount"
+          (removeProductData)="directRemoveProduct($event)"
+          (editProductData)="handleEditProduct($event)"
+          (updateQuantityData)="handleUpdateQuantity($event)">
+        </embryo-HeaderCart>
+      </div>
+    </li>
+
+    <li class="wishlist">
+      <a>
+        <embryo-WishList
+          [currency]="embryoService?.currency"
+          [wishListProducts]="embryoService?.localStorageWishlist"
+          [count]="embryoService?.navbarWishlistProdCount"
+          (removeWishListData)="openWishlistConfirmationPopup($event)"
+          (addAllWishlistToCart)="addAllWishlistToCart($event)"
+          (addToCart)="addToCart($event)">
+        </embryo-WishList>
+      </a>
+    </li>
+    
+  </ul>
+</div>

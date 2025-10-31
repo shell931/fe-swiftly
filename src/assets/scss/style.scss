@@ -1,0 +1,62 @@
+@use 'variables';
+@use 'material-theme';
+@import "core/core";
+@import "pages/pages";
+@import "components/components";
+@import "utilities/utilities";
+@import "admin/admin";
+@import "table_general";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+/* Essential styles only - minimal overrides */
+mat-sidenav.em-sidebar {
+  width: 433px;
+  max-width: 100vw;
+}
+
+/* Basic form styling */
+input, textarea {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #999;
+}
+
+/* Account containers */
+.inner-container, .account-info {
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+}
+
+/* Basic text styling */
+span, b, label, p {
+  font-weight: 400;
+  font-size: 15px;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+}
+
+table tr, table td, table th {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+/* Material icons - basic styling */
+.material-icons {
+  color: #3f403f;
+}
+
+/* Header icons - white */
+header .material-icons,
+#header .material-icons,
+.kompraloheader .material-icons {
+  color: white;
+}

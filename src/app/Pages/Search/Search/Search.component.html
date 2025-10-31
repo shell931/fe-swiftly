@@ -1,0 +1,104 @@
+
+
+<div class="container-fluid compact-layout">
+    <div class="row container_search">
+        <!-- Sidebar de categorías compacto -->
+        <div class="col-lg-2 col-md-3 col-12">
+            <mat-card class="mat_categories compact">
+                <h4 class="filter-title">Categorías</h4>
+                <mat-tree [dataSource]="dataSourceN" [treeControl]="treeControlN" class="category-tree">
+                    <!-- Leaf nodes (subcategories) -->
+                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding class="category-item">
+                        <a (click)="SearchByCategories(node.type,node.id)" class="category-link">
+                            <span class="category-text">{{node.name}}</span>
+                        </a>
+                    </mat-tree-node>
+                    
+                    <!-- Expandable nodes (categories with subcategories) -->
+                    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding class="category-item">
+                        <div class="category-link" (click)="toggleCategory(node)">
+                            <img *ngIf="node.icon" src="assets/images/icons_category_product/{{node.icon}}" alt="category icon" class="category-icon">
+                            <span class="category-text">{{node.name}}</span>
+                            <button mat-icon-button [attr.aria-label]="'toggle ' + node.name" class="expand-button">
+                                <mat-icon class="expand-icon">
+                                    {{treeControlN.isExpanded(node) ? 'expand_less' : 'expand_more'}}
+                                </mat-icon>
+                            </button>
+                        </div>
+                    </mat-tree-node>
+                </mat-tree>
+            </mat-card>
+        </div>
+        
+        <!-- Contenido principal compacto -->
+        <div class="col-lg-10 col-md-9 col-12">
+            <div class="products-grid">
+                        <mat-card class="product-card" *ngFor="let card of obs | async; let i = index">
+                        <!-- | paginate: { itemsPerPage: 10, currentPage: p } temporarily removed -->
+                            <mat-card-content class="product-content producto_destacado relative ">
+                                <a class="p-link link_producto " *ngIf="!card?.id " [routerLink]="[card?.route_product] " style="height: 160px !important; max-height: 160px !important; width: 100% !important; display: block !important; overflow: hidden !important;">
+                                    <img class="img_size image_pixeled" mat-card-image [src]="card?.image" [ngClass]="{ transparent: !loaded }" (load)="onLoad()" alt="Photo">
+                                </a>
+                                <a class="p-link " *ngIf="card?.id " [routerLink]="[ '/products', card?.type, card?.id_product] " style="height: 160px !important; max-height: 160px !important; width: 100% !important; display: block !important; overflow: hidden !important;">
+                                    <img class="img_size image_pixeled" mat-card-image [src]="card?.image" alt="Product Image">
+                                    <!-- [defaultImage] and [lazyLoad] removed as they are not valid img properties -->>
+                                </a>
+                                <div class="right-block ">
+                                    <h6 class="titulo_producto "><a *ngIf="card?.id_product " [routerLink]="[ '/products', card?.type, card?.id_product] " class="title-link ">{{card?.name}}</a> </h6>
+                                    <h6 class="titulo_producto "><a *ngIf="!card?.id_product " [routerLink]="[ '/products/accessories/card?.id_product'] " class="title-link ">{{card?.name}}</a> </h6>
+                                    
+                                    <div class="price-section">
+                                        <p class="price red ">
+                                            <span class="price-red ">{{card?.price | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+                                        </p>
+                                        <p class="price ">
+                                            <span class="price-new ">{{card?.price | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+                                            <img class="cards " src="assets/images/tarjetas.png " />
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="rating-star ">
+                                        <embryo-Rating [rate]="card.rating "></embryo-Rating>
+                                    </div>
+                                    
+                                    <span class="deliveryicon ">
+                                        <img src="assets/images/shipping-fast-solid.svg " /> Envío gratis</span>
+                                    
+                                    <div class="buttons-section">
+                                        <button (click)="productAddToWishlist(card, i+ '-wishlist') " type="button " class="wishlist btn-button " title="Añadir a lista de deseos "><i
+                                                class="fa fa-heart-o "></i>
+                                        </button>
+                                        <div class="btn_comprar " *ngIf="checkCartAlready(card) ">
+                                            <embryo-AddToCardButton [product]="product " (addToCart)="addToCartProduct($event) ">
+                                            </embryo-AddToCardButton>
+                                            <ng-container *ngIf="card ">
+                                                <button mat-fab (click)="addToCartProduct(card) " class="btn-button "><i
+                                                        class="fa fa-cart-plus " aria-hidden="true "></i></button>
+                                            </ng-container>
+                                        </div>
+                                        <div class="btn_comprar " *ngIf="!checkCartAlready(card) ">
+                                            <button class="btn-button " mat-fab *ngIf="card?.id_product " [routerLink]="[ '/products', card?.type, card?.id_product] "><i class="fa fa-eye "
+                                                    aria-hidden="true "></i> </button>
+                                            <button class="btn-button " mat-fab *ngIf="!card?.id_product " [routerLink]="[card?.route_product] "><i class="fa fa-eye " aria-hidden="true "></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+
+            </div>
+            <mat-paginator [pageSizeOptions]="[10, 10, 25, 100]"></mat-paginator>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row rowprod ">
+    <div class="col-md-2 borderdiv ">
+    
+    </div>
+    <div class="col-md-10 ">
+
+    </div>
+
+</div> -->

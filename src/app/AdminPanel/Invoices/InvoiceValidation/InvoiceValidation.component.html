@@ -1,0 +1,293 @@
+<mat-sidenav-container>
+    <mat-sidenav class="em-sidebar" #binnacleAdmSidenav [(opened)]="embryoService.binnacleSidenavAdmOpen" position="end" mode="over">
+        <embryo-BinnacleSideBarAdm></embryo-BinnacleSideBarAdm>
+    </mat-sidenav>
+</mat-sidenav-container>
+<mat-card class=" matcard_admin">
+    <div class="mb-3">
+        <div *ngIf="state_id=='4' || state_id=='1' || state_id=='5' || state_id=='8' || state_id=='9'">
+            <h2><b>Progreso validación de comprobantes</b></h2>
+            <mat-progress-bar mode="determinate" [value]=numberCheck></mat-progress-bar>
+            <mat-checkbox [disabled]=confitionCallControl class="class_check" (change)='onChangeCheckCallControll(id)' color='primary' [(ngModel)]='CheckedCallControl'> Llamada control</mat-checkbox>
+            <mat-checkbox [disabled]=confitionCheckRecord class="class_check" (change)='onChangeCheckRecord(id)' color='primary' [(ngModel)]='CheckedRecord'>Grabación</mat-checkbox>
+            <mat-checkbox [disabled]=confitionSendGuide class="class_check" (change)='onChangeCheckVoucherSend(id)' color='primary' [(ngModel)]='CheckedVoucherSend'> Comprobante de envío</mat-checkbox>
+            <mat-checkbox [disabled]=confitionLetterCon class="class_check" (change)='onChangeCheckLetterCon($event, id)' color='primary' [(ngModel)]='CheckedLetterCon'> Finalizado
+            </mat-checkbox>
+        </div>
+    </div>
+    <div class="mb-4">
+        <button mat-raised-button color="accent" matBadge="{{getBinnacleFalse}}" (click)="onSeeDialog(id)">
+            Observaciones
+        </button>
+    </div>
+    <div *ngIf="messaje_vali_progress">
+        <li style="color:red">
+            <label style="color:red">
+                Favor completar los comprobantes anteriores
+            </label>
+        </li>
+    </div>
+
+
+    <!-- <swal #deleteSwal title="Cambiar a enviado" text="Esta seguro de marcar como enviado este pedido?" [showCancelButton]="true" [focusCancel]="true" (confirm)="ChangeStatusSend(id)">
+                                </swal>
+                                <button *ngIf="state_id === '5'" [swal]="deleteSwal" mat-raised-button color="accent" class="mb-3">Cambiar a enviado</button> -->
+
+    <div class="mb-2">
+        <h2><b>Datos de factura</b></h2>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Tipo servicio</b></mat-label>
+            <p>{{type_service}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Tienda</b></mat-label>
+            <p>{{name_store}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Referencia fac</b></mat-label>
+            <p>{{reference_invoice}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Nombre comprador</b></mat-label>
+            <p>{{name_client}} {{first_name_client}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Tipo de identificación</b></mat-label>
+            <p>{{type_identifier}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Identificación</b></mat-label>
+            <p>{{number_identifier}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Departamento</b></mat-label>
+            <p>{{departament}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Ciudad</b></mat-label>
+            <p>{{nameci}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Dirección</b></mat-label>
+            <p>{{adress}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Teléfono</b></mat-label>
+            <p>{{phone}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Email</b></mat-label>
+            <p>{{email}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Estado factura</b></mat-label>
+            <p>{{name_state}}</p>
+        </div>
+    </div>
+
+
+    <div class="mb-2">
+        <h2><b>Calculos de descuento</b></h2>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Metodo de pago</b></mat-label>
+            <p>{{paymentmethod}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Total transacción</b></mat-label>
+            <p>{{total_price|currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Rete ica</b></mat-label>
+            <p>{{val_percentage_rete_ica|currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Rete fuente</b></mat-label>
+            <p>{{val_percentage_rete_fuente|currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Rete iva</b></mat-label>
+            <p>{{val_percentage_rete_iva|currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Comisión pago</b></mat-label>
+            <p>{{val_percentage_commision_payment|currency : 'USD' : 'symbol' : '1.0-0'}}
+            </p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Comisión venta</b></mat-label>
+            <p>{{val_percentage_sale|currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Iva sobre comisión</b></mat-label>
+            <p>{{val_percentage_commision_tax|currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Total abono</b></mat-label>
+            <p>{{total_balance|currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+
+    <div class="mb-2">
+        <h2><b>Datos de la transacción</b></h2>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Referencia tx</b></mat-label>
+            <p>{{reference}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Franquicia</b></mat-label>
+            <p>{{brand}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Fecha</b></mat-label>
+            <p>{{date_tx}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Num aprobación</b></mat-label>
+            <p>{{num_aprob}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Num recibo</b></mat-label>
+            <p>{{num_recibo}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Cuotas</b></mat-label>
+            <p>{{quot}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Cod respuesta</b></mat-label>
+            <p>{{cod_reply}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Num tajeta (truncada)</b></mat-label>
+            <p>{{field}}</p>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Click para ver comprobante de envío
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <iframe [src]="shipping_voucher" width="1000" height="500" style="border: none;"></iframe>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Click para ver carta de recibido
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <iframe [src]="letter_received" width="1000" height="500" style="border: none;"></iframe>
+    </mat-expansion-panel>
+    <div class="py-1">
+        <div fxLayout="row wrap" fxLayoutAlign="start center" class="col-gap">
+            <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100" class="size_card">
+                <div class="text-right">
+                    <div class="table-responsive-x">
+                        <table class="mb-3">
+                            <thead>
+                                <tr>
+                                    <th>Prod</th>
+                                    <th *ngIf="type_service_id == 1">Cod</th>
+                                    <th>Precio</th>
+                                    <th>cantidad</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of invoice_detail">
+                                    <th><label class="color_res">
+                                            <img class="img-circle inline-block"
+                                                src="{{img_product_rout}}{{item.image}}" width="50" height="50"
+                                                style=" border-radius: 10%;" *ngIf="type_service_id == 1">
+                                            {{ item.name_pr }}
+                                        </label></th>
+
+                                    <th *ngIf="type_service_id == 1"><label class="color_res">{{ item.product_code
+                                            }}</label> </th>
+                                    <th><label class="color_res">
+                                            {{ item.unit_price|currency : 'USD' : 'symbol' :
+                                            '1.0-0' }}
+                                        </label></th>
+                                    <th><label class="color_res">{{ item.quantity }}</label>
+                                    </th>
+                                    <th><label class="color_res">
+                                            {{ item.total_price|currency : 'USD' : 'symbol'
+                                            :
+                                            '1.0-0' }}
+                                        </label></th>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" *ngIf="type_service_id == 1">
+                                        <b>Total</b>
+                                    </td>
+                                    <td colspan="3" *ngIf="type_service_id == 2">
+                                        <b>Total</b>
+                                    </td>
+                                    <td>
+                                        <strong>{{total_price|currency : 'USD' : 'symbol' :
+                                            '1.0-0'}}</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>
+
+<script>
+    // Google Analytics
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-49610253-3', 'auto');
+    ga('send', 'pageview');
+</script>

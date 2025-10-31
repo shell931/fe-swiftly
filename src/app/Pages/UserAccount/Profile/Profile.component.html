@@ -1,0 +1,24 @@
+<div class="profile-container">
+    <div class="profile-header">
+        <b>Tu información</b>
+    </div>
+    
+    <div class="profile-content">
+        <div class="profile-field">
+            <label>Nombre</label>
+            <span>{{name}}</span>
+        </div>
+        
+        <div class="profile-field">
+            <label>Correo electrónico</label>
+            <span>{{email}}</span>
+        </div>
+    </div>
+
+    <div class="profile-actions">
+        <button mat-raised-button [routerLink]="['edit']" [queryParams]="{type:'info'}">
+            <i class="material-icons" style="margin-right: 8px;">edit</i>
+            Editar perfil
+        </button>
+    </div>
+</div>

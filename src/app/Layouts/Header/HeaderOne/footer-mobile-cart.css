@@ -1,0 +1,108 @@
+/* === FORZAR COLOR BLANCO EN FOOTER MÓVIL - MÁXIMA ESPECIFICIDAD === */
+/* Este archivo CSS tiene máxima especificidad para forzar el color blanco del carrito */
+
+/* Regla con máxima especificidad para el botón del carrito en footer móvil */
+.footermobile .action-item.cart-wrapper embryo-HeaderCart .cart-trigger-mobile,
+.footermobile .action-item.cart-wrapper embryo-HeaderCart button.cart-trigger-mobile,
+.footermobile .action-item.cart-wrapper .cart-trigger-mobile,
+.footermobile .action-item.cart-wrapper button.cart-trigger-mobile,
+.footermobile li .action-item.cart-wrapper .cart-trigger-mobile,
+.footermobile li .action-item.cart-wrapper button.cart-trigger-mobile {
+  color: white !important;
+  background: transparent !important;
+}
+
+/* Forzar color blanco en todos los elementos del botón */
+.footermobile .action-item.cart-wrapper embryo-HeaderCart .cart-trigger-mobile *,
+.footermobile .action-item.cart-wrapper embryo-HeaderCart button.cart-trigger-mobile *,
+.footermobile .action-item.cart-wrapper .cart-trigger-mobile *,
+.footermobile .action-item.cart-wrapper button.cart-trigger-mobile *,
+.footermobile li .action-item.cart-wrapper .cart-trigger-mobile *,
+.footermobile li .action-item.cart-wrapper button.cart-trigger-mobile * {
+  color: white !important;
+}
+
+/* Forzar color blanco en SVG */
+.footermobile .action-item.cart-wrapper embryo-HeaderCart .cart-trigger-mobile svg,
+.footermobile .action-item.cart-wrapper embryo-HeaderCart button.cart-trigger-mobile svg,
+.footermobile .action-item.cart-wrapper .cart-trigger-mobile svg,
+.footermobile .action-item.cart-wrapper button.cart-trigger-mobile svg,
+.footermobile li .action-item.cart-wrapper .cart-trigger-mobile svg,
+.footermobile li .action-item.cart-wrapper button.cart-trigger-mobile svg {
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+}
+
+/* Forzar color blanco en iconos */
+.footermobile .action-item.cart-wrapper embryo-HeaderCart .cart-trigger-mobile i,
+.footermobile .action-item.cart-wrapper embryo-HeaderCart button.cart-trigger-mobile i,
+.footermobile .action-item.cart-wrapper .cart-trigger-mobile i,
+.footermobile .action-item.cart-wrapper button.cart-trigger-mobile i,
+.footermobile li .action-item.cart-wrapper .cart-trigger-mobile i,
+.footermobile li .action-item.cart-wrapper button.cart-trigger-mobile i {
+  color: white !important;
+}
+
+/* Forzar color blanco en elementos con clase cartbtn */
+.footermobile .action-item.cart-wrapper embryo-HeaderCart .cart-trigger-mobile .cartbtn,
+.footermobile .action-item.cart-wrapper embryo-HeaderCart button.cart-trigger-mobile .cartbtn,
+.footermobile .action-item.cart-wrapper .cart-trigger-mobile .cartbtn,
+.footermobile .action-item.cart-wrapper button.cart-trigger-mobile .cartbtn,
+.footermobile li .action-item.cart-wrapper .cart-trigger-mobile .cartbtn,
+.footermobile li .action-item.cart-wrapper button.cart-trigger-mobile .cartbtn {
+  color: white !important;
+}
+
+/* Regla con máxima especificidad usando ::ng-deep */
+::ng-deep .footermobile .action-item.cart-wrapper embryo-HeaderCart .cart-trigger-mobile,
+::ng-deep .footermobile .action-item.cart-wrapper embryo-HeaderCart button.cart-trigger-mobile,
+::ng-deep .footermobile .action-item.cart-wrapper .cart-trigger-mobile,
+::ng-deep .footermobile .action-item.cart-wrapper button.cart-trigger-mobile,
+::ng-deep .footermobile li .action-item.cart-wrapper .cart-trigger-mobile,
+::ng-deep .footermobile li .action-item.cart-wrapper button.cart-trigger-mobile {
+  color: white !important;
+  background: transparent !important;
+}
+
+/* Forzar color blanco en todos los elementos con ::ng-deep */
+::ng-deep .footermobile .action-item.cart-wrapper embryo-HeaderCart .cart-trigger-mobile *,
+::ng-deep .footermobile .action-item.cart-wrapper embryo-HeaderCart button.cart-trigger-mobile *,
+::ng-deep .footermobile .action-item.cart-wrapper .cart-trigger-mobile *,
+::ng-deep .footermobile .action-item.cart-wrapper button.cart-trigger-mobile *,
+::ng-deep .footermobile li .action-item.cart-wrapper .cart-trigger-mobile *,
+::ng-deep .footermobile li .action-item.cart-wrapper button.cart-trigger-mobile * {
+  color: white !important;
+}
+
+/* Forzar color blanco en SVG con ::ng-deep */
+::ng-deep .footermobile .action-item.cart-wrapper embryo-HeaderCart .cart-trigger-mobile svg,
+::ng-deep .footermobile .action-item.cart-wrapper embryo-HeaderCart button.cart-trigger-mobile svg,
+::ng-deep .footermobile .action-item.cart-wrapper .cart-trigger-mobile svg,
+::ng-deep .footermobile .action-item.cart-wrapper button.cart-trigger-mobile svg,
+::ng-deep .footermobile li .action-item.cart-wrapper .cart-trigger-mobile svg,
+::ng-deep .footermobile li .action-item.cart-wrapper button.cart-trigger-mobile svg {
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+}
+
+/* Forzar color blanco en iconos con ::ng-deep */
+::ng-deep .footermobile .action-item.cart-wrapper embryo-HeaderCart .cart-trigger-mobile i,
+::ng-deep .footermobile .action-item.cart-wrapper embryo-HeaderCart button.cart-trigger-mobile i,
+::ng-deep .footermobile .action-item.cart-wrapper .cart-trigger-mobile i,
+::ng-deep .footermobile .action-item.cart-wrapper button.cart-trigger-mobile i,
+::ng-deep .footermobile li .action-item.cart-wrapper .cart-trigger-mobile i,
+::ng-deep .footermobile li .action-item.cart-wrapper button.cart-trigger-mobile i {
+  color: white !important;
+}
+
+/* Forzar color blanco en elementos con clase cartbtn con ::ng-deep */
+::ng-deep .footermobile .action-item.cart-wrapper embryo-HeaderCart .cart-trigger-mobile .cartbtn,
+::ng-deep .footermobile .action-item.cart-wrapper embryo-HeaderCart button.cart-trigger-mobile .cartbtn,
+::ng-deep .footermobile .action-item.cart-wrapper .cart-trigger-mobile .cartbtn,
+::ng-deep .footermobile .action-item.cart-wrapper button.cart-trigger-mobile .cartbtn,
+::ng-deep .footermobile li .action-item.cart-wrapper .cart-trigger-mobile .cartbtn,
+::ng-deep .footermobile li .action-item.cart-wrapper button.cart-trigger-mobile .cartbtn {
+  color: white !important;
+}

@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Eliminación de producto?</h2>
+
+<mat-dialog-content>
+	<p>{{data}}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions class="mb-0 d-flex justify-content-end">
+	<button mat-raised-button (click)="dialogRef.close()" color="primary">Cancelar</button>
+	<button mat-raised-button (click)="yes()"  color="accent">Aceptar</button>
+</mat-dialog-actions>

@@ -1,0 +1,56 @@
+<div class="sidebar-panel" fxLayout="column">
+    <nav class="app-side-nav">
+        <div class="">
+            <div class="side-cart-head mb-3">
+
+                <p>
+                    <button (click)="close()" mat-fab color="accent" style="width: 40px;height: 40px;">
+                        <span class="material-icons">close</span>
+                    </button>
+                </p>
+
+                <div class="mb-3"> <i class="material-icons color-black-font">
+                        local_shipping
+                    </i></div>
+                <h3 class="color-black-font" *ngIf="(embryoService.localStorageCartProducts && embryoService.localStorageCartProducts.length>0); else elseCartBlock;">
+                    Ubicaciones guardadas:</h3>
+                <ng-template #elseCartBlock>
+                </ng-template>
+            </div>
+
+            <div class="side-cart-list px-5" *ngFor="let location of alllocationsGrid">
+
+                <div style="display: flex;justify-content: space-between">
+                    <div style="flex-shrink: 1;">
+                        <p *ngIf="location.predetermined==true" class="color-red-font"><b>Predeterminada</b></p>
+                        <p class="data-ubication"><b>Dirección:</b></p>
+                        <p class="data-ubication">{{location.nameci}} - {{location.departament}}</p>
+                        <p class="data-ubication">{{location.via}} #{{location.number}} - {{location.sn}}</p>
+                        <p class="data-ubication">{{location.neighborhood}}</p>
+                        <p class="data-ubication"><b>Datos adicionales:</b></p>
+                        <p class="data-ubication">{{location.additional_data}}</p>
+                        <p class="data-ubication">{{location.contact}} - {{location.phone}}</p>
+
+                    </div>
+                    <div style="flex-shrink: 1;" align="right">
+                        <button mat-mini-fab class="options-ubi" [matMenuTriggerFor]="loginuser">
+                            <i class="material-icons mr-1" style="color: white !important;">more_vert</i>
+                         </button>
+                        <mat-menu #loginuser="matMenu">
+                            <button mat-menu-item (click)="editLocation(location.id)" mat-dialog-close><i
+                                  class="material-icons mr-1">edit</i><span>Editar</span></button>
+                            <button mat-menu-item (click)="predetermined(location.id)"><i
+                                  class="material-icons mr-1">done_outline</i><span>Establecer
+                                  predeterminada</span></button>
+                            <button mat-menu-item (click)="deleteLocation(location.id)"><i
+                                  class="material-icons mr-1">restore_from_trash</i><span>Eliminar</span></button>
+                        </mat-menu>
+
+                    </div>
+
+                </div>
+                <hr class="spacer">
+            </div>
+        </div>
+    </nav>
+</div>

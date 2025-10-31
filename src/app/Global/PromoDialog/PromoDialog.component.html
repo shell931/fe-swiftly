@@ -1,0 +1,11 @@
+<div class="promo-dialog" #root>
+  <button class="close-btn" type="button" aria-label="Cerrar" (click)="close()">×</button>
+  <img
+    class="promo-image"
+    [src]="data?.imageUrl || defaultImageUrl"
+    [alt]="data?.alt || 'Promoción'"
+    (click)="close()"
+  />
+</div>
+
+

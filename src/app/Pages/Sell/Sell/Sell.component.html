@@ -1,0 +1,375 @@
+<div class="form-container">
+    <div class="form-wrapper">
+        <form [formGroup]="registerForm">
+            <mat-card class="register-form cardpage">
+                <h3 class="titulo"><span>Información de contacto (representante)</span></h3>
+
+                <div class="row">
+
+                    <div class="col-sm">
+                        <div>
+                            <label><b>Nombres</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Nombres" formControlName="name" class="form-control" required maxlength="30">
+                            <mat-error *ngIf="registerForm.get('name').hasError('required') && registerForm.get('name').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div>
+                            <label><b>Apellidos</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Apellidos" formControlName="second_name" class="form-control" required maxlength="30">
+                            <mat-error *ngIf="registerForm.get('second_name').hasError('required') && registerForm.get('second_name').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="show">
+                    <div class="col-sm">
+                        <label><b>Tipo de identificación</b><b class="obligatory"> *</b></label>
+                        <ng-select [items]="identifier$ | async" bindLabel="type_identifier" bindValue="id" [formControl]="identifiersFilterCtrl" formControlName="identifiersCtrl" [(ngModel)]="selectIdentifiers" required>
+                        </ng-select>
+                        <mat-error *ngIf="registerForm.get('identifiersCtrl').hasError('required') && registerForm.get('identifiersCtrl').touched">
+                            Este campo es obligatorio.</mat-error>
+                    </div>
+
+                    <div class="col-sm">
+                        <label><b>Número de identificación contacto</b><b class="obligatory"> *</b></label>
+                        <input type="text" placeholder="Número de identificación" formControlName="number_identifier_person" class="form-control" required maxlength="10">
+                        <mat-error *ngIf="registerForm.get('number_identifier_person').hasError('required') && registerForm.get('number_identifier_person').touched">
+                            Este campo es obligatorio.</mat-error>
+                        <mat-error *ngIf="registerForm.controls['number_identifier_person'].hasError('pattern')">
+                            Solo se aceptan números
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="row" *ngIf="show">
+                    <div class="col-sm">
+                        <div>
+                            <label><b>Email</b><b class="obligatory"> *</b></label>
+                            <input type="text" formControlName="email" class="form-control" placeholder="Email *" maxlength="50">
+                            <mat-error *ngIf="registerForm.controls['email'].touched && !registerForm.controls['email'].valid">
+                                <mat-error *ngIf="registerForm.controls['email'].hasError('required')" class="required alert-error">
+                                    Deberas ingresar un email
+                                </mat-error>
+                                <mat-error *ngIf="registerForm.controls['email'].hasError('pattern')">
+                                    Debes incluir un formato de email valido.
+                                </mat-error>
+                            </mat-error>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div>
+                            <label><b>Password</b><b class="obligatory"> *</b></label>
+                            <input type="password" placeholder="Password" formControlName="password" class="form-control" required maxlength="50">
+                            <mat-error *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <div>
+                            <label><b>Teléfono</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Teléfono" formControlName="phone" class="form-control" required maxlength="50" minlength="7">
+                            <mat-error *ngIf="registerForm.get('phone').hasError('required') && registerForm.get('phone').touched">
+                                Este campo es obligatorio.</mat-error>
+                            <mat-hint>Mas de 7 digitos</mat-hint>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div>
+                            <label><b>Celular</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Celular" formControlName="mobile" class="form-control" required maxlength="50" minlength="7">
+                            <mat-error *ngIf="registerForm.get('mobile').hasError('required') && registerForm.get('mobile').touched">
+                                Este campo es obligatorio.</mat-error>
+                            <mat-hint>Mas de 7 digitos</mat-hint>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+
+            <mat-card class="register-form cardpage">
+                <div class="block">
+                    <h3 class="titulo"><span>Clasifica tu empresa</span></h3>
+                    <div class="row">
+                        <div class="col-12">
+                            <label><b>Categoría de empresa</b><b class="obligatory"> *</b></label>
+                            <ng-select [items]="category$ | async" bindLabel="name_category" bindValue="id" [formControl]="categorystoreFilterCtrl" formControlName="categorystoreCtrl" [(ngModel)]="selectedCategory" required placeholder="Seleccione una categoría">
+                            </ng-select>
+                            <mat-error *ngIf="registerForm.get('categorystoreCtrl').hasError('required') && registerForm.get('categorystoreCtrl').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+
+            <mat-card class="register-form cardpage">
+                <div class="block">
+                    <h3 class="titulo"><span>Información de la empresa</span></h3>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Nombre comercial de la tienda</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Nombre comercial de la tienda" formControlName="name_store" class="form-control" required maxlength="60">
+                            <mat-hint>Nombre con el que aparecera la tienda en la plataforma</mat-hint>
+                            <mat-error *ngIf="registerForm.get('name_store').hasError('required') && registerForm.get('name_store').touched">
+
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                        <div class="col-sm">
+                            <label><b>Razón Social</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Razón Social" formControlName="name_legal" class="form-control" required maxlength="60">
+                            <mat-hint>Nombre legal (Establecido en el RUT)</mat-hint>
+                            <mat-error *ngIf="registerForm.get('name_legal').hasError('required') && registerForm.get('name_legal').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Tipo de sociedad</b><b class="obligatory"> *</b></label>
+                            <ng-select [items]="society$ | async" bindLabel="society_type" bindValue="id" [formControl]="societytypeFilterCtrl" formControlName="societytypeCtrl" [(ngModel)]="selectedSociety" required placeholder="Seleccione tipo de sociedad">
+                            </ng-select>
+                            <mat-error *ngIf="registerForm.get('societytypeCtrl').hasError('required') && registerForm.get('societytypeCtrl').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                        <div class="col-sm">
+                            <label><b>Número de identificación de la empresa</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Número de identificación" formControlName="number_identifier" class="form-control" maxlength="25" required>
+                            <mat-hint>No incluir dígito de verificación de la empresa</mat-hint>
+                            <mat-error *ngIf="registerForm.get('number_identifier').hasError('required') && registerForm.get('number_identifier').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Departamento</b><b class="obligatory"> *</b></label>
+                            <ng-select [items]="depart$ | async" bindLabel="departament" bindValue="id_departament" [formControl]="departamentFilterCtrl" formControlName="departamentCtrll" (change)="citieChangeAction($event)" (selectionChange)="citieChangeAction(departamentCtrll)"
+                                required placeholder="Seleccione departamento">
+                            </ng-select>
+                            <mat-error *ngIf="registerForm.get('departamentCtrll').hasError('required') && registerForm.get('departamentCtrll').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                        <div class="col-sm">
+                            <label><b>Ciudad</b><b class="obligatory"> *</b></label>
+                            <ng-select [items]="city$ | async" bindLabel="city" bindValue="id_city" [formControl]="citieCtrl" formControlName="citieCtrl" [(ngModel)]="selectedCity" required placeholder="Seleccione ciudad">
+                            </ng-select>
+                            <mat-error *ngIf="registerForm.get('citieCtrl').hasError('required') && registerForm.get('citieCtrl').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Barrio</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Barrio" formControlName="neighborhood" class="form-control" required maxlength="80">
+                            <mat-error *ngIf="registerForm.get('neighborhood').hasError('required') && registerForm.get('neighborhood').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                        <div class="col-sm">
+                            <label><b>Código postal</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Código postal" formControlName="postal_code" class="form-control" required maxlength="15">
+                            <mat-error *ngIf="registerForm.get('postal_code').hasError('required') && registerForm.get('postal_code').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Vía</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Calle, Carrera, etc." formControlName="via" class="form-control" required maxlength="20">
+                            <mat-error *ngIf="registerForm.get('via').hasError('required') && registerForm.get('via').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                        <div class="col-sm">
+                            <label><b>Número</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Número" formControlName="number_streeth" class="form-control" required maxlength="20">
+                            <mat-error *ngIf="registerForm.get('number_streeth').hasError('required') && registerForm.get('number_streeth').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Complemento</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Apto, Casa, etc." formControlName="sn" required class="form-control" maxlength="20">
+                            <mat-error *ngIf="registerForm.get('sn').hasError('required') && registerForm.get('sn').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                        <div class="col-sm">
+                            <!-- Empty column for spacing -->
+                        </div>
+                    </div>
+
+                    <!-- Documentos requeridos -->
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Documento de identidad</b><b class="obligatory"> *</b></label>
+                            <div class="file-upload-wrapper">
+                                <div class="custom-file-input">
+                                    <input type="file" 
+                                        formControlName="doc_identi" 
+                                        required 
+                                        (change)="onChangeDocIde($event)"
+                                        accept=".pdf"
+                                        maxlength="2097152"
+                                        id="doc_identi">
+                                    <label for="doc_identi" class="file-label">
+                                        <span class="file-button">Choose File</span>
+                                        <span class="file-text" *ngIf="!doc_identi_docu">No file chosen</span>
+                                        <span class="file-text" *ngIf="doc_identi_docu">{{ doc_identi_docu.name }}</span>
+                                    </label>
+                                    <div class="file-hint">PDF únicamente - Máximo 2MB - Ambas caras</div>
+                                    <div class="file-error" *ngIf="registerForm.get('doc_identi').hasError('required') && registerForm.get('doc_identi').touched">
+                                        Este campo es obligatorio.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <label><b>RUT</b><b class="obligatory"> *</b></label>
+                            <div class="file-upload-wrapper">
+                                <div class="custom-file-input">
+                                    <input type="file" 
+                                        formControlName="rut" 
+                                        required 
+                                        (change)="onChangeRut($event)"
+                                        accept=".pdf"
+                                        maxlength="2097152"
+                                        id="rut">
+                                    <label for="rut" class="file-label">
+                                        <span class="file-button">Choose File</span>
+                                        <span class="file-text" *ngIf="!rut_docu">No file chosen</span>
+                                        <span class="file-text" *ngIf="rut_docu">{{ rut_docu.name }}</span>
+                                    </label>
+                                    <div class="file-hint">PDF únicamente - Máximo 2MB</div>
+                                    <div class="file-error" *ngIf="registerForm.get('rut').hasError('required') && registerForm.get('rut').touched">
+                                        Este campo es obligatorio.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Cámara de Comercio</b><b class="obligatory"> *</b></label>
+                            <div class="file-upload-wrapper">
+                                <div class="custom-file-input">
+                                    <input type="file" 
+                                        formControlName="cam_com" 
+                                        required 
+                                        (change)="onChangeCamCom($event)"
+                                        accept=".pdf"
+                                        maxlength="2097152"
+                                        id="cam_com">
+                                    <label for="cam_com" class="file-label">
+                                        <span class="file-button">Choose File</span>
+                                        <span class="file-text" *ngIf="!cam_com_docu">No file chosen</span>
+                                        <span class="file-text" *ngIf="cam_com_docu">{{ cam_com_docu.name }}</span>
+                                    </label>
+                                    <div class="file-hint">Solo personas jurídicas - PDF únicamente - Máximo 2MB</div>
+                                    <div class="file-error" *ngIf="registerForm.get('cam_com').hasError('required') && registerForm.get('cam_com').touched">
+                                        Este campo es obligatorio.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <!-- Empty column for spacing -->
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+
+            <mat-card class="register-form cardpage">
+                <div class="block">
+                    <h3 class="titulo"><span>Información bancaria</span></h3>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Titular de la Cuenta</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Titular de la Cuenta" formControlName="responsible" class="form-control" required maxlength="60">
+                            <mat-error *ngIf="registerForm.get('responsible').hasError('required') && registerForm.get('responsible').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                        <div class="col-sm">
+                            <label><b>Número de Cuenta</b><b class="obligatory"> *</b></label>
+                            <input type="text" placeholder="Num cuenta" formControlName="account_number" class="form-control" required maxlength="20">
+                            <mat-error *ngIf="registerForm.get('account_number').hasError('required') && registerForm.get('account_number').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Banco</b><b class="obligatory"> *</b></label>
+                            <ng-select [items]="bank$ | async" bindLabel="bank" bindValue="id_bank" [formControl]="bankFilterCtrl" formControlName="bankCtrl" [(ngModel)]="selectedBAnk" required placeholder="Seleccione banco">
+                            </ng-select>
+                            <mat-error *ngIf="registerForm.get('bankCtrl').hasError('required') && registerForm.get('bankCtrl').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                        <div class="col-sm">
+                            <label><b>Tipo de cuenta</b><b class="obligatory"> *</b></label>
+                            <ng-select [items]="account_type$ | async" bindLabel="type_account" bindValue="id_type_account" [formControl]="typeaccountFilterCtrl" formControlName="typeaccountCtrl" [(ngModel)]="selectedAccountType" required placeholder="Seleccione tipo de cuenta">
+                            </ng-select>
+                            <mat-error *ngIf="registerForm.get('typeaccountCtrl').hasError('required') && registerForm.get('typeaccountCtrl').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Certificación bancaria</b><b class="obligatory"> *</b></label>
+                            <div class="file-upload-wrapper">
+                                <div class="custom-file-input">
+                                    <input type="file" 
+                                        formControlName="bank_certification" 
+                                        required 
+                                        (change)="onChangeCertBank($event)"
+                                        accept=".pdf"
+                                        maxlength="2097152"
+                                        id="bank_certification">
+                                    <label for="bank_certification" class="file-label">
+                                        <span class="file-button">Choose File</span>
+                                        <span class="file-text" *ngIf="!bank_certification_docu">No file chosen</span>
+                                        <span class="file-text" *ngIf="bank_certification_docu">{{ bank_certification_docu.name }}</span>
+                                    </label>
+                                    <div class="file-hint">PDF únicamente - Máximo 2MB</div>
+                                    <div class="file-error" *ngIf="registerForm.get('bank_certification').hasError('required') && registerForm.get('bank_certification').touched">
+                                        Este campo es obligatorio.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <!-- Empty column for spacing -->
+                        </div>
+                    </div>
+
+                </div>
+            </mat-card>
+            <mat-card class="register-form cardpage">
+                <h4><b>Términos y condiciones</b><b class="obligatory"> *</b></h4>
+                <div class="row">
+                    <div class="col-sm">
+                        <p><a [routerLink]="['/terms_conditions']" target="_blank">Ver terminos y condiciones</a>
+                        </p>
+                        <mat-checkbox formControlName="check_legal_docs">Certifico que los documentos cargados en la plataforma se encuentran vigentes y cumplen con todos los requisitos legales
+                        </mat-checkbox>
+                        <mat-error *ngIf="registerForm.get('check_legal_docs').hasError('required') && registerForm.get('check_legal_docs').touched">
+                            Este campo es obligatorio.<strong>requirido</strong>
+                        </mat-error>
+                        <mat-checkbox formControlName="check_aprube_terms_conds">Acepto Términos y Condiciones
+                        </mat-checkbox>
+                        <mat-error *ngIf="registerForm.get('check_aprube_terms_conds').hasError('required') && registerForm.get('check_aprube_terms_conds').touched">
+                            Este campo es obligatorio.<strong>requirido</strong>
+                        </mat-error>
+                    </div>
+                    <div class="col-sm">
+                    </div>
+                </div>
+                <button class="color_button_ac mobile-register-btn" mat-raised-button (click)="membership_request()">Registrar</button>
+
+                <div class="mt-2" *ngIf="validate_user">
+                    <li style="color:red">
+                        <label style="color:red">
+                                        El usuario ya se encuentra registrado, favor registrar otro correo en la sección de información de contacto
+                                    </label>
+                    </li>
+                </div>
+            </mat-card>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="balance-container">
+    <div class="balance-header">
+        <div class="header-content">
+            <b>Consulta tu saldo disponible</b>
+            <span class="balance-status">Verifica la cuenta bancaria de destino y solicita tu dinero</span>
+        </div>
+    </div>
+
+    <div class="balance-content">
+        <!-- Saldo Principal -->
+        <div class="balance-card">
+            <div class="balance-info">
+                <div class="balance-amount">
+                    <h1 class="balance-title">Saldo disponible</h1>
+                    <h1 class="balance-value">{{balance_store|currency : 'USD' : 'symbol' : '1.0-0'}} COP</h1>
+                </div>
+                <div class="balance-actions">
+                    <button class="summary-btn" (click)="abstract()">
+                        <i class="material-icons">assessment</i>
+                        Resumen
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información Bancaria -->
+        <div class="bank-info-card">
+            <div class="bank-info-header">
+                <h3>Información de cuenta bancaria</h3>
+                <p>Se enviará a la siguiente cuenta bancaria:</p>
+            </div>
+            <div class="bank-details">
+                <div class="bank-detail-item">
+                    <label>Número de cuenta</label>
+                    <span>{{account_number}}</span>
+                </div>
+                <div class="bank-detail-item">
+                    <label>Encargado</label>
+                    <span>{{responsible}}</span>
+                </div>
+                <div class="bank-detail-item">
+                    <label>Banco</label>
+                    <span>{{name_bank}}</span>
+                </div>
+                <div class="bank-detail-item">
+                    <label>Tipo de cuenta</label>
+                    <span>{{type_account}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Acción de Transferencia -->
+        <div class="transfer-section">
+            <div class="transfer-actions">
+                <swal #deleteSwal title="Solicitud de transferencia" text="¿Está seguro de realizar esta solicitud de transferencia?" [showCancelButton]="true" [focusCancel]="true" (confirm)="setTransferRequest()">
+                </swal>
+                <button class="transfer-btn" [swal]="deleteSwal">
+                    <i class="material-icons">account_balance</i>
+                    Solicitar transferencia
+                </button>
+            </div>
+            
+            <div class="transfer-error" *ngIf="validate_trans_value">
+                <i class="material-icons">error</i>
+                <span>Valor no admitido para realizar una solicitud de transferencia</span>
+            </div>
+        </div>
+    </div>
+</div>

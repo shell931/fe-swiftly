@@ -1,0 +1,23 @@
+<div [dir]="isRtl" (scroll)="onScrollEvent($event)">
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav class="sidebar-area" mode="over">
+            <mat-nav-list>
+                <div class="close-btn-sidebar">
+                    <a href="javascript:void(0)" (click)="embryoService.sidenavOpen = false">
+                        <mat-icon>close</mat-icon>
+                    </a>
+                </div>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        
+        <!-- Main content area -->
+        <mat-sidenav-content>
+            <HeaderOne *ngIf="this.currentUrl != '/home-two' && this.currentUrl != '/home-three'"></HeaderOne>
+            <div class="main">
+                <router-outlet (activate)="onActivate($event)"></router-outlet>
+            </div>
+            <FooterOne></FooterOne>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

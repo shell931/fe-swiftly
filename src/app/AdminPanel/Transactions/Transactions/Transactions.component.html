@@ -1,0 +1,132 @@
+<ng-container *ngIf="transactionList && transactionList.length>0; else elseBlock">
+    <div fxLayout="column">
+        <mat-card class="matcard_admin">
+            <h2><b>Administración de transacciones</b></h2>
+            <div class="buttonIn">
+                <input class="inputsearch" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar" autocomplete="off" type="search">
+                <button class="btn btn-primary button-search class_search" type="submit" tabindex="-1">
+                    <span class="mat-button-wrapper">
+                        <i class="fa fa-search"></i>
+                    </span></button>
+            </div>
+
+
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <label for=""> <b>Fecha desde</b></label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input matInput [matDatepicker]="picker1" [(ngModel)]="dateInit" name="dateInit" placeholder="Seleccionar fecha">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <label for=""> <b>Fecha hasta</b></label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input matInput [matDatepicker]="picker2" [(ngModel)]="dateEnd" name="dateEnd" placeholder="Seleccionar fecha">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4" style="margin-top: 20px;">
+                    <button class="btn btn-primary button-search class_search" (click)="downloadExcel()">Descargar</button>
+                </div>
+            </div>
+
+            <div class="table-responsive-x mt-3">
+                <table mat-table [dataSource]="dataSource" class="w-100 table-scroll-wrap">
+
+                    <ng-container matColumnDef="action">
+                        <th class="px-3 text-nowrap table-left" mat-header-cell *matHeaderCellDef> <b class="title_table">Action</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
+                            <button mat-icon-button (click)="onSeeDialog(element)" color="primary">
+                                <i class="material-icons">remove_red_eye</i>
+                            </button>
+
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="reference">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Referencia</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.reference}} </td>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="name_state">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Estado </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.name_state}} </td>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="name_state">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Estado</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            <div *ngIf="element.state === 1" class="class_aprobed" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state === 2" class="class_anul" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state === 3" class="class_reject" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state === 4" class="class_reject" align="center">
+                                {{element.name_state}}
+                            </div>
+                            <div *ngIf="element.state === 5" class="class_reject" align="center">
+                                {{element.name_state}}
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="created_at">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Fecha</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="quot">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Cuotas</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.quot}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="brand">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Franquicia</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.brand}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="num_aprob">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Num Aprobación</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.num_aprob}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="cod_reply">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Cod respuesta</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.cod_reply}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="messaje_reply">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Mensaje respuesta</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.messaje_reply}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="num_recibo">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Num recibo</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.num_recibo}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="total_tx">
+                        <th class="px-3 text-nowrap table-right" mat-header-cell *matHeaderCellDef> <b class="title_table">Total</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.total_tx|currency}}
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+
+        </mat-card>
+    </div>
+</ng-container>
+<ng-template #elseBlock>
+    <h5 class="ml-5">No data found</h5>
+</ng-template>

@@ -1,0 +1,64 @@
+<div class="cards-container">
+    <div class="cards-header">
+        <b>Tarjetas guardadas</b>
+        <span class="card-count">2 tarjetas</span>
+    </div>
+
+    <div class="cards-list">
+        <div class="card-item">
+            <div class="card-header">
+                <div class="card-brand">
+                    <i class="material-icons">credit_card</i>
+                    <span>VISA</span>
+                </div>
+                <div class="card-type-badge">Crédito</div>
+            </div>
+            <div class="card-number">4545 4XXX XXX5 4545</div>
+            <div class="card-actions">
+                <button class="edit-card-btn" 
+                        mat-raised-button 
+                        [routerLink]="['/account/profile/edit']" 
+                        [queryParams]="{type:'card'}">
+                    <i class="material-icons">edit</i>
+                    Editar
+                </button>
+                <button class="delete-card-btn" title="Eliminar tarjeta">
+                    <i class="material-icons">delete</i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="card-item">
+            <div class="card-header">
+                <div class="card-brand">
+                    <i class="material-icons">credit_card</i>
+                    <span>MasterCard</span>
+                </div>
+                <div class="card-type-badge debit">Débito</div>
+            </div>
+            <div class="card-number">8585 8XXX XXX5 8585</div>
+            <div class="card-actions">
+                <button class="edit-card-btn" 
+                        mat-raised-button 
+                        [routerLink]="['/account/profile/edit']" 
+                        [queryParams]="{type:'card'}">
+                    <i class="material-icons">edit</i>
+                    Editar
+                </button>
+                <button class="delete-card-btn" title="Eliminar tarjeta">
+                    <i class="material-icons">delete</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cards-actions">
+        <button class="add-card-btn" 
+                mat-raised-button 
+                [routerLink]="['/account/profile/edit']" 
+                [queryParams]="{type:'add-card'}">
+            <i class="material-icons">add</i>
+            Agregar tarjeta
+        </button>
+    </div>
+</div>

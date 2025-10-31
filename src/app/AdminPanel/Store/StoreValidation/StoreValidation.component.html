@@ -1,0 +1,195 @@
+<!-- <div class="overlay">
+                <div class="center_spinner">
+                    <mat-progress-spinner diameter=70 mode="indeterminate" color="accent">
+                    </mat-progress-spinner>
+                </div>
+            </div> -->
+
+<mat-card class="matcard_admin">
+    <div class="div_title">
+        <mat-label><b>DATOS DEL COMERCIO</b></mat-label>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Ciudad</b></mat-label>
+            <p>{{city}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Departamento</b></mat-label>
+            <p>{{departament}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Dirección</b></mat-label>
+            <p>{{address}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Representante</b></mat-label>
+            <p>{{manager}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Nombre comercial</b></mat-label>
+            <p>{{name_store}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Email</b></mat-label>
+            <p>{{email}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Número de identificación</b></mat-label>
+            <p>{{number_identifier}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Teléfono</b></mat-label>
+            <p>{{telephone}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Categoria del comercio</b></mat-label>
+            <p>{{storecategories_description}}</p>
+        </div>
+    </div>
+    <div class="div_title">
+        <mat-label><b>DATOS DE LA CUENTA BANCARÍA</b></mat-label>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Número de cuenta</b></mat-label>
+            <p>{{account_number}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Titular</b></mat-label>
+            <p>{{responsible}}</p>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Banco</b></mat-label>
+            <p>{{bank}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <mat-label><b>Tipo de cuenta</b></mat-label>
+            <p>{{typeaccount}}</p>
+        </div>
+
+    </div>
+
+    <div class="div_title">
+        <mat-label><b>PORCENTAJES DE DESCUENTO</b></mat-label>
+    </div>
+    <div class="row mb-4">
+        <div class="col-sm">
+            <mat-label><b>Porcentaje de venta</b><b class="obligatory"> *</b></mat-label>
+            <ng-select [items]="percentage_sale$ | async" bindLabel="percentage" bindValue="id" [formControl]="percentagesaleFilterCtrl" [(ngModel)]="selectedPercentageSale" required>
+            </ng-select>
+            <div class="mt-2" *ngIf="validate_percentage_sale">
+                <label style="color:red">
+                    Porcentaje de venta obligatorio
+                </label>
+            </div>
+        </div>
+        <div class="col-sm">
+            <mat-label><b>Porcentaje de pago</b><b class="obligatory"> *</b></mat-label>
+            <ng-select [items]="percentage_payment$ | async" bindLabel="percentage" bindValue="id" [formControl]="percentagepaymentFilterCtrl" [(ngModel)]="selectedPercentagePayment" required>
+            </ng-select>
+            <div class="mt-2" *ngIf="validate_percentage_payment">
+                <label style="color:red">
+                    Porcentaje de pago obligatorio
+                </label>
+            </div>
+        </div>
+        <div class="col-sm">
+        </div>
+
+    </div>
+
+    <div class="div_title">
+        <mat-label><b>CODIGO UNICO DE TRANSACCIÓN</b></mat-label>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-sm">
+            <ng-select [items]="cuc$ | async" bindLabel="cuc" bindValue="id" [formControl]="cucFilterCtrl" [(ngModel)]="selectedCuc" required>
+            </ng-select>
+            <div class="mt-2" *ngIf="validate_cuc">
+                <label style="color:red">
+                    Código unico de transacción obligatorio
+                </label>
+            </div>
+        </div>
+        <div class="col-sm"></div>
+        <div class="col-sm"></div>
+
+    </div>
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Cedula de identidad
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <iframe [src]="doc_identifier_doc" width="1000" height="500" style="border: none;"></iframe>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="expansion_class">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Registro único tributario RUT
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <iframe [src]="rut_doc" width="1000" height="500" style="border: none;"></iframe>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="expansion_class">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Camara de comercio
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <iframe [src]="cam_com_doc" width="1000" height="500" style="border: none;"></iframe>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="expansion_class">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Certificación bancaria
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <iframe [src]="certification_url" width="1000" height="500" style="border: none;"></iframe>
+    </mat-expansion-panel>
+
+    <div class="butt" style="margin-top: 15px;" align="center">
+        <div class="row">
+            <div class="col-sm">
+                <button mat-raised-button color="accent" (click)="RechStore()">Rechazar</button>
+            </div>
+
+            <div class="col-sm">
+                <swal #AprobeSwal title="Aprobar Comercio" text="Esta seguro que desea aprobar este comercio" icon="success" [showCancelButton]="true" [focusCancel]="true" (confirm)="AproveStore()">
+                </swal>
+                <button mat-raised-button class="green" [swal]="AprobeSwal">Aprobar</button>
+            </div>
+        </div>
+    </div>
+</mat-card>
+
+
+
+
+
+<script>
+    // Google Analytics
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-49610253-3', 'auto');
+    ga('send', 'pageview');
+</script>

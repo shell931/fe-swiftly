@@ -1,0 +1,56 @@
+<div>
+    <b>Detalle de Transacción:</b>
+</div>
+<div class="row">
+    <div class="col-md-6 divrow">
+        <b>Nombre:</b> {{data.tag_first_name}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Apellido:</b> {{data.tag_last_name}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Descripción:</b> {{data.tag_desc_selling}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Franquicia:</b> {{data.brand}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Fecha:</b> {{data.created_at}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Num aprob:</b> {{data.num_aprob}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Num recibo:</b> {{data.num_recibo}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Cuotas:</b> {{data.quot}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Cod resp:</b> {{data.cod_reply}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Mensaje resp:</b> {{data.messaje_reply}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Referencia:</b> {{data.reference}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Total:</b> {{data.total_tx|currency : 'USD' : 'symbol' : '1.0-0'}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Estado:</b> <b *ngIf="data.state == '1'" style="color:rgb(45 176 109);"> {{data.name_state}}</b><b *ngIf="data.state != '1'" style="color:rgb(255 12 40);"> {{data.name_state}}</b>
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Tipo identificación:</b> {{data.tag_type_identification}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Numero identificación:</b> {{data.tag_number_identification}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Email:</b> {{data.tag_email}}
+    </div>
+    <div class="col-md-6 divrow">
+        <b>Celular:</b> {{data.tag_cellphone}}
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="store-container">
+    <div class="store-header">
+        <div class="header-content">
+            <b>{{name_store}}</b>
+            <span class="store-status">Información de la tienda</span>
+        </div>
+        <button class="edit-store-btn" 
+                mat-raised-button 
+                [routerLink]="['/account/store_adm/edit',id_store]">
+            <i class="material-icons">edit</i>
+            Editar tienda
+        </button>
+    </div>
+
+    <div class="store-content">
+        <div class="store-info">
+            <div class="info-grid">
+                <div class="info-row">
+                    <div class="info-item">
+                        <label>Dirección</label>
+                        <span>{{address}}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Email</label>
+                        <span>{{email}}</span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-item">
+                        <label>Contacto</label>
+                        <span>{{manager}}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Identificación</label>
+                        <span>{{number_identifier}}</span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-item">
+                        <label>Categoría</label>
+                        <span>{{category}}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Teléfono</label>
+                        <span>{{telephone}}</span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-item">
+                        <label>Departamento</label>
+                        <span>{{department}}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Ciudad</label>
+                        <span>{{city}}</span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-item full-width">
+                        <label>Descripción</label>
+                        <span>{{description}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="store-logo" *ngIf="show_img">
+            <div class="logo-container">
+                <img [src]="logo_store" alt="Logo de la tienda" class="store-image">
+            </div>
+        </div>
+        
+        <div class="no-logo-warning" *ngIf="show_sin_img">
+            <div class="warning-content">
+                <i class="material-icons">warning</i>
+                <div class="warning-text">
+                    <strong>{{logo_store}}</strong>
+                    <p>¡Debes cargar un logo para que tu tienda sea publicada y comiences a vender tus productos o servicios!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="modern-banner-carousel" 
+     (mouseenter)="onMouseEnter()" 
+     (mouseleave)="onMouseLeave()">
+  
+  <!-- Contenedor de slides -->
+  <div class="carousel-slides-container">
+    <div class="carousel-slides" 
+         [style.transform]="'translateX(-' + (currentSlide * 100) + '%)'">
+      
+      <div class="carousel-slide" 
+           *ngFor="let banner of banners; let i = index"
+           [class.active]="i === currentSlide">
+        <div class="banner-content">
+          <!-- Imagen de fondo optimizada -->
+          <div class="banner-image-container">
+            <img [src]="banner.image" 
+                 [alt]="banner.title" 
+                 class="banner-image"
+                 loading="lazy"
+                 decoding="async"
+                 [attr.srcset]="getResponsiveImageSrc(banner.image)"
+                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+          </div>
+          
+          <!-- Contenido de texto superpuesto -->
+          <div class="banner-text-overlay">
+            <div class="banner-text-content">
+              <h1 class="banner-title">{{ banner.title }}</h1>
+              <p class="banner-subtitle">{{ banner.subtitle }}</p>
+              <p class="banner-description">{{ banner.description }}</p>
+              <div class="banner-actions">
+                <a [routerLink]="banner.link" class="banner-button">
+                  {{ banner.buttonText }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controles de navegación -->
+  <div class="carousel-controls">
+    <button class="carousel-btn carousel-btn-prev" 
+            (click)="prevSlide()"
+            [disabled]="banners.length <= 1">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    
+    <button class="carousel-btn carousel-btn-next" 
+            (click)="nextSlide()"
+            [disabled]="banners.length <= 1">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Indicadores de posición -->
+  <div class="carousel-indicators" *ngIf="banners.length > 1">
+    <button *ngFor="let banner of banners; let i = index"
+            class="carousel-indicator"
+            [class.active]="i === currentSlide"
+            (click)="goToSlide(i)">
+    </button>
+  </div>
+</div>

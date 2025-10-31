@@ -1,0 +1,260 @@
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, Pipe, PipeTransform } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Router, ActivatedRoute, Params, RouterModule } from '@angular/router';
+import { EmbryoService } from '../../../Services/Embryo.service';
+import { ApiService } from '../../../Services/api.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource, MatTreeModule } from '@angular/material/tree';
+
+import { NgxPaginationModule } from 'ngx-pagination';
+
+import { environment } from '../../../../../src/environments/environment';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+const { isArray } = Array;
+
+export interface Prod {
+    image: string;
+    name: string;
+    price: string;
+    produc_code: string;
+    brand: string;
+    product_code: string;
+    discount_price: string;
+    id_product: string;
+    route_product: string;
+    id_store: string;
+    descriptions: string[];
+    store_id: number;
+}
+
+export interface Card {
+    title: string;
+    subtitle: string;
+    text: string;
+}
+
+interface subcategoryNode {
+    id: number;
+    name_category: string;
+    children?: subcategoryNode[];
+    icon:any;
+}
+
+export interface Store {
+    id_store: string;
+    name_store: string;
+    state_store: string;
+    city: string;
+    logo_store: string;
+    route_store: string;
+    description: string;
+}
+
+@Component({
+    selector: 'app-StoreListPage',
+    standalone: true,
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatPaginatorModule,
+        MatTreeModule
+    ],
+    templateUrl: './StoreList.component.html',
+    styleUrls: ['./StoreList.component.scss']
+})
+
+export class StoreListComponent implements OnInit {
+
+    treeControl = new NestedTreeControl<subcategoryNode>(node => node.children);
+    dataSourceTree = new MatTreeNestedDataSource<subcategoryNode>();
+    @ViewChild(MatPaginator, { static: false })
+    paginator!: MatPaginator;
+    productsGrid: Prod[] = [];
+    dataSource = new MatTableDataSource<Prod>(this.productsGrid);
+    obs!: Observable<any>;
+    id: any;
+    get_product: Prod[] = [];
+    loaded = false;
+    @Output() addToCart: EventEmitter<any> = new EventEmitter();
+    @Output() addToWishList: EventEmitter<any> = new EventEmitter();
+    get_subca: any[] = [];
+    get_categories: subcategoryNode[] = [];
+    get_store: Store[] = [];
+    storeGrid: Store[] = [];
+    obsStore!: Observable<any>;
+    dataSourceStore = new MatTableDataSource<Store>(this.storeGrid);
+    searchText:any;
+    p:any;
+
+    constructor(private route: ActivatedRoute,
+        private router: Router,
+        public embryoService: EmbryoService,
+        private apiService: ApiService,
+        private changeDetectorRef: ChangeDetectorRef
+    ) { }
+
+    ngOnInit() {        
+        this.route.params.subscribe(res => {
+            this.id = res.id;
+        })
+        localStorage.removeItem("id_category");
+        this.apiService.getStoreWithoutAuth().subscribe((res: any) => this.getStoreData(res));
+        this.apiService.getStoreCategories().subscribe((res: any) => this.getCategoriesMenu(res, this.id));
+    }
+
+    GetProductCategory(id_category: string){        
+        localStorage.removeItem("id_category");
+        localStorage.setItem('id_category', id_category);
+        this.apiService.getStorebyCategory(id_category).subscribe((res: any) => this.getStoreData(res));        
+    }
+
+    getCategoriesMenu(response: string | any[], id_store: any) {
+        this.get_categories = [];
+        for (var i = 0; i < response.length; i++) {
+            this.get_categories.push(
+                {
+                    id: response[i].id,
+                    name_category: response[i].name_category,
+                    icon: response[i].icon
+                });
+        }
+
+        this.dataSourceTree.data = this.get_categories;
+    }
+
+
+    getStoreData(response: string | any[]) {
+        
+        this.storeGrid = [];
+        this.get_store = [];
+        for (var i = 0; i < response.length; i++) {
+            let get_id_store = response[i].id_store;
+            let get_name_store = response[i].name_store;
+            let get_state_store = response[i].state_store;
+            let get_city = response[i].city;
+            let get_logo_store = response[i].logo_store;
+            let get_description = response[i].description;
+            this.get_store.push({
+                id_store: get_id_store,
+                name_store: get_name_store,
+                state_store: get_state_store,
+                city: get_city,
+                logo_store: environment.api.baseBucketImageUrl + response[i].logo_store_up,
+                route_store: '/storefront/' + get_id_store,
+                description: get_description,
+            });
+        }
+        this.storeGrid = this.get_store;
+        this.dataSourceStore = new MatTableDataSource<Store>(this.storeGrid);
+        this.changeDetectorRef.detectChanges();
+        this.dataSourceStore.paginator = this.paginator;
+        this.obsStore = this.dataSourceStore.connect();
+    }
+
+    public onLoad() {
+        this.loaded = true;
+     }
+
+
+}
+
+// CLASS TO FILTER AND PAGINATE
+@Pipe({
+    name: 'filter'
+})
+export class FilterPipe implements PipeTransform {
+
+    get_product: Prod[] = [];
+    productsGrid: any;
+    id: any;
+    get_store: Store[] = [];
+    storeGrid: Store[] = [];
+    obsStore!: Observable<any>;
+    dataSourceStore = new MatTableDataSource<Store>(this.storeGrid);
+    @ViewChild(MatPaginator, { static: false })
+    paginator!: MatPaginator;
+
+    constructor(private route: ActivatedRoute,
+        private router: Router,
+        public embryoService: EmbryoService,
+        private apiService: ApiService,
+        private changeDetectorRef: ChangeDetectorRef
+    ) { }
+
+    transform(posts: Card[], find: string): Card[] {
+        this.route.params.subscribe(res => {
+            this.id = res.id;
+        })
+        let id_category_F = localStorage.getItem('id_category');        
+        this.apiService.getStoreWithoutAuthbyIdCategory(id_category_F).subscribe((res: any) => this.getStoreData(res, posts, find, this.id));
+        if (!posts) return [];
+        if (!find) return posts;
+        find = find.toLowerCase();
+        return search(this.storeGrid, find);
+    }
+
+    getStoreData(response: string | any[], posts: Card[], find: string, store_id: any) {                
+        
+        
+        this.storeGrid =  [];
+        this.get_store = [];
+        for (var i = 0; i < response.length; i++) {
+            let get_id_store = response[i].id_store;
+            let get_name_store = response[i].name_store;
+            let get_state_store = response[i].state_store;
+            let get_city = response[i].city;
+            let get_logo_store = response[i].logo_store;
+            let get_description = response[i].description;
+
+            this.get_store.push({
+                id_store: get_id_store,
+                name_store: get_name_store,
+                state_store: get_state_store,
+                city: get_city,
+                logo_store: environment.api.baseBucketImageUrl + response[i].logo_store_up,
+                route_store: '/storefront/' + get_id_store,
+                description: get_description,
+
+            });
+        }
+        this.storeGrid = this.get_store;
+        this.dataSourceStore = new MatTableDataSource<Store>(this.storeGrid);
+        this.changeDetectorRef.detectChanges();
+        this.dataSourceStore.paginator = this.paginator;
+        this.obsStore = this.dataSourceStore.connect();
+    }
+
+    
+}
+
+
+function search(entries: any[], search: string) {
+    search = search.toLowerCase();
+    return entries.filter(function (obj) {
+        const keys: string[] = Object.keys(obj);
+        return keys.some(function (key) {
+            const value = obj[key];
+            if (isArray(value)) {
+                return value.some(v => {
+                    return v.toLowerCase().includes(search);
+                });
+            }
+            else if (!isArray(value)) {
+                return value.toString().toLowerCase().includes(search);
+            }
+        })
+    });
+}
+

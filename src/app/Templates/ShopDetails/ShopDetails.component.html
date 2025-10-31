@@ -1,0 +1,191 @@
+<div class="modern-product-page" *ngIf="detailData">
+    <div class="product-container">
+        
+        <!-- Header del producto -->
+        <div class="product-header">
+            <h1 class="product-title">{{detailData?.name}}</h1>
+            <div class="product-rating">
+                <bar-rating [rate]="detailData?.rating || 0" [max]="5" [readonly]="true"></bar-rating>
+                <span class="rating-text" *ngIf="detailData?.rating > 0">({{detailData?.rating}}/5)</span>
+            </div>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="product-main-content">
+            
+            <!-- Sección de imágenes -->
+            <div class="product-images-section">
+                <div class="main-image-container">
+                    <img 
+                        [src]="mainImgPath" 
+                        [alt]="detailData?.name"
+                        class="main-image"
+                        [class.zoomed]="isImagePressed"
+                        (mousedown)="isImagePressed=true"
+                        (mouseup)="isImagePressed=false"
+                        (mouseleave)="isImagePressed=false"
+                        (touchstart)="isImagePressed=true"
+                        (touchend)="isImagePressed=false"
+                        (touchcancel)="isImagePressed=false"
+                        (error)="onImageError($event)"
+                        loading="lazy">
+                </div>
+                
+                <div class="thumbnails-gallery">
+                    <div class="thumbnail-item active" (click)="selectImage(detailData?.image, 0)">
+                        <img [src]="detailData?.image" alt="Imagen principal" (error)="onImageError($event)">
+                    </div>
+                    <div class="thumbnail-item" *ngFor="let img of detailData?.image_gallery; let i=index" (click)="selectImage(img, i+1)">
+                        <img [src]="img" alt="Imagen {{i+1}}" (error)="onImageError($event)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información del producto -->
+            <div class="product-info-container">
+                <div class="product-info-section">
+                    
+                    <!-- Precios -->
+                    <div class="price-section">
+                        <div class="price-container">
+                            <!-- Precio original (solo si hay descuento) -->
+                            <div class="price-old" *ngIf="detailData?.discount_price && detailData?.discount_price > 0">
+                                {{detailData?.price | currency : 'USD' : 'symbol' : '1.0-0'}}
+                            </div>
+                            
+                            <!-- Precio actual -->
+                            <div class="price-current">
+                                <span *ngIf="detailData?.discount_price && detailData?.discount_price > 0">
+                                    {{detailData?.discount_price | currency : 'USD' : 'symbol' : '1.0-0'}}
+                                </span>
+                                <span *ngIf="!detailData?.discount_price || detailData?.discount_price <= 0">
+                                    {{totalPrice | currency : 'USD' : 'symbol' : '1.0-0'}}
+                                </span>
+                            </div>
+                        
+                        <!-- Acciones compactas junto al precio (solo móvil) -->
+                        <div class="price-actions-inline" *ngIf="detailData?.stock > 0">
+                            <button class="btn-secondary" (click)="addToCart(detailData)">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="btn-label">Añadir</span>
+                            </button>
+                            <button class="btn-primary" (click)="buyNow(detailData)">
+                                <i class="fa fa-bolt"></i>
+                                <span class="btn-label">Comprar</span>
+                            </button>
+                        </div>
+                            
+                            <!-- Información de pago -->
+                            <div class="payment-info" *ngIf="getPaymentMethodsImage()">
+                                <img class="payment-cards" [src]="getPaymentMethodsImage()" alt="Métodos de pago">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información del producto -->
+                    <div class="product-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Disponibilidad:</span>
+                            <span class="detail-value" [class.available]="detailData?.stock > 0" [class.unavailable]="detailData?.stock <= 0">
+                                {{detailData?.stock > 0 ? 'Disponible' : 'Sin Stock'}}
+                            </span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Stock:</span>
+                            <span class="detail-value">{{detailData?.stock > 0 ? detailData?.stock + ' unidades' : 'Agotado'}}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Código:</span>
+                            <span class="detail-value">{{detailData?.product_code}}</span>
+                        </div>
+                    </div>
+
+                    <!-- Cantidad y botones -->
+                    <div class="quantity-section" *ngIf="detailData?.stock > 0">
+                        <div class="quantity-control">
+                            <label class="quantity-label">Cantidad:</label>
+                            <div class="quantity-input-group">
+                                <button type="button" class="qty-btn qty-btn--minus" aria-label="Disminuir"
+                                        (click)="decrementQuantity(qtyInput, detailData)">−</button>
+                                <input 
+                                    #qtyInput
+                                    type="number" 
+                                    class="quantity-input"
+                                    placeholder="1" 
+                                    value="1"
+                                    [min]="1"
+                                    [max]="detailData?.stock"
+                                    (input)="calculatePrice(detailData, $event.target.value)"
+                                    (blur)="normalizeQuantity(qtyInput, detailData)">
+                                <button type="button" class="qty-btn qty-btn--plus" aria-label="Aumentar"
+                                        (click)="incrementQuantity(qtyInput, detailData)">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="error-message" *ngIf="validate_canti">
+                            <span class="error-text">Debes ingresar una cantidad válida</span>
+                        </div>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="action-buttons">
+                        <button class="btn-primary" (click)="addToCart(detailData)" *ngIf="detailData?.stock > 0">
+                            <i class="fa fa-shopping-cart"></i>
+                            Agregar al carrito
+                        </button>
+                        
+                        <button class="btn-secondary" (click)="buyNow(detailData)" *ngIf="detailData?.stock > 0">
+                            <i class="fa fa-bolt"></i>
+                            Comprar ahora
+                        </button>
+                        
+                        <button class="btn-wishlist" (click)="addToWishlist(detailData)">
+                            <i class="fa fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Descripción integrada -->
+                <div class="product-description-integrated">
+                    <h3 class="description-title">Descripción del producto</h3>
+                    <p class="product-description">{{detailData?.description}}</p>
+                    
+                    <div class="features-list" *ngIf="detailData?.features">
+                        <h4 class="features-title">Características:</h4>
+                        <ul class="features-items">
+                            <li *ngFor="let feature of detailData?.features">{{feature}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de preguntas y reviews -->
+        <div class="product-interaction-section">
+            <div class="questions-section">
+                <h3 class="section-title">¿Tienes preguntas?</h3>
+                <p class="section-subtitle">Haz tu pregunta al vendedor</p>
+                
+                <div class="question-form">
+                    <textarea 
+                        class="question-input" 
+                        placeholder="Escribe tu pregunta aquí..."
+                        rows="4">
+                    </textarea>
+                    <button class="btn-submit">Enviar pregunta</button>
+                </div>
+            </div>
+            
+            <div class="reviews-section">
+                <h3 class="section-title">Opiniones de clientes</h3>
+                <div class="rating-display">
+                    <bar-rating [rate]="detailData?.rating || 0" [max]="5" [readonly]="true"></bar-rating>
+                    <span class="rating-text">({{detailData?.rating || 0}}/5)</span>
+                </div>
+                <button class="btn-review">Escribir opinión</button>
+            </div>
+        </div>
+    </div>
+</div>

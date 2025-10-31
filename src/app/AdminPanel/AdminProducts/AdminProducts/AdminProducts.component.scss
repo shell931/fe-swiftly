@@ -1,0 +1,37 @@
+
+@use '../../../../assets/scss/_input_search.scss';
+@use '../../../../assets/scss/_table_general.scss';
+
+.class_aprobed_state {
+    background-color: #c0f48f;
+    color: rgba(0, 0, 0, .87);
+    display: inline-block;
+    vertical-align: baseline;
+    padding: 2px 7px;
+    margin: 0 12px 0 0;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.class_aprobed_pending {
+    background-color: #acc3f6;
+    color: rgba(0, 0, 0, .87);
+    display: inline-block;
+    vertical-align: baseline;
+    padding: 2px 7px;
+    margin: 0 12px 0 0;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.class_aprobed_reject {
+    background-color: #f25567;
+    color: rgba(0, 0, 0, .87);
+    display: inline-block;
+    vertical-align: baseline;
+    padding: 2px 7px;
+    margin: 0 12px 0 0;
+    border-radius: 5px;
+    font-size: 13px;
+}
+

@@ -1,0 +1,101 @@
+<div class="container-fluid compact-layout">
+    <div class="row container_login">
+        <!-- Login Card Compacto -->
+        <div class="col-12">
+            <div class="login-grid">
+                <mat-card class="login-card compact">
+                    <mat-card-content class="login-content">
+                        <div class="login-header">
+                            <div class="logo-container">
+                                <div class="logo-icon">
+                                    <mat-icon>storefront</mat-icon>
+                                </div>
+                                <h4 class="login-title">Ingresa a tu cuenta</h4>
+                                <p class="login-subtitle">Accede a tu panel de administración</p>
+                            </div>
+                        </div>
+                        
+                        <form [formGroup]="authForm" (ngSubmit)="saveForm()" class="login-form">
+                            <!-- Email Field -->
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Correo electrónico</mat-label>
+                                <input matInput 
+                                       type="email" 
+                                       placeholder="darknees931@gmail.com" 
+                                       formControlName="username" 
+                                       autocomplete="email"
+                                       required>
+                                <mat-error *ngIf="authForm.get('username')?.hasError('required') && authForm.get('username')?.touched">
+                                    El correo electrónico es obligatorio
+                                </mat-error>
+                                <mat-error *ngIf="authForm.get('username')?.hasError('email') && authForm.get('username')?.touched">
+                                    Por favor ingresa un correo electrónico válido
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- Password Field -->
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Contraseña</mat-label>
+                                <input matInput 
+                                       [type]="hidePassword ? 'password' : 'text'" 
+                                       placeholder="••••••••••••" 
+                                       formControlName="password" 
+                                       autocomplete="current-password"
+                                       required>
+                                <button mat-icon-button 
+                                        matSuffix 
+                                        type="button"
+                                        (click)="hidePassword = !hidePassword" 
+                                        [attr.aria-label]="'Ocultar contraseña'" 
+                                        [attr.aria-pressed]="hidePassword">
+                                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="authForm.get('password')?.hasError('required') && authForm.get('password')?.touched">
+                                    La contraseña es obligatoria
+                                </mat-error>
+                                <mat-error *ngIf="authForm.get('password')?.hasError('minlength') && authForm.get('password')?.touched">
+                                    La contraseña debe tener al menos 6 caracteres
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- Error Message -->
+                            <div class="error-message" *ngIf="show">
+                                <mat-icon class="error-icon">error</mat-icon>
+                                <span>Usuario o contraseña incorrectos</span>
+                            </div>
+
+                            <!-- Remember Me & Forgot Password -->
+                            <div class="form-options">
+                                <mat-checkbox formControlName="rememberMe" class="remember-checkbox">
+                                    Recordar
+                                </mat-checkbox>
+                                <a href="#" class="forgot-password-link" (click)="onForgotPassword($event)">
+                                    ¿Olvidaste tu contraseña?
+                                </a>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button mat-raised-button 
+                                    type="submit" 
+                                    class="login-button"
+                                    [disabled]="authForm.invalid || isLoading">
+                                <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+                                <span>{{isLoading ? 'Ingresando...' : 'Iniciar sesión'}}</span>
+                            </button>
+
+                            <!-- Register Link -->
+                            <div class="register-section">
+                                <p class="register-text">
+                                    ¿No tienes una cuenta? 
+                                    <a href="#" class="register-link" (click)="onCreateAccount($event)">
+                                        Click aquí para crear cuenta
+                                    </a>
+                                </p>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

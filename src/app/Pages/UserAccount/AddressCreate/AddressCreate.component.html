@@ -1,0 +1,143 @@
+<div class="address-create-container">
+    <div class="address-create-header">
+        <b>Crear nueva ubicación</b>
+    </div>
+    
+    <form [formGroup]="formLocationCreate" class="address-create-form">
+        <mat-form-field class="hidden-field" [hidden]="true">
+            <input matInput formControlName="id" maxlength="50">
+        </mat-form-field>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label class="address-label">Departamento</label>
+                <ng-select [items]="depart$ | async" 
+                          bindLabel="departament" 
+                          bindValue="id_departament" 
+                          [formControl]="departamentFilterCtrl" 
+                          formControlName="departamentCtrll" 
+                          (change)="citieChangeAction($event)" 
+                          (selectionChange)="citieChangeAction(departamentCtrl)"
+                          placeholder="Seleccionar departamento"
+                          class="address-select"
+                          required>
+                </ng-select>
+                <div class="error-message" *ngIf="formLocationCreate.get('departamentCtrll').hasError('required') && formLocationCreate.get('departamentCtrll').touched">
+                    Este campo es obligatorio.
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="address-label">Ciudad</label>
+                <ng-select [items]="city$ | async" 
+                          bindLabel="city" 
+                          bindValue="id_city" 
+                          [formControl]="citieCtrl" 
+                          formControlName="citieCtrl" 
+                          [(ngModel)]="selectedCity"
+                          placeholder="Seleccionar ciudad"
+                          class="address-select"
+                          required>
+                </ng-select>
+                <div class="error-message" *ngIf="formLocationCreate.get('citieCtrl').hasError('required') && formLocationCreate.get('citieCtrl').touched">
+                    Este campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label class="address-label">Vía</label>
+                <input type="text" 
+                       class="form-control address-input" 
+                       placeholder="Calle, Carrera, Avenida, etc." 
+                       formControlName="via" 
+                       maxlength="50">
+                <div class="error-message" *ngIf="formLocationCreate.get('via').hasError('required') && formLocationCreate.get('via').touched">
+                    Este campo es obligatorio.
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="address-label">Número</label>
+                <input type="text" 
+                       class="form-control address-input" 
+                       placeholder="Número" 
+                       formControlName="number" 
+                       maxlength="50">
+                <div class="error-message" *ngIf="formLocationCreate.get('number').hasError('required') && formLocationCreate.get('number').touched">
+                    Este campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label class="address-label">Complemento</label>
+                <input type="text" 
+                       class="form-control address-input" 
+                       placeholder="Apto, Casa, Oficina, etc." 
+                       formControlName="sn" 
+                       maxlength="50">
+                <div class="error-message" *ngIf="formLocationCreate.get('sn').hasError('required') && formLocationCreate.get('sn').touched">
+                    Este campo es obligatorio.
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="address-label">Barrio</label>
+                <input type="text" 
+                       class="form-control address-input" 
+                       placeholder="Barrio o sector" 
+                       formControlName="neighborhood" 
+                       maxlength="50">
+                <div class="error-message" *ngIf="formLocationCreate.get('neighborhood').hasError('required') && formLocationCreate.get('neighborhood').touched">
+                    Este campo es obligatorio.
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label class="address-label">Contacto (Quien recibe)</label>
+                <input type="text" 
+                       class="form-control address-input" 
+                       placeholder="Nombre de quien recibe" 
+                       formControlName="contact" 
+                       maxlength="50">
+                <div class="error-message" *ngIf="formLocationCreate.get('contact').hasError('required') && formLocationCreate.get('contact').touched">
+                    Este campo es obligatorio.
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="address-label">Teléfono</label>
+                <input type="tel" 
+                       class="form-control address-input" 
+                       placeholder="Número de teléfono" 
+                       formControlName="phone" 
+                       maxlength="50" 
+                       minlength="7">
+                <div class="error-message" *ngIf="formLocationCreate.get('phone').hasError('required') && formLocationCreate.get('phone').touched">
+                    Este campo es obligatorio.
+                </div>
+                <div class="form-hint">Más de 7 dígitos</div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="address-label">Datos adicionales</label>
+            <textarea class="form-control address-textarea" 
+                      placeholder="Instrucciones adicionales, referencias, etc." 
+                      formControlName="additional_data" 
+                      maxlength="500"
+                      rows="3"></textarea>
+            <div class="error-message" *ngIf="formLocationCreate.get('additional_data').hasError('required') && formLocationCreate.get('additional_data').touched">
+                Este campo es obligatorio.
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            <button class="save-btn address-btn" (click)="updateLocationUserFront()">
+                <i class="material-icons">location_on</i>
+                Crear ubicación
+            </button>
+        </div>
+    </form>
+</div>

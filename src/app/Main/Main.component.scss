@@ -1,0 +1,15 @@
+.cart-sidebar-area {
+    z-index: 1000;
+    width: 400px !important;
+}
+
+.cart-sidebar-area .mat-drawer-inner-container {
+    overflow: visible !important;
+}
+
+@media (max-width: 768px) {
+    .cart-sidebar-area {
+        width: 100vw !important;
+    }
+}
+

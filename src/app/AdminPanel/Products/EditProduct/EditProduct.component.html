@@ -1,0 +1,141 @@
+<div class="inner-container">
+    <div class="final-receipt-page section-gap">
+        <div class="account-in">
+            <div class="overlay" *ngIf="show">
+                <div class="center_spinner">
+                    <mat-progress-spinner diameter=70 mode="indeterminate" color="accent">
+                    </mat-progress-spinner>
+                </div>
+            </div>
+            <div class="container">
+                <div class="mb-4 user-info">
+                    <div fxLayoutAlign="flex-start">
+                        <div class="px-3">
+                            <h4>EDITAR PRODUCTO</h4>
+                            <div class="text-muted text-xl">Diligencia el formulario para editar aaa
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="">
+                        <div class="">
+                            <mat-card class="mat1">
+                                <form [formGroup]="productForm">
+
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label>Nombre</label>
+                                            <input placeholder="Nombre" formControlName="name_product" class="form-control" required>
+                                            <mat-error *ngIf="productForm.get('name_product').hasError('required') && productForm.get('name_product').touched">
+                                                Este campo es obligatorio.</mat-error>
+                                        </div>
+                                        <div class="col-sm">
+                                            <label>Descripción</label>
+                                            <input placeholder="Descripción" formControlName="description_product" class="form-control" required>
+                                            <mat-error *ngIf="productForm.get('description_product').hasError('required') && productForm.get('description_product').touched">
+                                                Este campo es obligatorio.</mat-error>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm">
+
+                                            <label>Categoria</label>
+                                            <ng-select [items]="prod_category$ | async" bindLabel="name_category" autofocus bindValue="id" [formControl]="categoryFilterCtrl" formControlName="categoryCtrl" (change)="subcategoriesChangeAction($event)" [(ngModel)]="selectedValueCategory" required>
+                                            </ng-select>
+                                            <mat-error *ngIf="productForm.get('categoryCtrl').hasError('required') && productForm.get('categoryCtrl').touched">
+                                                Este campo es obligatorio.</mat-error>
+                                        </div>
+                                        <div class="col-sm">
+
+                                            <label>Subcategoria</label>
+                                            <ng-select [items]="sub_catego$ | async" bindLabel="name_subcategory" autofocus bindValue="id" [formControl]="subcategoryFilterCtrl" formControlName="subcategoryCtrl" [(ngModel)]="selectedValueSubcategory" required>
+                                            </ng-select>
+                                            <mat-error *ngIf="productForm.get('subcategoryCtrl').hasError('required') && productForm.get('subcategoryCtrl').touched">
+                                                Este campo es obligatorio.</mat-error>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Codigo (Suele ser un EAN, UPC u otro GTIN.)</label>
+                                            <input placeholder="Codigo (Suele ser un EAN, UPC u otro GTIN.)" formControlName="product_code" class="form-control" required>
+                                            <mat-error *ngIf="productForm.get('product_code').hasError('required') && productForm.get('product_code').touched">
+                                                Este campo es obligatorio.</mat-error>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Stock</label>
+                                            <input placeholder="Stock" formControlName="stock" class="form-control" required type="number">
+                                            <mat-error *ngIf="productForm.get('stock').hasError('required') && productForm.get('stock').touched">
+                                                Este campo es obligatorio.</mat-error>
+                                        </div>
+                                        <div class="col-sm">
+                                            <mat-label>Marca</mat-label>
+                                            <input placeholder="Marca" formControlName="brand" class="form-control" required>
+                                            <mat-error *ngIf="productForm.get('brand').hasError('required') && productForm.get('brand').touched">
+                                                Este campo es obligatorio.</mat-error>
+                                        </div>
+                                        <div class="col-sm">
+
+                                            <label>Disponible</label>
+                                            <ng-select formControlName="availa" [(ngModel)]="selectedValueAvailable" required>
+                                                <ng-option [value]="true">Si</ng-option>
+                                                <ng-option [value]="false">No</ng-option>
+                                            </ng-select>
+                                            <mat-error *ngIf="productForm.get('availa').hasError('required') && productForm.get('availa').touched">
+                                                Este campo es obligatorio.</mat-error>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label>Precio</label>
+                                            <input placeholder="Precio" formControlName="total_price" class="form-control" required>
+                                            <mat-error *ngIf="productForm.get('total_price').hasError('required') && productForm.get('total_price').touched">
+                                                Este campo es obligatorio.</mat-error>
+                                        </div>
+                                        <div class="col-sm">
+                                            <label>Descuento</label>
+                                            <input placeholder="Descuento" formControlName="discount_price" class="form-control" required>
+                                            <mat-error *ngIf="productForm.get('discount_price').hasError('required') && productForm.get('discount_price').touched">
+                                                Este campo es obligatorio.</mat-error>
+                                        </div>
+                                        <div class="col-sm"></div>
+                                        <div class="col-sm"></div>
+                                    </div>
+
+
+                                    <div class="relative mt-3">
+                                        <ngx-dropzone (change)="selectFile($event)" [multiple]="true" [expandable]="true" [disableClick]="true" [accept]="'image/*'" [maxFileSize]="1000000">
+                                            <ngx-dropzone-label>Añadir imagenes del producto aqui!</ngx-dropzone-label>
+                                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                            </ngx-dropzone-image-preview>
+                                        </ngx-dropzone>
+                                    </div>
+                                    <div fxLayout="row wrap" fxLayoutAlign="none" class="col-gap div_produc" style="margin-left: 0px;">
+                                        <mat-card class="example-card card_store_prod" *ngFor="let card of get_pr">
+                                            <a class="p-link" *ngIf="!card?.id">
+                                                <img class="img_size" width="300px" height="300px" mat-card-image [src]="card?.image" [ngClass]="{ transparent: !loaded }" alt="Photo">
+                                            </a>
+                                            <div class="wishlist-icon {{i}}-wishlist" id="{{i}}-wishlist">
+                                                <a (click)="deleteProduct(card)">
+                                                    <mat-icon> delete </mat-icon>
+                                                </a>
+                                            </div>
+                                        </mat-card>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <button mat-raised-button color="accent" (click)="submitProductInfo()" [disabled]="btnDisabled">Confirmar</button>
+                                    </div>
+                                </form>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

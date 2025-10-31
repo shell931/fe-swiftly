@@ -1,0 +1,116 @@
+<mat-sidenav-container>
+    <mat-sidenav class="em-sidebar" #TransfersDetailAdmSidenav [(opened)]="embryoService.TransfersDetailAdmSidebarOpen" position="end" mode="over">
+        <embryo-TransfersDetailAdmSidebar></embryo-TransfersDetailAdmSidebar>
+    </mat-sidenav>
+</mat-sidenav-container>
+
+
+<ng-container *ngIf="transferList && transferList.length>0; else elseBlock">
+    <div fxLayout="column">
+        <mat-card class="matcard_admin">
+
+            <h2><b>Administración de transferencias</b></h2>
+            <div class="buttonIn">
+                <input class="inputsearch" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar" autocomplete="off" type="search">
+                <button class="btn btn-primary button-search class_search" type="submit" tabindex="-1">
+                    <span class="mat-button-wrapper">
+                        <i class="fa fa-search"></i>
+                    </span></button>
+            </div>
+            <div class="table-responsive-x mt-3">
+                <table mat-table [dataSource]="dataSource" class="w-100 table-scroll-wrap">
+
+                    <ng-container matColumnDef="action">
+                        <th class="px-3 text-nowrap table-left" mat-header-cell *matHeaderCellDef><span class="material-icons-outlined">                                
+                                <b class="title_table">settings</b>
+                            </span>
+                        </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
+                            <button mat-icon-button (click)="onSeeDialog(element)" color="primary">
+                                <i class="material-icons">remove_red_eye</i>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="detail">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef><span class="material-icons-outlined">
+                            <b class="title_table">Detalle</b>
+                            </span>
+                        </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
+                            <button mat-icon-button (click)="DetailTransfer(element)" color="primary">
+                                <i class="material-icons">assignment</i>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="reference">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef><b class="title_table">Referencia</b>
+                        </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            {{element.reference}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="state">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef><b class="title_table">Estado</b>
+                        </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            <div *ngIf="element.state_id === 1" class="class_aprobed_pending" align="center">
+                                {{element.state}}
+                            </div>
+                            <div *ngIf="element.state_id === 2" class="class_aprobed_state" align="center">
+                                {{element.state}}
+                            </div>
+                            <div *ngIf="element.state_id === 3" class="class_aprobed_reject" align="center">
+                                {{element.state}}
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="store">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef><b class="title_table">Tienda</b>
+                        </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            {{element.store}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="created_at">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef><b class="title_table">Fecha</b>
+                        </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            {{element.created_at}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="responsible">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef><b class="title_table">Responsable</b>
+                        </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            {{element.responsible}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="typeaccount">
+                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef><b class="title_table">Tipo cuenta</b>
+                        </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            {{element.typeaccount}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="val_transfer">
+                        <th class="px-3 text-nowrap table-right" mat-header-cell *matHeaderCellDef><b class="title_table">Val Transferencia</b> </th>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                            {{element.val_transfer|currency : 'USD' : 'symbol' : '1.0-0'}}
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+
+        </mat-card>
+    </div>
+</ng-container>
+<ng-template #elseBlock>
+    <h5 class="ml-5">No data found</h5>
+</ng-template>

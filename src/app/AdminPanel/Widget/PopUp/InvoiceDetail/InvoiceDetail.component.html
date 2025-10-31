@@ -1,0 +1,196 @@
+<div class="overlay" *ngIf="show">
+    <div class="center_spinner">
+        <mat-progress-spinner diameter=70 mode="indeterminate" color="accent">
+        </mat-progress-spinner>
+    </div>
+</div>
+
+<cdk-virtual-scroll-viewport class="m-0 p-0 invoice-popup" style="height: 600px;">
+
+    <!-- <button *ngIf="data.state_id === '1'" mat-raised-button color="accent" (click)="ChangeStatusSend(data)"
+        class="mb-3">Cambiar a enviado</button> -->
+
+    <form *ngIf="data.state_id === '1'" [formGroup]="ShippmentForm">
+        <div>
+            <b>Carga comprobante de envío</b><b class="obligatory"> *</b>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <ngx-mat-file-input formControlName="cam_com" placeholder="Comprobante" required (change)="onChangeCamCom($event)"></ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+                <mat-hint>(Sube aquí el comprobante de envío)</mat-hint>
+                <mat-error *ngIf="ShippmentForm.get('cam_com').hasError('required') && ShippmentForm.get('cam_com').touched">
+                    Este campo es obligatorio.</mat-error>
+            </mat-form-field>
+        </div>
+        <button class="mb-3 color_button_ac" mat-raised-button color="accent" (click)="ShippingVoucherRequest()">Enviar comprobante de envío</button>
+    </form>
+
+    <!-- <button class="mb-3 color_button_ac" mat-raised-button color="accent"
+    (click)="ShippingVoucherRequest()">Enviar comprobante de envío</button> -->
+
+
+    <div class="table-responsive-x">
+        <table>
+            <tr>
+                <td colspan="4"><b>{{data.type_service}}</b></td>
+            </tr>
+            <tr>
+                <td colspan="4"><b>DATOS DEL COMPRADOR</b></td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td colspan="3">
+                    <b class="color_res">{{data.name_client}}</b>
+                </td>
+            </tr>
+            <tr>
+                <th>Tipo identificación</th>
+                <th> <label class="color_res">{{data.type_identifier}}</label> </th>
+                <th>Identificación</th>
+                <th> <label class="color_res">{{data.number_identifier}}</label> </th>
+            </tr>
+            <tr *ngIf="data.type_service_id == 1">
+                <th>Departamento</th>
+                <th> <label class="color_res">{{data.departament}}</label> </th>
+                <th>Ciudad</th>
+                <th> <label class="color_res">{{data.nameci}}</label> </th>
+            </tr>
+            <tr *ngIf="data.type_service_id == 1">
+                <th>DIRECCIÓN</th>
+                <td colspan="3">
+                    <strong><label class="color_res">{{data.adress}}</label> </strong>
+                </td>
+            </tr>
+            <tr>
+                <th>Teléfono</th>
+                <th> <label class="color_res">{{data.phone}}</label> </th>
+                <th>Email</th>
+                <th> <label class="color_res">{{data.email}}</label> </th>
+            </tr>
+
+            <tr>
+                <td colspan="4"><b>DATOS DE TRANSACCIÓN Y FACTURA</b></td>
+            </tr>
+
+            <tr>
+                <th>Referencia fac</th>
+                <th> <label class="color_res">{{data.reference_invoice}}</label> </th>
+                <th>Referencia Tx</th>
+                <th><label class="color_res">{{data.reference}}</label> </th>
+            </tr>
+            <tr>
+                <th>Cuotas</th>
+                <th> <label class="color_res">{{data.quot}}</label> </th>
+                <th>Franquicia</th>
+                <th><label class="color_res">{{data.brand}}</label> </th>
+            </tr>
+            <tr>
+                <th>Num aprobación</th>
+                <th> <label class="color_res">{{data.num_aprob}}</label> </th>
+                <th>Cod respuesta</th>
+                <th><label class="color_res">{{data.cod_reply}}</label> </th>
+            </tr>
+            <tr>
+                <th>Mensaje respuesta</th>
+                <th> <label class="color_res">{{data.messaje_reply}}</label> </th>
+                <th>Num recibo</th>
+                <th><label class="color_res">{{data.num_recibo}}</label> </th>
+            </tr>
+
+
+
+            <tr>
+                <th>Metodo de pago</th>
+                <th><label class="color_res">{{data.paymentmethod}}</label></th>
+                <th>Total transacción</th>
+                <th><label class="color_res">{{data.total_price|currency : 'USD' : 'symbol' : '1.0-0'}}</label></th>
+            </tr>
+            <tr>
+                <th>Rete ica</th>
+                <th><label class="color_res">{{data.val_percentage_rete_ica|currency : 'USD' : 'symbol' : '1.0-0'}}</label></th>
+                <th>Rete fuente</th>
+                <th><label class="color_res">{{data.val_percentage_rete_fuente|currency : 'USD' : 'symbol' : '1.0-0'}}</label></th>
+            </tr>
+            <tr>
+                <th>Comisión pago</th>
+                <th><label class="color_res">{{data.val_percentage_commision_payment|currency : 'USD' : 'symbol' : '1.0-0'}}</label></th>
+                <th>Comisión venta</th>
+                <th><label class="color_res">{{data.val_percentage_sale|currency : 'USD' : 'symbol' : '1.0-0'}}</label></th>
+            </tr>
+            <tr>
+                <th>Iva sobre comisión</th>
+                <th><label class="color_res">{{data.val_percentage_commision_tax|currency : 'USD' : 'symbol' : '1.0-0'}}</label></th>
+                <th>Total abono</th>
+                <th><label class="color_res">{{data.total_balance|currency : 'USD' : 'symbol' : '1.0-0'}}</label></th>
+            </tr>
+            <tr>
+                <td><b>Estado</b></td>
+                <td *ngIf="data.state_id === '1'" colspan="3">
+                    <strong>{{data.name_state}}</strong>
+                </td>
+                <td *ngIf="data.state_id === '2'" colspan="3">
+                    <strong>{{data.name_state}}</strong>
+                </td>
+                <td *ngIf="data.state_id === '3'" colspan="3">
+                    <strong>{{data.name_state}}</strong>
+                </td>
+                <td *ngIf="data.state_id === '4'" colspan="3">
+                    <strong>{{data.name_state}}</strong>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="py-1">
+        <div class="fx-layout-row-wrap fx-layout-align-start-center col-gap">
+            <div *ngFor="let item of data.image_gallery">
+                <img width="626" height="800" class="img_size" src="{{ item }}" alt="cart Image">
+            </div>
+            <div class="fx-flex-xs-100 fx-flex-sm-100 fx-flex-md-100 fx-flex-lg-100 fx-flex-xl-100 size_card">
+                <div class="text-right">
+                    <div class="table-responsive-x">
+                        <table class="mb-3">
+                            <thead>
+                                <tr>
+                                    <th>Prod</th>
+                                    <th *ngIf="data.type_service_id == 1">Cod</th>
+                                    <th>Precio</th>
+                                    <th>cantidad</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of adminprList">
+                                    <!-- <th><label class="color_res">{{ item.name_product }}</label></th> -->
+
+                                    <th><label class="color_res">
+                                            <img class="img-circle inline-block"
+                                                src="{{img_product_rout}}{{item.image}}"
+                                                style=" border-radius: 10%; width: 80px;" *ngIf="data.type_service_id == 1">
+                                            {{ item.name_pr }}
+                                        </label></th>
+
+                                    <th *ngIf="data.type_service_id == 1"><label class="color_res">{{ item.product_code }}</label> </th>
+                                    <th><label class="color_res">{{ item.unit_price|currency : 'USD' : 'symbol' :
+                                            '1.0-0' }}</label></th>
+                                    <th><label class="color_res">{{ item.quantity }}</label></th>
+                                    <th><label class="color_res">{{ item.total_price|currency : 'USD' : 'symbol' : '1.0-0' }}</label></th>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" *ngIf="data.type_service_id == 1"><b>Total</b></td>
+                                    <td colspan="3" *ngIf="data.type_service_id == 2"><b>Total</b></td>
+                                    <td>
+                                        <strong>{{data.total_price|currency : 'USD' : 'symbol' : '1.0-0'}}</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</cdk-virtual-scroll-viewport>

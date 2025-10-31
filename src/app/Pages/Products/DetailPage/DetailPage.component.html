@@ -1,0 +1,8 @@
+<ng-container *ngIf="productsGrid">    
+    <div class="inner-container">
+        <div class="product-detail-page">
+            <embryo-ShopDetails [currency]="embryoService?.currency" [detailData]="productsGrid">
+            </embryo-ShopDetails>
+        </div>
+    </div>
+</ng-container>

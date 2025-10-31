@@ -1,0 +1,73 @@
+<form [formGroup]="loginfrontForm" class="swiftly-form">
+    <!-- Email Field -->
+    <div class="swiftly-field-group">
+        <label class="swiftly-label">E-MAIL</label>
+        <div class="swiftly-input-container">
+            <mat-icon class="swiftly-input-icon">email</mat-icon>
+            <input type="email" 
+                   placeholder="e-mail registrado" 
+                   formControlName="username" 
+                   autocomplete="email"
+                   class="swiftly-input"
+                   required>
+        </div>
+        <div *ngIf="loginfrontForm.controls['username'].touched && !loginfrontForm.controls['username'].valid" class="swiftly-error">
+            <div *ngIf="loginfrontForm.controls['username'].hasError('required')">
+                Debes ingresar un email.
+            </div>
+            <div *ngIf="loginfrontForm.controls['username'].hasError('pattern')">
+                Formato email no válido
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Field -->
+    <div class="swiftly-field-group">
+        <label class="swiftly-label">CONTRASEÑA</label>
+        <div class="swiftly-input-container">
+            <mat-icon class="swiftly-input-icon">lock</mat-icon>
+            <input [type]="showPassword ? 'text' : 'password'" 
+                   placeholder="Contraseña" 
+                   formControlName="password" 
+                   autocomplete="current-password"
+                   class="swiftly-input"
+                   required>
+            <mat-icon class="swiftly-input-icon-right" 
+                      (click)="togglePasswordVisibility()"
+                      style="cursor: pointer;">
+                {{ showPassword ? 'visibility_off' : 'visibility' }}
+            </mat-icon>
+        </div>
+        <div *ngIf="loginfrontForm.get('password').hasError('required') && loginfrontForm.get('password').touched" class="swiftly-error">
+            Este campo es obligatorio.
+        </div>
+    </div>
+
+    <!-- Error Message -->
+    <div class="swiftly-error-message" *ngIf="show">
+        <mat-icon class="swiftly-error-icon">error</mat-icon>
+        <span>Usuario o contraseña incorrectos</span>
+    </div>
+
+    <!-- Forgot Password Link -->
+    <div class="swiftly-forgot-password">
+        <a [routerLink]="['/session/forgot-password']" class="swiftly-forgot-link">
+            ¿Olvidaste tu contraseña?
+        </a>
+    </div>
+
+    <!-- Submit Button -->
+    <button class="swiftly-login-button" mat-raised-button (click)="login_front()">
+        <span>Ingresar</span>
+        <mat-icon class="swiftly-button-icon">arrow_forward</mat-icon>
+    </button>
+
+    <!-- Register Section -->
+    <div class="swiftly-register-section">
+        <p class="swiftly-register-text">No tienes cuenta?</p>
+        <button class="swiftly-register-button" type="button" [routerLink]="['/session/signup']">
+            <span>Registrarse</span>
+            <mat-icon class="swiftly-button-icon">arrow_forward</mat-icon>
+        </button>
+    </div>
+</form>

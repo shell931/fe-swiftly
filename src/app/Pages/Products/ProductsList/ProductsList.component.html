@@ -1,0 +1,224 @@
+<div class="main-container">
+
+    <!-- Carrusel a ancho completo fuera del container -->
+    <swiper-container
+        class="slider_home"
+        loop="true"
+        autoplay="true"
+        autoplay-delay="3000"
+        pagination="true"
+        pagination-clickable="true"
+        navigation="true"
+        slides-per-view="1"
+        space-between="0"
+        effect="slide"
+        speed="600"
+        auto-height="true"
+    >
+        <swiper-slide>
+            <img src="assets/images/BANNER3swift.jpg" alt="Banner 1" loading="lazy" />
+        </swiper-slide>
+        <swiper-slide>
+            <img src="assets/images/Banner3Swiftly.jpg" alt="Banner 2" loading="lazy" />
+        </swiper-slide>
+        <swiper-slide>
+            <img src="assets/images/New2.jpg" alt="Banner 3" loading="lazy" />
+        </swiper-slide>
+    </swiper-container>
+    
+
+    <!-- banner (moved out of .container to allow wider display) -->
+    <div class="banners1 banners horizontal-banners banner-bleed" fxShow="false" fxHide.gt-sm="false">
+        <div class="horizontal-row">
+            <div class="banner-item" data-title="AUDIFONOS Y ACCESORIOS">
+                <figure> 
+                    <img src="assets/kompralostyle/image/catalog/banners/id3-bn1.jpg" alt="Audífonos y Accesorios"> 
+                </figure>
+            </div>
+            <div class="banner-item" data-title="MODA Y ESTILO">
+                <figure> 
+                    <img src="assets/kompralostyle/image/catalog/banners/id3-bn2.jpg" alt="Moda y Estilo"> 
+                </figure>
+            </div>
+            <div class="banner-item" data-title="MUEBLES PARA EL HOGAR">
+                <figure> 
+                    <img src="assets/kompralostyle/image/catalog/banners/id3-bn3.jpg" alt="Muebles para el Hogar"> 
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <div class="container container-wide">
+
+        <div class="box-content1">
+
+        </div>
+
+        <!-- Contenedor de servicios eliminado y reemplazado por diálogo promocional -->
+
+
+        <!-- Main Layout with Sidebar -->
+        <div class="destacados-grid">
+            <!-- Left Sidebar -->
+            <div class="sidebar-banners">
+
+                <!-- Banner 4 - Additional Banner 1 -->
+                <div class="sidebar-banner banner-4">
+                    <div class="banner-content">
+                        <div class="banner-image">
+                            <img src="assets/kompralostyle/image/catalog/banners/id2-banner1.jpg" alt="Banner 4">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner 5 - Additional Banner 2 -->
+                <div class="sidebar-banner banner-5">
+                    <div class="banner-content">
+                        <div class="banner-image">
+                            <img src="assets/kompralostyle/image/catalog/banners/id2-banner2.jpg" alt="Banner 5">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner 6 - Viajes 1 -->
+                <div class="sidebar-banner banner-6">
+                    <div class="banner-content">
+                        <div class="banner-image">
+                            <img src="assets/kompralostyle/image/catalog/banners/banners-viajes-1.png" alt="Viajes 1">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner 7 - Viajes 2 -->
+                <div class="sidebar-banner banner-7">
+                    <div class="banner-content">
+                        <div class="banner-image">
+                            <img src="assets/kompralostyle/image/catalog/banners/banners-viajes-2.png" alt="Viajes 2">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner 8 - Viajes 3 -->
+                <div class="sidebar-banner banner-8">
+                    <div class="banner-content">
+                        <div class="banner-image">
+                            <img src="assets/kompralostyle/image/catalog/banners/banners-viajes-3.png" alt="Viajes 3">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner 9 - Viajes 4 -->
+                <div class="sidebar-banner banner-9">
+                    <div class="banner-content">
+                        <div class="banner-image">
+                            <img src="assets/kompralostyle/image/catalog/banners/banners-viajes-4.png" alt="Viajes 4">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner 10 - Viajes 5 -->
+                <div class="sidebar-banner banner-10">
+                    <div class="banner-content">
+                        <div class="banner-image">
+                            <img src="assets/kompralostyle/image/catalog/banners/banners-viajes-5.png" alt="Viajes 5">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="products-area">
+                <h2 class="section-title">PRODUCTOS DESTACADOS</h2>
+                
+                <!-- Featured Products Grid -->
+                <div class="products-grid" fxLayout="row wrap">
+                    <mat-card class="example-card card_store_prod" fxFlex="25%" fxFlex.xs="50%" fxFlex.sm="50%" *ngFor="let card of productsGrid; let i = index">
+                        <mat-card-content class="product-content producto_destacado relative">
+                            <a class="p-link link_producto" *ngIf="!card?.id" [routerLink]="[card?.route_product]">
+                                <img class="img_size image_pixeled" mat-card-image [defaultImage]="card?.image" [lazyLoad]="card?.image" (error)="onImageError($event)">
+                            </a>
+                            <a class="p-link" *ngIf="card?.id" [routerLink]="['/products', card?.type, card?.id_product]">
+                                <img class="img_size image_pixeled" mat-card-image [src]="card?.image" [defaultImage]="card?.image" [lazyLoad]="card?.image" (error)="onImageError($event)">
+                            </a>
+                            <div class="right-block">
+                                <h6 class="titulo_producto"><a *ngIf="card?.id_product" [routerLink]="['/products', card?.type, card?.id_product]" class="title-link">{{ (card?.name?.length > 26) ? (card?.name | slice:0:26) + '…' : card?.name }}</a></h6>
+                                <h6 class="titulo_producto"><a *ngIf="!card?.id_product" [routerLink]="[card?.route_product]" class="title-link">{{ (card?.name?.length > 26) ? (card?.name | slice:0:26) + '…' : card?.name }}</a></h6>
+                                <p class="price"><span class="price-new">{{card?.price | currency : 'USD' : 'symbol' : '1.0-0'}}</span></p>
+                                <p class="price red"><span class="price-red">{{card?.price | currency : 'USD' : 'symbol' : '1.0-0'}} <img class="cards" src="assets/images/tarjetas.png"/> </span></p>
+                                <button (click)="productAddToWishlist(card, i+'-wishlist')" [id]="i+'-wishlist'" type="button" class="wishlist btn-button" [class.wishlist-active]="checkWishlistAlready(card)" title="Añadir a lista de deseos">
+                                    <i [class]="checkWishlistAlready(card) ? 'fa fa-heart' : 'fa fa-heart-o'"></i>
+                                </button>
+                                <div class="btn_comprar" *ngIf="checkCartAlready(card)">
+                                    <button mat-mini-fab (click)="addToCartProduct(card)" class="btn-button"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                </div>
+                                <div class="btn_comprar" *ngIf="!checkCartAlready(card)">
+                                    <button class="btn-button" mat-mini-fab *ngIf="card?.id_product" [routerLink]="['/products', card?.type, card?.id_product]"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                </div>
+                                <span class="deliveryicon"><img src="assets/images/shipping-fast-solid.svg" /> Envío gratis</span>
+                                <bar-rating [(rate)]="card.rating" [max]="5"></bar-rating>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                
+                <!-- VER MAS PRODUCTOS BUTTON -->
+                <div class="ver-mas-productos-section" style="text-align: center; margin: 30px 0;">
+                    <button class="btn btn-block transparent-btn" (click)="extendGridStructure()">
+                        VER MAS PRODUCTOS
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TIENDAS DESTACADAS SECTION -->
+        <div class="stores-section">
+            <div class="stores-area">
+                <h2 class="section-title">TIENDAS DESTACADAS</h2>
+                
+                <!-- Featured Stores Grid -->
+                <div class="stores-grid" fxLayout="row wrap">
+                    <mat-card class="example-card card_store" fxFlex="25%" fxFlex.xs="50%" fxFlex.sm="33%" *ngFor="let store of obsStore | async; let i = index">
+                        <mat-card-content class="store-content">
+                            <a class="p-link link_tienda" [routerLink]="[store?.route_store]">
+                                <img class="store-logo" mat-card-image [src]="store?.logo_store" [ngClass]="{ transparent: !loaded }" (load)="onLoad()" alt="Store Logo">
+                            </a>
+                            <div class="store-info">
+                                <h6 class="store-name"><a [routerLink]="[store?.route_store]" class="title-link">{{store?.name_store}}</a></h6>
+                                <p class="store-description">{{store?.description}}</p>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- GARANTÍAS SECTION - HORIZONTAL LAYOUT - FULL WIDTH -->
+    <div class="guarantees-section">
+        <div class="guarantees-container" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
+            <div class="guarantee-item" fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="30%">
+                <div class="guarantee-content">
+                    <img class="icon_home" src="assets/kompralostyle/image/catalog/banners/reclamacion.svg" alt="image">
+                    <h4><b>1. Indica tu inconformidad</b></h4>
+                    <p>Si tienes alguna inconformidad con tu producto, garantizaremos el retorno de tu dinero.</p>
+                </div>
+            </div>
+            <div class="guarantee-item" fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="30%">
+                <div class="guarantee-content">
+                    <img class="icon_home" src="assets/kompralostyle/image/catalog/banners/charla.svg" alt="image">
+                    <h4><b>2. Respuesta y atención del vendedor</b></h4>
+                    <p>Establecemos un plazo para la respuesta y atención del vendedor, nuestro equipo intervendrá por una respuesta oportuna.</p>
+                </div>
+            </div>
+            <div class="guarantee-item" fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="30%">
+                <div class="guarantee-content">
+                    <img class="icon_home" src="assets/kompralostyle/image/catalog/banners/reclamacion.svg" alt="image">
+                    <h4><b>3. Si no hay solución devolvemos tu dinero</b></h4>
+                    <p>En menos de 24 horas tu dinero estará de vuelta.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

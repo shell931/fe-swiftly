@@ -1,0 +1,39 @@
+
+<!-- <embryo-PageTitle heading="Checkout"></embryo-PageTitle> -->
+
+<div class="bg-white shop-by-category section-gap" *ngIf="(embryoService.localStorageCartProducts && embryoService.localStorageCartProducts.length>0); else elseBlock">
+  <div class="checkout-option">
+    <div class="container">
+      <div class="view-cart text-right mb-5">
+        <button class="button_detail_purchase" mat-raised-button color="accent" (click)="toggleRightSidenav()">Ver detalles de la compra.:
+          {{getCartProducts() | currency:embryoService?.currency}}</button>
+      </div>
+      <div fxLayout="row wrap" fxLayoutAlign="none" class="col-gap">
+        <div fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" class="aling_login">
+          <mat-card>
+            <h4><b>..</b></h4>
+           <embryo-SignIn></embryo-SignIn>
+          </mat-card>
+        </div>
+        <!-- <div fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
+          <mat-card>
+            <h4>Realizar pago sin cuenta</h4>
+            <p>Proceder al pago y crear una cuenta despues.</p>
+            <button color="accent" class="button-lg mb-3" mat-raised-button [routerLink]="['/checkout/payment']">Continuar</button>
+          </mat-card>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <div class="section-gap-lg text-center">
+    <div class="mb-4">
+    <svg width="128" height="128" viewBox="0 0 24 24" fill="none">
+      <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="#34d399"/>
+    </svg>
+  </div>
+    <h4> Tu carrito de compras está vacío.</h4>
+    <a href="javascript:void(0)" class="primary-color" [routerLink]="['/']">Continuar Comprando</a>
+  </div>
+</ng-template>

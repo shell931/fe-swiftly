@@ -1,0 +1,86 @@
+/* Host component must be visible */
+:host {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.logoimg{
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  -webkit-transition: all 0.12s ease-in-out;
+  -moz-transition: all 0.12s ease-in-out;
+  transition: all 0.12s ease-in-out;
+  object-fit: contain;
+}
+
+.fixedlogo{
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-height: none !important;
+  width: auto;
+  -webkit-transition: all 0.12s ease-in-out;
+  -moz-transition: all 0.12s ease-in-out;
+  transition: all 0.12s ease-in-out;
+}
+
+/* Mobile-first: logo size to fit header */
+@media (max-width: 640px) {
+  .logoimg {
+    max-height: 28px !important;
+    height: auto !important;
+  }
+  .fixedlogo { 
+    max-height: 28px !important;
+    height: auto !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 991px) {
+  .logoimg { 
+    max-height: 35px !important;
+    height: auto !important;
+  }
+  .fixedlogo { 
+    max-height: 35px !important;
+    height: auto !important;
+  }
+}
+
+/* Desktop: reasonable size that fits in header */
+@media (min-width: 992px) {
+  /* Force logo size 40px on desktop to fit header */
+  .logoimg { 
+    max-height: 40px !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+  .fixedlogo { 
+    max-height: 40px !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+}
+
+/* Force logo size to fit header on tablet/mobile as well */
+@media (max-width: 991px) {
+  .logoimg, .fixedlogo {
+    max-height: 35px !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+}
+
+/* Ensure images scale inside header containers */
+.logoimg img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: inherit;
+}
+

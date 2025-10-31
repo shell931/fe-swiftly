@@ -1,0 +1,89 @@
+.promo-dialog {
+  position: relative;
+  width: 95vw;
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.promo-image {
+  width: 100%;
+  height: auto;
+  max-height: 95vh;
+  border-radius: 0;
+  display: block;
+}
+
+/* Desktop: make dialog narrower so images aren't huge */
+@media (min-width: 1024px) {
+  .promo-dialog {
+    width: 480px;
+    max-width: 480px;
+  }
+  .promo-image {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Force remove Material dialog rounded corners and padding */
+:host ::ng-deep .mat-dialog-container {
+  border-radius: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+:host ::ng-deep .cdk-overlay-pane {
+  border-radius: 0 !important;
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 28px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  z-index: 5;
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+/* Tablet: reduce size so images aren't too large */
+@media (min-width: 601px) and (max-width: 1023px) {
+  .promo-dialog {
+    width: 70vw;
+    max-width: 600px;
+  }
+  .promo-image {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .promo-dialog {
+    width: 95vw;
+    max-width: 95vw;
+  }
+  .close-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 26px;
+    line-height: 44px;
+    right: 4px;
+    top: 4px;
+  }
+}
+
+/* Removed mobile text close bar per UX request */
+
+

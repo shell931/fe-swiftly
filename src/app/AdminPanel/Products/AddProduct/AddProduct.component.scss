@@ -1,0 +1,53 @@
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: black;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.overlay {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.286);
+    z-index: 10;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+.mat-drawer-container {
+    background-color: #687492;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.dropZoneColor {
+    border: 3px dotted rgba(0,0,0,0.08);
+    background-color: rgba(0,0,0,0.12)
+  }
+  
+  .header {    
+    text-align: center;    
+    background:blue;    
+    color: white;    
+    font-size: 20px;    
+  }   
+
+  .dropzone .dz-preview .dz-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .button_create{
+    margin-top: 35px;
+  }
+
+  .img_up{
+    max-width: 100%;
+  }

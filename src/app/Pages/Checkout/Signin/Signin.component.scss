@@ -1,0 +1,18 @@
+.aling_login{
+    margin-left: 360px;
+}
+.button_detail_purchase{
+    margin-right: 462px;
+}
+
+@media (max-width: 767px) {
+    .aling_login{
+        margin-left: 0px;
+    }
+    .button_detail_purchase{
+        margin-right: 230px;
+    }
+    .mat-card{
+        width: 502px;
+    }
+}

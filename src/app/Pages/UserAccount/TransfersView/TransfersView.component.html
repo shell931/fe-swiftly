@@ -1,0 +1,49 @@
+<mat-sidenav-container>
+    <mat-sidenav class="em-sidebar" #TransfersDetailSidenav [(opened)]="embryoService.TransfersDetailSidebarOpen" position="end" mode="over">
+        <embryo-TransfersDetailSidebar></embryo-TransfersDetailSidebar>
+    </mat-sidenav>
+</mat-sidenav-container>
+<div class="row">
+    <div class="col-sm-4">
+        <p><b>Fecha</b></p>
+        <p>{{created_at}}</p>
+    </div>
+    <div class="col-sm-4">
+        <p><b>Número de cuenta</b></p>
+        <p>{{account_number}}</p>
+    </div>
+    <div class="col-sm-4">
+        <p><b>Banco</b></p>
+        <p>{{bank}}</p>
+    </div>
+    <div class="col-sm-4">
+        <p><b>Referencia</b></p>
+        <p>{{reference}}</p>
+    </div>
+    <div class="col-sm-4">
+        <p><b>Responsable</b></p>
+        <p>{{responsible}}</p>
+    </div>
+    <div class="col-sm-4">
+        <p><b>Estado</b></p>
+        <p>{{state}}</p>
+    </div>
+    <div class="col-sm-4">
+        <p><b>Tipo de cuenta</b></p>
+        <p>{{typeaccount}}</p>
+    </div>
+    <div class="col-sm-4">
+        <p><b>Valor solicitado</b></p>
+        <p>{{val_request|currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+    </div>
+    <div class="col-sm-4">
+        <p><b>Valor transferido </b></p>
+        <p> {{val_transfer|currency : 'USD' : 'symbol' : '1.0-0'}} </p>
+    </div>
+</div>
+
+<div class="mb-4">
+    <button mat-raised-button color="accent" (click)="DetailTransferInv()">
+        Detalle
+    </button>
+</div>

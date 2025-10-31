@@ -1,0 +1,46 @@
+<mat-card>
+    <div fxLayout="row wrap" class="col-gap">
+        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100">
+            <mat-list>
+                <div class="dash-title mb-4 ml-3" align="center">
+                    <div>
+                        <p class="black_subtitle">Solicitud de transferencia realizada</p>
+                        <p class="black_subtitle">Dentro de las proximas 72 horas se enviara el dinero a tu cuenta</p>
+                    </div>
+                    <div class="col-md-3 mb-5">
+                        <div class="row" align="left">
+                            <div class="col-md-6">
+                                <p class="black_subtitle">Valor solicitado:</p>
+                                <p>{{val_request|currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+                            </div>                            
+                            <div class="col-md-6">
+                                <p class="black_subtitle">Referencia:</p>
+                                <p>{{reference}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="black_subtitle">Número de cuenta:</p>
+                                <p>{{account_number}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="black_subtitle">Encargado:</p>
+                                <p>{{responsible}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="black_subtitle">Banco:</p>
+                                <p>{{bank}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="black_subtitle">Tipo de cuenta:</p>
+                                <p>{{typeaccount}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="black_subtitle">Estado:</p>
+                                <p>{{state}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-list>
+        </div>
+    </div>
+</mat-card>

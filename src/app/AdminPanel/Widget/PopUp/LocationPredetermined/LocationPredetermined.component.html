@@ -1,0 +1,64 @@
+<cdk-virtual-scroll-viewport class="m-0 p-0 invoice-popup" style="height: 500px;">
+   <div class="bg-white final-receipt-page">
+      <div class="final-receipt">
+         <mat-card class="pt-0 w-100 m-0">
+            <div id="payment-receipt">
+               <h4 class="mb-4">Ubicaciones</h4>
+               <div class="py-1">
+
+
+                  <mat-card class="example-card mt-5" *ngFor="let location of data; last as last">
+
+                     <div class="row">
+                        <div class="col-md-6">
+                           <mat-card-title class="plabel" *ngIf="location.predetermined==true">Predeterminada
+                           </mat-card-title>
+                           <mat-card-title>
+                              {{location.via}} #{{location.number}}
+                              -
+                              {{location.sn}}
+                           </mat-card-title>
+                           <mat-card-subtitle>{{location.neighborhood}}</mat-card-subtitle>
+                           <mat-card-subtitle>{{location.nameci}} - {{location.departament}}</mat-card-subtitle>
+                           <mat-card-subtitle>{{location.neighborhood}}</mat-card-subtitle>
+                           <mat-card-subtitle>{{location.additional_data}}</mat-card-subtitle>
+                           <mat-card-subtitle>{{location.contact}} - {{location.phone}}</mat-card-subtitle>
+
+                        </div>
+                        <div class="col-md-6" align="right">
+                           <button mat-mini-fab class="" [matMenuTriggerFor]="loginuser">
+                              <i class="material-icons mr-1">more_vert</i>
+                           </button>
+                           <mat-menu #loginuser="matMenu">
+                              <button mat-menu-item (click)="editLocation(location.id)" mat-dialog-close><i
+                                    class="material-icons mr-1">edit</i><span>Editar</span></button>
+                              <button mat-menu-item (click)="predetermined(location.id)"><i
+                                    class="material-icons mr-1">done_outline</i><span>Establecer
+                                    predeterminada</span></button>
+                              <button mat-menu-item (click)="deleteLocation(location.id)"><i
+                                    class="material-icons mr-1">restore_from_trash</i><span>Eliminar</span></button>
+                           </mat-menu>
+                        </div>
+                     </div>
+                  </mat-card>
+                  <div class="fx-layout-row-wrap fx-layout-align-start-center col-gap">
+                     <div class="fx-flex-xs-100 fx-flex-sm-100 fx-flex-md-100 fx-flex-lg-100 fx-flex-xl-100 size_card">
+
+
+
+
+
+
+                     </div>
+                  </div>
+
+
+               </div>
+            </div>
+         </mat-card>
+      </div>
+      <!-- final-receipt -->
+   </div>
+   <!-- final-receipt-page -->
+</cdk-virtual-scroll-viewport>
+<!-- invoice-popup -->

@@ -1,0 +1,52 @@
+<div class="sidebar-panel" fxLayout="column">
+    <nav class="app-side-nav">
+        <div class="">
+            <div class="side-cart-head">
+                <p>
+                    <button (click)="close()" mat-fab color="accent" style="width: 40px;height: 40px;">
+                        <span class="material-icons">close</span>
+                    </button>
+                </p>
+                <div class="mb-3"> <i class="material-icons color-black-font">
+                    currency_exchange
+                    </i></div>
+
+                {{refer_transfer}}
+            </div>
+
+            <div class="side-cart-list px-4" *ngFor="let ob of getData()">
+                <div style="display: flex;justify-content: space-between">
+                    <div style="flex-shrink: 1;">
+
+                        <p class="data-ubication"><b>Referencia factura:</b></p>
+                        <p class="data-ubication">{{ob.reference_invoice }}</p>
+
+                        <p class="data-ubication"><b>Fecha:</b></p>
+                        <p class="data-ubication">{{ob.created_at }}</p>
+
+                        <p class="data-ubication"><b>Estado:</b></p>
+                        <p class="data-ubication">{{ob.state }}</p>
+
+                        <p class="data-ubication"><b>Total sin descuentos:</b></p>
+                        <p class="data-ubication">{{ob.total_price|currency : 'USD' : 'symbol' : '1.0-0'}} COP</p>
+
+                        <p class="data-ubication"><b>Total:</b></p>
+                        <p class="data-ubication">{{ob.total_balance|currency : 'USD' : 'symbol' : '1.0-0'}} COP</p>
+
+                    </div>
+                </div>
+                <hr class="spacer">
+            </div>
+            <hr class="spacer">
+            <div class="mb-1">
+                <h4>Total solicitado</h4><span fxFlex></span>
+                <h4> {{val_request|currency : 'USD' : 'symbol' : '1.0-0'}} COP </h4>
+            </div>
+            <div class="">
+                <h4>Total transferido</h4><span fxFlex></span>
+                <h4> {{val_transfer|currency : 'USD' : 'symbol' : '1.0-0'}} COP </h4>
+            </div>
+
+        </div>
+    </nav>
+</div>

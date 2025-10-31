@@ -1,0 +1,105 @@
+@use '../../../../assets/scss/_table_general.scss';
+
+.mat-card-image {
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: 2rem;
+}
+
+mat-card {
+  box-shadow: none !important;
+}
+
+mat-card p {
+  box-shadow: none !important;
+}
+
+.mat-line {
+  font-size: 1rem;
+  border-bottom: 1px solid #eee;
+  padding: 0.5em 0;
+}
+
+h4 {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.mat-fab {
+  width: 30px;
+  height: 30px;
+  background: #79dc78 !important;
+}
+
+.mat-fab i {
+  font-size: 15px;
+}
+
+.borrar {
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  background: #ff5722;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 20px;
+  padding-top: 5px;
+}
+
+.borrar i {
+  font-size: 15px;
+  color: #fff;
+}
+
+.mat-card {
+  box-shadow: none !important;
+}
+
+.class_aprobed {
+  background-color: #c0f48f;
+  color: rgba(0, 0, 0, .87);
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 2px 7px;
+  margin: 0 12px 0 0;
+  border-radius: 5px;
+  font-size: 13px;
+  width: 180px;
+}
+
+.class_platform {
+  background-color: #acc3f6;
+  color: rgba(0, 0, 0, .87);
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 2px 7px;
+  margin: 0 12px 0 0;
+  border-radius: 5px;
+  font-size: 13px;
+  width: 180px;
+}
+
+.class_reject {
+  background-color: #f25567;
+  color: rgba(0, 0, 0, .87);
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 2px 7px;
+  margin: 0 12px 0 0;
+  border-radius: 5px;
+  font-size: 13px;
+  width: 180px;
+}
+
+input {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  outline: none;
+  height: 30px;
+  border-radius: 5px;
+}
