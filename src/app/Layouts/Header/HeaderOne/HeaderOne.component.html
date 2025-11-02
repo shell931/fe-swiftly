@@ -1,6 +1,6 @@
 
 <!-- HEADER -->
-<header id="header" class="dark kompraloheader">
+<header id="header" class="kompraloheader">
   <!-- HEADER FIXED - REDESIGNED COMPLETELY -->
   <div class="header-middle fixedheader">
     <div class="container-fluid">
@@ -17,12 +17,12 @@
             </a>
           </div>
         </div>
-        
+
         <!-- Bottom row: Search bar -->
         <div class="mobile-search-row">
           <form class="modern-search search-form" (ngSubmit)="getPostsEnter($event)">
             <div class="search-wrapper">
-              <input 
+              <input
                 placeholder="Buscar productos"
                 class="search-input"
                 #searchInput
@@ -62,7 +62,7 @@
             <div class="search-container">
               <form class="modern-search search-form" (ngSubmit)="getPostsEnter($event)">
                 <div class="search-wrapper">
-                  <input 
+                  <input
                     placeholder="Buscar productos"
                     class="search-input"
                     #searchInput
@@ -118,7 +118,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Navigation Bar -->
     <div class="navigation-bar">
       <div class="container-fluid">
@@ -140,7 +140,7 @@
               </a>
             </li>
           </ul>
-          
+
           <ul class="menu3 top-link list-inline">
             <li class="account">
               <a *ngIf="show_add" [routerLink]="['/session/signin']" class="btn-xs">ACCEDER / REGISTRAR</a>
@@ -310,6 +310,6 @@
         </embryo-WishList>
       </a>
     </li>
-    
+
   </ul>
 </div>

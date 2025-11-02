@@ -160,7 +160,7 @@ export class HeaderOneComponent implements OnInit, OnDestroy {
 
       // Check current route and set cart page flag
       this.checkCurrentRoute();
-      
+
       // Subscribe to route changes
       this.router.events.subscribe((event) => {
          if (event instanceof NavigationEnd) {
@@ -180,12 +180,12 @@ export class HeaderOneComponent implements OnInit, OnDestroy {
       const id_type_user = localStorage.getItem('id_type_user');
       const store = localStorage.getItem('id-store');
       this.id_store = store;
-      
+
       console.log('=== DEBUG AUTHENTICATION ===');
       console.log('token_front:', token_front);
       console.log('id_type_user:', id_type_user);
       console.log('store:', store);
-      
+
       if (token_front) {
          this.show_add = false;
          if (id_type_user == "2") {
@@ -215,7 +215,7 @@ export class HeaderOneComponent implements OnInit, OnDestroy {
          this.show_acces_sell = true;
          console.log('No token - showing login menu');
       }
-      
+
       console.log('Final menu state:');
       console.log('show:', this.show);
       console.log('show_store_pr:', this.show_store_pr);
@@ -335,18 +335,18 @@ trackByCategoryId(index: number, item: any): any {
       console.log('=== TOGGLE MOBILE MENU ===', this.isMobileMenuOpen);
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
    }
-   
+
    public closeMobileMenu() {
       this.isMobileMenuOpen = false;
    }
-   
+
    @HostListener('document:keydown.escape', ['$event'])
    onEscapeKey(event: KeyboardEvent) {
       if (this.isMobileMenuOpen) {
          this.closeMobileMenu();
       }
    }
-   
+
 
    public onMenuClick(menuItem: string) {
       console.log('=== MENU CLICK ===', menuItem);
@@ -362,12 +362,12 @@ trackByCategoryId(index: number, item: any): any {
       // Cerrar si el click es en el backdrop (mainMenu) o fuera del contenido
       const target = event.target as HTMLElement;
       const currentTarget = event.currentTarget as HTMLElement;
-      
+
       // Si el click es en el div mainMenu directamente (backdrop) o fuera de la lista
       if (target === currentTarget || target.classList.contains('mainMenu')) {
          this.isMobileMenuOpen = false;
       }
-      
+
       // También cerrar si el click es fuera de .table-cell (el contenido)
       if (!target.closest('.table-cell') && target.closest('.mainMenu')) {
          this.isMobileMenuOpen = false;
@@ -377,20 +377,20 @@ trackByCategoryId(index: number, item: any): any {
    public directRemoveProduct(value: any) {
       console.log('=== ELIMINANDO PRODUCTO DIRECTAMENTE EN HEADER ===');
       console.log('Value:', value);
-      
+
       // ELIMINAR DIRECTAMENTE
       this.embryoService.removeLocalCartProduct(value);
-      
+
       console.log('=== PRODUCTO ELIMINADO DEL SERVICIO ===');
    }
 
    public handleUpdateQuantity(value: any) {
       console.log('=== ACTUALIZANDO CANTIDAD EN HEADER ===');
       console.log('Producto con nueva cantidad:', value);
-      
+
       // Actualizar cantidad sin mostrar notificaciones
       this.embryoService.updateCartProductQuantity(value);
-      
+
       console.log('=== CANTIDAD ACTUALIZADA EN EL SERVICIO ===');
       console.log('Nueva cantidad:', value.quantity);
    }
@@ -398,13 +398,13 @@ trackByCategoryId(index: number, item: any): any {
    public handleEditProduct(value: any) {
       console.log('=== EDITANDO PRODUCTO EN HEADER ===');
       console.log('Producto editado:', value);
-      
+
       // Primero remover el producto anterior
       this.embryoService.removeLocalCartProduct(value);
-      
+
       // Luego agregar el producto con la nueva cantidad
       this.embryoService.addToCart(value);
-      
+
       console.log('=== PRODUCTO ACTUALIZADO EN EL SERVICIO ===');
       console.log('Nueva cantidad:', value.quantity);
    }
@@ -581,12 +581,11 @@ trackByCategoryId(index: number, item: any): any {
       // Wait for DOM to be ready
       setTimeout(() => {
          // Try multiple selectors to find the header
-         this.headerElement = document.querySelector('header.kompraloheader') || 
+         this.headerElement = document.querySelector('header.kompraloheader') ||
                              document.querySelector('#header') ||
                              document.querySelector('header') ||
-                             document.querySelector('.fixedheader') ||
                              document.querySelector('.header-middle');
-         
+
          if (this.headerElement) {
             // Add initial styles
             this.headerElement.style.transition = 'transform 0.3s ease-in-out';
@@ -605,10 +604,10 @@ trackByCategoryId(index: number, item: any): any {
 
       // Re-find header element if not found initially
       if (!this.headerElement) {
-         this.headerElement = document.querySelector('header.kompraloheader') || 
+         this.headerElement = document.querySelector('header.kompraloheader') ||
                              document.querySelector('#header') ||
                              document.querySelector('header') ||
-                             document.querySelector('.fixedheader') ||
+
                              document.querySelector('.header-middle');
       }
 
@@ -659,10 +658,10 @@ trackByCategoryId(index: number, item: any): any {
    // Ensure header is visible and properly initialized
    private ensureHeaderVisibility() {
       if (!this.headerElement) {
-         this.headerElement = document.querySelector('header.kompraloheader') || 
+         this.headerElement = document.querySelector('header.kompraloheader') ||
                              document.querySelector('#header') ||
                              document.querySelector('header') ||
-                             document.querySelector('.fixedheader') ||
+
                              document.querySelector('.header-middle');
       }
 

@@ -31,48 +31,7 @@ $light-gray: #e0e0e0;
 }
 
 
-header.kompraloheader {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  z-index: 99999 !important; 
-  background: $bg-dark !important;
-  color: $white !important;
-  border-bottom: 1px solid #e9ecef;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
-  transform: translateY(0) !important;
-  transition: none !important;
-  pointer-events: auto !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  
-  * {
-    pointer-events: auto !important;
-  }
-  
 
-  a, button, input, [matMenuTriggerFor], [routerLink], .menu-icon, .search-button, .search-input {
-    pointer-events: auto !important;
-    cursor: pointer !important;
-    z-index: 10 !important;
-    position: relative !important;
-  }
-  
-  a, .megamenu > li > a, .menu3 a {
-    color: $white !important;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  ::ng-deep .btn-shopping-cart,
-  ::ng-deep .wishlist-btn,
-  .mobile-menu-btn .menu-icon {
-    color: $white !important;
-    background-color: transparent;
-  }
-}
 
 .header-middle {
   background: $bg-dark !important;
@@ -84,7 +43,7 @@ header.kompraloheader {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  
+
   &::before {
     content: "";
     position: absolute;
@@ -95,13 +54,13 @@ header.kompraloheader {
     z-index: -1;
     pointer-events: none;
   }
-  
+
   .container-fluid {
     max-width: 1400px !important;
     margin: 0 auto !important;
     padding: 0 20px !important;
   }
-  
+
   .row {
     display: flex !important;
     align-items: center !important;
@@ -111,7 +70,7 @@ header.kompraloheader {
     margin: 0 !important;
     gap: 10px !important;
   }
-  
+
   .logo-container {
     @include flex-center;
     justify-content: center !important;
@@ -126,7 +85,7 @@ header.kompraloheader {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-    
+
     embryo-applogo {
       display: block !important;
       visibility: visible !important;
@@ -137,7 +96,7 @@ header.kompraloheader {
       opacity: 1 !important;
     }
   }
-  
+
   .search-container {
     @include flex-center;
     justify-content: flex-start !important;
@@ -147,7 +106,7 @@ header.kompraloheader {
     max-width: 1200px !important;
     width: 100% !important;
   }
-  
+
   .user-actions-container {
     @include flex-center;
     justify-content: center !important;
@@ -165,7 +124,7 @@ header.kompraloheader {
   height: 36px !important;
   min-height: 36px !important;
   @include flex-center;
-  border-top: 1px solid #666 !important; 
+  border-top: 1px solid #666 !important;
   border-bottom: none !important;
   position: relative;
   z-index: 9998;
@@ -176,71 +135,71 @@ header.kompraloheader {
   border-left: none !important;
   border-right: none !important;
   outline: none !important;
-  pointer-events: auto !important; 
-  
- 
+  pointer-events: auto !important;
+
+
   * {
     pointer-events: auto !important;
   }
-  
+
   .container-fluid {
     width: 100% !important;
     max-width: 1200px !important;
     margin: 0 auto !important;
     padding: 0 20px !important;
   }
-  
+
   .megamenu-wrapper {
     @include flex-center;
     justify-content: space-between !important;
     width: 100% !important;
     height: 100% !important;
     padding: 0 !important;
- 
+
     &.logged-in {
       justify-content: flex-start !important;
-      padding-left: 20px !important; 
-      
+      padding-left: 20px !important;
+
       .megamenu {
         margin-right: auto !important;
-        margin-left: -60px !important; 
+        margin-left: -60px !important;
       }
-      
+
       .top-link {
         margin-left: auto !important;
         margin-right: 0 !important;
       }
     }
   }
-  
+
   .megamenu, .top-link {
     display: flex !important;
     align-items: center !important;
     list-style: none !important;
     margin: 0 !important;
     padding: 0 !important;
-    pointer-events: auto !important; 
-    
+    pointer-events: auto !important;
+
     li {
       margin: 0 15px !important;
-      pointer-events: auto !important; 
-      
+      pointer-events: auto !important;
+
       a {
         color: $white !important;
         text-decoration: none !important;
-        font-weight: 300 !important; 
+        font-weight: 300 !important;
         text-transform: uppercase !important;
         font-size: 14px !important;
         transition: color 0.3s ease !important;
-        pointer-events: auto !important; 
+        pointer-events: auto !important;
         cursor: pointer !important;
         display: block !important;
         padding: 8px 12px !important;
-        
+
         &:hover {
           color: $primary !important;
         }
-        
+
         i {
           color: $white !important;
           margin-left: 5px !important;
@@ -249,10 +208,10 @@ header.kompraloheader {
       }
     }
   }
-  
+
   .top-link li {
       margin: 0 10px !important;
- 
+
       &:has(a[matMenuTriggerFor="loginuser"]) {
         margin: 0 20px !important;
         padding: 0 10px !important;
@@ -288,7 +247,7 @@ header.kompraloheader {
   border: 2px solid transparent;
   border-top-right-radius: 8px !important;
   border-bottom-right-radius: 8px !important;
-  
+
   &:focus-within {
     box-shadow: 0 4px 20px rgba($primary, 0.3);
     border-color: rgba($primary, 0.3);
@@ -308,7 +267,7 @@ header.kompraloheader {
   line-height: 45px;
   pointer-events: auto !important; /* ASEGURAR QUE EL INPUT FUNCIONE */
   z-index: 10 !important;
-  
+
   &::placeholder {
     color: #666 !important;
     font-style: normal;
@@ -316,13 +275,13 @@ header.kompraloheader {
     display: block !important;
     visibility: visible !important;
   }
-  
+
   /* Force placeholder to show even with value */
   &:not(:focus):not(:placeholder-shown)::placeholder {
     opacity: 1 !important;
     color: #666 !important;
   }
-  
+
   /* Hide placeholder only when focused and has content */
   &:focus:not(:placeholder-shown)::placeholder {
     opacity: 0.5 !important;
@@ -349,17 +308,17 @@ header.kompraloheader {
   outline: none;
   -webkit-tap-highlight-color: transparent;
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  
+
   &:hover {
     background: color.adjust($primary, $lightness: -8%);
     transform: scale(1.05);
     box-shadow: 0 4px 12px rgba($primary, 0.4);
   }
-  
+
   &:active {
     transform: scale(0.95);
   }
-  
+
   i {
     color: $white;
     font-size: 18px;
@@ -374,7 +333,6 @@ header.kompraloheader {
     font-style: normal;
     font-size: 16px;
     color: #fff;
-    speak: never;
     line-height: 1;
   }
 }
@@ -384,7 +342,7 @@ header.kompraloheader {
   @include flex-center;
   margin-bottom: 8px;
   width: 100%;
-  
+
   ::ng-deep embryo-applogo {
     img, .logoimg {
       max-height: 24px !important;
@@ -400,7 +358,7 @@ header.kompraloheader {
 .mobile-actions {
   @include flex-center;
   width: 100%;
-  
+
   .mobile-menu-btn {
     @include flex-center;
     width: 36px;
@@ -412,17 +370,17 @@ header.kompraloheader {
     pointer-events: auto !important; /* ASEGURAR QUE EL BOTÓN MÓVIL FUNCIONE */
     z-index: 1000 !important;
     position: relative !important;
-    
+
     &:hover {
       background: rgba(255,255,255,0.1);
     }
-    
+
     .menu-icon {
       font-size: 20px !important;
       color: $white !important;
       @include transition(all, 0.3s, ease);
       pointer-events: auto !important;
-      
+
       &.fa-times {
         transform: rotate(180deg);
       }
@@ -432,19 +390,19 @@ header.kompraloheader {
 
 /* === MATERIAL COMPONENTS === */
 ::ng-deep {
-  .mat-menu-panel { 
-    z-index: 1002; 
-    max-height: none; 
+  .mat-menu-panel {
+    z-index: 1002;
+    max-height: none;
     pointer-events: auto !important;
   }
   .cdk-overlay-container { z-index: 1003; }
   .cdk-overlay-backdrop { z-index: 1001; }
-  
+
   /* ASEGURAR QUE LOS MENÚS FUNCIONEN CORRECTAMENTE */
   .mat-menu-content {
     pointer-events: auto !important;
   }
-  
+
   .mat-menu-item {
     pointer-events: auto !important;
     cursor: pointer !important;
@@ -455,18 +413,18 @@ header.kompraloheader {
     padding: 8px 16px !important;
     border: none !important;
     background: transparent !important;
-    
+
     &:hover {
       background: rgba(0, 0, 0, 0.1) !important;
     }
   }
-  
+
   /* ESTILOS ESPECÍFICOS PARA EL MENÚ DE COMERCIO */
   #loginuser_commerce {
     pointer-events: auto !important;
     z-index: 1005 !important;
   }
-  
+
   .space_menus {
     pointer-events: auto !important;
     cursor: pointer !important;
@@ -475,13 +433,13 @@ header.kompraloheader {
     padding: 8px 12px !important;
     text-decoration: none !important;
     color: $white !important;
-    
+
     &:hover {
       background: rgba(121, 220, 120, 0.15) !important;
       color: $primary !important;
     }
   }
-  
+
   /* ASEGURAR QUE EL TRIGGER DEL MENÚ DE COMERCIO FUNCIONE */
   a[matMenuTriggerFor="loginuser_commerce"] {
     pointer-events: auto !important;
@@ -494,30 +452,30 @@ header.kompraloheader {
     color: $white !important;
     background: transparent !important;
     border: none !important;
-    
+
     &:hover {
       background: rgba(121, 220, 120, 0.15) !important;
       color: $primary !important;
     }
-    
+
     &:focus {
       outline: 2px solid $primary !important;
       outline-offset: 2px !important;
     }
   }
-  
+
   /* ASEGURAR QUE EL MENÚ DE COMERCIO SE MUESTRE CORRECTAMENTE */
   .mat-menu-panel {
     pointer-events: auto !important;
     z-index: 1008 !important;
   }
-  
+
   /* ESTILOS ESPECÍFICOS PARA LOS ELEMENTOS DEL MENÚ DE COMERCIO */
   .mat-menu-panel .mat-menu-content {
     pointer-events: auto !important;
     z-index: 1009 !important;
   }
-  
+
   .mat-menu-panel .mat-menu-item {
     pointer-events: auto !important;
     cursor: pointer !important;
@@ -530,39 +488,39 @@ header.kompraloheader {
     background: transparent !important;
     color: #333 !important;
     text-decoration: none !important;
-    
+
     &:hover {
       background: rgba(121, 220, 120, 0.1) !important;
       color: $primary !important;
     }
-    
+
     &:focus {
       outline: 2px solid $primary !important;
       outline-offset: -2px !important;
     }
-    
+
     i {
       pointer-events: none !important;
       margin-right: 8px !important;
     }
-    
+
     span {
       pointer-events: none !important;
     }
   }
-  
+
   /* ASEGURAR QUE LOS ELEMENTOS NO BLOQUEEN CLICS */
   .cdk-overlay-backdrop {
     pointer-events: auto !important;
   }
-  
+
   /* PREVENIR BLOQUEO DE CLICS EN OVERLAYS */
   .ui-widget-overlay,
   .mfp-bg,
   .jGrowl {
     pointer-events: auto !important;
   }
-  
+
   /* Override Material Design input styles */
   .search-input.mat-input-element,
   .search-input[matInput] {
@@ -572,14 +530,14 @@ header.kompraloheader {
       display: block !important;
       visibility: visible !important;
     }
-    
+
     /* Force placeholder to show even with value */
     &:not(:focus)::placeholder {
       opacity: 1 !important;
       color: #666 !important;
     }
   }
-  
+
   /* Override any Material form field styles */
   .mat-form-field .search-input {
     &::placeholder {
@@ -587,7 +545,7 @@ header.kompraloheader {
       opacity: 1 !important;
     }
   }
-  
+
   .cart-dropdown,
   .wishlist-dropdown {
     z-index: 1002;
@@ -601,22 +559,22 @@ header.kompraloheader {
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
   }
-  
+
   .mat-menu-panel,
   .mat-autocomplete-panel {
     z-index: 1010;
   }
-  
+
   .cdk-overlay-container {
     z-index: 1020;
   }
-  
+
   embryo-headercart,
   embryo-wishlist {
     display: block;
-    pointer-events: auto !important; 
+    pointer-events: auto !important;
     z-index: 10 !important;
-    
+
     .dropdown-menu,
     .cart-dropdown {
       z-index: 1015;
@@ -625,7 +583,7 @@ header.kompraloheader {
       right: 0;
       pointer-events: auto !important;
     }
-    
+
     /* ASEGURAR QUE LOS BOTONES DEL CARRITO FUNCIONEN */
     button, .cart-trigger-modern, .cart-trigger-mobile {
       pointer-events: auto !important;
@@ -652,11 +610,11 @@ header.kompraloheader {
   margin: 0;
   padding: 0;
   height: 100%;
-  
+
   li {
     @include flex-center;
     height: 100%;
-    
+
     a {
       color: #333 !important;
       text-decoration: none;
@@ -669,22 +627,22 @@ header.kompraloheader {
       text-transform: uppercase;
       letter-spacing: 0.5px;
       position: relative;
-      
-      &:hover { 
+
+      &:hover {
         background-color: rgba(121, 220, 120, 0.15) !important;
         color: $primary !important;
         transform: translateY(-1px);
       }
-      
+
       &:active {
         transform: translateY(0);
         background-color: rgba(121, 220, 120, 0.25) !important;
       }
-      
+
       &.active {
         background-color: rgba(121, 220, 120, 0.2) !important;
         color: $primary !important;
-        
+
         &::after {
           content: '';
           position: absolute;
@@ -709,7 +667,7 @@ header.kompraloheader {
     margin: 0;
     padding: 0;
     margin-left: auto;
-    
+
     li a {
       color: #333 !important;
       text-decoration: none;
@@ -722,18 +680,18 @@ header.kompraloheader {
       text-transform: uppercase;
       letter-spacing: 0.5px;
       position: relative;
-      
-      &:hover { 
+
+      &:hover {
         background-color: rgba(121, 220, 120, 0.15) !important;
         color: $primary !important;
         transform: translateY(-1px);
       }
-      
+
       &:active {
         transform: translateY(0);
         background-color: rgba(121, 220, 120, 0.25) !important;
       }
-      
+
 
       &[matMenuTriggerFor="loginuser"] {
         padding: 8px 15px !important;
@@ -742,9 +700,9 @@ header.kompraloheader {
         letter-spacing: 1px !important;
       }
     }
-    
-    .fa-chevron-down:before { 
-      margin-left: 4px; 
+
+    .fa-chevron-down:before {
+      margin-left: 4px;
       font-size: 9px;
     }
   }
@@ -759,7 +717,7 @@ header.kompraloheader {
   z-index: 9999999;
   cursor: pointer;
   display: none;
-  
+
   > span {
     background-color: #333;
     border-radius: 1px;
@@ -770,7 +728,7 @@ header.kompraloheader {
     top: 50%;
     margin: -1px 0 0 -15px;
     @include transition(height, 100ms);
-    
+
     &:after,
     &:before {
       content: '';
@@ -783,20 +741,20 @@ header.kompraloheader {
       margin-left: -15px;
       @include transition(all, 200ms);
     }
-    
+
     &:after { top: -7px; }
     &:before { bottom: -7px; }
   }
-  
+
   &.act > span {
     height: 0;
-    
+
     &:after,
     &:before {
       background-color: $primary;
       top: 1px;
     }
-    
+
     &:after { transform: rotate(45deg); }
     &:before { transform: rotate(-45deg); }
   }
@@ -820,7 +778,7 @@ header.kompraloheader {
   transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   pointer-events: none !important; /* DESHABILITAR CLICS CUANDO NO ESTÁ ACTIVO */
   visibility: hidden !important; /* OCULTAR COMPLETAMENTE CUANDO NO ESTÁ ACTIVO */
-  
+
   &.act {
     display: flex;
     opacity: 1;
@@ -828,32 +786,32 @@ header.kompraloheader {
     z-index: 999999; /* Z-INDEX MÁXIMO SOLO CUANDO ESTÁ ACTIVO */
     pointer-events: auto !important; /* HABILITAR CLICS SOLO CUANDO ESTÁ ACTIVO */
     visibility: visible !important; /* MOSTRAR CUANDO ESTÁ ACTIVO */
-    
+
     ul li {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  
+
   .table-cell {
     display: table-cell;
     vertical-align: middle;
     width: 100%;
   }
-  
-  ul { 
+
+  ul {
     display: table;
     margin: 0 auto;
     list-style: none;
     padding: 0;
   }
-  
+
   li {
     padding: 8px 0;
     @include transition(all, 200ms, ease-out);
     opacity: 0;
     transform: translateY(20px);
-    
+
     &:nth-child(1) { transition-delay: 50ms; }
     &:nth-child(2) { transition-delay: 100ms; }
     &:nth-child(3) { transition-delay: 150ms; }
@@ -865,7 +823,7 @@ header.kompraloheader {
     &:nth-child(9) { transition-delay: 450ms; }
     &:nth-child(10) { transition-delay: 500ms; }
   }
-  
+
   a {
     color: #333;
     display: inline-block;
@@ -875,12 +833,12 @@ header.kompraloheader {
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    
-    &:hover { 
-      color: $primary; 
+
+    &:hover {
+      color: $primary;
       text-decoration: none;
     }
-    
+
     i {
       font-size: 1rem;
       margin-left: 6px;
@@ -895,7 +853,7 @@ header.kompraloheader {
   padding: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  
+
   a,
   .mat-menu-item {
     color: $white;
@@ -904,14 +862,14 @@ header.kompraloheader {
     padding: 0.3rem 0.1rem;
     display: block;
     line-height: 34px;
-    
+
     &:hover {
       background: rgba(221, 221, 221, 0.692);
       color: #111;
       font-weight: 500;
     }
   }
-  
+
   .mat-menu-item {
     height: auto;
     line-height: auto;
@@ -952,18 +910,18 @@ header.kompraloheader {
   cursor: pointer;
   pointer-events: auto !important; /* ASEGURAR QUE LOS BOTONES FUNCIONEN */
   z-index: 10 !important; /* Z-INDEX SUFICIENTE PARA ESTAR ARRIBA */
-  
+
   &:hover {
     background: rgba(121, 220, 120, 0.15) !important;
     color: $primary !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(121, 220, 120, 0.2);
   }
-  
+
   &:active {
     transform: translateY(0);
   }
-  
+
   .badge,
   .items_cart {
     background: $danger !important;
@@ -1000,18 +958,18 @@ header.kompraloheader {
   color: #333 !important;
   font-size: 24px !important;
   cursor: pointer;
-  
+
   &:hover {
     background: rgba(121, 220, 120, 0.15) !important;
     color: $primary !important;
     transform: translateY(-2px) !important;
     box-shadow: 0 4px 12px rgba(121, 220, 120, 0.2) !important;
   }
-  
+
   &:active {
     transform: translateY(0) !important;
   }
-  
+
   mat-icon {
     font-size: 24px !important;
     width: 24px !important;
@@ -1096,20 +1054,20 @@ header.kompraloheader {
   padding: 10px 0;
   display: none;
   pointer-events: auto !important; /* ASEGURAR CLICS EN FOOTER */
-  
+
   /* ASEGURAR QUE TODOS LOS ELEMENTOS DEL FOOTER FUNCIONEN */
   * {
     pointer-events: auto !important;
   }
-  
+
   /* ASEGURAR QUE EL ICONO DEL CARRITO SEA BLANCO */
   .cart-trigger-mobile {
     color: $white !important;
-    
+
     .cartbtn {
       color: $white !important;
     }
-    
+
     svg {
       color: $white !important;
       fill: $white !important;
@@ -1149,13 +1107,13 @@ header.kompraloheader {
         &:hover,
         &.active {
           color: $primary;
-          
+
           i {
             color: $primary;
           }
         }
       }
-      
+
       /* Cart and Wishlist icons in mobile footer */
       &.wishlist {
         .cart-container,
@@ -1166,11 +1124,11 @@ header.kompraloheader {
           flex-direction: column;
           cursor: pointer;
           pointer-events: auto !important; /* ASEGURAR CLICS */
-          
+
           embryo-HeaderCart,
           embryo-WishList {
             pointer-events: auto !important; /* ASEGURAR CLICS EN COMPONENTES */
-            
+
             ::ng-deep .padicon {
               min-width: 40px !important;
               min-height: 40px !important;
@@ -1178,7 +1136,7 @@ header.kompraloheader {
               color: $white !important;
               cursor: pointer;
               pointer-events: auto !important;
-              
+
               mat-icon {
                 font-size: 22px !important;
                 width: 22px !important;
@@ -1187,12 +1145,12 @@ header.kompraloheader {
                 pointer-events: auto !important;
               }
             }
-            
+
             /* FORZAR SVG BLANCO Y FUNCIONALIDAD EN FOOTER MOBILE */
             ::ng-deep .cart-trigger-modern {
               color: $white !important;
               pointer-events: auto !important;
-              
+
               svg {
                 color: $white !important;
                 fill: $white !important;
@@ -1200,14 +1158,14 @@ header.kompraloheader {
                 transform: translateY(2px) !important;
                 pointer-events: none !important;
               }
-              
+
               &:hover svg {
                 color: $white !important;
                 fill: $white !important;
                 stroke: $white !important;
                 transform: translateY(2px) scale(1.1) !important;
               }
-              
+
               &:active svg {
                 color: $white !important;
                 fill: $white !important;
@@ -1215,18 +1173,18 @@ header.kompraloheader {
                 transform: translateY(2px) !important;
               }
             }
-            
+
             /* FORZAR FUNCIONALIDAD DEL BOTÓN MOBILE EN FOOTER */
             ::ng-deep .cart-trigger-mobile {
               pointer-events: auto !important;
               z-index: 1001 !important;
               color: $white !important;
-              
+
               .cartbtn {
                 color: $white !important;
                 pointer-events: none !important;
               }
-              
+
               /* Asegurar que el icono SVG también sea blanco */
               svg {
                 color: $white !important;
@@ -1234,7 +1192,7 @@ header.kompraloheader {
                 stroke: $white !important;
               }
             }
-            
+
             /* Circular badges in mobile footer */
             ::ng-deep .mat-badge-content {
               width: 20px !important;
@@ -1281,7 +1239,7 @@ header.kompraloheader {
   .mobile-layout {
     display: none !important;
   }
-  
+
   .desktop-layout {
     display: block !important;
   }
@@ -1289,14 +1247,14 @@ header.kompraloheader {
 
 /* === BODY PADDING === */
 body {
-  padding-top: 75px !important;
+  padding-top: 0 !important;
 }
 
 /* === RESPONSIVE DESIGN === */
 @include responsive(desktop) {
   .menuBtn { display: none; }
   .mainMenu { display: none; }
-  
+
   /* Force placeholder visibility on desktop */
   .search-input {
     &::placeholder {
@@ -1306,29 +1264,29 @@ body {
       visibility: visible !important;
     }
   }
-  
+
   .header-middle {
     min-height: 60px !important;
     padding: 10px 0 !important;
-    
+
     .container-fluid {
       max-width: 1400px !important;
       padding: 0 30px !important;
     }
-    
+
     .row {
       gap: 10px !important;
       min-height: 60px !important;
       justify-content: center !important;
     }
-    
+
     .logo-container {
       height: 36px !important;
       min-height: 36px !important;
       flex: 0 0 auto !important;
       margin-right: 8px !important;
     }
-    
+
     .search-container {
       flex: 1 1 auto !important;
       padding: 0 15px 0 5px !important;
@@ -1336,14 +1294,14 @@ body {
       width: 100% !important;
       justify-content: flex-start !important;
     }
-    
+
     .user-actions-container {
       flex: 0 0 auto !important;
       gap: 20px !important;
       margin-left: 15px !important;
     }
   }
-  
+
   .navbar-logo .logo,
   ::ng-deep embryo-applogo {
     img, .logoimg {
@@ -1351,13 +1309,13 @@ body {
       max-width: 200px;
     }
   }
-  
+
   /* Desktop search bar */
   .modern-search {
     max-width: 1200px !important;
     width: 100% !important;
   }
-  
+
   .search-wrapper {
     height: 40px;
     min-height: 40px;
@@ -1365,25 +1323,25 @@ body {
     border-top-right-radius: 8px !important;
     border-bottom-right-radius: 8px !important;
   }
-  
+
   .search-input {
     font-size: 15px;
     padding: 0 18px;
     height: 40px;
     line-height: 40px;
   }
-  
+
   .search-button {
     min-width: 32px;
     height: 32px;
     min-height: 32px;
     border-radius: 6px;
-    
+
     i {
       font-size: 16px;
     }
   }
-  
+
   /* Desktop user actions */
   .user-actions-container {
     .action-item {
@@ -1391,7 +1349,7 @@ body {
         min-width: 40px !important;
         min-height: 40px !important;
         font-size: 22px !important;
-        
+
         mat-icon {
           font-size: 22px !important;
           width: 22px !important;
@@ -1400,7 +1358,7 @@ body {
       }
     }
   }
-  
+
   /* Desktop circular badges */
   ::ng-deep .mat-badge-content {
     width: 20px !important;
@@ -1415,30 +1373,30 @@ body {
 @include responsive(mobile) {
   .header-middle { padding: 1px 0; }
   .header-content { min-height: 15px; }
-  
+
   .logo-container {
     height: 12px;
-    
+
     ::ng-deep embryo-applogo {
       img, .logoimg { max-height: 28px; }
     }
   }
-  
+
   .search-container {
-    padding: 0 8px !important; 
+    padding: 0 8px !important;
     width: 100%;
     max-width: 100%;
     overflow: hidden;
     box-sizing: border-box;
-    
+
     .modern-search .search-wrapper {
       border-radius: 8px;
-      
+
       .search-input {
         font-size: 14px;
         padding: 10px 16px;
       }
-      
+
       .search-button {
         padding: 10px 16px;
         min-width: 50px;
@@ -1446,16 +1404,16 @@ body {
       }
     }
   }
-  
+
   .user-actions-container {
     gap: 8px !important;
-    
+
     .action-item {
       .padicon {
         min-width: 40px !important;
         min-height: 40px !important;
         font-size: 22px !important;
-        
+
         mat-icon {
           font-size: 22px !important;
           width: 22px !important;
@@ -1463,11 +1421,11 @@ body {
         }
       }
     }
-    
+
     .desktop-actions { display: none; }
     .mobile-actions { display: flex; }
   }
-  
+
   /* Mobile circular badges */
   ::ng-deep .mat-badge-content {
     width: 20px !important;
@@ -1475,11 +1433,11 @@ body {
     line-height: 20px !important;
     font-size: 9px !important;
   }
-  
+
   .mobile-actions .mobile-menu-btn {
     width: 35px;
     height: 35px;
-    
+
     .menu-icon {
       font-size: 18px;
     }
@@ -1496,21 +1454,18 @@ $mobile-gap: 8px;
 
 /* === MOBILE AND TABLET LAYOUT === */
 @media (max-width: 991px) {
-  header.kompraloheader {
-    min-height: 85px !important;
-    height: 85px !important;
-}
+
 
   .header-middle {
     padding: 12px 0 !important;
     min-height: 85px !important;
     height: 85px !important;
   }
-  
+
   .header-middle .container-fluid {
     padding: 0 20px !important;
   }
-  
+
   /* Mobile Layout Structure */
   .mobile-layout {
     display: flex !important;
@@ -1520,7 +1475,7 @@ $mobile-gap: 8px;
     justify-content: center !important;
     background: $bg-dark !important;
   }
-  
+
   /* Top row: Logo and Hamburger */
   .mobile-top-row {
     display: flex !important;
@@ -1531,7 +1486,7 @@ $mobile-gap: 8px;
     position: relative !important;
     background: $bg-dark !important;
   }
-  
+
   /* Mobile Logo - Centered */
   .mobile-logo {
     display: flex !important;
@@ -1541,7 +1496,7 @@ $mobile-gap: 8px;
     left: 50% !important;
     transform: translateX(-50%) !important;
     z-index: 10 !important;
-    
+
     ::ng-deep embryo-applogo img,
     ::ng-deep .logoimg,
     img {
@@ -1550,7 +1505,7 @@ $mobile-gap: 8px;
       width: auto !important;
     }
   }
-  
+
   /* Mobile Hamburger - Fixed Right */
   .mobile-hamburger {
     display: flex !important;
@@ -1562,7 +1517,7 @@ $mobile-gap: 8px;
     height: 100% !important;
     z-index: 10 !important;
   }
-  
+
   .mobile-menu-btn {
     width: $mobile-hamburger-size !important;
     height: $mobile-hamburger-size !important;
@@ -1576,28 +1531,28 @@ $mobile-gap: 8px;
     border-radius: 8px !important;
     transition: all 0.3s ease !important;
     text-decoration: none !important;
-    
+
     &:hover {
       background: rgba(255, 255, 255, 0.15) !important;
       transform: scale(1.05) !important;
     }
-    
+
     &:active {
       transform: scale(0.95) !important;
     }
-    
+
     .menu-icon {
       font-size: 22px !important;
       color: $white !important;
       transition: all 0.3s ease !important;
-      
+
       &.fa-times {
         transform: rotate(180deg) !important;
         color: $primary !important;
       }
     }
   }
-  
+
   /* Bottom row: Search bar */
   .mobile-search-row {
     flex: 1 !important;
@@ -1608,7 +1563,7 @@ $mobile-gap: 8px;
     padding: 0 16px !important;
     background: $bg-dark !important;
   }
-  
+
   .mobile-search-row .modern-search {
     width: 86% !important;
     max-width: 400px !important;
@@ -1617,7 +1572,7 @@ $mobile-gap: 8px;
     height: $mobile-search-height !important;
     max-height: $mobile-search-height !important;
   }
-  
+
   .mobile-search-row .search-wrapper {
     height: $mobile-search-height !important;
     min-height: $mobile-search-height !important;
@@ -1633,7 +1588,7 @@ $mobile-gap: 8px;
     padding-right: 0px !important;
     position: relative !important;
   }
-  
+
   .mobile-search-row .search-button {
     height: 36px !important;
     min-width: 36px !important;
@@ -1643,7 +1598,7 @@ $mobile-gap: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
     outline: none !important;
   }
-  
+
   .mobile-search-row .search-input {
     font-size: 16px !important; /* Prevent iOS Safari zoom on focus */
     padding: 0 35px 0 20px !important;
@@ -1653,22 +1608,22 @@ $mobile-gap: 8px;
     outline: none !important;
     color: #333 !important;
     background: transparent !important;
-    
+
     &::placeholder {
       color: #666 !important;
       opacity: 1 !important;
     }
   }
-  
+
   /* Hide desktop layout on mobile and tablet */
   .desktop-layout {
     display: none !important;
   }
-  
+
   .navigation-bar {
     display: none !important;
   }
-  
+
   .footermobile {
     display: block;
     position: fixed;
@@ -1680,9 +1635,9 @@ $mobile-gap: 8px;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
     padding: 10px 0;
   }
-  
+
   .megamenu { display: none; }
-  
+
   body {
     padding-top: $mobile-header-height !important;
   }
@@ -1690,28 +1645,28 @@ $mobile-gap: 8px;
 
 @media (max-width: 991px) {
   .menuBtn { display: block; }
-  .mobile-actions { 
-    display: flex; 
-    justify-content: center; 
+  .mobile-actions {
+    display: flex;
+    justify-content: center;
   }
   .desktop-actions { display: none; }
-  
+
   .navigation-bar {
     display: none !important;
   }
-  
+
   .header-middle .user-actions-container {
     .mobile-actions {
       display: flex;
       justify-content: center;
       width: 100%;
-      
+
       .mobile-menu-btn { display: flex; }
     }
-    
+
     .desktop-actions { display: none; }
   }
-  
+
   body {
     padding-top: 60px !important;
   }
@@ -1721,11 +1676,11 @@ $mobile-gap: 8px;
   .menuBtn { display: none; }
   .mobile-actions { display: none; }
   .desktop-actions { display: flex; }
-  
+
   .navigation-bar {
     display: flex !important;
   }
-  
+
   .header-middle .user-actions-container {
     .mobile-actions { display: none; }
     .desktop-actions {
@@ -1734,17 +1689,8 @@ $mobile-gap: 8px;
       width: 100%;
     }
   }
-  
-  /* Force fixed header on desktop */
-  header.kompraloheader,
-  header.kompraloheader .header-middle,
-  .header-middle.fixedheader,
-  .fixedheader {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-  }
+
+
 
   /* Prevent internal scrolling within header containers on desktop */
   .header-middle,
@@ -1809,7 +1755,7 @@ $mobile-gap: 8px;
   min-width: 0 !important;
   box-sizing: border-box !important;
   flex: 1 1 auto !important;
-  
+
   /* Force placeholder visibility */
   &::placeholder {
     color: #666 !important;
@@ -2006,8 +1952,7 @@ $mobile-gap: 8px;
 }
 
 /* === FORZAR QUE EL HEADER COMPLETO SEA VISIBLE === */
-::ng-deep header.kompraloheader,
-::ng-deep .header-middle {
+::ng-deep header.kompraloheader {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -2015,7 +1960,20 @@ $mobile-gap: 8px;
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
-  z-index: 99999 !important;
+  z-index: 999999 !important;
+  background: $bg-dark !important;
+
+  /* Forzar fondo oscuro en todos los contenedores hijos */
+  & > *, & .header-middle, & .fixedheader, & .container-fluid, & .row {
+    background: $bg-dark !important;
+  }
+}
+
+/* La barra interna permanece en flujo relativo dentro del header */
+::ng-deep .header-middle {
+  position: relative !important;
+  z-index: 1 !important;
+  background: $bg-dark !important;
 }
 
 /* Exception for search input placeholder - override all white color rules */
@@ -2177,12 +2135,12 @@ $mobile-gap: 8px;
     width: 100% !important;
     min-width: 400px !important;
   }
-  
+
   .header-middle .search-container .search-wrapper {
     width: 100% !important;
     max-width: 100% !important;
   }
-  
+
   .header-middle .search-container .search-input {
     width: 100% !important;
     max-width: 100% !important;
@@ -2197,21 +2155,21 @@ $mobile-gap: 8px;
     height: 85px !important;
     padding: 12px 0 !important;
   }
-  
+
   body {
     padding-top: 85px !important;
   }
-  
+
   .mobile-layout {
     height: 85px !important;
     min-height: 85px !important;
   }
-  
+
   .mobile-top-row {
     height: 40px !important;
     min-height: 40px !important;
   }
-  
+
   .mobile-search-row {
     height: $mobile-search-height !important;
     min-height: $mobile-search-height !important;
@@ -2220,16 +2178,16 @@ $mobile-gap: 8px;
 
 /* === FINAL OPTIMIZATIONS === */
 @media (max-width: 576px) {
-  .header-middle { 
-    padding: 10px 0 !important; 
+  .header-middle {
+    padding: 10px 0 !important;
     min-height: 75px !important;
     height: 75px !important;
   }
-  
+
   .header-middle .container-fluid {
     padding: 0 16px !important;
   }
-  
+
   .header-middle .container-fluid .row {
     min-height: 75px !important;
     height: 75px !important;
@@ -2239,21 +2197,21 @@ $mobile-gap: 8px;
     gap: 10px !important;
     justify-content: center !important;
   }
-  
+
   .header-middle .logo-container {
     flex: 0 0 auto !important;
     height: 35px !important;
     min-height: 35px !important;
     margin-right: 4px !important;
   }
-  
+
   .header-middle .logo-container ::ng-deep embryo-applogo img,
   .header-middle .logo-container ::ng-deep .logoimg,
-  .header-middle .logo-container img { 
-    max-height: 20px !important; 
-    height: 20px !important; 
+  .header-middle .logo-container img {
+    max-height: 20px !important;
+    height: 20px !important;
   }
-  
+
   .header-middle .search-container {
     flex: 1 1 auto !important;
     height: 38px !important;
@@ -2262,61 +2220,61 @@ $mobile-gap: 8px;
     padding: 0 5px !important;
     max-width: 500px !important;
   }
-  
+
   .header-middle .user-actions-container {
     flex: 0 0 auto !important;
     gap: 8px !important;
     margin-left: 5px !important;
   }
-  
-  .search-container .modern-search .search-wrapper { 
-    height: 38px !important; 
+
+  .search-container .modern-search .search-wrapper {
+    height: 38px !important;
     border-radius: 8px !important;
     border-top-right-radius: 8px !important;
     border-bottom-right-radius: 8px !important;
   }
-  
-  .search-container .modern-search .search-button { 
-    height: 36px !important; 
+
+  .search-container .modern-search .search-button {
+    height: 36px !important;
     min-width: 36px !important;
     border-radius: 6px !important;
   }
-  
+
   .search-container .modern-search .search-input {
     font-size: 14px !important;
     padding: 0 12px !important;
     height: 38px !important;
     line-height: 38px !important;
   }
-  
+
   .user-actions-container .action-item .padicon {
     min-width: 32px !important;
     min-height: 32px !important;
     font-size: 18px !important;
-    
+
     mat-icon {
       font-size: 18px !important;
       width: 18px !important;
       height: 18px !important;
     }
   }
-  
+
   body {
     padding-top: 75px !important;
   }
 }
 
 @media (max-width: 480px) {
-  .header-middle { 
-    padding: 3px 0 !important; 
+  .header-middle {
+    padding: 3px 0 !important;
     min-height: 60px !important;
     height: 60px !important;
   }
-  
+
   .header-middle .container-fluid {
     padding: 0 12px !important;
   }
-  
+
   .header-middle .container-fluid .row {
     min-height: 60px !important;
     height: 60px !important;
@@ -2324,56 +2282,56 @@ $mobile-gap: 8px;
     flex-wrap: nowrap !important;
     align-items: center !important;
   }
-  
+
   .header-middle .logo-container {
     height: 28px !important;
     min-height: 28px !important;
   }
-  
+
   .header-middle .logo-container ::ng-deep embryo-applogo img,
   .header-middle .logo-container ::ng-deep .logoimg,
-  .header-middle .logo-container img { 
-    max-height: 16px !important; 
-    height: 16px !important; 
+  .header-middle .logo-container img {
+    max-height: 16px !important;
+    height: 16px !important;
   }
-  
+
   .header-middle .search-container {
     height: 28px !important;
     min-height: 28px !important;
     align-items: flex-start !important;
     padding: 0 3px 0 3px !important;
   }
-  
-  .search-container .modern-search .search-wrapper { 
-    height: 28px !important; 
+
+  .search-container .modern-search .search-wrapper {
+    height: 28px !important;
     border-radius: 8px !important;
     border-top-right-radius: 8px !important;
     border-bottom-right-radius: 8px !important;
   }
-  
-  .search-container .modern-search .search-button { 
-    height: 24px !important; 
+
+  .search-container .modern-search .search-button {
+    height: 24px !important;
     min-width: 24px !important;
     border-radius: 6px !important;
   }
-  
+
   .search-container .modern-search .search-input {
     font-size: 11px !important;
     padding: 0 6px !important;
     height: 28px !important;
     line-height: 28px !important;
   }
-  
+
   .header-middle .user-actions-container {
     height: 28px !important;
     min-height: 28px !important;
   }
-  
+
   .header-middle .user-actions-container .mobile-actions .mobile-menu-btn {
     width: 28px !important;
     height: 28px !important;
   }
-  
+
   body {
     padding-top: 60px !important;
   }
@@ -2390,16 +2348,16 @@ $mobile-gap: 8px;
     height: auto;
     width: auto;
   }
-  
+
   .header-middle {
     padding: 10px 0;
   }
-  
+
   .search-container .modern-search {
     max-width: 900px !important;
     width: 100% !important;
   }
-  
+
   .header-bottom {
     height: 45px;
     min-height: 45px;
@@ -2412,45 +2370,41 @@ $mobile-gap: 8px;
     min-height: 85px !important;
     height: 85px !important;
   }
-  
-  .header-middle.fixedheader {
-    min-height: 85px !important;
-    height: 85px !important;
-    padding: 12px 0 !important;
-  }
-  
+
+
+
   body {
     padding-top: 85px !important;
   }
-  
+
   .mobile-layout {
     height: 85px !important;
     min-height: 85px !important;
   }
-  
+
   .mobile-top-row {
     height: 40px !important;
     min-height: 40px !important;
   }
-  
+
   .mobile-search-row {
     height: $mobile-search-height !important;
     min-height: $mobile-search-height !important;
   }
-  
+
   .mobile-logo ::ng-deep embryo-applogo img,
   .mobile-logo ::ng-deep .logoimg {
     max-height: 36px !important;
     height: 36px !important;
   }
-  
+
   .mobile-search-row .search-wrapper {
     height: $mobile-search-height !important;
     min-height: $mobile-search-height !important;
     border-radius: 8px !important;
     position: relative !important;
   }
-  
+
   .mobile-search-row .search-button {
     height: 36px !important;
     min-width: 36px !important;
@@ -2764,7 +2718,7 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
   .mobile-search-row .search-wrapper {
     position: relative !important;
   }
-  
+
   .mobile-search-row .search-button {
     position: absolute !important;
     right: 1px !important;
@@ -2780,7 +2734,7 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
     align-items: center !important;
     justify-content: center !important;
   }
-  
+
   .mobile-search-row .search-input {
     padding-right: 38px !important;
   }
@@ -2798,7 +2752,7 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
     max-width: 48px !important;
     padding: 12px 14px !important;
   }
-  
+
   .header-middle .search-button,
   .modern-search .search-button,
   .search-container .search-button,
@@ -2827,7 +2781,7 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
     left: -9999px !important;
     top: -9999px !important;
   }
-  
+
   /* Hide mobile menu on desktop */
   .mainMenu {
     display: none !important;
@@ -2842,7 +2796,7 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
     top: -9999px !important;
     z-index: -1 !important;
   }
-  
+
   /* Hide any empty containers that might be overlapping */
   .header-middle .container-fluid:empty,
   .header-middle .row:empty,
@@ -2862,7 +2816,7 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
     margin: 0 !important;
     padding: 0 !important;
   }
-  
+
   /* Hide mobile layout on desktop */
   .mobile-layout {
     display: none !important;
@@ -2873,29 +2827,29 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
     margin: 0 !important;
     padding: 0 !important;
   }
-  
+
   /* Fix z-index issues that might cause overlapping */
   .header-middle .container-fluid {
     position: relative !important;
     z-index: 1 !important;
   }
-  
+
   .header-middle .row {
     position: relative !important;
     z-index: 2 !important;
   }
-  
+
   /* Ensure proper stacking order */
   .header-middle .logo-container {
     position: relative !important;
     z-index: 3 !important;
   }
-  
+
   .header-middle .search-container {
     position: relative !important;
     z-index: 3 !important;
   }
-  
+
   .header-middle .user-actions-container {
     position: relative !important;
     z-index: 3 !important;
@@ -2924,25 +2878,25 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
     top: -9999px !important;
     z-index: -1 !important;
   }
-  
+
   /* Force remove any space after navigation-bar */
   .navigation-bar {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
   }
-  
+
   .navigation-bar::after {
     display: none !important;
     content: none !important;
     height: 0 !important;
   }
-  
+
   /* Ensure no space after header */
   header.kompraloheader {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
   }
-  
+
   header.kompraloheader::after {
     display: none !important;
     content: none !important;
@@ -2950,59 +2904,15 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
   }
 }
 
-/* ===== iOS SAFE-AREA FIX: prevent Safari top bar from covering header ===== */
-@supports (top: env(safe-area-inset-top)) {
-  /* Move fixed header down by the safe area inset (iOS notch / expanded URL bar) */
-  body header#header.kompraloheader,
-  body header#header.kompraloheader .header-middle,
-  header.kompraloheader,
-  .header-middle {
-    top: env(safe-area-inset-top) !important;
-  }
-
-  /* Ensure page content compensates the extra space above */
-  body {
-    padding-top: calc(75px + env(safe-area-inset-top)) !important;
-  }
-
-  @media (max-width: 991px) {
-    body {
-      padding-top: calc(85px + env(safe-area-inset-top)) !important;
-    }
-  }
-
-  @media (max-width: 576px) {
-    body {
-      padding-top: calc(60px + env(safe-area-inset-top)) !important;
-    }
-  }
-
-  /* Paint the safe-area (gap above header) with the header background color */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: env(safe-area-inset-top);
-    background: $bg-dark; /* same as header */
-    z-index: 99998; /* below header (99999) */
-    pointer-events: none;
-  }
-}
+/* ===== iOS SAFE-AREA FIX: disabled to avoid extra spacing on desktop ===== */
+/* Only iOS sticky positioning handles safe-area in the iOS-specific block below */
 
 /* ===== iOS Safari specific: use sticky header to avoid toolbar overlay ===== */
 @supports (-webkit-touch-callout: none) {
   /* Limitar a dispositivos táctiles y solo en móvil/tablet */
   @media (max-width: 991px) and (any-pointer: coarse) {
     /* Replace fixed with sticky only on iOS mobile */
-    header.kompraloheader,
-    header.kompraloheader .header-middle,
-    .header-middle.fixedheader,
-    .fixedheader {
-      position: sticky !important;
-      top: env(safe-area-inset-top) !important;
-    }
+
 
     /* Header is in normal flow when sticky; remove extra padding on iOS */
     body {
@@ -3040,27 +2950,27 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
   .popup-overlay,
   .mobile-overlay,
   .confirmation-overlay {
-    pointer-events: none !important; 
-    z-index: -1 !important; 
+    pointer-events: none !important;
+    z-index: -1 !important;
     opacity: 0 !important;
     visibility: hidden !important;
     display: none !important;
   }
-  
+
 
   .mainMenu {
-    pointer-events: none !important; 
-    z-index: -1 !important; 
+    pointer-events: none !important;
+    z-index: -1 !important;
     opacity: 0 !important;
     visibility: hidden !important;
-    
+
     &.act {
-      pointer-events: auto !important; 
+      pointer-events: auto !important;
       z-index: 999999 !important;
       opacity: 1 !important;
       visibility: visible !important;
     }
-    
+
 
     &:not(.act) {
       pointer-events: none !important;
@@ -3070,24 +2980,24 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
       display: none !important; /* */
     }
   }
-  
+
   /* Asegurar que el header no bloquee clics */
   header.kompraloheader {
     pointer-events: auto !important;
     z-index: 1000 !important;
   }
-  
+
   /* Asegurar que el footer móvil funcione */
   .footermobile {
     pointer-events: auto !important;
     z-index: 1000 !important;
-    
+
     /* Asegurar que todos los elementos del footer funcionen */
     * {
       pointer-events: auto !important;
     }
   }
-  
+
   /* Asegurar que los botones del carrito funcionen */
   .cart-trigger-mobile,
   .cart-trigger-modern {
@@ -3095,28 +3005,28 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
     z-index: 10001 !important;
     position: relative !important;
   }
-  
+
   /* Asegurar que el icono del carrito sea blanco en el footer móvil */
   .footermobile .cart-trigger-mobile {
     color: $white !important;
-    
+
     .cartbtn {
       color: $white !important;
     }
-    
+
     svg {
       color: $white !important;
       fill: $white !important;
       stroke: $white !important;
     }
   }
-  
+
   /* Asegurar que el popup móvil funcione sin overlay */
   .mobile-popup {
     position: fixed !important;
     z-index: 9999 !important; /* Z-INDEX MÁXIMO */
     pointer-events: auto !important;
-    
+
     /* Asegurar que todos los elementos del popup funcionen */
     * {
       pointer-events: auto !important;
@@ -3135,21 +3045,21 @@ div.footermobile button.cart-trigger-mobile,
 .footermobile .wishlist .cart-trigger-mobile,
 .footermobile li.wishlist a .cart-trigger-mobile {
   color: $white !important;
-  
+
   .cartbtn {
     color: $white !important;
   }
-  
+
   svg {
     color: $white !important;
     fill: $white !important;
     stroke: $white !important;
   }
-  
+
   i {
     color: $white !important;
   }
-  
+
   * {
     color: $white !important;
   }
@@ -3174,22 +3084,22 @@ header.kompraloheader .pointer[matMenuTriggerFor="loginuser_commerce"],
   border: none !important;
   width: auto !important;
   height: auto !important;
-  
+
   &:hover {
     background: rgba(121, 220, 120, 0.15) !important;
     color: $primary !important;
   }
-  
+
   &:focus {
     outline: 2px solid $primary !important;
     outline-offset: 2px !important;
   }
-  
+
   i {
     pointer-events: none !important;
     color: inherit !important;
   }
-  
+
   span {
     pointer-events: none !important;
     color: inherit !important;
@@ -3206,7 +3116,7 @@ header.kompraloheader .pointer[matMenuTriggerFor="loginuser_commerce"],
   pointer-events: auto !important;
   z-index: 10001 !important;
   cursor: pointer !important;
-  
+
   .mat-menu-item {
     pointer-events: auto !important;
     cursor: pointer !important;
@@ -3219,22 +3129,22 @@ header.kompraloheader .pointer[matMenuTriggerFor="loginuser_commerce"],
     background: transparent !important;
     color: #333 !important;
     text-decoration: none !important;
-    
+
     &:hover {
       background: rgba(121, 220, 120, 0.1) !important;
       color: $primary !important;
     }
-    
+
     &:focus {
       outline: 2px solid $primary !important;
       outline-offset: -2px !important;
     }
-    
+
     i {
       pointer-events: none !important;
       margin-right: 8px !important;
     }
-    
+
     span {
       pointer-events: none !important;
     }
@@ -3272,12 +3182,12 @@ header.kompraloheader a[matMenuTriggerFor="loginuser_commerce"] *,
   border: none !important;
   width: auto !important;
   height: auto !important;
-  
+
   &:hover {
     background: rgba(121, 220, 120, 0.15) !important;
     color: $primary !important;
   }
-  
+
   &:focus {
     outline: 2px solid $primary !important;
     outline-offset: 2px !important;
@@ -3290,21 +3200,21 @@ header.kompraloheader a[matMenuTriggerFor="loginuser_commerce"] *,
 ::ng-deep .footermobile .cart-wrapper .cart-trigger-mobile,
 ::ng-deep .footermobile li .cart-trigger-mobile {
   color: $white !important;
-  
+
   .cartbtn {
     color: $white !important;
   }
-  
+
   svg {
     color: $white !important;
     fill: $white !important;
     stroke: $white !important;
   }
-  
+
   i {
     color: $white !important;
   }
-  
+
   * {
     color: $white !important;
   }
@@ -3316,21 +3226,21 @@ header.kompraloheader a[matMenuTriggerFor="loginuser_commerce"] *,
 .footermobile .action-item.cart-wrapper .cart-trigger-mobile,
 .footermobile .action-item.cart-wrapper button.cart-trigger-mobile {
   color: $white !important;
-  
+
   .cartbtn {
     color: $white !important;
   }
-  
+
   svg {
     color: $white !important;
     fill: $white !important;
     stroke: $white !important;
   }
-  
+
   i {
     color: $white !important;
   }
-  
+
   * {
     color: $white !important;
   }
@@ -3342,21 +3252,21 @@ header.kompraloheader a[matMenuTriggerFor="loginuser_commerce"] *,
 ::ng-deep .footermobile .action-item.cart-wrapper .cart-trigger-mobile,
 ::ng-deep .footermobile .action-item.cart-wrapper button.cart-trigger-mobile {
   color: $white !important;
-  
+
   .cartbtn {
     color: $white !important;
   }
-  
+
   svg {
     color: $white !important;
     fill: $white !important;
     stroke: $white !important;
   }
-  
+
   i {
     color: $white !important;
   }
-  
+
   * {
     color: $white !important;
   }
