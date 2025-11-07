@@ -37,17 +37,19 @@
             <!-- Search Bar -->
             <div class="search-section">
                 <div class="search-container">
-                    <input 
-                        class="search-input" 
-                        matInput 
-                        [(ngModel)]="searchText" 
-                        
-                        [placeholder]="'Buscar en ' + name_store" 
-                        autocomplete="off" 
-                        type="search">
-                    <button class="search-button" type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
+                    <form class="search-form" (ngSubmit)="applyFilter()">
+                        <input 
+                            class="search-input" 
+                            matInput 
+                            [(ngModel)]="searchText" 
+                            (ngModelChange)="applyFilter()"
+                            (input)="applyFilter()"
+                            (keyup.enter)="applyFilter()"
+                            [placeholder]="'Buscar en ' + name_store" 
+                            autocomplete="off" 
+                            type="search"
+                            name="searchInput">
+                    </form>
                 </div>
             </div>
 
@@ -57,7 +59,7 @@
                     <div class="product-card" *ngFor="let card of obs | async; let i = index">
                         <!-- Product Image -->
                         <div class="product-image-container">
-                            <a class="product-image-link" [routerLink]="card?.route_product">
+                            <a *ngIf="card?.route_product && card?.id_product" class="product-image-link" [routerLink]="card?.route_product">
                                 <img 
                                     class="product-image" 
                                     [src]="card?.image" 
@@ -65,6 +67,14 @@
                                     [ngClass]="{ transparent: !loaded }" 
                                     (load)="onLoad()">
                             </a>
+                            <div *ngIf="!card?.route_product || !card?.id_product" class="product-image-link">
+                                <img 
+                                    class="product-image" 
+                                    [src]="card?.image" 
+                                    [alt]="card?.name"
+                                    [ngClass]="{ transparent: !loaded }" 
+                                    (load)="onLoad()">
+                            </div>
                             
                             <!-- Wishlist Button -->
                             <button 
@@ -78,7 +88,8 @@
                         <!-- Product Info -->
                         <div class="product-info">
                             <h3 class="product-name">
-                                <a [routerLink]="card?.route_product" class="product-link">{{card?.name}}</a>
+                                <a *ngIf="card?.route_product && card?.id_product" [routerLink]="card?.route_product" class="product-link">{{card?.name}}</a>
+                                <span *ngIf="!card?.route_product || !card?.id_product" class="product-name-text">{{card?.name}}</span>
                             </h3>
                             
                             <!-- Price -->
@@ -105,7 +116,7 @@
                                     </button>
                                 </div>
                                 
-                                <div *ngIf="!checkCartAlready(card)" class="action-buttons">
+                                <div *ngIf="!checkCartAlready(card) && card?.route_product && card?.id_product" class="action-buttons">
                                     <button class="view-product-btn" [routerLink]="card?.route_product">
                                         <i class="fa fa-eye"></i>
                                         Ver producto

@@ -47,6 +47,16 @@ export class OrderHistoryComponent implements OnInit {
 		private apiService: ApiService,
 	) { }
 
+	// Getter para obtener los datos paginados para la vista móvil
+	get paginatedData(): any[] {
+		if (!this.paginator || !this.dataSource) {
+			return this.dataSource?.data || [];
+		}
+		const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+		const endIndex = startIndex + this.paginator.pageSize;
+		return this.dataSource.filteredData.slice(startIndex, endIndex);
+	}
+
 	ngOnInit() {
 
 		const id_user_front = localStorage.getItem('id_user_front');

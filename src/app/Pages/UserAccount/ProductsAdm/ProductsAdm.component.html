@@ -13,16 +13,6 @@
     </div>
 
     <div class="products-content">
-        <div class="products-controls">
-            <div class="view-toggle">
-                <button mat-icon-button (click)="productShowType('grid')" [class.active]="showType === 'grid'">
-                    <mat-icon>apps</mat-icon>
-                </button>
-                <button mat-icon-button (click)="productShowType('list')" [class.active]="showType === 'list'">
-                    <mat-icon>list</mat-icon>
-                </button>
-            </div>
-        </div>
 
 
 
@@ -33,13 +23,10 @@
                     <div class="search-box">
                         <input class="search-input" 
                                matInput 
-                               (keyup)="applyFilter($event.target.value)" 
+                               (keyup)="applyFilter($event)" 
                                placeholder="Buscar productos..." 
                                autocomplete="off" 
                                type="search">
-                        <button class="search-btn" type="submit">
-                            <i class="material-icons">search</i>
-                        </button>
                     </div>
                 </div>
                 <div class="table-container">
@@ -122,12 +109,11 @@
                         <input class="search-input" 
                                matInput 
                                [(ngModel)]="searchText" 
+                               (ngModelChange)="applyFilter(searchText)"
+                               (keyup)="applyFilter($event)"
                                placeholder="Buscar productos..." 
                                autocomplete="off" 
                                type="search">
-                        <button class="search-btn" type="submit">
-                            <i class="material-icons">search</i>
-                        </button>
                     </div>
                 </div>
                 

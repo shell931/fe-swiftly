@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { AdminPanelServiceService } from '../../Service/AdminPanelService.service';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -40,7 +40,7 @@ import { BinnacleSideBarAdmComponent } from '../../Shared/BinnacleSideBarAdm/Bin
    ]
 })
 
-export class InvoicesComponent implements OnInit {
+export class InvoicesComponent implements OnInit, AfterViewInit {
 
    CheckedValid: any = true;
    CheckedValidFalse: any = false;
@@ -62,6 +62,7 @@ export class InvoicesComponent implements OnInit {
       public service: AdminPanelServiceService,
       private apiService: ApiService,
       public embryoService: EmbryoService,
+      private changeDetectorRef: ChangeDetectorRef
    ) { }
 
    ngOnInit() {
@@ -69,6 +70,12 @@ export class InvoicesComponent implements OnInit {
       this.apiService.ListAllInvoices().subscribe((res: any) => this.getAllInvoiceData(res));
    }
 
+   ngAfterViewInit() {
+      // Asegurar que el paginador esté conectado después de que la vista esté inicializada
+      if (this.paginator && this.dataSource) {
+         this.dataSource.paginator = this.paginator;
+      }
+   }
 
    addBodyClass() {
 
@@ -86,9 +93,14 @@ export class InvoicesComponent implements OnInit {
 
       this.invoiceList = response;
       this.dataSource = new MatTableDataSource<any>(this.invoiceList);
+      this.changeDetectorRef.detectChanges();
       setTimeout(() => {
-         this.dataSource.paginator = this.paginator;
-      }, 0)
+         if (this.paginator) {
+            this.dataSource.paginator = this.paginator;
+            // Forzar actualización del paginador
+            this.changeDetectorRef.detectChanges();
+         }
+      }, 100)
    }
 
 

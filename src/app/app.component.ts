@@ -62,6 +62,64 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit() {
     // Configurar animaciones usando Web Animations API
     this.setupAnimations();
+    // Fix buttons to ensure they work
+    this.fixButtons();
+  }
+
+  /**
+   * Fix Material buttons to ensure they capture clicks properly
+   */
+  private fixButtons() {
+    // Use setTimeout to ensure DOM is fully rendered
+    setTimeout(() => {
+      // Find all Material buttons
+      const buttons = document.querySelectorAll('button[mat-button], button[mat-raised-button], button[mat-flat-button], button[mat-stroked-button], button[mat-icon-button], button[mat-fab], button[mat-mini-fab], button.mat-mdc-button');
+      
+      buttons.forEach((button: Element) => {
+        const btn = button as HTMLElement;
+        
+        // Skip specific buttons that should not have high z-index
+        const isAddCardBtn = btn.classList.contains('add-card-btn');
+        const isAddAddressBtn = btn.classList.contains('add-address-btn');
+        const isCreateProductBtn = btn.classList.contains('create-product-btn');
+        const isChatBtn = btn.classList.contains('chat-btn');
+        const shouldUseLowZIndex = isAddCardBtn || isAddAddressBtn || isCreateProductBtn || isChatBtn;
+        
+        // Ensure button has pointer-events
+        btn.style.pointerEvents = 'auto';
+        btn.style.cursor = 'pointer';
+        btn.style.position = shouldUseLowZIndex ? 'static' : 'relative';
+        btn.style.zIndex = shouldUseLowZIndex ? '1' : '1000';
+        
+        // Make all decorative elements non-interactive
+        const decorativeElements = btn.querySelectorAll('.mat-focus-indicator, .mat-mdc-button-touch-target, .mat-mdc-button-ripple, .mat-ripple, .mat-ripple-element, .mdc-button__ripple, .mdc-button__touch');
+        decorativeElements.forEach((el: Element) => {
+          const elem = el as HTMLElement;
+          elem.style.pointerEvents = 'none';
+          elem.style.position = 'absolute';
+          elem.style.zIndex = '-1';
+        });
+        
+        // Ensure button content doesn't block clicks
+        const content = btn.querySelectorAll('*');
+        content.forEach((el: Element) => {
+          const elem = el as HTMLElement;
+          if (!elem.classList.contains('mat-focus-indicator') && 
+              !elem.classList.contains('mat-mdc-button-touch-target')) {
+            elem.style.pointerEvents = 'none';
+          }
+        });
+      });
+    }, 100);
+    
+    // Re-apply fix after route changes
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        setTimeout(() => {
+          this.fixButtons();
+        }, 200);
+      }
+    });
   }
 
   /**

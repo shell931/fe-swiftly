@@ -174,12 +174,14 @@ export class DetailStoreComponent implements OnInit {
     @Output() addToWishList: EventEmitter<any> = new EventEmitter();
     get_subca: any[] = [];
     get_categories: subcategoryNode[] = [];
-    searchText: any;
+    searchText: string = '';
     p: any;
     name_store: any;
     product: any; // Add missing property
     rate: number = 0; // Add missing property
     i: number = 0; // Add missing property for loop index
+    filteredProducts: Prod[] = []; // Store filtered products
+    allProducts: Prod[] = []; // Store all products
 
     constructor(private route: ActivatedRoute,
         private router: Router,
@@ -209,6 +211,8 @@ export class DetailStoreComponent implements OnInit {
         localStorage.removeItem("type_cate_subcate");
         localStorage.setItem('id_category_prod', id!);
         localStorage.setItem('type_cate_subcate', type);
+        // Limpiar búsqueda al cambiar de categoría
+        this.searchText = '';
         if (type == "category") {
             this.apiService.getProductsbyCategorybyStore(id, id_store).subscribe((res: any) => this.getProductData(res, id_store));
         } else {
@@ -289,13 +293,74 @@ export class DetailStoreComponent implements OnInit {
             });
         }
 
-        this.productsGrid = this.get_product;    
-        this.dataSource = new MatTableDataSource<Prod>(this.productsGrid);
+        this.productsGrid = this.get_product;
+        this.allProducts = [...this.get_product]; // Store all products
+        this.filteredProducts = [...this.get_product]; // Initialize filtered products
+        this.dataSource = new MatTableDataSource<Prod>(this.filteredProducts);
         this.changeDetectorRef.detectChanges();
         this.dataSource.paginator = this.paginator;
         this.obs = this.dataSource.connect();
+    }
 
+    /**
+     * Aplica el filtro de búsqueda a los productos
+     */
+    applyFilter(): void {
+        try {
+            // Verificar que hay productos
+            if (!this.allProducts || !Array.isArray(this.allProducts) || this.allProducts.length === 0) {
+                this.filteredProducts = [];
+                this.dataSource.data = [];
+                this.updatePaginator();
+                return;
+            }
+            
+            // Obtener el texto de búsqueda de forma segura
+            const searchValue = (this.searchText || '').trim().toLowerCase();
+            
+            // Si no hay texto, mostrar todos los productos
+            if (!searchValue) {
+                this.filteredProducts = [...this.allProducts];
+            } else {
+                // Filtrar por nombre, marca o código de producto
+                this.filteredProducts = this.allProducts.filter(product => {
+                    if (!product) return false;
+                    
+                    // Convertir a string antes de toLowerCase
+                    const name = String(product.name || '').toLowerCase();
+                    const brand = String(product.brand || '').toLowerCase();
+                    const productCode = String(product.product_code || '').toLowerCase();
+                    
+                    return name.includes(searchValue) || 
+                           brand.includes(searchValue) || 
+                           productCode.includes(searchValue);
+                });
+            }
+            
+            // Actualizar el dataSource con los productos filtrados
+            this.dataSource.data = this.filteredProducts;
+            this.updatePaginator();
+        } catch (error) {
+            console.error('Error en applyFilter:', error);
+            // En caso de error, mostrar todos los productos
+            if (this.allProducts && Array.isArray(this.allProducts)) {
+                this.filteredProducts = [...this.allProducts];
+                this.dataSource.data = this.filteredProducts;
+                this.updatePaginator();
+            }
+        }
+    }
 
+    /**
+     * Actualiza el paginator
+     */
+    updatePaginator(): void {
+        setTimeout(() => {
+            if (this.paginator && this.dataSource) {
+                this.dataSource.paginator = this.paginator;
+            }
+            this.changeDetectorRef.detectChanges();
+        }, 0);
     }
 
 

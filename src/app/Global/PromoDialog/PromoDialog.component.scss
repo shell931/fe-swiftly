@@ -9,41 +9,27 @@
   box-sizing: border-box;
   border-radius: 12px;
   overflow: hidden;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
 }
 
 .promo-image {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
   max-height: 95vh;
   border-radius: 12px;
   display: block;
   object-fit: contain;
-}
-
-/* Desktop: make dialog narrower so images aren't huge */
-@media (min-width: 1024px) {
-  .promo-dialog {
-    width: 480px;
-    max-width: 480px;
-  }
-  .promo-image {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-/* Force rounded corners on Material dialog containers */
-:host ::ng-deep .mat-dialog-container {
-  border-radius: 12px !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-}
-:host ::ng-deep .cdk-overlay-pane {
-  border-radius: 12px !important;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  flex-shrink: 0; // Evita que se comprima
 }
 
 .close-btn {
-  position: absolute;
+  position: absolute !important;
   top: 8px;
   right: 8px;
   background: rgba(0,0,0,0.7);
@@ -56,8 +42,52 @@
   font-size: 18px;
   line-height: 28px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.35);
-  z-index: 5;
+  z-index: 10 !important; // Asegurar que esté por encima
   border: 1px solid rgba(255,255,255,0.6);
+  pointer-events: auto;
+  // Asegurar que no afecte el layout flex - está fuera del flujo
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Desktop: make dialog narrower so images aren't huge */
+@media (min-width: 1024px) {
+  .promo-dialog {
+    width: 480px;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .promo-image {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+  }
+}
+
+/* Force rounded corners on Material dialog containers */
+:host ::ng-deep .mat-dialog-container {
+  border-radius: 12px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+:host ::ng-deep .cdk-overlay-pane {
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
 }
 
 /* Tablet: reduce size so images aren't too large */
@@ -65,10 +95,18 @@
   .promo-dialog {
     width: 70vw;
     max-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
   .promo-image {
+    width: auto;
     max-width: 100%;
     height: auto;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
   }
 }
 

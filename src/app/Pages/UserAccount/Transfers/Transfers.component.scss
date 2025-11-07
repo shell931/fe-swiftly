@@ -94,3 +94,36 @@ h4 {
     font-size: 13px;
     width: 100px;
 }
+
+// Input de búsqueda compacto
+.buttonIn {
+    margin-bottom: 0.75rem;
+    
+    .inputsearch {
+        padding: 0.375rem 0.75rem;
+        font-size: 13px;
+        height: 32px;
+        border-radius: 4px;
+        border: 1px solid #dee2e6;
+        width: 100%;
+        max-width: 300px;
+        transition: all 0.2s ease;
+        
+        &:focus {
+            outline: none;
+            border-color: #79dc78;
+            box-shadow: 0 0 0 2px rgba(121, 220, 120, 0.1);
+        }
+    }
+}
+
+.no-data-message {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #6c757d;
+    
+    p {
+        margin: 0;
+        font-size: 14px;
+    }
+}

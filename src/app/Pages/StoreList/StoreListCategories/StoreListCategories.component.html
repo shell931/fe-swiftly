@@ -1,58 +1,118 @@
-<div class="flex-row">
-    <mat-card class="mat1">
-        <div matLine>
-            Buscar tiendas por categoria..:
-        </div>
-        <mat-tree [dataSource]="dataSourceTree" [treeControl]="treeControl" class="example-tree">
-            <mat-nested-tree-node *matTreeNodeDef="let node;">
-                <li>
-                    <div class="mat-tree-node">
-                        <button [routerLink]="['/searchstorecategories/',node.id]" mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name_category">
-                            <mat-icon class="mat-icon-rtl-mirror">
-                                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                            </mat-icon>
-                        </button>
-                        <a
-                            [routerLink]="['/searchstorecategories/',node.type,node.id_store,node.id]">{{node.name_category}}</a>
-                    </div>
-                    <!-- <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
-                        <ng-container matTreeNodeOutlet></ng-container>
-                    </ul> -->
-                </li>
-            </mat-nested-tree-node>
-        </mat-tree>
-    </mat-card>
-
-    <mat-card>
+<div class="store-categories-container">
+    <!-- Header Section -->
+    <div class="page-header">
         <div class="container">
-            <div>
-                <mat-toolbar class="style_toolbar">
-                    <mat-form-field style="width: 100%" floatLabel="auto">
-                        <input matInput [(ngModel)]="searchText" placeholder="Buscar tiendas" autocomplete="off">
-                    </mat-form-field>
-                </mat-toolbar>
-                <div fxLayout="row wrap" fxLayoutAlign="none" class="col-gap div_produc">
-                    <mat-card class="example-card card_store_prod"
-                        *ngFor="let card of obsStore | async">
-                        <!-- | filter : searchText | paginate: { itemsPerPage: 8, currentPage: p } temporarily removed -->
-                        <mat-card-header>
-                            <mat-card-subtitle>
-                                <h4>{{card?.name_store }}</h4>
-                            </mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <a class="p-link" *ngIf="!card?.id" [routerLink]="[card?.route_store]">
-                                <img width="626" height="800" mat-card-image [src]="card?.logo_store"
-                                    [ngClass]="{ transparent: !loaded }" (load)="onLoad()" alt="Photo">
-                            </a>
-                            <p>
-                                {{card?.description }}
-                            </p>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-                <mat-paginator [pageSizeOptions]="[8, 8, 25, 100]"></mat-paginator>
+            <div class="header-content">
+                <h1 class="page-title">Buscar tiendas por categoría</h1>
+                <p class="page-subtitle">Explora nuestras categorías y encuentra las mejores tiendas</p>
             </div>
         </div>
-    </mat-card>
+    </div>
+
+    <div class="container">
+        <div class="main-layout">
+            <!-- Sidebar - Categories -->
+            <aside class="sidebar">
+                <div class="categories-card">
+                    <h3 class="categories-title">
+                        <i class="material-icons">category</i>
+                        Categorías
+                    </h3>
+                    <mat-tree [dataSource]="dataSourceTree" [treeControl]="treeControl" class="categories-tree">
+                        <mat-nested-tree-node *matTreeNodeDef="let node;">
+                            <div class="category-item">
+                                <button 
+                                    mat-icon-button 
+                                    matTreeNodeToggle 
+                                    [attr.aria-label]="'toggle ' + node.name_category"
+                                    class="category-toggle">
+                                    <mat-icon class="mat-icon-rtl-mirror">
+                                        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                                    </mat-icon>
+                                </button>
+                                <a 
+                                    [routerLink]="['/storelist/searchstorebycategories/', node.id]"
+                                    class="category-link"
+                                    routerLinkActive="active">
+                                    {{node.name_category}}
+                                </a>
+                            </div>
+                        </mat-nested-tree-node>
+                    </mat-tree>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Search Section -->
+                <div class="search-section">
+                    <div class="search-container">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input 
+                                matInput 
+                                [(ngModel)]="searchText" 
+                                (ngModelChange)="applyFilter()"
+                                (input)="applyFilter()"
+                                (keyup.enter)="applyFilter()"
+                                placeholder="Buscar tiendas..." 
+                                autocomplete="off"
+                                type="search">
+                            <button mat-icon-button matSuffix (click)="applyFilter()" type="button" aria-label="Buscar">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Stores Grid -->
+                <div class="stores-grid">
+                    <div class="stores-grid-container">
+                        <div class="store-card" *ngFor="let card of obsStore | async; trackBy: trackByStoreId">
+                            <div class="store-card-content">
+                                <!-- Store Logo -->
+                                <div class="store-logo-container">
+                                    <a class="store-link" [routerLink]="[card?.route_store]">
+                                        <img 
+                                            class="store-logo" 
+                                            [src]="card?.logo_store" 
+                                            [ngClass]="{ transparent: !loaded }" 
+                                            (load)="onLoad()" 
+                                            [alt]="card?.name_store">
+                                    </a>
+                                </div>
+
+                                <!-- Store Info -->
+                                <div class="store-info">
+                                    <h4 class="store-name">
+                                        <a [routerLink]="[card?.route_store]" class="store-name-link">
+                                            {{card?.name_store}}
+                                        </a>
+                                    </h4>
+                                    <p class="store-description">{{card?.description}}</p>
+                                    
+                                    <!-- Action Button -->
+                                    <div class="store-actions">
+                                        <a class="store-action-button" [routerLink]="[card?.route_store]">
+                                            Ver tienda
+                                            <i class="material-icons">arrow_forward</i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-section">
+                    <mat-paginator 
+                        #paginator
+                        class="stores-paginator" 
+                        [pageSizeOptions]="[8, 16, 24, 32]"
+                        showFirstLastButtons="true">
+                    </mat-paginator>
+                </div>
+            </main>
+        </div>
+    </div>
 </div>

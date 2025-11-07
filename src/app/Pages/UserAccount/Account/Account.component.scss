@@ -1,33 +1,50 @@
 /* Main Container */
 .account-info {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     max-width: 100%;
     margin: 0;
     background: transparent;
     border-radius: 12px;
     box-shadow: none;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
+}
+
+/* Asegurar que los contenedores padres no bloqueen el scroll */
+.inner-container,
+.final-receipt-page {
+    overflow-x: visible !important;
+    max-width: 100% !important;
 }
 
 /* User Info Header - Minimalist */
 .user-info-header {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     background: transparent;
     padding: 1rem 1.5rem;
     border-bottom: 1px solid rgba(233, 236, 239, 0.3);
 }
 
 .user-info {
-    display: flex;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     align-items: center;
     color: #495057;
 }
 
 .login-user-img {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     background: #e9ecef;
-    display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 1rem;
@@ -39,15 +56,26 @@
     color: #6c757d;
 }
 
+.bienvenida {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 .bienvenida b {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     font-size: 16px !important;
     font-weight: 500 !important;
     color: #495057;
-    display: block;
     margin-bottom: 2px;
 }
 
 .bienvenida p {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     font-size: 13px !important;
     font-weight: 400 !important;
     color: #6c757d;
@@ -56,12 +84,23 @@
 
 /* Horizontal Navigation - Minimalist */
 .horizontal-nav {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     background: transparent;
     border-bottom: 1px solid rgba(233, 236, 239, 0.3);
     padding: 0.5rem 0;
-    overflow-x: auto;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    white-space: nowrap;
+    touch-action: pan-x !important; /* Permitir paneo horizontal */
+    overscroll-behavior-x: auto !important; /* Permitir scroll horizontal */
 }
 
 .horizontal-nav::-webkit-scrollbar {
@@ -69,14 +108,21 @@
 }
 
 .nav-container {
-    display: flex;
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     gap: 0.25rem;
     padding: 0 1rem;
     min-width: max-content;
+    flex-wrap: nowrap;
+    width: max-content;
+    white-space: nowrap;
 }
 
 .nav-item {
-    display: flex;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     flex-direction: column;
     align-items: center;
     padding: 0.5rem 0.75rem;
@@ -88,32 +134,49 @@
     position: relative;
     background: transparent;
     border: 1px solid transparent;
+    flex-shrink: 0;
 }
 
 .nav-item:hover {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     background: #f8f9fa;
     color: #495057;
 }
 
 .nav-item.nav-active {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     background: #e9ecef;
     color: #495057;
     border-color: #dee2e6;
 }
 
 .nav-item i {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     font-size: 20px;
     margin-bottom: 4px;
 }
 
 .nav-item span {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     font-size: 12px;
     font-weight: 400;
     text-align: center;
     line-height: 1.2;
+    white-space: nowrap;
 }
 
 .badge {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     position: absolute;
     top: 4px;
     right: 4px;
@@ -122,7 +185,6 @@
     border-radius: 50%;
     width: 18px;
     height: 18px;
-    display: flex;
     align-items: center;
     justify-content: center;
     font-size: 10px;
@@ -131,6 +193,9 @@
 
 /* Content Area */
 .content-wrapper {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     padding: 1.5rem;
     min-height: 60vh;
 }
@@ -157,6 +222,7 @@ span {
     .account-info {
         border-radius: 0;
         margin: 0;
+        overflow: visible;
     }
     
     .user-info-header {
@@ -174,22 +240,56 @@ span {
         margin-bottom: 0.5rem;
     }
     
+    .horizontal-nav {
+        padding: 0.5rem 0;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        width: 100%;
+        max-width: 100%;
+        white-space: nowrap;
+        touch-action: pan-x !important; /* Permitir paneo horizontal */
+        overscroll-behavior-x: auto !important; /* Permitir scroll horizontal */
+    }
+    
+    .horizontal-nav::-webkit-scrollbar {
+        display: none;
+    }
+    
     .nav-container {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
         padding: 0 0.5rem;
         gap: 0.25rem;
+        min-width: max-content;
+        width: max-content;
+        flex-wrap: nowrap;
+        white-space: nowrap;
     }
     
     .nav-item {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
         min-width: 70px;
-        padding: 0.5rem 0.75rem;
+        max-width: 70px;
+        padding: 0.5rem 0.5rem;
+        flex-shrink: 0;
+        flex-grow: 0;
     }
     
     .nav-item i {
         font-size: 18px;
+        display: block !important;
     }
     
     .nav-item span {
         font-size: 11px;
+        display: block !important;
+        white-space: nowrap;
     }
     
     .content-wrapper {
@@ -198,16 +298,64 @@ span {
 }
 
 @media (max-width: 480px) {
+    .horizontal-nav {
+        padding: 0.5rem 0;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        touch-action: pan-x !important; /* Permitir paneo horizontal */
+        overscroll-behavior-x: auto !important; /* Permitir scroll horizontal */
+    }
+    
+    .nav-container {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        padding: 0 0.5rem;
+        gap: 0.25rem;
+        min-width: max-content;
+        width: max-content;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+    }
+    
     .nav-item {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
         min-width: 60px;
-        padding: 0.5rem;
+        max-width: 60px;
+        padding: 0.5rem 0.4rem;
+        flex-shrink: 0;
+        flex-grow: 0;
     }
     
     .nav-item span {
-        font-size: 10px;
+        font-size: 9px;
+        white-space: nowrap;
+        overflow: visible;
+        text-overflow: ellipsis;
+        max-width: 100%;
     }
     
     .nav-item i {
         font-size: 16px;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .badge {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 14px;
+        height: 14px;
+        font-size: 8px;
+        top: 2px;
+        right: 2px;
     }
 }

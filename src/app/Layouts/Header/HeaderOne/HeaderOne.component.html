@@ -188,7 +188,7 @@
 
   <!-- Categorías -->
   <mat-menu #cat="matMenu" class="custom-menu">
-    <a mat-menu-item *ngFor="let item of get_categories" [routerLink]="['/searchstorebycategories/', item.id]">
+    <a mat-menu-item *ngFor="let item of get_categories" [routerLink]="['/storelist/searchstorebycategories/', item.id]">
       {{ item.name_category }}
     </a>
   </mat-menu>
@@ -239,7 +239,7 @@
 <!-- MOBILE MENU DROPDOWNS -->
   <!-- Categorías Mobile -->
 <mat-menu #cat_mobile="matMenu" class="custom-menu">
-  <a mat-menu-item *ngFor="let item of get_categories" [routerLink]="['/searchstorebycategories/', item.id]" (click)="closeMobileMenu()">
+  <a mat-menu-item *ngFor="let item of get_categories" [routerLink]="['/storelist/searchstorebycategories/', item.id]" (click)="closeMobileMenu()">
     {{ item.name_category }}
   </a>
 </mat-menu>

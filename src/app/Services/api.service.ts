@@ -608,12 +608,24 @@ export class ApiService {
 
     FilterLocationsByIdUser(id_user_front: string | null) {
         let filter_locations: any;
+        if (!id_user_front) {
+            return new Observable(observer => {
+                observer.next([]);
+                observer.complete();
+            });
+        }
         filter_locations = this.httpClient.get(`${this.baseLocationByUser}?id_user_front=${id_user_front}`, { headers: this.getAuthFrontHeaders() });
         return filter_locations;
     }
 
     PredeterminateLocationsByIdUser(id_user_front: string | null) {
         let filter_locations: any;
+        if (!id_user_front) {
+            return new Observable(observer => {
+                observer.next([]);
+                observer.complete();
+            });
+        }
         filter_locations = this.httpClient.get(`${this.baseLocationPredeterByUser}?id_user_front=${id_user_front}`, { headers: this.getAuthFrontHeaders() });
         return filter_locations;
     }
@@ -725,8 +737,19 @@ export class ApiService {
     }
 
 
-    SendTransactionDataToBackend(DataTransaction: { webProductsReference: any; txnid: any; typeIdentification: any; identificationNumber: any; total: any; typeTax: number; tax: number; address: any; department: number; id_city: any; city: any; email: any; phone: any; celphone: any; franquicia: any; productinfo: any; firstname: any; billingNames: any; billingLastNames: any; billingEmail: any; id_user_front: string | null; products: string | null; }) {
-        const body = DataTransaction;
+    SendTransactionDataToBackend(DataTransaction: { webProductsReference: any; txnid: any; typeIdentification: any; identificationNumber: any; total: any; typeTax: number; tax: number; address: any; department: number; id_city: any; city: any; email: any; phone: any; celphone: any; franquicia: any; productinfo: any; firstname: any; billingNames: any; billingLastNames: any; billingEmail: any; id_user_front?: string | null; products: string | null; }) {
+        // Limpiar el objeto para eliminar valores undefined/null
+        const cleanedData: any = {};
+        for (const key in DataTransaction) {
+            if (DataTransaction.hasOwnProperty(key)) {
+                const value = (DataTransaction as any)[key];
+                // Solo incluir valores que no sean null, undefined, o la cadena "undefined"
+                if (value !== null && value !== undefined && value !== 'undefined' && value !== 'null') {
+                    cleanedData[key] = value;
+                }
+            }
+        }
+        const body = cleanedData;
         return this.httpClient.post(`${this.TransactionFromBackendUrl}`, body, { headers: this.getAuthFrontHeaders() });
     }
 

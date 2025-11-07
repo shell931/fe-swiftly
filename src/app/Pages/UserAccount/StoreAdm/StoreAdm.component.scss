@@ -241,6 +241,8 @@ mat-card p {
   .store-container {
     padding: 0.75rem;
     margin: 0 0.5rem;
+    padding-bottom: 6rem; /* Espacio para el footer móvil */
+    margin-top: 4rem; /* Espacio para el header móvil */
   }
   
   .store-header {
@@ -249,6 +251,8 @@ mat-card p {
     gap: 0.5rem;
     margin-bottom: 0.75rem;
     padding-bottom: 0.5rem;
+    position: relative;
+    z-index: 1; /* Menor que header (99999) y footer (1000) */
   }
   
   .header-content b {
@@ -265,6 +269,9 @@ mat-card p {
     padding: 6px 12px;
     font-size: 11px;
     height: 28px;
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
   }
   
   .store-content {
@@ -316,12 +323,16 @@ mat-card p {
   .store-container {
     padding: 0.5rem;
     margin: 0;
+    padding-bottom: 6rem; /* Espacio para el footer móvil */
+    margin-top: 4rem; /* Espacio para el header móvil */
   }
   
   .store-header {
     gap: 0.375rem;
     margin-bottom: 0.5rem;
     padding-bottom: 0.375rem;
+    position: relative;
+    z-index: 1;
   }
   
   .header-content b {
@@ -336,6 +347,9 @@ mat-card p {
     padding: 4px 8px;
     font-size: 10px;
     height: 24px;
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
   }
   
   .store-content {

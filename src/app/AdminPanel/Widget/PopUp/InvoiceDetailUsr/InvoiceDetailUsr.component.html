@@ -17,7 +17,7 @@
             </div>
             <div class="info-item">
                 <label>Fecha:</label>
-                <span class="info-value">{{data?.created_at || 'N/A'}}</span>
+                <span class="info-value">{{data?.created_at ? (data.created_at | date:'dd/MM/yyyy HH:mm') : 'N/A'}}</span>
             </div>
             <div class="info-item">
                 <label>Estado:</label>
@@ -50,7 +50,7 @@
                 <label>Teléfono:</label>
                 <span class="info-value">{{data?.phone || 'N/A'}}</span>
             </div>
-            <div class="info-item">
+            <div class="info-item full-width">
                 <label>Email:</label>
                 <span class="info-value">{{data?.email || 'N/A'}}</span>
             </div>
@@ -87,8 +87,8 @@
             </div>
         </div>
 
-        <!-- Products Table -->
-        <div class="products-table-container">
+        <!-- Products Table - Desktop -->
+        <div class="products-table-container desktop-table">
             <div class="table-wrapper">
                 <table class="products-table">
                     <thead>
@@ -125,6 +125,40 @@
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+        </div>
+
+        <!-- Products Cards - Mobile -->
+        <div class="products-cards-container mobile-cards">
+            <div class="product-card" *ngFor="let item of adminprList; trackBy: trackByProduct">
+                <div class="product-card-header">
+                    <img class="product-card-thumbnail"
+                        [src]="img_product_rout + item.image" 
+                        [alt]="item.name_product"
+                        (error)="$event.target.src='assets/images/no-image.png'">
+                    <div class="product-card-info">
+                        <div class="product-card-name">{{ item.name_product || 'Producto sin nombre' }}</div>
+                        <div class="product-card-code">Código: {{ item.product_code || 'N/A' }}</div>
+                    </div>
+                </div>
+                <div class="product-card-details">
+                    <div class="product-card-row">
+                        <span class="label">Precio Unit.:</span>
+                        <span class="value">{{ item.unit_price|currency : 'USD' : 'symbol' : '1.0-0' }}</span>
+                    </div>
+                    <div class="product-card-row">
+                        <span class="label">Cantidad:</span>
+                        <span class="value">{{ item.quantity || 0 }}</span>
+                    </div>
+                    <div class="product-card-row total">
+                        <span class="label">Total:</span>
+                        <span class="value">{{ item.total_price|currency : 'USD' : 'symbol' : '1.0-0' }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card-total">
+                <span class="total-label">Total de la Compra:</span>
+                <span class="total-amount">{{data?.total_price|currency : 'USD' : 'symbol' : '1.0-0' }}</span>
             </div>
         </div>
     </div>

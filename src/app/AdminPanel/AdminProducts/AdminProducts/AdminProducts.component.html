@@ -7,10 +7,6 @@
 
             <div class="buttonIn">
                 <input class="inputsearch" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar" autocomplete="off" type="search">
-                <button class="btn btn-primary button-search class_search" type="submit" tabindex="-1">
-                    <span class="mat-button-wrapper">
-                        <i class="fa fa-search"></i>
-                    </span></button>
             </div>
 
 
@@ -32,7 +28,7 @@
                     </ng-container>
                     <ng-container matColumnDef="created_at">
                         <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Fecha</b> </th>
-                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/yyyy HH:mm'}} </td>
                     </ng-container>
                     <ng-container matColumnDef="product_code">
                         <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Cod Prod</b> </th>
@@ -72,7 +68,12 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
             </div>
-            <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+            <mat-paginator 
+                #paginator
+                [length]="dataSource.data.length"
+                [pageSize]="15"
+                [pageSizeOptions]="[15, 30, 45, 60]">
+            </mat-paginator>
             <!-- table-responsive -->
         </mat-card>
     </div>

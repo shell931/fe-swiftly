@@ -11,18 +11,22 @@ ccv = document.querySelector('#tarjeta .ccv');
 
 // * Volteamos la tarjeta para mostrar el frente.
 const mostrarFrente = () => {
-    if (tarjeta.classList.contains('active')) {
+    if (tarjeta && tarjeta.classList.contains('active')) {
         tarjeta.classList.remove('active');
     }
 }
 
 // * Rotacion de la tarjeta
-tarjeta.addEventListener('click', () => {
-    tarjeta.classList.toggle('active');
-});
+if (tarjeta) {
+    tarjeta.addEventListener('click', () => {
+        tarjeta.classList.toggle('active');
+    });
+}
 
 // btnAbrirFormulario.classList.toggle('active');
-formulario.classList.toggle('active');
+if (formulario) {
+    formulario.classList.toggle('active');
+}
 // * Boton de abrir formulario
 // btnAbrirFormulario.addEventListener('click', () => {
 //     btnAbrirFormulario.classList.toggle('active');
@@ -47,7 +51,8 @@ formulario.classList.toggle('active');
 // }
 
 // * Input numero de tarjeta
-formulario.inputNumero.addEventListener('keyup', (e) => {
+if (formulario && formulario.inputNumero) {
+    formulario.inputNumero.addEventListener('keyup', (e) => {
     let valorInput = e.target.value;
 
     formulario.inputNumero.value = valorInput
@@ -60,17 +65,22 @@ formulario.inputNumero.addEventListener('keyup', (e) => {
         // Elimina el ultimo espaciado
         .trim();
 
-    numeroTarjeta.textContent = valorInput;
+    if (numeroTarjeta) {
+        numeroTarjeta.textContent = valorInput;
+    }
 
     if (valorInput == '') {
-        numeroTarjeta.textContent = '#### #### #### ####';
-
-        logoMarca.innerHTML = '';
+        if (numeroTarjeta) {
+            numeroTarjeta.textContent = '#### #### #### ####';
+        }
+        if (logoMarca) {
+            logoMarca.innerHTML = '';
+        }
     }
 
     // visa
     var re = new RegExp("^4");
-    if (valorInput.match(re) != null) {
+    if (valorInput.match(re) != null && logoMarca) {
         logoMarca.innerHTML = '';
         const imagen = document.createElement('img');
         imagen.src = 'assets/images/card/logos/visa.png';
@@ -78,7 +88,7 @@ formulario.inputNumero.addEventListener('keyup', (e) => {
     }
     // Mastercard 
     // Updated for Mastercard 2017 BINs expansion
-    if (valorInput[0] == 5) {
+    if (valorInput[0] == 5 && logoMarca) {
         logoMarca.innerHTML = '';
         const imagen = document.createElement('img');
         imagen.src = 'assets/images/card/logos/mastercard.png';
@@ -86,7 +96,7 @@ formulario.inputNumero.addEventListener('keyup', (e) => {
     }
     // AMEX
     re = new RegExp("^3[47]")
-    if (valorInput.match(re) != null) {
+    if (valorInput.match(re) != null && logoMarca) {
         logoMarca.innerHTML = '';
         const imagen = document.createElement('img');
         imagen.src = 'assets/images/card/logos/american-express.png';
@@ -95,7 +105,7 @@ formulario.inputNumero.addEventListener('keyup', (e) => {
 
     // Diners
     re = new RegExp("^36");
-    if (valorInput.match(re) != null) {
+    if (valorInput.match(re) != null && logoMarca) {
         logoMarca.innerHTML = '';
         const imagen = document.createElement('img');
         imagen.src = 'assets/images/card/logos/diners.png';
@@ -106,38 +116,54 @@ formulario.inputNumero.addEventListener('keyup', (e) => {
 
     // Volteamos la tarjeta para que el usuario vea el frente.
     mostrarFrente();
-});
+    });
+}
 
 // * Input nombre de tarjeta
-formulario.inputNombre.addEventListener('keyup', (e) => {
+if (formulario && formulario.inputNombre) {
+    formulario.inputNombre.addEventListener('keyup', (e) => {
     let valorInput = e.target.value;
 
     formulario.inputNombre.value = valorInput.replace(/[0-9]/g, '');
-    nombreTarjeta.textContent = valorInput;
-    firma.textContent = valorInput;
+    if (nombreTarjeta) {
+        nombreTarjeta.textContent = valorInput;
+    }
+    if (firma) {
+        firma.textContent = valorInput;
+    }
 
-    if (valorInput == '') {
+    if (valorInput == '' && nombreTarjeta) {
         nombreTarjeta.textContent = 'Jhon Doe';
     }
 
     mostrarFrente();
-});
+    });
+}
 
 // * Select mes
-formulario.selectMes.addEventListener('change', (e) => {
-    mesExpiracion.textContent = e.target.value;
+if (formulario && formulario.selectMes) {
+    formulario.selectMes.addEventListener('change', (e) => {
+    if (mesExpiracion) {
+        mesExpiracion.textContent = e.target.value;
+    }
     mostrarFrente();
-});
+    });
+}
 
 // * Select Año
-formulario.selectYear.addEventListener('change', (e) => {
-    yearExpiracion.textContent = e.target.value.slice(2);
+if (formulario && formulario.selectYear) {
+    formulario.selectYear.addEventListener('change', (e) => {
+    if (yearExpiracion) {
+        yearExpiracion.textContent = e.target.value.slice(2);
+    }
     mostrarFrente();
-});
+    });
+}
 
 // * CCV
-formulario.inputCCV.addEventListener('keyup', () => {
-    if (!tarjeta.classList.contains('active')) {
+if (formulario && formulario.inputCCV) {
+    formulario.inputCCV.addEventListener('keyup', () => {
+    if (tarjeta && !tarjeta.classList.contains('active')) {
         tarjeta.classList.toggle('active');
     }
 
@@ -147,5 +173,8 @@ formulario.inputCCV.addEventListener('keyup', () => {
         // Eliminar las letras
         .replace(/\D/g, '');
 
-    ccv.textContent = formulario.inputCCV.value;
-});
+    if (ccv) {
+        ccv.textContent = formulario.inputCCV.value;
+    }
+    });
+}

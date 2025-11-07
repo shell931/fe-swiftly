@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -36,7 +36,7 @@ import { environment } from '../../../../../src/environments/environment';
 	]
 })
 
-export class AdminProductsComponent implements OnInit {
+export class AdminProductsComponent implements OnInit, AfterViewInit {
 
 
 	adminprList: any[] = [];
@@ -51,20 +51,33 @@ export class AdminProductsComponent implements OnInit {
 
 	constructor(
 		private apiService: ApiService,
-		public service: AdminPanelServiceService
+		public service: AdminPanelServiceService,
+		private changeDetectorRef: ChangeDetectorRef
 	) { }
 
 	ngOnInit() {
 	this.apiService.getAdminProduct().subscribe((res: any) => this.getProductsData(res), (error: any) => console.log(error));
 	}
 
+	ngAfterViewInit() {
+		// Asegurar que el paginador esté conectado después de que la vista esté inicializada
+		if (this.paginator && this.dataSource) {
+			this.dataSource.paginator = this.paginator;
+		}
+	}
+
 	getProductsData(response : any) {
 		console.log(response);
 		this.adminprList = response;
 		this.dataSource = new MatTableDataSource<any>(this.adminprList);
+		this.changeDetectorRef.detectChanges();
 		setTimeout(() => {
-			this.dataSource.paginator = this.paginator;
-		}, 0)
+			if (this.paginator) {
+				this.dataSource.paginator = this.paginator;
+				// Forzar actualización del paginador
+				this.changeDetectorRef.detectChanges();
+			}
+		}, 100)
 	}
 
 

@@ -285,7 +285,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     const id_user_front = localStorage.getItem('id_user_front');
     localStorage.removeItem("TokenPaymentGateway");
     this.id_com = id_user_front;
-    if (token_front) {
+    if (token_front && id_user_front) {
 
       this.paymentFormOne = this.formGroup.group({
         user_details: this.formGroup.group({
@@ -496,6 +496,12 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     let cvv = paymentData.payment.cvv;
     const id_user_front = localStorage.getItem('id_user_front');
 
+    if (!id_user_front) {
+      console.error('id_user_front no está definido');
+      this.show = false;
+      this.router.navigate(['/checkout']);
+      return;
+    }
 
     this.apiService.PredeterminateLocationsByIdUser(id_user_front).subscribe(
       response => {
@@ -533,7 +539,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
             this.id_city = response[i].id_city;
             this.city = response[i].nameci;
           }
-          let JsonDataTransaction = {
+          let JsonDataTransaction: any = {
             "webProductsReference": this.txnid,
             "txnid": this.txnid,
             "typeIdentification": this.typeIdentification,
@@ -554,10 +560,13 @@ export class PaymentComponent implements OnInit, AfterViewInit {
             "billingNames": this.billingNames,
             "billingLastNames": this.billingLastNames,
             "billingEmail": this.billingEmail,
-            "id_user_front": id_user_front,
             "products": products
-
           };
+          
+          // Solo agregar id_user_front si existe y no es null/undefined
+          if (id_user_front && id_user_front !== 'null' && id_user_front !== 'undefined') {
+            JsonDataTransaction["id_user_front"] = id_user_front;
+          }
           console.log(JsonDataTransaction);
 
           this.apiService.SendTransactionDataToBackend(JsonDataTransaction).subscribe(
