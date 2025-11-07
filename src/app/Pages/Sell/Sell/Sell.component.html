@@ -424,6 +424,14 @@
                                     </label>
                     </li>
                 </div>
+
+                <div class="mt-2" *ngIf="membership_error_message">
+                    <li style="color:red">
+                        <label style="color:red">
+                            {{ membership_error_message }}
+                        </label>
+                    </li>
+                </div>
             </mat-card>
         </form>
     </div>
