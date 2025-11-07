@@ -325,6 +325,10 @@ export class SellComponent implements OnInit {
         societytypeCtrl: new UntypedFormControl('', [Validators.required]),
         departamentCtrll: new UntypedFormControl('', [Validators.required]),
         citieCtrl: new UntypedFormControl('', [Validators.required]),
+        num_aprox_tx: ['', [Validators.required]],
+        ticket_prom: ['', [Validators.required]],
+        amount_aprox_tx_month: ['', [Validators.required]],
+        maximun_amount_link: ['', [Validators.required]],
       });
 
     } else {
@@ -366,6 +370,10 @@ export class SellComponent implements OnInit {
         societytypeCtrl: new UntypedFormControl('', [Validators.required]),
         departamentCtrll: new UntypedFormControl('', [Validators.required]),
         citieCtrl: new UntypedFormControl('', [Validators.required]),
+        num_aprox_tx: ['', [Validators.required]],
+        ticket_prom: ['', [Validators.required]],
+        amount_aprox_tx_month: ['', [Validators.required]],
+        maximun_amount_link: ['', [Validators.required]],
       });
     }
 
@@ -431,6 +439,9 @@ export class SellComponent implements OnInit {
 
   citieChangeAction(departament: any) {
     // START ANGULAR MAT SEARCH CITIES
+    // Reset city field when department changes
+    this.registerForm.patchValue({ citieCtrl: null });
+
     let get_data_dep = departament;
     let id_dep = get_data_dep.id_departament;
     // console.log(id_dep);
@@ -618,17 +629,17 @@ export class SellComponent implements OnInit {
         "number_identifier": registerForm.number_identifier,
         "manager": registerForm.name + ' ' + registerForm.second_name,
         "state_store": 'false',
-        "city": this.selectedCity,
+        "city": registerForm.citieCtrl,
         "description": '',
         "postal_code": registerForm.postal_code,
-        "storecategories": this.selectedCategory,
-        "societytype": this.selectedSociety,
-        "departament": 5, // TODO: change to the selected departament
+        "storecategories": registerForm.categorystoreCtrl,
+        "societytype": registerForm.societytypeCtrl,
+        "departament": registerForm.departamentCtrll,
         "bussines_type": 1, // TODO: change to the selected bussines type
-        "num_aprox_tx": 200, // TODO: change to the selected number of transactions aproximate
-        "ticket_prom": 200, // TODO: change to the selected ticket promedio
-        "amount_aprox_tx_month": 200, // TODO: change to the selected amount aproximate transaction per month
-        "maximun_amount_link": 200 // TODO: change to the selected maximun amount link
+        "num_aprox_tx": this.parseFormattedNumber(registerForm.num_aprox_tx),
+        "ticket_prom": this.parseFormattedNumber(registerForm.ticket_prom),
+        "amount_aprox_tx_month": this.parseFormattedNumber(registerForm.amount_aprox_tx_month),
+        "maximun_amount_link": this.parseFormattedNumber(registerForm.maximun_amount_link)
       };
 
       if (this.show == true) {
@@ -668,8 +679,8 @@ export class SellComponent implements OnInit {
                               formDataAccountBank.append('certification_url', this.bank_certification_docu);
                               formDataAccountBank.append('account_number', registerForm.account_number);
                               formDataAccountBank.append('responsible', registerForm.responsible);
-                              formDataAccountBank.append('bank', this.selectedBAnk);
-                              formDataAccountBank.append('typeaccount', this.selectedAccountType);
+                              formDataAccountBank.append('bank', registerForm.bankCtrl);
+                              formDataAccountBank.append('typeaccount', registerForm.typeaccountCtrl);
                               formDataAccountBank.append('store', id_store);
                               formDataAccountBank.append('state', "false");
                               this.apiService.setBankAccountStore(formDataAccountBank).subscribe(
@@ -687,7 +698,7 @@ export class SellComponent implements OnInit {
                                     "group_id": 2,
                                     "store": id_store,
                                     "type_user": 3,
-                                    "type_identifier": this.selectIdentifiers,
+                                    "type_identifier": registerForm.identifiersCtrl,
                                     "number_identifier": registerForm.number_identifier_person,
 
                                   };
@@ -764,8 +775,8 @@ export class SellComponent implements OnInit {
                         formDataAccountBank.append('certification_url', this.bank_certification_docu);
                         formDataAccountBank.append('account_number', registerForm.account_number);
                         formDataAccountBank.append('responsible', registerForm.responsible);
-                        formDataAccountBank.append('bank', this.selectedBAnk);
-                        formDataAccountBank.append('typeaccount', this.selectedAccountType);
+                        formDataAccountBank.append('bank', registerForm.bankCtrl);
+                        formDataAccountBank.append('typeaccount', registerForm.typeaccountCtrl);
                         formDataAccountBank.append('store', id_store);
                         formDataAccountBank.append('state', "false");
                         this.apiService.setBankAccountStore(formDataAccountBank).subscribe(
@@ -812,6 +823,54 @@ export class SellComponent implements OnInit {
     }
 
 
+  }
+
+  // Método para formatear en tiempo real mientras el usuario escribe
+  onCurrencyInput(event: any, controlName: string): void {
+    const input = event.target as HTMLInputElement;
+    const cursorPosition = input.selectionStart || 0;
+
+    // Obtener el valor actual del input
+    let value = input.value;
+
+    // Remover todo excepto números
+    const cleanValue = value.replace(/[^0-9]/g, '');
+
+    if (cleanValue === '') {
+      input.value = '';
+      this.registerForm.get(controlName)?.setValue('', { emitEvent: false });
+      return;
+    }
+
+    // Convertir a número y formatear con puntos de miles
+    const numericValue = parseInt(cleanValue, 10);
+    const formattedValue = '$ ' + numericValue.toLocaleString('es-CO');
+
+    // Calcular la nueva posición del cursor
+    const oldLength = value.length;
+    const newLength = formattedValue.length;
+    const newCursorPosition = cursorPosition + (newLength - oldLength);
+
+    // Actualizar el valor
+    input.value = formattedValue;
+    this.registerForm.get(controlName)?.setValue(formattedValue, { emitEvent: false });
+
+    // Restaurar la posición del cursor
+    setTimeout(() => {
+      input.setSelectionRange(newCursorPosition, newCursorPosition);
+    }, 0);
+  }
+
+  // Método para parsear el valor formateado a número
+  parseFormattedNumber(value: string | number): number {
+    if (!value) return 0;
+
+    // Si ya es un número, devolverlo
+    if (typeof value === 'number') return value;
+
+    // Si es string, remover todo excepto números
+    const numericValue = value.toString().replace(/[^0-9]/g, '');
+    return parseInt(numericValue, 10) || 0;
   }
 
 }

@@ -7,8 +7,8 @@ export const environment = {
   api: {
     // baseUrl: 'https://ofertas-swiftly.com/api/',
     // baseAuthUrl: 'https://ofertas-swiftly.com/auth/',
-    baseUrl: 'http://192.168.1.6:8000/api/',
-    baseAuthUrl: 'http://192.168.1.6:8000/auth/',
+    baseUrl: 'http://127.0.0.1:8000/api/',
+    baseAuthUrl: 'http://127.0.0.1:8000/auth/',
 
     baseBucketImageUrl: 'https://market-docus-v2.s3.us-east-2.amazonaws.com/',
     // baseAuthGateway: 'http://52.44.5.11:1700/marketgateway/public/'
@@ -20,6 +20,7 @@ export const environment = {
     url_webhook: 'https://38d30d8e0158.ngrok-free.app/api/payment-webhook/'
   },
 };
+
 
 /*
  * In development mode, to ignore zone related error stack frames such as

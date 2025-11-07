@@ -1,3 +1,58 @@
-.cardclass{
-    width: 832px;
+.response-wrapper {
+    margin-top: 80px;
+    padding: 20px;
+}
+
+.cardclass {
+    width: 100%;
+    max-width: 832px;
+    margin: 0 auto;
+}
+
+.response-card {
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.response-content {
+    padding: 20px;
+}
+
+.response-title {
+    font-weight: 400;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.response-message {
+    font-weight: 300;
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .response-wrapper {
+        margin-top: 40px;
+        padding: 10px;
+    }
+
+    .response-card {
+        padding: 40px 20px;
+    }
+
+    .response-title {
+        font-size: 24px;
+    }
+
+    .response-message {
+        font-size: 16px;
+    }
 }

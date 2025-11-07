@@ -127,7 +127,7 @@ body {
   line-height: 1.5;
   overflow-x: hidden; /* prevent horizontal scroll globally */
   margin: 0;
-  padding-top: 80px; /* Reduced padding for tighter spacing */
+  padding-top: 0; /* Header will add its own spacing via component styles */
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -145,7 +145,7 @@ html, body { overscroll-behavior-x: none; }
 
 .main {
   margin-bottom: 2rem;
-  padding-top: 80px; /* Reduced padding for tighter spacing */
+  padding-top: 0; /* No extra padding - body already handles header spacing */
 }
 
 /* Typography */
@@ -259,21 +259,21 @@ header {
 /* Responsive padding for fixed header */
 @media (max-width: 768px) {
   body {
-    padding-top: 60px; /* Reduced padding on mobile */
+    padding-top: 0;
   }
-  
+
   .main {
-    padding-top: 60px;
+    padding-top: 0;
   }
 }
 
 @media (max-width: 576px) {
   body {
-    padding-top: 50px; /* Even smaller padding on small mobile */
+    padding-top: 0;
   }
-  
+
   .main {
-    padding-top: 50px;
+    padding-top: 0;
   }
 }
 
