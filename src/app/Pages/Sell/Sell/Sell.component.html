@@ -26,7 +26,7 @@
                 <div class="row" *ngIf="show">
                     <div class="col-sm">
                         <label><b>Tipo de identificación</b><b class="obligatory"> *</b></label>
-                        <ng-select [items]="identifier$ | async" bindLabel="type_identifier" bindValue="id" [formControl]="identifiersFilterCtrl" formControlName="identifiersCtrl" [(ngModel)]="selectIdentifiers" required>
+                        <ng-select [items]="identifier$ | async" bindLabel="type_identifier" bindValue="id" formControlName="identifiersCtrl" required>
                         </ng-select>
                         <mat-error *ngIf="registerForm.get('identifiersCtrl').hasError('required') && registerForm.get('identifiersCtrl').touched">
                             Este campo es obligatorio.</mat-error>
@@ -90,31 +90,27 @@
 
             <mat-card class="register-form cardpage">
                 <div class="block">
-                    <h3 class="titulo"><span>Clasifica tu empresa</span></h3>
+                    <h3 class="titulo"><span>Información de la empresa</span></h3>
+
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-sm">
                             <label><b>Categoría de empresa</b><b class="obligatory"> *</b></label>
-                            <ng-select [items]="category$ | async" bindLabel="name_category" bindValue="id" [formControl]="categorystoreFilterCtrl" formControlName="categorystoreCtrl" [(ngModel)]="selectedCategory" required placeholder="Seleccione una categoría">
+                            <ng-select [items]="category$ | async" bindLabel="name_category" bindValue="id" formControlName="categorystoreCtrl" required placeholder="Seleccione una categoría">
                             </ng-select>
                             <mat-error *ngIf="registerForm.get('categorystoreCtrl').hasError('required') && registerForm.get('categorystoreCtrl').touched">
                                 Este campo es obligatorio.</mat-error>
                         </div>
-                    </div>
-                </div>
-            </mat-card>
-
-            <mat-card class="register-form cardpage">
-                <div class="block">
-                    <h3 class="titulo"><span>Información de la empresa</span></h3>
-                    <div class="row">
                         <div class="col-sm">
-                            <label><b>Nombre comercial de la tienda</b><b class="obligatory"> *</b></label>
-                            <input type="text" placeholder="Nombre comercial de la tienda" formControlName="name_store" class="form-control" required maxlength="60">
-                            <mat-hint>Nombre con el que aparecera la tienda en la plataforma</mat-hint>
-                            <mat-error *ngIf="registerForm.get('name_store').hasError('required') && registerForm.get('name_store').touched">
+                          <label><b>Nombre comercial de la tienda</b><b class="obligatory"> *</b></label>
+                          <input type="text" placeholder="Nombre comercial de la tienda" formControlName="name_store" class="form-control" required maxlength="60">
+                          <mat-hint>Nombre con el que aparecera la tienda en la plataforma</mat-hint>
+                          <mat-error *ngIf="registerForm.get('name_store').hasError('required') && registerForm.get('name_store').touched">
 
-                                Este campo es obligatorio.</mat-error>
+                              Este campo es obligatorio.</mat-error>
                         </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-sm">
                             <label><b>Razón Social</b><b class="obligatory"> *</b></label>
                             <input type="text" placeholder="Razón Social" formControlName="name_legal" class="form-control" required maxlength="60">
@@ -122,15 +118,15 @@
                             <mat-error *ngIf="registerForm.get('name_legal').hasError('required') && registerForm.get('name_legal').touched">
                                 Este campo es obligatorio.</mat-error>
                         </div>
+                        <div class="col-sm">
+                          <label><b>Tipo de sociedad</b><b class="obligatory"> *</b></label>
+                          <ng-select [items]="society$ | async" bindLabel="society_type" bindValue="id" formControlName="societytypeCtrl" required placeholder="Seleccione tipo de sociedad">
+                          </ng-select>
+                          <mat-error *ngIf="registerForm.get('societytypeCtrl').hasError('required') && registerForm.get('societytypeCtrl').touched">
+                              Este campo es obligatorio.</mat-error>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm">
-                            <label><b>Tipo de sociedad</b><b class="obligatory"> *</b></label>
-                            <ng-select [items]="society$ | async" bindLabel="society_type" bindValue="id" [formControl]="societytypeFilterCtrl" formControlName="societytypeCtrl" [(ngModel)]="selectedSociety" required placeholder="Seleccione tipo de sociedad">
-                            </ng-select>
-                            <mat-error *ngIf="registerForm.get('societytypeCtrl').hasError('required') && registerForm.get('societytypeCtrl').touched">
-                                Este campo es obligatorio.</mat-error>
-                        </div>
                         <div class="col-sm">
                             <label><b>Número de identificación de la empresa</b><b class="obligatory"> *</b></label>
                             <input type="text" placeholder="Número de identificación" formControlName="number_identifier" class="form-control" maxlength="25" required>
@@ -142,7 +138,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <label><b>Departamento</b><b class="obligatory"> *</b></label>
-                            <ng-select [items]="depart$ | async" bindLabel="departament" bindValue="id_departament" [formControl]="departamentFilterCtrl" formControlName="departamentCtrll" (change)="citieChangeAction($event)" (selectionChange)="citieChangeAction(departamentCtrll)"
+                            <ng-select [items]="depart$ | async" bindLabel="departament" bindValue="id_departament" formControlName="departamentCtrll" (change)="citieChangeAction($event)"
                                 required placeholder="Seleccione departamento">
                             </ng-select>
                             <mat-error *ngIf="registerForm.get('departamentCtrll').hasError('required') && registerForm.get('departamentCtrll').touched">
@@ -150,7 +146,7 @@
                         </div>
                         <div class="col-sm">
                             <label><b>Ciudad</b><b class="obligatory"> *</b></label>
-                            <ng-select [items]="city$ | async" bindLabel="city" bindValue="id_city" [formControl]="citieCtrl" formControlName="citieCtrl" [(ngModel)]="selectedCity" required placeholder="Seleccione ciudad">
+                            <ng-select [items]="city$ | async" bindLabel="city" bindValue="id_city" formControlName="citieCtrl" required placeholder="Seleccione ciudad">
                             </ng-select>
                             <mat-error *ngIf="registerForm.get('citieCtrl').hasError('required') && registerForm.get('citieCtrl').touched">
                                 Este campo es obligatorio.</mat-error>
@@ -202,9 +198,9 @@
                             <label><b>Documento de identidad</b><b class="obligatory"> *</b></label>
                             <div class="file-upload-wrapper">
                                 <div class="custom-file-input">
-                                    <input type="file" 
-                                        formControlName="doc_identi" 
-                                        required 
+                                    <input type="file"
+                                        formControlName="doc_identi"
+                                        required
                                         (change)="onChangeDocIde($event)"
                                         accept=".pdf"
                                         maxlength="2097152"
@@ -225,9 +221,9 @@
                             <label><b>RUT</b><b class="obligatory"> *</b></label>
                             <div class="file-upload-wrapper">
                                 <div class="custom-file-input">
-                                    <input type="file" 
-                                        formControlName="rut" 
-                                        required 
+                                    <input type="file"
+                                        formControlName="rut"
+                                        required
                                         (change)="onChangeRut($event)"
                                         accept=".pdf"
                                         maxlength="2097152"
@@ -250,9 +246,9 @@
                             <label><b>Cámara de Comercio</b><b class="obligatory"> *</b></label>
                             <div class="file-upload-wrapper">
                                 <div class="custom-file-input">
-                                    <input type="file" 
-                                        formControlName="cam_com" 
-                                        required 
+                                    <input type="file"
+                                        formControlName="cam_com"
+                                        required
                                         (change)="onChangeCamCom($event)"
                                         accept=".pdf"
                                         maxlength="2097152"
@@ -296,14 +292,14 @@
                     <div class="row">
                         <div class="col-sm">
                             <label><b>Banco</b><b class="obligatory"> *</b></label>
-                            <ng-select [items]="bank$ | async" bindLabel="bank" bindValue="id_bank" [formControl]="bankFilterCtrl" formControlName="bankCtrl" [(ngModel)]="selectedBAnk" required placeholder="Seleccione banco">
+                            <ng-select [items]="bank$ | async" bindLabel="bank" bindValue="id_bank" formControlName="bankCtrl" required placeholder="Seleccione banco">
                             </ng-select>
                             <mat-error *ngIf="registerForm.get('bankCtrl').hasError('required') && registerForm.get('bankCtrl').touched">
                                 Este campo es obligatorio.</mat-error>
                         </div>
                         <div class="col-sm">
                             <label><b>Tipo de cuenta</b><b class="obligatory"> *</b></label>
-                            <ng-select [items]="account_type$ | async" bindLabel="type_account" bindValue="id_type_account" [formControl]="typeaccountFilterCtrl" formControlName="typeaccountCtrl" [(ngModel)]="selectedAccountType" required placeholder="Seleccione tipo de cuenta">
+                            <ng-select [items]="account_type$ | async" bindLabel="type_account" bindValue="id_type_account" formControlName="typeaccountCtrl" required placeholder="Seleccione tipo de cuenta">
                             </ng-select>
                             <mat-error *ngIf="registerForm.get('typeaccountCtrl').hasError('required') && registerForm.get('typeaccountCtrl').touched">
                                 Este campo es obligatorio.</mat-error>
@@ -314,9 +310,9 @@
                             <label><b>Certificación bancaria</b><b class="obligatory"> *</b></label>
                             <div class="file-upload-wrapper">
                                 <div class="custom-file-input">
-                                    <input type="file" 
-                                        formControlName="bank_certification" 
-                                        required 
+                                    <input type="file"
+                                        formControlName="bank_certification"
+                                        required
                                         (change)="onChangeCertBank($event)"
                                         accept=".pdf"
                                         maxlength="2097152"
@@ -340,6 +336,65 @@
 
                 </div>
             </mat-card>
+
+            <mat-card class="register-form cardpage">
+                <div class="block">
+                    <h3 class="titulo"><span>Información adicional</span></h3>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Número aproximado de transacciones</b><b class="obligatory"> *</b></label>
+                            <input type="text"
+                                   placeholder="Ej: 100"
+                                   formControlName="num_aprox_tx"
+                                   class="form-control"
+                                   required
+                                   maxlength="12"
+                                   (input)="onCurrencyInput($event, 'num_aprox_tx')">
+                            <mat-error *ngIf="registerForm.get('num_aprox_tx').hasError('required') && registerForm.get('num_aprox_tx').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                        <div class="col-sm">
+                            <label><b>Ticket promedio</b><b class="obligatory"> *</b></label>
+                            <input type="text"
+                                   placeholder="$ 0"
+                                   formControlName="ticket_prom"
+                                   class="form-control"
+                                   required
+                                   maxlength="12"
+                                   (input)="onCurrencyInput($event, 'ticket_prom')">
+                            <mat-error *ngIf="registerForm.get('ticket_prom').hasError('required') && registerForm.get('ticket_prom').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label><b>Monto aproximado de transacciones por mes</b><b class="obligatory"> *</b></label>
+                            <input type="text"
+                                   placeholder="$ 0"
+                                   formControlName="amount_aprox_tx_month"
+                                   class="form-control"
+                                   required
+                                   maxlength="12"
+                                   (input)="onCurrencyInput($event, 'amount_aprox_tx_month')">
+                            <mat-error *ngIf="registerForm.get('amount_aprox_tx_month').hasError('required') && registerForm.get('amount_aprox_tx_month').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                        <div class="col-sm">
+                            <label><b>Monto máximo del link</b><b class="obligatory"> *</b></label>
+                            <input type="text"
+                                   placeholder="$ 0"
+                                   formControlName="maximun_amount_link"
+                                   class="form-control"
+                                   required
+                                   maxlength="12"
+                                   (input)="onCurrencyInput($event, 'maximun_amount_link')">
+                            <mat-error *ngIf="registerForm.get('maximun_amount_link').hasError('required') && registerForm.get('maximun_amount_link').touched">
+                                Este campo es obligatorio.</mat-error>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+
             <mat-card class="register-form cardpage">
                 <h4><b>Términos y condiciones</b><b class="obligatory"> *</b></h4>
                 <div class="row">

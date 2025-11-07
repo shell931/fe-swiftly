@@ -585,6 +585,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
                 // Obtener datos de la tienda usando el storeId que ya tenemos
                 if (storeId) {
+                  console.log("storeId", storeId);
                   this.apiService.getStoreData(storeId).subscribe(
                     storeResponse => {
                       const accountIdPayment = storeResponse.account_id_payment;
@@ -604,7 +605,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
                         url_webhook: environment.api.url_webhook
                       };
 
-                      console.log("fields", fields);
+                      // console.log("fields", fields);
+                      // return false;
 
                       for (const name in fields) {
                         if (fields.hasOwnProperty(name)) {
