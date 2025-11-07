@@ -15,7 +15,7 @@ export interface PromoDialogData {
   styleUrls: ['./PromoDialog.component.scss']
 })
 export class PromoDialogComponent implements OnInit, AfterViewInit {
-  defaultImageUrl = 'assets/images/dialogfirst.png';
+  defaultImageUrl = 'https://market-docus-v2.s3.us-east-2.amazonaws.com/Modal+Crear+tienda.png';
   @ViewChild('root', { static: true }) rootEl!: ElementRef<HTMLElement>;
 
   constructor(

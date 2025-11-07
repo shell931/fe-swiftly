@@ -81,7 +81,7 @@ export class BinnacleSideBarComponent implements OnInit {
 
    sendBinnacle() {
       this.show = false;
-      var observation = (document.getElementById("message") as HTMLInputElement).value
+      var observation = this.newForm.get('obser')?.value || '';
       if (observation != "") {
          const id_store = localStorage.getItem('id-store');
          let type = "st"

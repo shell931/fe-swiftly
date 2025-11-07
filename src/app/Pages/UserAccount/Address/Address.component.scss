@@ -124,6 +124,9 @@
   align-items: center;
   gap: 4px;
   height: 36px;
+  position: static !important;
+  z-index: 1 !important;
+  pointer-events: auto !important;
 }
 
 .add-address-btn:hover {
@@ -274,6 +277,11 @@ mat-card p {
   min-width: 32px !important;
   box-shadow: 0 1px 3px rgba(121, 220, 120, 0.3) !important;
   transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .menu-trigger:hover {
@@ -286,6 +294,24 @@ mat-card p {
 .menu-trigger i {
   color: white !important;
   font-size: 18px !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.menu-trigger .mat-icon {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* Responsive design */
@@ -293,6 +319,8 @@ mat-card p {
   .address-container {
     padding: 1.5rem;
     margin: 0 1rem;
+    padding-bottom: 6rem; /* Espacio para el footer móvil */
+    margin-top: 4rem; /* Espacio para el header móvil */
   }
   
   .address-header {
@@ -304,11 +332,16 @@ mat-card p {
     flex-direction: row;
     justify-content: flex-end;
     gap: 8px;
+    position: relative;
+    z-index: 1; /* Menor que header (99999) y footer (1000) */
   }
   
   .address-actions button {
     margin-left: 0;
     width: auto;
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
   }
   
   .menu-trigger {
@@ -321,6 +354,14 @@ mat-card p {
     min-width: 32px !important;
     box-shadow: 0 1px 3px rgba(121, 220, 120, 0.3) !important;
     transition: all 0.2s ease !important;
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
   
   .menu-trigger:hover {
@@ -333,5 +374,33 @@ mat-card p {
   .menu-trigger i {
     color: white !important;
     font-size: 18px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .menu-trigger .mat-icon {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .add-address-btn {
+    position: static !important;
+    z-index: 1 !important; /* Menor que header (99999) y footer (1000) */
+    pointer-events: auto !important;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
   }
 }

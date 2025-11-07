@@ -133,23 +133,86 @@
 }
 
 .search-container {
-  max-width: 400px;
+  max-width: 300px;
+}
+
+.search-container .full-width {
+  width: 100%;
+}
+
+.search-container ::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+
+.search-container ::ng-deep .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  background-color: white;
+  padding: 0 !important;
+}
+
+.search-container ::ng-deep .mat-mdc-form-field .mat-mdc-form-field-infix {
+  min-height: 36px !important;
+  padding: 8px 12px !important;
+}
+
+.search-container ::ng-deep .mat-mdc-form-field .mat-mdc-text-field-input {
+  font-size: 0.85rem !important;
+  padding: 0 !important;
+}
+
+.search-container ::ng-deep .mat-mdc-form-field .mdc-notched-outline__leading,
+.search-container ::ng-deep .mat-mdc-form-field .mdc-notched-outline__notch,
+.search-container ::ng-deep .mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-color: #e9ecef;
+  border-width: 1px !important;
+}
+
+.search-container ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.search-container ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.search-container ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #e9ecef;
+}
+
+.search-container ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline {
+  box-shadow: none !important;
+}
+
+.search-container ::ng-deep .mat-mdc-form-field .mdc-notched-outline {
+  box-shadow: none !important;
+}
+
+.search-container ::ng-deep .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  box-shadow: none !important;
+}
+
+.search-container ::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
+  box-shadow: none !important;
+}
+
+.search-container ::ng-deep .mat-mdc-form-field .mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+
+.search-container ::ng-deep .search-input:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.search-container ::ng-deep .mat-mdc-icon-button {
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+}
+
+.search-container ::ng-deep .mat-mdc-icon-button .mat-icon {
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+  line-height: 18px !important;
 }
 
 .search-input {
   width: 100%;
-  border: 2px solid #e9ecef;
-  border-radius: 6px;
-  padding: 10px 15px;
-  font-size: 0.9rem;
-  outline: none;
-  background: white;
-  transition: all 0.2s ease;
-}
-
-.search-input:focus {
-  border-color: #79dc78;
-  box-shadow: 0 0 0 3px rgba(121, 220, 120, 0.1);
+  font-size: 0.85rem;
 }
 
 /* Stores Grid */

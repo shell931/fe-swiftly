@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, Pipe, PipeTransform } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Router, ActivatedRoute, Params, RouterModule } from '@angular/router';
 import { EmbryoService } from '../../../Services/Embryo.service';
 import { ApiService } from '../../../Services/api.service';
@@ -17,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 const { isArray } = Array;
 
@@ -69,7 +71,9 @@ export interface Store {
         MatFormFieldModule,
         MatInputModule,
         MatPaginatorModule,
-        MatTreeModule
+        MatTreeModule,
+        MatIconModule,
+        MatButtonModule
     ],
     templateUrl: './StoreList.component.html',
     styleUrls: ['./StoreList.component.scss']
@@ -93,9 +97,23 @@ export class StoreListComponent implements OnInit {
     get_categories: subcategoryNode[] = [];
     get_store: Store[] = [];
     storeGrid: Store[] = [];
-    obsStore!: Observable<any>;
-    dataSourceStore = new MatTableDataSource<Store>(this.storeGrid);
-    searchText:any;
+    filteredStores: Store[] = [];
+    paginatedStores: Store[] = [];
+    obsStore: Observable<Store[]> = of([]);
+    dataSourceStore = new MatTableDataSource<Store>([]);
+    searchText: string = '';
+    pageSize: number = 8;
+    currentPage: number = 0;
+    
+    // Función para mezclar array aleatoriamente
+    private shuffleArray<T>(array: T[]): T[] {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }
     p:any;
 
     constructor(private route: ActivatedRoute,
@@ -110,6 +128,7 @@ export class StoreListComponent implements OnInit {
             this.id = res.id;
         })
         localStorage.removeItem("id_category");
+        
         this.apiService.getStoreWithoutAuth().subscribe((res: any) => this.getStoreData(res));
         this.apiService.getStoreCategories().subscribe((res: any) => this.getCategoriesMenu(res, this.id));
     }
@@ -136,36 +155,151 @@ export class StoreListComponent implements OnInit {
 
 
     getStoreData(response: string | any[]) {
-        
-        this.storeGrid = [];
-        this.get_store = [];
-        for (var i = 0; i < response.length; i++) {
-            let get_id_store = response[i].id_store;
-            let get_name_store = response[i].name_store;
-            let get_state_store = response[i].state_store;
-            let get_city = response[i].city;
-            let get_logo_store = response[i].logo_store;
-            let get_description = response[i].description;
-            this.get_store.push({
-                id_store: get_id_store,
-                name_store: get_name_store,
-                state_store: get_state_store,
-                city: get_city,
-                logo_store: environment.api.baseBucketImageUrl + response[i].logo_store_up,
-                route_store: '/storefront/' + get_id_store,
-                description: get_description,
-            });
+        try {
+            this.storeGrid = [];
+            this.get_store = [];
+            
+            if (!response || !Array.isArray(response)) {
+                this.filteredStores = [];
+                this.dataSourceStore.data = [];
+                this.updatePaginator();
+                return;
+            }
+            
+            for (var i = 0; i < response.length; i++) {
+                if (response[i]) {
+                    this.get_store.push({
+                        id_store: response[i].id_store || '',
+                        name_store: response[i].name_store || '',
+                        state_store: response[i].state_store || '',
+                        city: response[i].city || '',
+                        logo_store: environment.api.baseBucketImageUrl + (response[i].logo_store_up || ''),
+                        route_store: '/storefront/' + (response[i].id_store || ''),
+                        description: response[i].description || '',
+                    });
+                }
+            }
+            
+            this.storeGrid = this.get_store;
+            // Mezclar aleatoriamente al inicio
+            if (this.storeGrid.length > 0) {
+                this.filteredStores = this.shuffleArray([...this.storeGrid]);
+            } else {
+                this.filteredStores = [];
+            }
+            
+            // Actualizar el dataSource con las tiendas filtradas
+            this.dataSourceStore.data = this.filteredStores;
+            this.currentPage = 0;
+            this.updatePaginator();
+            
+            // Usar setTimeout para evitar errores de detección de cambios
+            setTimeout(() => {
+                this.changeDetectorRef.detectChanges();
+            }, 0);
+        } catch (error) {
+            console.error('Error en getStoreData:', error);
+            this.filteredStores = [];
+            this.storeGrid = [];
+            this.dataSourceStore.data = [];
         }
-        this.storeGrid = this.get_store;
-        this.dataSourceStore = new MatTableDataSource<Store>(this.storeGrid);
+    }
+
+    /**
+     * Actualiza el paginator y calcula las tiendas paginadas
+     */
+    updatePaginator(): void {
+        setTimeout(() => {
+            if (this.paginator && this.dataSourceStore) {
+                this.dataSourceStore.paginator = this.paginator;
+            }
+            this.updatePaginatedStores();
+        }, 0);
+    }
+
+    /**
+     * Actualiza las tiendas paginadas según la página actual
+     */
+    updatePaginatedStores(): void {
+        const startIndex = this.currentPage * this.pageSize;
+        const endIndex = startIndex + this.pageSize;
+        this.paginatedStores = this.filteredStores.slice(startIndex, endIndex);
         this.changeDetectorRef.detectChanges();
-        this.dataSourceStore.paginator = this.paginator;
-        this.obsStore = this.dataSourceStore.connect();
+    }
+
+    /**
+     * Maneja el cambio de página
+     */
+    onPageChange(event: any): void {
+        this.currentPage = event.pageIndex;
+        this.pageSize = event.pageSize;
+        this.updatePaginatedStores();
+    }
+
+    /**
+     * Aplica el filtro de búsqueda a las tiendas
+     */
+    applyFilter(): void {
+        try {
+            // Verificar que hay tiendas
+            if (!this.storeGrid || !Array.isArray(this.storeGrid) || this.storeGrid.length === 0) {
+                this.filteredStores = [];
+                this.dataSourceStore.data = [];
+                this.updatePaginator();
+                return;
+            }
+            
+            // Obtener el texto de búsqueda de forma segura
+            const searchValue = (this.searchText || '').trim().toLowerCase();
+            
+            // Si no hay texto, mostrar todas aleatorias
+            if (!searchValue) {
+                this.filteredStores = this.shuffleArray([...this.storeGrid]);
+            } else {
+                // Filtrar por nombre, descripción o estado
+                const filtered = this.storeGrid.filter(store => {
+                    if (!store) return false;
+                    
+                    // Convertir a string antes de toLowerCase
+                    const name = String(store.name_store || '').toLowerCase();
+                    const desc = String(store.description || '').toLowerCase();
+                    const state = String(store.state_store || '').toLowerCase();
+                    
+                    return name.includes(searchValue) || 
+                           desc.includes(searchValue) || 
+                           state.includes(searchValue);
+                });
+                
+                // Ordenar alfabéticamente por nombre
+                this.filteredStores = filtered.sort((a, b) => {
+                    const nameA = String(a?.name_store || '').toLowerCase();
+                    const nameB = String(b?.name_store || '').toLowerCase();
+                    return nameA.localeCompare(nameB);
+                });
+            }
+            
+            // Actualizar el dataSource con las tiendas filtradas
+            this.dataSourceStore.data = this.filteredStores;
+            this.currentPage = 0;
+            this.updatePaginator();
+        } catch (error) {
+            console.error('Error en applyFilter:', error);
+            // En caso de error, mostrar todas las tiendas
+            if (this.storeGrid && Array.isArray(this.storeGrid)) {
+                this.filteredStores = [...this.storeGrid];
+                this.dataSourceStore.data = this.filteredStores;
+                this.updatePaginator();
+            }
+        }
     }
 
     public onLoad() {
         this.loaded = true;
-     }
+    }
+
+    trackByStoreId(index: number, store: Store): string {
+        return store.id_store || index.toString();
+    }
 
 
 }

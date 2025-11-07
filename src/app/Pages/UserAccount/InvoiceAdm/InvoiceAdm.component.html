@@ -8,24 +8,17 @@
     <div fxLayout="row wrap" class="col-gap">
         <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100">
             <mat-list>
-                <div class="buttonIn">
-                    <input class="inputsearch" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar" autocomplete="off" type="search">
-                    <button class="btn btn-primary button-search class_search" type="submit" tabindex="-1">
-                        <span class="mat-button-wrapper">
-                            <i class="fa fa-search"></i>
-                        </span></button>
-                </div>
                 <ng-container *ngIf="invoiceList && invoiceList.length>0; else elseBlock">
+                    <div class="buttonIn">
+                        <input class="inputsearch" (keyup)="applyFilter($event.target.value)" placeholder="Buscar" autocomplete="off" type="search">
+                    </div>
                     <div fxLayout="column">
                         <mat-card>
                             <div class="table-responsive-x mt-2">
                                 <table mat-table [dataSource]="dataSource" class="w-100 table-scroll-wrap">
 
                                     <ng-container matColumnDef="action">
-                                        <th class="px-3 text-nowrap table-left" mat-header-cell *matHeaderCellDef><span class="material-icons-outlined">
-                                                settings
-                                            </span>
-                                        </th>
+                                        <th class="px-3 text-nowrap table-left" mat-header-cell *matHeaderCellDef>Ver detalles</th>
                                         <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
                                             <!-- <button mat-icon-button (click)="onSeeDialog(element)" color="primary">
                                                 <i class="material-icons">remove_red_eye</i>
@@ -39,8 +32,8 @@
                                     <ng-container matColumnDef="action2">
                                         <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Mensaje</th>
                                         <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
-                                            <button style="height: 25px;" mat-raised-button matBadge="{{element.getBinnacleFalse}}" [matBadgeHidden]="hidden" (click)="getBinnacles(element)">
-                                                <i style="margin-bottom: 10px;color: #fff !important;" class="material-icons">chat</i>
+                                            <button class="chat-btn" mat-raised-button matBadge="{{element.getBinnacleFalse}}" [matBadgeHidden]="hidden || element.getBinnacleFalse == '0'" (click)="getBinnacles(element)">
+                                                <i class="material-icons">chat</i>
                                             </button>
                                         </td>
                                     </ng-container>
@@ -54,36 +47,21 @@
                                     <ng-container matColumnDef="created_at">
                                         <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Fecha </th>
                                         <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
-                                            {{element.created_at}} </td>
+                                            {{element.created_at | date:'dd/MM/yyyy HH:mm'}} </td>
                                     </ng-container>
 
                                     <ng-container matColumnDef="name_state">
                                         <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Estado </th>
                                         <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
-                                            <div *ngIf="element.state_id === '1'" class="class_platform" align="center">
-                                                {{element.name_state}}</div>
-                                            <div *ngIf="element.state_id === '2'" class="class_reject" align="center">
-                                                {{element.name_state}}</div>
-                                            <div *ngIf="element.state_id === '3'" class="class_reject" align="center">
-                                                {{element.name_state}}</div>
-                                            <div *ngIf="element.state_id === '4'" class="class_aprobed" align="center">
-                                                {{element.name_state}}</div>
-                                            <div *ngIf="element.state_id === '5'" class="class_platform" align="center">
-                                                {{element.name_state}}</div>
-                                            <div *ngIf="element.state_id === '6'" class="class_platform" align="center">
-                                                {{element.name_state}}</div>
-                                            <div *ngIf="element.state_id === '7'" class="class_reject" align="center">
-                                                {{element.name_state}}</div>
-                                            <div *ngIf="element.state_id === '8'" class="class_platform" align="center">
-                                                {{element.name_state}}</div>
-                                            <div *ngIf="element.state_id === '9'" class="class_aprobed" align="center">
-                                                {{element.name_state}}</div>
-                                            <div *ngIf="element.state_id === '10'" class="class_reject" align="center">
-                                                {{element.name_state}}</div>
-                                            <div *ngIf="element.state_id === '11'" class="class_reject" align="center">
-                                                {{element.name_state}}</div>
-                                            <div *ngIf="element.state_id === '12'" class="class_reject" align="center">
-                                                {{element.name_state}}</div>
+                                            <div class="status-badge" 
+                                                 [ngClass]="{
+                                                     'status-approved': element.name_state?.toLowerCase().includes('aprobado'),
+                                                     'status-validation': element.name_state?.toLowerCase().includes('validacion'),
+                                                     'status-cancelled': element.name_state?.toLowerCase().includes('cancelado')
+                                                 }"
+                                                 align="center">
+                                                {{element.name_state}}
+                                            </div>
                                         </td>
                                     </ng-container>
 
@@ -126,12 +104,19 @@
                                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                                 </table>
                             </div>
-                            <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+                            <mat-paginator 
+                                #paginator
+                                [length]="dataSource.data.length"
+                                [pageSize]="15"
+                                [pageSizeOptions]="[15, 30, 45, 60]">
+                            </mat-paginator>
                         </mat-card>
                     </div>
                 </ng-container>
                 <ng-template #elseBlock>
-                    <h5 class="ml-5">No data found</h5>
+                    <div class="no-data-message">
+                        <p>No hay facturas</p>
+                    </div>
                 </ng-template>
 
             </mat-list>

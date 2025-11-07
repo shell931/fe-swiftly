@@ -55,6 +55,9 @@
   align-items: center;
   gap: 4px;
   height: 32px;
+  position: static !important;
+  z-index: 1 !important;
+  pointer-events: auto !important;
 }
 
 .create-product-btn:hover {
@@ -407,6 +410,9 @@
     padding: 6px 12px;
     font-size: 11px;
     height: 28px;
+    position: static !important;
+    z-index: 1 !important;
+    pointer-events: auto !important;
   }
   
   .products-controls {
@@ -463,6 +469,9 @@
     padding: 4px 8px;
     font-size: 10px;
     height: 24px;
+    position: static !important;
+    z-index: 1 !important;
+    pointer-events: auto !important;
   }
   
   .products-grid {

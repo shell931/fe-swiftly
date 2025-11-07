@@ -12,7 +12,8 @@
                type="search">
     </div>
 
-    <div class="orders-table">
+    <!-- Desktop Table View -->
+    <div class="orders-table desktop-view">
         <table mat-table [dataSource]="dataSource" class="w-100">
 
             <ng-container matColumnDef="action">
@@ -58,7 +59,7 @@
 
             <ng-container matColumnDef="created_at">
                 <th mat-header-cell *matHeaderCellDef>Fecha</th>
-                <td mat-cell *matCellDef="let element">{{element.created_at}}</td>
+                <td mat-cell *matCellDef="let element">{{element.created_at | date:'dd/MM/yyyy HH:mm'}}</td>
             </ng-container>
 
             <ng-container matColumnDef="total_p">
@@ -72,8 +73,61 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </div>
+
+    <!-- Mobile Card View -->
+    <div class="orders-cards mobile-view">
+        <div class="order-card" *ngFor="let element of paginatedData">
+            <div class="card-header">
+                <div class="card-reference">
+                    <span class="label">Referencia:</span>
+                    <strong>{{element.reference}}</strong>
+                </div>
+                <div *ngIf="element.ex_state_id === 1" class="status-badge status-pending">
+                    {{element.name_external_state}}
+                </div>
+                <div *ngIf="element.ex_state_id === 2" class="status-badge status-rejected">
+                    {{element.name_external_state}}
+                </div>
+                <div *ngIf="element.ex_state_id === 3" class="status-badge status-rejected">
+                    {{element.name_external_state}}
+                </div>
+                <div *ngIf="element.ex_state_id === 4" class="status-badge status-rejected">
+                    {{element.name_external_state}}
+                </div>
+                <div *ngIf="element.ex_state_id === 5" class="status-badge status-approved">
+                    {{element.name_external_state}}
+                </div>
+                <div *ngIf="element.ex_state_id === 6" class="status-badge status-rejected">
+                    {{element.name_external_state}}
+                </div>
+            </div>
+            
+            <div class="card-body">
+                <div class="card-row">
+                    <span class="label">Fecha:</span>
+                    <span class="value">{{element.created_at | date:'dd/MM/yyyy HH:mm'}}</span>
+                </div>
+                <div class="card-row">
+                    <span class="label">Total:</span>
+                    <strong class="value total">{{element.total_p|currency : 'USD' : 'symbol' : '1.0-0'}}</strong>
+                </div>
+            </div>
+            
+            <div class="card-footer">
+                <button class="action-button mobile-button" (click)="onSeeDialog(element)">
+                    <i class="material-icons">visibility</i>
+                    <span>Ver detalles</span>
+                </button>
+            </div>
+        </div>
+    </div>
     
     <div class="pagination-container">
-        <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+        <mat-paginator 
+            #paginator
+            [length]="dataSource.data.length"
+            [pageSize]="15"
+            [pageSizeOptions]="[15, 30, 45, 60]">
+        </mat-paginator>
     </div>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit ,Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { delay } from 'rxjs/operators';
 import { ApiService } from '../../../../Services/api.service';
@@ -16,7 +16,7 @@ import { environment } from '../../../../../../src/environments/environment';
    templateUrl: './InvoiceDetailUsr.component.html',
    styleUrls: ['./InvoiceDetailUsr.component.scss'],
    standalone: true,
-   imports: [CommonModule, MatDialogModule]
+   imports: [CommonModule, MatDialogModule, DatePipe]
    })
 
 export class InvoiceDetailUsrComponent implements OnInit {

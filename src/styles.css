@@ -15,6 +15,34 @@
   overflow-y: auto !important;
 }
 
+/* Mobile Dialog Styles - Compact */
+@media (max-width: 768px) {
+  .invoice-detail-dialog .mat-dialog-container {
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .invoice-detail-dialog .mat-dialog-content {
+    max-height: 100vh !important;
+    height: 100vh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .cdk-overlay-pane.invoice-detail-dialog {
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+  }
+}
+
 .dialog-backdrop {
   background-color: rgba(0, 0, 0, 0.5) !important;
   backdrop-filter: blur(2px);
@@ -465,10 +493,12 @@ video:hover {
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 1;
+  pointer-events: none; /* No bloquear clics */
 }
 
 .video-zoom-container:hover::before {
   opacity: 1;
+  pointer-events: none; /* No bloquear clics incluso en hover */
 }
 
 /* ===== iOS Safari: remove header spacer to avoid white band at top ===== */
@@ -568,15 +598,149 @@ video:hover {
   pointer-events: auto !important;
 }
 
+/* Asegurar que los overlays no bloqueen los botones del paginador */
+.cdk-overlay-container:not(:has(.mat-menu-panel)):not(:has(.mat-dialog-container)):not(:has(.mat-mdc-dialog-container)) {
+  pointer-events: none !important;
+}
+
+/* Permitir que los elementos interactivos dentro de overlays funcionen */
+.cdk-overlay-container .mat-menu-panel,
+.cdk-overlay-container .mat-dialog-container,
+.cdk-overlay-container .mat-mdc-dialog-container,
+.cdk-overlay-container mat-paginator,
+.cdk-overlay-container mat-paginator button {
+  pointer-events: auto !important;
+}
+
+/* Específicamente para el paginador: asegurar que no sea bloqueado por overlays */
+mat-paginator {
+  position: relative !important;
+  z-index: 1002 !important;
+  pointer-events: auto !important;
+}
+
+mat-paginator button {
+  position: relative !important;
+  z-index: 1003 !important;
+  pointer-events: auto !important;
+}
+
 /* Material Menu Panel - ensure it doesn't block backdrop clicks */
 .mat-menu-panel {
   pointer-events: auto !important;
 }
 
+/* Asegurar que los ripples de menús funcionen correctamente */
+/* Estas reglas deben tener máxima prioridad y especificidad */
+.mat-menu-panel .mat-ripple,
+.mat-menu-panel .mat-mdc-menu-ripple,
+.mat-menu-panel .mat-ripple.mat-mdc-menu-ripple,
+.mdc-menu-surface .mat-ripple,
+.mdc-menu-surface .mat-mdc-menu-ripple,
+.mdc-menu-surface .mat-ripple.mat-mdc-menu-ripple,
+.mat-mdc-menu-ripple,
+div.mat-ripple.mat-mdc-menu-ripple {
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
 /* Ensure menu items are clickable */
-.mat-menu-item {
+.mat-menu-item,
+.mat-mdc-menu-item,
+a.mat-menu-item,
+a.mat-mdc-menu-item {
   pointer-events: auto !important;
   cursor: pointer !important;
+  position: relative !important;
+  z-index: 1006 !important;
+  display: block !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 12px 16px !important;
+  width: 100% !important;
+  text-align: left !important;
+}
+
+/* Asegurar que los elementos de menú MDC funcionen correctamente */
+.mat-mdc-menu-item.mat-focus-indicator,
+a.mat-mdc-menu-item.mat-focus-indicator,
+.mat-mdc-menu-item.cdk-focused,
+a.mat-mdc-menu-item.cdk-focused,
+.mat-mdc-menu-item.cdk-mouse-focused,
+a.mat-mdc-menu-item.cdk-mouse-focused {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 1007 !important;
+  display: block !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 12px 16px !important;
+  width: 100% !important;
+  text-align: left !important;
+}
+
+/* Asegurar que el focus indicator no bloquee los clics en elementos de menú */
+.mat-mdc-menu-item .mat-focus-indicator,
+a.mat-mdc-menu-item .mat-focus-indicator {
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 0 !important;
+}
+
+/* Asegurar que los elementos hijos no bloqueen los clics */
+.mat-mdc-menu-item *,
+a.mat-mdc-menu-item * {
+  pointer-events: none !important;
+}
+
+/* Asegurar que los triggers de menús funcionen correctamente */
+.mat-mdc-menu-trigger,
+a.mat-mdc-menu-trigger,
+.space_menus,
+a.space_menus,
+.pointer.mat-mdc-menu-trigger,
+.space_menus.pointer {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 1004 !important;
+  display: block !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.mat-mdc-menu-trigger:hover,
+a.mat-mdc-menu-trigger:hover,
+.space_menus:hover,
+a.space_menus:hover,
+.pointer.mat-mdc-menu-trigger:hover,
+.space_menus.pointer:hover {
+  cursor: pointer !important;
+}
+
+.mat-mdc-menu-trigger *,
+a.mat-mdc-menu-trigger *,
+.space_menus *,
+a.space_menus *,
+.pointer.mat-mdc-menu-trigger *,
+.space_menus.pointer * {
+  pointer-events: none !important;
 }
 
 /* Fix for mat-mdc-menu (Material Design Components) */
@@ -623,4 +787,666 @@ video:hover {
 
 .cdk-overlay-connected-position-bounding-box[style*="width: 100%"] .mat-menu-panel {
   pointer-events: auto !important;
+}
+
+/* Fix for Material Design Components button touch targets */
+.mat-mdc-button-touch-target {
+  pointer-events: none !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* Ensure buttons are clickable */
+button.mat-mdc-button,
+button[mat-button],
+button[mat-raised-button],
+button[mat-flat-button],
+button[mat-stroked-button],
+button[mat-icon-button],
+button[mat-fab],
+button[mat-mini-fab],
+button.mat-mdc-button-base {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Ensure button wrapper is clickable */
+.mat-mdc-button-base,
+.mdc-button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+}
+
+/* Ensure button content allows clicks to pass through to button */
+button.mat-mdc-button > *,
+button[mat-button] > *,
+button[mat-raised-button] > *,
+button[mat-flat-button] > *,
+button[mat-stroked-button] > *,
+button[mat-icon-button] > *,
+button[mat-fab] > *,
+button[mat-mini-fab] > * {
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Ensure button ripple and touch target don't block clicks */
+/* EXCEPCIÓN: No aplicar a ripples de menús */
+.mat-mdc-button-ripple,
+.mat-mdc-button-touch-target,
+button .mat-ripple:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple),
+button .mat-ripple-element,
+.mdc-button__ripple,
+.mdc-button__touch {
+  pointer-events: none !important;
+  position: absolute !important;
+}
+
+/* EXCEPCIÓN: Los ripples de menús necesitan funcionar correctamente */
+.mat-mdc-menu-ripple,
+.mat-menu-panel .mat-ripple,
+.mat-menu-panel .mat-mdc-menu-ripple,
+.mdc-menu-surface .mat-ripple,
+.mdc-menu-surface .mat-mdc-menu-ripple,
+div.mat-ripple.mat-mdc-menu-ripple {
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Force all Material buttons to be clickable */
+button[mat-button],
+button[mat-raised-button],
+button[mat-flat-button],
+button[mat-stroked-button],
+button[mat-icon-button],
+button[mat-fab],
+button[mat-mini-fab],
+button.mat-mdc-button,
+button.mat-mdc-button-base,
+.mdc-button {
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1) !important;
+  user-select: none !important;
+}
+
+/* Ensure button wrapper doesn't block clicks */
+.mat-mdc-button-wrapper,
+.mdc-button__label {
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Fix for buttons inside cards or containers */
+.cards-container button,
+.profile-container button,
+.address-container button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Fix for mat-focus-indicator that blocks clicks */
+.mat-focus-indicator,
+.mat-focus-indicator::before,
+.mat-focus-indicator::after {
+  pointer-events: none !important;
+  position: absolute !important;
+}
+
+/* EXCEPCIÓN: Los elementos de menú deben funcionar correctamente */
+.mat-mdc-menu-item.mat-focus-indicator,
+a.mat-mdc-menu-item.mat-focus-indicator {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 1008 !important;
+}
+
+/* Asegurar que el focus indicator dentro de elementos de menú no bloquee */
+.mat-mdc-menu-item .mat-focus-indicator,
+a.mat-mdc-menu-item .mat-focus-indicator {
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 0 !important;
+}
+
+/* Ensure focus indicator doesn't block button clicks */
+button .mat-focus-indicator,
+button[mat-button] .mat-focus-indicator,
+button[mat-raised-button] .mat-focus-indicator,
+button[mat-flat-button] .mat-focus-indicator,
+button[mat-stroked-button] .mat-focus-indicator,
+button[mat-icon-button] .mat-focus-indicator,
+button[mat-fab] .mat-focus-indicator,
+button[mat-mini-fab] .mat-focus-indicator {
+  pointer-events: none !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 0 !important;
+}
+
+/* Ensure button itself is above focus indicator */
+button[mat-button],
+button[mat-raised-button],
+button[mat-flat-button],
+button[mat-stroked-button],
+button[mat-icon-button],
+button[mat-fab],
+button[mat-mini-fab],
+button.mat-mdc-button,
+button.mat-mdc-button-base {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Ensure button content is above focus indicator */
+button[mat-button] > *,
+button[mat-raised-button] > *,
+button[mat-flat-button] > *,
+button[mat-stroked-button] > *,
+button[mat-icon-button] > *,
+button[mat-fab] > *,
+button[mat-mini-fab] > *,
+button.mat-mdc-button > * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Global fix: All Material button decorative elements should not block clicks */
+/* EXCEPCIÓN: No aplicar a ripples de menús */
+button .mat-focus-indicator,
+button .mat-mdc-button-touch-target,
+button .mat-mdc-button-ripple,
+button .mat-ripple:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple),
+button .mat-ripple-element,
+button .mdc-button__ripple,
+button .mdc-button__touch,
+button .mat-button-ripple,
+button .mat-button-focus-overlay,
+button span.mat-focus-indicator,
+button span.mat-mdc-button-touch-target {
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 0 !important;
+}
+
+/* EXCEPCIÓN: Ripples de menús que no están dentro de botones */
+.mat-mdc-menu-ripple:not(button .mat-mdc-menu-ripple),
+.mat-menu-panel .mat-ripple:not(button .mat-ripple),
+.mat-menu-panel .mat-mdc-menu-ripple:not(button .mat-mdc-menu-ripple),
+.mdc-menu-surface .mat-ripple:not(button .mat-ripple),
+.mdc-menu-surface .mat-mdc-menu-ripple:not(button .mat-mdc-menu-ripple),
+div.mat-ripple.mat-mdc-menu-ripple:not(button div) {
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Force button to capture all clicks */
+button[mat-button],
+button[mat-raised-button],
+button[mat-flat-button],
+button[mat-stroked-button],
+button[mat-icon-button],
+button[mat-fab],
+button[mat-mini-fab],
+button.mat-mdc-button,
+button.mat-mdc-button-base,
+button.mdc-button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 1 !important;
+  overflow: visible !important;
+}
+
+/* Ensure button wrapper captures clicks */
+.mat-mdc-button-base,
+.mdc-button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Make sure button label/wrapper is clickable */
+.mat-mdc-button-wrapper,
+.mdc-button__label,
+.mat-button-wrapper {
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 2 !important;
+  cursor: pointer !important;
+}
+
+/* NUCLEAR OPTION: Make ALL decorative elements inside buttons non-interactive */
+/* EXCEPCIÓN: No aplicar a ripples de menús */
+button *:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple) {
+  pointer-events: none !important;
+}
+
+/* But allow the button itself to be clicked */
+button[mat-button],
+button[mat-raised-button],
+button[mat-flat-button],
+button[mat-stroked-button],
+button[mat-icon-button],
+button[mat-fab],
+button[mat-mini-fab],
+button.mat-mdc-button,
+button.mat-mdc-button-base,
+button.mdc-button,
+button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 999 !important;
+}
+
+/* Allow button content to be visible but clicks go to button */
+/* EXCEPCIÓN: No aplicar a ripples de menús */
+button[mat-button] *:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple),
+button[mat-raised-button] *:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple),
+button[mat-flat-button] *:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple),
+button[mat-stroked-button] *:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple),
+button[mat-icon-button] *:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple),
+button[mat-fab] *:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple),
+button[mat-mini-fab] *:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple),
+button.mat-mdc-button *:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple),
+button.mdc-button *:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple) {
+  pointer-events: none !important;
+}
+
+/* Exception: Allow text and icons to be visible */
+button[mat-button] .mat-mdc-button-wrapper,
+button[mat-raised-button] .mat-mdc-button-wrapper,
+button[mat-flat-button] .mat-mdc-button-wrapper,
+button[mat-stroked-button] .mat-mdc-button-wrapper,
+button[mat-icon-button] .mat-mdc-button-wrapper,
+button[mat-fab] .mat-mdc-button-wrapper,
+button[mat-mini-fab] .mat-mdc-button-wrapper,
+button .mdc-button__label,
+button .mat-button-wrapper,
+button i,
+button span:not(.mat-focus-indicator):not(.mat-mdc-button-touch-target) {
+  pointer-events: none !important;
+  display: inline-block !important;
+}
+
+/* FINAL SOLUTION: Force all buttons to work by making them capture all clicks */
+button,
+button[mat-button],
+button[mat-raised-button],
+button[mat-flat-button],
+button[mat-stroked-button],
+button[mat-icon-button],
+button[mat-fab],
+button[mat-mini-fab],
+button.mat-mdc-button,
+button.mat-mdc-button-base,
+button.mdc-button,
+.mat-mdc-button-base,
+.mdc-button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 1000 !important;
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Deshabilitar tooltip y efectos en botones deshabilitados del paginador */
+/* Solo aplicar cuando el botón está realmente deshabilitado */
+button.mat-mdc-button-disabled[aria-disabled="true"],
+button.mat-mdc-button-disabled-interactive[aria-disabled="true"],
+button.mat-paginator-navigation-previous[aria-disabled="true"],
+button.mat-paginator-navigation-next[aria-disabled="true"],
+button.mat-paginator-navigation-first[aria-disabled="true"],
+button.mat-paginator-navigation-last[aria-disabled="true"] {
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  opacity: 0.6 !important;
+}
+
+button.mat-mdc-button-disabled[aria-disabled="true"]:hover,
+button.mat-mdc-button-disabled-interactive[aria-disabled="true"]:hover,
+button.mat-paginator-navigation-previous[aria-disabled="true"]:hover,
+button.mat-paginator-navigation-next[aria-disabled="true"]:hover,
+button.mat-paginator-navigation-first[aria-disabled="true"]:hover,
+button.mat-paginator-navigation-last[aria-disabled="true"]:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background: #e9ecef !important;
+}
+
+/* Deshabilitar tooltip en botones deshabilitados */
+button.mat-mdc-button-disabled .mat-mdc-tooltip-trigger,
+button.mat-mdc-button-disabled-interactive .mat-mdc-tooltip-trigger,
+button[aria-disabled="true"] .mat-mdc-tooltip-trigger,
+button.mat-mdc-button-disabled[matTooltip],
+button.mat-mdc-button-disabled-interactive[matTooltip],
+button[aria-disabled="true"][matTooltip] {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+
+/* Ocultar tooltip cuando el botón está deshabilitado */
+.mat-mdc-tooltip-trigger.mat-mdc-button-disabled,
+.mat-mdc-tooltip-trigger.mat-mdc-button-disabled-interactive,
+.mat-mdc-tooltip-trigger[aria-disabled="true"] {
+  pointer-events: none !important;
+}
+
+/* Deshabilitar tooltip específicamente en botones del paginador deshabilitados */
+/* Solo cuando están realmente deshabilitados */
+mat-paginator button[aria-disabled="true"].mat-mdc-button-disabled,
+mat-paginator button[aria-disabled="true"].mat-mdc-button-disabled-interactive {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+
+mat-paginator button[aria-disabled="true"] .mat-mdc-tooltip-trigger {
+  pointer-events: none !important;
+}
+
+/* Ocultar el tooltip panel cuando el botón está deshabilitado */
+/* NOTA: Esta regla puede ser demasiado agresiva, comentada temporalmente */
+/* .cdk-overlay-pane:has(.mat-mdc-tooltip-panel) {
+  pointer-events: none !important;
+} */
+
+/* Prevenir que el tooltip se muestre para botones deshabilitados */
+button.mat-mdc-button-disabled + .mat-mdc-tooltip,
+button.mat-mdc-button-disabled-interactive + .mat-mdc-tooltip,
+button[aria-disabled="true"] + .mat-mdc-tooltip {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+button.mat-mdc-button-disabled::before,
+button.mat-mdc-button-disabled::after,
+button.mat-mdc-button-disabled-interactive::before,
+button.mat-mdc-button-disabled-interactive::after,
+button[aria-disabled="true"]::before,
+button[aria-disabled="true"]::after {
+  display: none !important;
+}
+
+/* Make absolutely sure all decorative elements don't block */
+button .mat-focus-indicator,
+button .mat-mdc-button-touch-target,
+button .mat-mdc-button-ripple,
+button .mat-ripple:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple),
+button .mat-ripple-element,
+button .mdc-button__ripple,
+button .mdc-button__touch,
+button .mat-button-ripple,
+button .mat-button-focus-overlay,
+button span.mat-focus-indicator,
+button span.mat-mdc-button-touch-target,
+button > span.mat-focus-indicator,
+button > span.mat-mdc-button-touch-target {
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: -1 !important;
+}
+
+/* Ensure button content is visible but non-interactive */
+/* EXCEPCIÓN: No aplicar a ripples de menús que no están dentro de botones */
+button *:not(.mat-mdc-menu-ripple):not(.mat-ripple.mat-mdc-menu-ripple) {
+  pointer-events: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+/* EXCEPCIÓN CRÍTICA: Los ripples de menús necesitan funcionar correctamente */
+/* Estas reglas deben tener mayor especificidad y estar después de las reglas generales */
+.mat-mdc-menu-ripple,
+.mat-menu-panel .mat-ripple,
+.mat-menu-panel .mat-mdc-menu-ripple,
+.mdc-menu-surface .mat-ripple,
+.mdc-menu-surface .mat-mdc-menu-ripple,
+.mat-menu-panel .mat-ripple.mat-mdc-menu-ripple,
+.mdc-menu-surface .mat-ripple.mat-mdc-menu-ripple {
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* EXCEPCIÓN: Permitir que los botones del paginador funcionen correctamente */
+/* IMPORTANTE: Incluir botones con mat-mdc-button-disabled-interactive que NO tienen aria-disabled="true" */
+mat-paginator button:not([aria-disabled="true"]),
+mat-paginator button.mat-paginator-navigation-previous:not([aria-disabled="true"]),
+mat-paginator button.mat-paginator-navigation-next:not([aria-disabled="true"]),
+mat-paginator button.mat-paginator-navigation-first:not([aria-disabled="true"]),
+mat-paginator button.mat-paginator-navigation-last:not([aria-disabled="true"]),
+mat-paginator button.mat-mdc-button-disabled-interactive:not([aria-disabled="true"]),
+mat-paginator button.mat-paginator-navigation-next.mat-mdc-button-disabled-interactive:not([aria-disabled="true"]),
+mat-paginator button.mat-paginator-navigation-previous.mat-mdc-button-disabled-interactive:not([aria-disabled="true"]) {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 1001 !important;
+  opacity: 1 !important;
+}
+
+/* Permitir que los elementos dentro de los botones del paginador habilitados funcionen */
+mat-paginator button:not([aria-disabled="true"]) *,
+mat-paginator button.mat-paginator-navigation-previous:not([aria-disabled="true"]) *,
+mat-paginator button.mat-paginator-navigation-next:not([aria-disabled="true"]) *,
+mat-paginator button.mat-paginator-navigation-first:not([aria-disabled="true"]) *,
+mat-paginator button.mat-paginator-navigation-last:not([aria-disabled="true"]) *,
+mat-paginator button.mat-mdc-button-disabled-interactive:not([aria-disabled="true"]) * {
+  pointer-events: auto !important;
+}
+
+/* REGLA FINAL CON MÁXIMA ESPECIFICIDAD: Ripples de menús deben funcionar correctamente */
+/* Esta regla debe estar al final para tener máxima prioridad */
+/* IMPORTANTE: Estas reglas sobrescriben TODAS las reglas anteriores */
+div.mat-ripple.mat-mdc-menu-ripple,
+div[matripple].mat-ripple.mat-mdc-menu-ripple,
+.mat-menu-panel div.mat-ripple.mat-mdc-menu-ripple,
+.mat-menu-panel div[matripple].mat-ripple.mat-mdc-menu-ripple,
+.mdc-menu-surface div.mat-ripple.mat-mdc-menu-ripple,
+.mdc-menu-surface div[matripple].mat-ripple.mat-mdc-menu-ripple,
+.cdk-overlay-pane div.mat-ripple.mat-mdc-menu-ripple,
+.cdk-overlay-pane div[matripple].mat-ripple.mat-mdc-menu-ripple,
+.cdk-overlay-container div.mat-ripple.mat-mdc-menu-ripple,
+.cdk-overlay-container div[matripple].mat-ripple.mat-mdc-menu-ripple,
+.mat-menu-panel .mat-ripple.mat-mdc-menu-ripple,
+.mdc-menu-surface .mat-ripple.mat-mdc-menu-ripple,
+.mat-mdc-menu-ripple.mat-ripple,
+.mat-ripple.mat-mdc-menu-ripple {
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  transform: none !important;
+  will-change: transform, opacity !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+/* Asegurar que los ripples de menús NO sean afectados por reglas de botones */
+button .mat-ripple.mat-mdc-menu-ripple,
+button div.mat-ripple.mat-mdc-menu-ripple,
+button div[matripple].mat-ripple.mat-mdc-menu-ripple {
+  /* Si un ripple de menú está dentro de un botón (no debería pasar), mantener estas propiedades */
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* REGLA ABSOLUTA FINAL: Ripples de menús deben funcionar SIEMPRE */
+/* Esta regla sobrescribe TODAS las reglas anteriores con máxima especificidad */
+body .mat-ripple.mat-mdc-menu-ripple,
+body div.mat-ripple.mat-mdc-menu-ripple,
+body div[matripple].mat-ripple.mat-mdc-menu-ripple,
+html body .mat-ripple.mat-mdc-menu-ripple,
+html body div.mat-ripple.mat-mdc-menu-ripple,
+html body div[matripple].mat-ripple.mat-mdc-menu-ripple {
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  transform: none !important;
+  will-change: transform, opacity !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+/* REGLA FINAL: Triggers de menús deben funcionar SIEMPRE */
+/* Esta regla sobrescribe TODAS las reglas anteriores con máxima especificidad */
+body .mat-mdc-menu-trigger,
+body a.mat-mdc-menu-trigger,
+body .space_menus,
+body a.space_menus,
+body .pointer.mat-mdc-menu-trigger,
+body .space_menus.pointer,
+html body .mat-mdc-menu-trigger,
+html body a.mat-mdc-menu-trigger,
+html body .space_menus,
+html body a.space_menus,
+html body .pointer.mat-mdc-menu-trigger,
+html body .space_menus.pointer {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 1005 !important;
+  display: block !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 8px 12px !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+body .mat-mdc-menu-trigger *,
+body a.mat-mdc-menu-trigger *,
+body .space_menus *,
+body a.space_menus *,
+body .pointer.mat-mdc-menu-trigger *,
+body .space_menus.pointer *,
+html body .mat-mdc-menu-trigger *,
+html body a.mat-mdc-menu-trigger *,
+html body .space_menus *,
+html body a.space_menus *,
+html body .pointer.mat-mdc-menu-trigger *,
+html body .space_menus.pointer * {
+  pointer-events: none !important;
+}
+
+/* REGLA FINAL: Elementos de menú MDC deben funcionar SIEMPRE */
+/* Esta regla sobrescribe TODAS las reglas anteriores con máxima especificidad */
+body .mat-mdc-menu-item,
+body a.mat-mdc-menu-item,
+body .mat-mdc-menu-item.mat-focus-indicator,
+body a.mat-mdc-menu-item.mat-focus-indicator,
+body .mat-mdc-menu-item.cdk-focused,
+body a.mat-mdc-menu-item.cdk-focused,
+body .mat-mdc-menu-item.cdk-mouse-focused,
+body a.mat-mdc-menu-item.cdk-mouse-focused,
+html body .mat-mdc-menu-item,
+html body a.mat-mdc-menu-item,
+html body .mat-mdc-menu-item.mat-focus-indicator,
+html body a.mat-mdc-menu-item.mat-focus-indicator,
+html body .mat-mdc-menu-item.cdk-focused,
+html body a.mat-mdc-menu-item.cdk-focused,
+html body .mat-mdc-menu-item.cdk-mouse-focused,
+html body a.mat-mdc-menu-item.cdk-mouse-focused {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 1009 !important;
+  display: block !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 12px 16px !important;
+  width: 100% !important;
+  text-align: left !important;
+}
+
+body .mat-mdc-menu-item .mat-focus-indicator,
+body a.mat-mdc-menu-item .mat-focus-indicator,
+html body .mat-mdc-menu-item .mat-focus-indicator,
+html body a.mat-mdc-menu-item .mat-focus-indicator {
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 0 !important;
+}
+
+body .mat-mdc-menu-item *,
+body a.mat-mdc-menu-item *,
+html body .mat-mdc-menu-item *,
+html body a.mat-mdc-menu-item * {
+  pointer-events: none !important;
 }

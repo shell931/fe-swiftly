@@ -1,42 +1,46 @@
-<div class="form-row-horizontal">
-    <form *ngIf="state_id === '1'" [formGroup]="ShippmentForm">
-        <div>
-            <b>Carga comprobante de envío</b><b class="obligatory"> *</b>
+<div class="upload-forms-container">
+    <form *ngIf="state_id === '1'" [formGroup]="ShippmentForm" class="upload-form">
+        <div class="form-header">
+            <b>Carga comprobante de envío</b>
+            <span class="obligatory">*</span>
         </div>
-        <div>
-            <mat-form-field appearance="outline">
-                <!-- ngx-mat-file-input temporarily replaced with native input -->
+        <div class="form-field-wrapper">
+            <mat-form-field appearance="outline" class="file-upload-field">
                 <input matInput type="file" formControlName="cam_com" placeholder="Comprobante" 
                     (change)="onChangeCamCom($event)" accept="image/*,.pdf">
                 <mat-icon matSuffix>folder</mat-icon>
-                <mat-hint>(Sube aquí el comprobante de envío)</mat-hint>
+                <mat-hint>Sube aquí el comprobante de envío</mat-hint>
                 <mat-error
                     *ngIf="ShippmentForm.get('cam_com').hasError('required') && ShippmentForm.get('cam_com').touched">
                     Este campo es obligatorio.</mat-error>
             </mat-form-field>
         </div>
-        <button class="mb-3 color_button_ac" mat-raised-button color="accent" (click)="ShippingVoucherRequest()">Enviar
-            comprobante de envío</button>
+        <button class="upload-btn" mat-raised-button (click)="ShippingVoucherRequest()">
+            <i class="material-icons">upload</i>
+            Enviar comprobante de envío
+        </button>
     </form>
 
-    <form *ngIf="state_id != '4'" [formGroup]="ShippmentForm">
-        <div>
-            <b>Carga carta de recibido </b><b class="obligatory"> *</b>
+    <form *ngIf="state_id != '4'" [formGroup]="ShippmentForm" class="upload-form">
+        <div class="form-header">
+            <b>Carga carta de recibido</b>
+            <span class="obligatory">*</span>
         </div>
-        <div>
-            <mat-form-field appearance="outline">
-                <!-- ngx-mat-file-input temporarily replaced with native input -->
+        <div class="form-field-wrapper">
+            <mat-form-field appearance="outline" class="file-upload-field">
                 <input matInput type="file" formControlName="cam_com" placeholder="Comprobante" 
                     (change)="onChangeCamCom($event)" accept="image/*,.pdf">
                 <mat-icon matSuffix>folder</mat-icon>
-                <mat-hint>(Sube aquí la carta de recibido)</mat-hint>
+                <mat-hint>Sube aquí la carta de recibido</mat-hint>
                 <mat-error
                     *ngIf="ShippmentForm.get('cam_com').hasError('required') && ShippmentForm.get('cam_com').touched">
                     Este campo es obligatorio.</mat-error>
             </mat-form-field>
         </div>
-        <button class="mb-3 color_button_ac" mat-raised-button color="accent" (click)="SendLetterReceived()">Enviar
-            carta de recibido</button>
+        <button class="upload-btn" mat-raised-button (click)="SendLetterReceived()">
+            <i class="material-icons">upload</i>
+            Enviar carta de recibido
+        </button>
     </form>
 </div>
 

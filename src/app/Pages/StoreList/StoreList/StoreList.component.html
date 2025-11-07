@@ -34,24 +34,32 @@
                 <!-- Search Section -->
                 <div class="search-section">
                     <div class="search-container">
-                        <input 
-                            class="search-input" 
-                            matInput 
-                            [(ngModel)]="searchText" 
-                            placeholder="Buscar tiendas..." 
-                            type="search" 
-                            autocomplete="off">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input 
+                                class="search-input" 
+                                matInput 
+                                [(ngModel)]="searchText" 
+                                (ngModelChange)="applyFilter()"
+                                (input)="applyFilter()"
+                                (keyup.enter)="applyFilter()"
+                                placeholder="Buscar tiendas..." 
+                                type="search" 
+                                autocomplete="off">
+                            <button mat-icon-button matSuffix (click)="applyFilter()" type="button" aria-label="Buscar">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                        </mat-form-field>
                     </div>
                 </div>
 
                 <!-- Stores Grid -->
                 <div class="stores-grid">
                     <div class="stores-grid-container">
-                        <div class="store-card" *ngFor="let card of obsStore | async">
+                        <div class="store-card" *ngFor="let card of paginatedStores; trackBy: trackByStoreId">
                             <div class="store-card-content">
                                 <!-- Store Logo -->
                                 <div class="store-logo-container">
-                                    <a class="store-link" *ngIf="!card?.id" [routerLink]="[card?.route_store]">
+                                    <a class="store-link" [routerLink]="[card?.route_store]">
                                         <img 
                                             class="store-logo" 
                                             [src]="card?.logo_store" 
@@ -64,7 +72,7 @@
                                 <!-- Store Info -->
                                 <div class="store-info">
                                     <h4 class="store-name">
-                                        <a *ngIf="!card?.id" [routerLink]="[card?.route_store]" class="store-name-link">
+                                        <a [routerLink]="[card?.route_store]" class="store-name-link">
                                             {{card?.name_store}}
                                         </a>
                                     </h4>
@@ -72,7 +80,7 @@
                                     
                                     <!-- Action Button -->
                                     <div class="store-actions">
-                                        <a class="store-action-button" *ngIf="!card?.id" [routerLink]="[card?.route_store]">
+                                        <a class="store-action-button" [routerLink]="[card?.route_store]">
                                             Ver Productos
                                             <i class="fa fa-arrow-right"></i>
                                         </a>
@@ -86,8 +94,13 @@
                 <!-- Pagination -->
                 <div class="pagination-section">
                     <mat-paginator 
+                        #paginator
                         class="stores-paginator" 
+                        [length]="filteredStores.length"
+                        [pageSize]="pageSize"
+                        [pageIndex]="currentPage"
                         [pageSizeOptions]="[8, 16, 24, 32]"
+                        (page)="onPageChange($event)"
                         showFirstLastButtons="true">
                     </mat-paginator>
                 </div>

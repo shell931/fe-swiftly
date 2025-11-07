@@ -25,7 +25,7 @@
 
                <ng-container matColumnDef="created_at">
                   <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> Fecha </th>
-                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+                  <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/yyyy HH:mm'}} </td>
                </ng-container>
 
 
@@ -81,7 +81,12 @@
                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
          </div>
-         <mat-paginator [pageSizeOptions]="[15, 30, 45, 60]"></mat-paginator>
+         <mat-paginator 
+             #paginator
+             [length]="dataSource.data.length"
+             [pageSize]="15"
+             [pageSizeOptions]="[15, 30, 45, 60]">
+         </mat-paginator>
       </mat-card>
    </div>
 </ng-container>

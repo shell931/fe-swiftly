@@ -216,6 +216,7 @@ export class ProductsAdm implements OnInit {
 		this.productsGrid = this.get_menu;
 
 		this.dataSource = new MatTableDataSource<Prod>(this.productsGrid);
+		this.setupFilterPredicate(this.dataSource);
 		this.changeDetectorRef.detectChanges();
 		this.dataSource.paginator = this.paginator;
 		this.obs = this.dataSource.connect();
@@ -233,12 +234,14 @@ export class ProductsAdm implements OnInit {
 		this.showType = type;
 		if (type === 'list') {
 			this.productsList = new MatTableDataSource(this.productsGrid);
+			this.setupFilterPredicate(this.productsList);
 			setTimeout(() => {
 				this.productsList.paginator = this.paginator;
 				this.productsList.sort = this.sort;
 			}, 0);
 		} else {
 			this.dataSource = new MatTableDataSource<Prod>(this.productsGrid);
+			this.setupFilterPredicate(this.dataSource);
 			this.changeDetectorRef.detectChanges();
 			this.dataSource.paginator = this.paginator;
 			this.obs = this.dataSource.connect();
@@ -256,10 +259,46 @@ export class ProductsAdm implements OnInit {
 	// }
 
 
-	applyFilter(filterValue: string) {
-		this.productsList.filter = filterValue.trim().toLowerCase();
-		if (this.productsList.paginator) {
-			this.productsList.paginator.firstPage();
+	setupFilterPredicate(dataSource: MatTableDataSource<Prod>) {
+		dataSource.filterPredicate = (data: Prod, filter: string) => {
+			const searchStr = filter.toLowerCase();
+			const nameMatch = data.name_product?.toLowerCase().includes(searchStr) || false;
+			const brandMatch = data.brand?.toLowerCase().includes(searchStr) || false;
+			const productCodeMatch = data.product_code?.toLowerCase().includes(searchStr) || false;
+			const producCodeMatch = data.produc_code?.toLowerCase().includes(searchStr) || false;
+			const priceMatch = data.total_price?.toString().toLowerCase().includes(searchStr) || false;
+			const idMatch = data.id_product?.toString().toLowerCase().includes(searchStr) || false;
+			
+			return nameMatch || brandMatch || productCodeMatch || producCodeMatch || priceMatch || idMatch;
+		};
+	}
+
+	applyFilter(filterValue: string | Event) {
+		let value: string = '';
+		
+		// Handle both Event and string types
+		if (typeof filterValue === 'string') {
+			value = filterValue;
+		} else if (filterValue && filterValue.target) {
+			value = (filterValue.target as HTMLInputElement).value;
+		}
+		
+		value = value.trim().toLowerCase();
+		
+		// Apply filter to list view
+		if (this.showType === 'list' && this.productsList) {
+			this.productsList.filter = value;
+			if (this.productsList.paginator) {
+				this.productsList.paginator.firstPage();
+			}
+		}
+		
+		// Apply filter to grid view
+		if (this.showType === 'grid' && this.dataSource) {
+			this.dataSource.filter = value;
+			if (this.dataSource.paginator) {
+				this.dataSource.paginator.firstPage();
+			}
 		}
 	}
 

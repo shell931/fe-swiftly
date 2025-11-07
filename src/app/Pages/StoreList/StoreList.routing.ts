@@ -7,7 +7,7 @@ export const StoreListRoutes : Routes = [
 		component: StoreListComponent
 	},
 	{
-		path: '',
+		path: 'searchstorebycategories/:id',
 		component: StoreListCategoriesComponent
 	},
 ]

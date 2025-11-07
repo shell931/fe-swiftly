@@ -174,8 +174,8 @@ export class ProductsListComponent implements OnInit, OnDestroy {
          autoFocus: false,
          restoreFocus: false,
          data: {
-            imageUrl: 'assets/images/dialogfirst.png',
-            alt: 'Promoción'
+            imageUrl: 'https://market-docus-v2.s3.us-east-2.amazonaws.com/Modal+Crear+tienda.png',
+            alt: 'Crea tu tienda'
          }
       });
    }
