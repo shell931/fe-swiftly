@@ -13,3 +13,31 @@
     }
 }
 
+/* Ensure mat-sidenav content has proper spacing for fixed header */
+:host ::ng-deep .mat-sidenav-container,
+:host ::ng-deep .mat-drawer-container {
+    position: relative !important;
+    z-index: 0 !important;
+}
+
+:host ::ng-deep .mat-sidenav-content,
+:host ::ng-deep .mat-drawer-content {
+    position: relative !important;
+    z-index: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+    padding-top: 120px !important; /* Desktop: space for fixed header + nav */
+}
+
+/* Responsive spacing for header */
+@media (max-width: 991px) {
+    :host ::ng-deep .mat-sidenav-content,
+    :host ::ng-deep .mat-drawer-content {
+        padding-top: 95px !important; /* Mobile/Tablet: space for mobile header */
+    }
+}
+
+/* Backdrop below header */
+:host ::ng-deep .mat-drawer-backdrop {
+    z-index: 500 !important;
+}
