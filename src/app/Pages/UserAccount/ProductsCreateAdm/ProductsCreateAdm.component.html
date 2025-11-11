@@ -97,12 +97,18 @@
                                    [formControl]="subcategoryFilterCtrl" 
                                    formControlName="subcategoryCtrl" 
                                    [(ngModel)]="selectedSubcategory" 
+                                   [disabled]="!selectedProdCate"
+                                   [clearable]="true"
                                    required
-                                   placeholder="Seleccionar subcategoría">
+                                   placeholder="Seleccionar subcategoría"
+                                   notFoundText="No hay subcategorías disponibles">
                         </ng-select>
                         <mat-error *ngIf="productForm.get('subcategoryCtrl').hasError('required') && productForm.get('subcategoryCtrl').touched">
                             Este campo es obligatorio.
                         </mat-error>
+                        <small *ngIf="selectedProdCate && (sub_catego$ | async)?.length === 0" style="color: #666; font-size: 12px; margin-top: 4px; display: block;">
+                            No hay subcategorías disponibles para esta categoría. Por favor, selecciona otra categoría.
+                        </small>
                     </div>
                 </div>
 
@@ -151,8 +157,17 @@
                 </div>
                         <div fxLayout='row wrap'>
                             <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100" class="relative img_up mt-3">
-                                <ngx-dropzone (change)="selectFile($event)" [multiple]="true" [expandable]="true" [disableClick]="false" [accept]="'image/*'" [maxFileSize]="1000000">
-                                    <ngx-dropzone-label>Arrastar imagenes del producto aqui!
+                                <ngx-dropzone (change)="selectFile($event)" 
+                                              [multiple]="true" 
+                                              [expandable]="true" 
+                                              [disableClick]="false" 
+                                              [accept]="'image/*'" 
+                                              [maxFileSize]="10000000"
+                                              class="dropzone-custom">
+                                    <ngx-dropzone-label>
+                                        <i class="material-icons">cloud_upload</i>
+                                        <p>Arrastra las imágenes del producto aquí</p>
+                                        <small>Formatos: JPG, PNG | Mínimo: 700px | Máximo: 10MB</small>
                                     </ngx-dropzone-label>
                                     <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
                                         <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>

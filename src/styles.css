@@ -1451,6 +1451,83 @@ html body a.mat-mdc-menu-item * {
   pointer-events: none !important;
 }
 
+/* ===== SweetAlert2 - Botón de confirmación verde ===== */
+.swal2-confirm,
+button.swal2-confirm,
+.swal2-styled.swal2-confirm {
+  background-color: #79dc78 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  padding: 0.5rem 1rem !important;
+  box-shadow: 0 2px 8px rgba(121, 220, 120, 0.3) !important;
+  transition: all 0.2s ease !important;
+}
+
+.swal2-confirm:hover,
+button.swal2-confirm:hover,
+.swal2-styled.swal2-confirm:hover {
+  background-color: #6bc86b !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(121, 220, 120, 0.4) !important;
+}
+
+.swal2-confirm:active,
+button.swal2-confirm:active,
+.swal2-styled.swal2-confirm:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 6px rgba(121, 220, 120, 0.3) !important;
+}
+
+.swal2-confirm:focus,
+button.swal2-confirm:focus,
+.swal2-styled.swal2-confirm:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(121, 220, 120, 0.5) !important;
+}
+
+/* ===== SweetAlert2 - Botón de cancelar (mismo tamaño que OK) ===== */
+.swal2-cancel,
+button.swal2-cancel,
+.swal2-styled.swal2-cancel {
+  background-color: #6c757d !important;
+  border: none !important;
+  border-radius: 6px !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  padding: 0.5rem 1rem !important;
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3) !important;
+  transition: all 0.2s ease !important;
+  min-width: auto !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.swal2-cancel:hover,
+button.swal2-cancel:hover,
+.swal2-styled.swal2-cancel:hover {
+  background-color: #5a6268 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4) !important;
+}
+
+.swal2-cancel:active,
+button.swal2-cancel:active,
+.swal2-styled.swal2-cancel:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 6px rgba(108, 117, 125, 0.3) !important;
+}
+
+.swal2-cancel:focus,
+button.swal2-cancel:focus,
+.swal2-styled.swal2-cancel:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(110, 120, 129, 0.5) !important;
+}
+
 /* ============================================ */
 /* ESTILOS PARA DIALOG DE PRODUCTO ADMIN */
 /* ============================================ */

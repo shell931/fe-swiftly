@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { delay } from 'rxjs/operators';
 import { ApiService } from '../../../../Services/api.service';
@@ -12,7 +13,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
    templateUrl: './DeleteLocationUser.component.html',
    styleUrls: ['./DeleteLocationUser.component.scss'],
    standalone: true,
-   imports: [CommonModule, MatDialogModule, MatButtonModule]
+   imports: [CommonModule, MatDialogModule, MatButtonModule, MatIconModule]
 })
 
 export class DeleteLocationUserComponent implements OnInit {

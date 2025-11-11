@@ -171,16 +171,18 @@ export class StoreAdmEditComponent implements OnInit {
         this.id_departament = response.id_departament;
         this.id_city = response.city_id;
         this.id_category = response.storecategories;
-        this.logo_store_save = this.logo_store;
 
         if (this.logo_store) {
             this.show_sin_img = false;
             this.show_img = true;
             this.logo_store = environment.api.baseBucketImageUrl + response.logo_store_up;
+            // Guardar la URL completa para poder restaurarla después
+            this.logo_store_save = response.logo_store_up;
         } else {
             this.show_sin_img = true;
             this.show_img = false;
             this.logo_store = "Sin logo";
+            this.logo_store_save = null;
         }
 
 
@@ -316,25 +318,46 @@ export class StoreAdmEditComponent implements OnInit {
     }
 
     //START SET EVENT FROM DROPZONE COMPLEMENT
-    selectFile(event: any) {
+    onSelect(event: any) {
+        console.log('onSelect called with event:', event);
         this.validate_img = false;
-        console.log(this.files.length);
-        if (this.files.length > 0) {
-            this.toastyService.error(this.toastIconMax);
-        } else {
-            // Handle the event properly - event should have addedFiles property
-            const addedFiles = event.addedFiles || [];
-            Promise.all(addedFiles.map((item: File) => 
-                this.onValidatePixels(item)
+        if (event && event.addedFiles && Array.isArray(event.addedFiles)) {
+            console.log('Adding files:', event.addedFiles.length);
+            if (this.files.length > 0) {
+                this.toastyService.error(this.toastIconMax);
+                return;
+            }
+            
+            // Validar y agregar archivos
+            const firstFile = event.addedFiles[0];
+            if (firstFile) {
+                this.onValidatePixels(firstFile)
                     .then(value => {
                         if (value) {
-                            this.files.push(item);
+                            this.files.push(firstFile);
+                            // Actualizar la vista previa con la nueva imagen inmediatamente
+                            this.logo_store = URL.createObjectURL(firstFile);
+                            this.show_img = true;
+                            this.show_sin_img = false;
+                            console.log('File added and preview updated');
                         } else {
                             this.validate_img = true;
                             this.toastyService.error(this.toastRejectPixelsImg);
                         }
                     })
-            )).catch(error => console.error('Error validating files:', error));
+                    .catch(error => {
+                        console.error('Error validating file:', error);
+                        this.validate_img = true;
+                    });
+            }
+        }
+    }
+
+    selectFile(event: any) {
+        this.validate_img = false;
+        // Este método puede usarse como respaldo, pero onSelect es el principal
+        if (event && event.addedFiles && Array.isArray(event.addedFiles)) {
+            this.onSelect(event);
         }
     }
 
@@ -355,6 +378,18 @@ export class StoreAdmEditComponent implements OnInit {
     onRemove(event: File) {
         console.log(event);
         this.files.splice(this.files.indexOf(event), 1);
+        // Restaurar la imagen original cuando se elimina el archivo
+        if (this.files.length === 0) {
+            if (this.logo_store_save) {
+                this.logo_store = environment.api.baseBucketImageUrl + this.logo_store_save;
+                this.show_img = true;
+                this.show_sin_img = false;
+            } else {
+                this.logo_store = "Sin logo";
+                this.show_img = false;
+                this.show_sin_img = true;
+            }
+        }
     }
 
     submitStoreInfo() {
@@ -392,14 +427,25 @@ export class StoreAdmEditComponent implements OnInit {
                                 formDataLogo.append('logo_store_up', file);
                                 this.apiService.uploadIconStore(formDataLogo).subscribe(
                                     result => {
-                                        this.router.navigate(['/account/store_adm']).then(() => {
-                                            window.location.reload();
-                                        });
+                                        console.log('Logo uploaded successfully:', result);
+                                        // Esperar un momento para asegurar que el backend termine de procesar
+                                        setTimeout(() => {
+                                            this.show_spinner = false;
+                                            this.toastyService.success('Logo actualizado exitosamente', 'Éxito', { timeOut: 3000 });
+                                            this.router.navigate(['/account/store_adm']).then(() => {
+                                                window.location.reload();
+                                            });
+                                        }, 500);
                                     },
-                                    error => console.log(error)
+                                    error => {
+                                        console.error('Error uploading logo:', error);
+                                        this.toastyService.error('Error al subir el logo. Por favor, inténtalo de nuevo.', 'Error', { timeOut: 5000 });
+                                        this.show_spinner = false;
+                                    }
                                 );
                             }
                         } else {
+                            this.show_spinner = false;
                             this.router.navigate(['/account/store_adm']).then(() => {
                                 window.location.reload();
                             });
@@ -447,14 +493,25 @@ export class StoreAdmEditComponent implements OnInit {
                                     formDataLogo.append('logo_store_up', file);
                                     this.apiService.uploadIconStore(formDataLogo).subscribe(
                                         result => {
-                                            this.router.navigate(['/account/store_adm']).then(() => {
-                                                window.location.reload();
-                                            });
+                                            console.log('Logo uploaded successfully:', result);
+                                            // Esperar un momento para asegurar que el backend termine de procesar
+                                            setTimeout(() => {
+                                                this.show_spinner = false;
+                                                this.toastyService.success('Logo actualizado exitosamente', 'Éxito', { timeOut: 3000 });
+                                                this.router.navigate(['/account/store_adm']).then(() => {
+                                                    window.location.reload();
+                                                });
+                                            }, 500);
                                         },
-                                        error => console.log(error)
+                                        error => {
+                                            console.error('Error uploading logo:', error);
+                                            this.toastyService.error('Error al subir el logo. Por favor, inténtalo de nuevo.', 'Error', { timeOut: 5000 });
+                                            this.show_spinner = false;
+                                        }
                                     );
                                 }
                             } else {
+                                this.show_spinner = false;
                                 this.router.navigate(['/account/store_adm']).then(() => {
                                     window.location.reload();
                                 });

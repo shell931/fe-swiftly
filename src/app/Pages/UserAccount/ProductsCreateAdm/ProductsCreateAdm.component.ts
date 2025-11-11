@@ -56,8 +56,8 @@ export interface Subcategory {
 export class ProductsCreateAdmComponent implements OnInit {
 
 
-	widthMin: number = 100;
-	heightMin: number = 100;
+	widthMin: number = 700;
+	heightMin: number = 700;
 	isApproved: boolean = false;
 	selectedFiles!: FileList;
 	files: File[] = [];
@@ -142,6 +142,8 @@ export class ProductsCreateAdmComponent implements OnInit {
 			availa: new UntypedFormControl('', [Validators.required]),
 		});
 
+		// Inicializar el observable de subcategorías con un array vacío
+		this.sub_catego$ = of([]);
 
 		// START ANGULAR MAT SEARCH CATEGORIES
 		this.category = [];
@@ -175,22 +177,77 @@ export class ProductsCreateAdmComponent implements OnInit {
 	}
 
 
-	onSelect(event: { addedFiles: any; }) {
-		console.log(event);
-		this.files.push(...event.addedFiles);
-		this.validate_img = false;
-		this.obligatory_img = false;
-	}
-
 	onRemove(event: File) {
-		console.log(event);
-		this.files.splice(this.files.indexOf(event), 1);
+		console.log('Removing file:', event);
+		const index = this.files.indexOf(event);
+		if (index > -1) {
+			this.files.splice(index, 1);
+		}
 	}
 
-	selectFile(event: NgxDropzoneChangeEvent) {
-		this.files = event.addedFiles;
+	selectFile(event: { addedFiles: number | any[]; } | any) {
+		console.log('selectFile called with event:', event);
+		console.log('Event type:', typeof event);
+		console.log('Event keys:', event ? Object.keys(event) : 'null');
 		this.validate_img = false;
 		this.obligatory_img = false;
+		
+		// Handle different event types from ngx-dropzone
+		let addedFiles: File[] = [];
+		
+		// ngx-dropzone puede pasar los archivos de diferentes formas
+		if (event && event.addedFiles && Array.isArray(event.addedFiles)) {
+			addedFiles = event.addedFiles;
+			console.log('Files from event.addedFiles:', addedFiles.length);
+		} else if (Array.isArray(event)) {
+			addedFiles = event;
+			console.log('Event is array:', addedFiles.length);
+		} else {
+			console.log('Unknown event structure:', event);
+		}
+		
+		console.log('Processed files count:', addedFiles.length);
+		
+		if (Array.isArray(addedFiles) && addedFiles.length > 0) {
+			// Validate and add each file
+			addedFiles.forEach((file: File) => {
+				console.log('Processing file:', file.name, file.type, file.size);
+				
+				// Verificar que sea una imagen
+				if (!file.type || !file.type.startsWith('image/')) {
+					this.validate_img = true;
+					this.toastyService.error('Solo se permiten archivos de imagen (JPG, PNG)');
+					return;
+				}
+				
+				// Check if file is already in the array
+				const fileExists = this.files.some(f => f.name === file.name && f.size === file.size && f.lastModified === file.lastModified);
+				if (fileExists) {
+					console.log('File already exists:', file.name);
+					return;
+				}
+				
+				// Validar dimensiones
+				this.onValidatePixels(file)
+					.then((isValid) => {
+						if (isValid) {
+							this.files.push(file);
+							console.log('✅ Imagen agregada exitosamente:', file.name);
+							console.log('Total files:', this.files.length);
+						} else {
+							this.validate_img = true;
+							this.toastyService.error(this.toastRejectPixelsImg);
+						}
+					})
+					.catch((error) => {
+						console.error('Error validating image:', error);
+						this.validate_img = true;
+						this.toastyService.error('Error al validar la imagen');
+					});
+			});
+		} else {
+			console.log('⚠️ No files to process. Event structure:', JSON.stringify(event, null, 2));
+		}
 	}
 
 	//START SET EVENT FROM DROPZONE COMPLEMENT
@@ -225,11 +282,16 @@ export class ProductsCreateAdmComponent implements OnInit {
 			Img.onload = (e: any) => {
 				const height = Img.height;
 				const width = Img.width;
-				if (height >= this.heightMin && width >= this.widthMin) {
+				// Validar que al menos uno de los lados tenga el mínimo requerido
+				if (height >= this.heightMin || width >= this.widthMin) {
 					resolve(true);
 				} else {
 					resolve(false);
 				}
+				URL.revokeObjectURL(Img.src);
+			};
+			Img.onerror = () => {
+				reject(new Error('Error al cargar la imagen'));
 			};
 		});
 
@@ -239,19 +301,63 @@ export class ProductsCreateAdmComponent implements OnInit {
 
 	subcategoriesChangeAction(categori_id: any) {
 		// START ANGULAR MAT SEARCH SUBCATEGORIES
-		let id_category = categori_id;
+		// Extraer el ID de la categoría - puede venir como número directo o como objeto
+		let id_category: any;
+		
+		if (typeof categori_id === 'number' || typeof categori_id === 'string') {
+			// Si viene como número o string directo
+			id_category = categori_id;
+		} else if (categori_id && typeof categori_id === 'object') {
+			// Si viene como objeto, extraer el ID
+			id_category = categori_id.id || categori_id.value?.id || categori_id.value;
+		} else {
+			id_category = null;
+		}
+		
+		// Convertir a número si es string
+		if (id_category && typeof id_category === 'string') {
+			id_category = parseInt(id_category, 10);
+		}
+		
+		console.log('Category ID received:', categori_id, 'Extracted ID:', id_category);
+		
+		// Limpiar la subcategoría seleccionada cuando se cambia la categoría
+		this.selectedSubcategory = null;
+		this.subcategoryCtrl.setValue(null);
+		this.subcategoryFilterCtrl.setValue(null);
+		
+		// Inicializar con array vacío mientras se cargan las subcategorías
 		this.subcategories = [];
+		this.sub_catego$ = of([]);
+		
+		if (!id_category || isNaN(id_category)) {
+			console.log('No valid category ID provided:', id_category);
+			return;
+		}
+		
 		this.apiService.getSubCategories(id_category).subscribe(
 			(data: Subcategory[]) => {
-				this.subcategorieslist = data;
-				for (var i in this.subcategorieslist) {
-					let get_id_subcategory = this.subcategorieslist[i]['id'];
-					let get_name_subcategory = this.subcategorieslist[i]['name_subcategory'];
-					this.subcategories.push({ id: get_id_subcategory, name_subcategory: get_name_subcategory });
+				this.subcategorieslist = data || [];
+				this.subcategories = [];
+				
+				if (this.subcategorieslist.length > 0) {
+					for (var i in this.subcategorieslist) {
+						let get_id_subcategory = this.subcategorieslist[i]['id'];
+						let get_name_subcategory = this.subcategorieslist[i]['name_subcategory'];
+						this.subcategories.push({ id: get_id_subcategory, name_subcategory: get_name_subcategory });
+					}
 				}
+				
+				// Actualizar el observable con las subcategorías (puede estar vacío)
 				this.sub_catego$ = this.getSubcategories("", this.subcategories);
+				console.log('Subcategorías cargadas:', this.subcategories.length);
 			},
-			(			error: any) => console.log(error)
+			(error: any) => {
+				console.error('Error loading subcategories:', error);
+				// En caso de error, inicializar con array vacío
+				this.subcategories = [];
+				this.sub_catego$ = of([]);
+			}
 		);
 		// END ANGULAR MAT SEARCH SUBCATEGORIES
 

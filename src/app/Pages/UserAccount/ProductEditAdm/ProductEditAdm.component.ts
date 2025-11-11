@@ -76,8 +76,8 @@ export class ProductEditAdmComponent implements OnInit {
     validate_coun_img: boolean = false;
     obligatory_img: boolean = false;
 
-    widthMin: Number = 100;
-    heightMin: Number = 100;
+    widthMin: number = 700;
+    heightMin: number = 700;
     isApproved: boolean = false;
     selectedFiles!: FileList;
     files: File[] = [];
@@ -311,10 +311,9 @@ export class ProductEditAdmComponent implements OnInit {
     onSelect(event: any) {
         console.log('onSelect called with event:', event);
         if (event && event.addedFiles && Array.isArray(event.addedFiles)) {
-            console.log('Adding files:', event.addedFiles.length);
-            this.files.push(...event.addedFiles);
+            console.log('Files added event:', event.addedFiles.length);
+            // La validación se hará en selectFile, este método solo notifica
             this.validate_img = false;
-            console.log('Total files after adding:', this.files.length);
         }
     }
 
@@ -335,22 +334,6 @@ export class ProductEditAdmComponent implements OnInit {
         const sizes = ['Bytes', 'KB', 'MB', 'GB'];
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    }
-
-    // Función para manejar el input de archivo tradicional
-    onFileInputChange(event: any) {
-        console.log('onFileInputChange called with event:', event);
-        const files = event.target.files;
-        if (files && files.length > 0) {
-            console.log('Files from input:', files.length);
-            const fileArray = Array.from(files);
-            fileArray.forEach((file: File) => {
-                console.log('Adding file from input:', file.name);
-                this.files.push(file);
-            });
-            this.validate_img = false;
-            console.log('Total files after input:', this.files.length);
-        }
     }
 
     deleteProduct(i: { id_image: any; }) {
@@ -377,34 +360,50 @@ export class ProductEditAdmComponent implements OnInit {
         this.obligatory_img = false;
         
         // ngx-dropzone can pass files in different ways
-        let addedFiles = [];
+        let addedFiles: File[] = [];
         
         if (Array.isArray(event)) {
             // If event is directly an array of files
             addedFiles = event;
         } else if (event && event.addedFiles) {
             // If event has addedFiles property
-            addedFiles = event.addedFiles;
+            addedFiles = Array.isArray(event.addedFiles) ? event.addedFiles : [];
         } else if (event && Array.isArray(event)) {
             // If event is an array
             addedFiles = event;
         }
         
-        console.log('Processed files:', addedFiles);
+        console.log('Processed files count:', addedFiles.length);
         
         if (Array.isArray(addedFiles) && addedFiles.length > 0) {
-            // Validate each file
+            // Validate and add each file
             addedFiles.forEach((file: File) => {
-                console.log('Processing file:', file.name, file.type);
+                console.log('Processing file:', file.name, file.type, file.size);
+                
+                // Verificar que sea una imagen
+                if (!file.type || !file.type.startsWith('image/')) {
+                    this.validate_img = true;
+                    this.toastyService.error('Solo se permiten archivos de imagen (JPG, PNG)');
+                    return;
+                }
+                
+                // Check if file is already in the array
+                const fileExists = this.files.some(f => f.name === file.name && f.size === file.size && f.lastModified === file.lastModified);
+                if (fileExists) {
+                    console.log('File already exists:', file.name);
+                    return;
+                }
+                
+                // Validar dimensiones
                 this.onValidatePixels(file)
                     .then((isValid) => {
                         if (isValid) {
                             this.files.push(file);
-                            console.log('Imagen agregada exitosamente:', file.name);
+                            console.log('✅ Imagen agregada exitosamente:', file.name);
                             console.log('Total files:', this.files.length);
                         } else {
                             this.validate_img = true;
-                            this.toastyService.error('Las imágenes deben tener al menos 100x100 píxeles');
+                            this.toastyService.error('La imagen debe tener al menos 700 píxeles en uno de sus lados');
                         }
                     })
                     .catch((error) => {
@@ -414,25 +413,27 @@ export class ProductEditAdmComponent implements OnInit {
                     });
             });
         } else {
-            console.log('No files to process');
+            console.log('⚠️ No files to process. Event structure:', JSON.stringify(event, null, 2));
         }
     }
 
     onValidatePixels(file: File): Promise<boolean> {
-        return new Promise<boolean>((resolve) => {
+        return new Promise((resolve, reject) => {
             const Img = new Image();
             Img.src = URL.createObjectURL(file);
             Img.onload = (e: any) => {
-                const height = e.target.height;
-                const width = e.target.width;
-                if (height >= this.heightMin && width >= this.widthMin) {
+                const height = Img.height;
+                const width = Img.width;
+                // Validar que al menos uno de los lados tenga el mínimo requerido
+                if (height >= this.heightMin || width >= this.widthMin) {
                     resolve(true);
                 } else {
                     resolve(false);
                 }
+                URL.revokeObjectURL(Img.src);
             };
             Img.onerror = () => {
-                resolve(false);
+                reject(new Error('Error al cargar la imagen'));
             };
         });
     }

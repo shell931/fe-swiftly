@@ -1,10 +1,22 @@
-<h2 mat-dialog-title>Estas seguro de querer eliminar esta ubicación?</h2>
+<div class="delete-dialog-container">
+	<div class="dialog-header">
+		<div class="icon-wrapper">
+			<i class="material-icons">warning</i>
+		</div>
+		<h2 mat-dialog-title class="dialog-title">¿Estás seguro de querer eliminar esta ubicación?</h2>
+	</div>
 
-<!-- <mat-dialog-content>
-	<p>{{data}}</p>
-</mat-dialog-content> -->
+	<mat-dialog-content class="dialog-content">
+		<p class="dialog-message">Esta acción no se puede deshacer. La ubicación será eliminada permanentemente.</p>
+	</mat-dialog-content>
 
-<mat-dialog-actions class="mb-0 d-flex justify-content-end">
-	<button mat-raised-button (click)="dialogRef.close()" color="primary">Cancelar</button>
-	<button mat-raised-button (click)="yes(data)"  color="accent">Aceptar</button>
-</mat-dialog-actions>
+	<mat-dialog-actions class="dialog-actions">
+		<button mat-raised-button (click)="dialogRef.close()" class="cancel-btn">
+			Cancelar
+		</button>
+		<button mat-raised-button (click)="yes(data)" class="confirm-btn">
+			<i class="material-icons">delete</i>
+			Eliminar
+		</button>
+	</mat-dialog-actions>
+</div>

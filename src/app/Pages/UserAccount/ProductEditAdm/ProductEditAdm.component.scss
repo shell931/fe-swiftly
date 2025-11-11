@@ -246,41 +246,6 @@ mat-error {
   font-size: 10px;
 }
 
-// Estilos para el input de archivo de respaldo
-.file-input-backup {
-  margin-top: 1rem;
-  text-align: center;
-  
-  .file-input-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background: #79dc78;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    
-    i {
-      font-size: 16px;
-    }
-    
-    &:hover {
-      background: #6bc86b;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(121, 220, 120, 0.3);
-    }
-    
-    &:active {
-      transform: translateY(0);
-    }
-  }
-}
-
 .upload-error i {
   font-size: 16px;
   color: #dc3545;
