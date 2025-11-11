@@ -23,14 +23,22 @@ export class HeaderUserProfileDropdownComponent implements OnInit {
 	}
 
 
-	//log out method 
+	//log out method
 	logOut(){
-		// console.log("saliendo1.......");
-		// this.cookieService.delete('mr-token');	
+		// Eliminar cookie y localStorage
+		this.cookieService.delete('mr-token');
+		this.cookieService.delete('mr-token', '/'); // Eliminar también de la ruta raíz
 		localStorage.clear();
-        this.router.navigate(['/auth']);
-		//document.getElementById('html').classList.remove("admin-panel");
-		//this.router.navigate(['/session/signin']);
+		sessionStorage.clear(); // También limpiar sessionStorage
+
+		// Remover clase del body si existe
+		document.getElementById('html')?.classList.remove("admin-panel");
+
+		// Navegar a auth y luego recargar para limpiar el estado completo
+		this.router.navigate(['/auth']).then(() => {
+			// Forzar recarga completa de la página para limpiar todos los estados
+			window.location.href = '/auth';
+		});
 	}
 }
 

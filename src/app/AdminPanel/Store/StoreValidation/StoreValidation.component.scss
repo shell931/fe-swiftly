@@ -1,16 +1,9 @@
-.expansion_class{
-    margin-top: 10px;
-}
+// ============================================
+// IMPORTAR ESTILOS GLOBALES DE FORMULARIOS
+// ============================================
+@use '../../Shared/admin-form-styles' as *;
 
-.div_title{
-    margin-bottom: 15px;
-}
-
-.butt{
-    margin-bottom: 15px;
-}
-
-.green {
-    color: rgba(0, 0, 0, 0.87);
-    background-color: #7aa37c;
-}
+// ============================================
+// ESTILOS ESPECÍFICOS DE STORE VALIDATION
+// ============================================
+// Aquí puedes agregar estilos adicionales que solo apliquen a StoreValidation

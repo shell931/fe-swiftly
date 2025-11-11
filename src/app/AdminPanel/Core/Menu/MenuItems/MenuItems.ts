@@ -17,47 +17,68 @@ export interface Menu {
   children?: ChildrenItems[];
 }
 
-const MENUITEMS2: Menu[] = [
+const MENUITEMS_DEFAULT: Menu[] = [
+  {
+    state: 'admin-panel/reports',
+    name: 'Reportes',
+    type: 'link',
+    icon: 'poll'
+  },
+  {
+    state: 'admin-panel/invoices',
+    name: 'Facturas',
+    type: 'link',
+    icon: 'receipt'
+  },
+  {
+    state: 'admin-panel/invoices_store',
+    name: 'Facturas Tienda',
+    type: 'link',
+    icon: 'receipt_long'
+  },
   // {
-  //   state: 'admin-panel/reports',
-  //   name: 'Reports',
+  //   state: 'admin-panel/products',
+  //   name: 'Productos',
   //   type: 'link',
-  //   icon: 'poll'
+  //   icon: 'shopping_cart'
   // },
-  // {
-  //   state: 'admin-panel/invoices',
-  //   name: 'Invoices.',
-  //   type: 'link',
-  //   icon: 'recent_actors'
-  // },
-  // {
-  //   state: 'admin-panel',
-  //   name: 'Products',
-  //   type: 'sub',
-  //   icon: 'shopping_cart',
-  //   children: [
-  //     { state: 'products', name: 'Products', type: 'link' },
-  //     { state: 'product-add', name: 'Product Add', type: 'link' }
-  //   ]
-  // },
+  {
+    state: 'admin-panel/admin_products',
+    name: 'Admin Productos',
+    type: 'link',
+    icon: 'inventory'
+  },
+  {
+    state: 'admin-panel/users',
+    name: 'Usuarios',
+    type: 'link',
+    icon: 'people'
+  },
+  {
+    state: 'admin-panel/store',
+    name: 'Tiendas',
+    type: 'link',
+    icon: 'store'
+  },
+  {
+    state: 'admin-panel/admin_transactions',
+    name: 'Transacciones',
+    type: 'link',
+    icon: 'payments'
+  },
+  {
+    state: 'admin-panel/admin_transfers',
+    name: 'Transferencias',
+    type: 'link',
+    icon: 'swap_horiz'
+  },
   // {
   //   state: 'admin-panel/account/profile',
-  //   name: 'Profile',
+  //   name: 'Perfil',
   //   type: 'link',
   //   icon: 'account_circle'
-  // },
-  // {
-  //   state: '/home',
-  //   name: 'Go To Site',
-  //   type: 'link',
-  //   icon: 'home'
   // }
 ];
-
-
-
-const MENUITEMS: Menu[] = [];
-
 
 
 
@@ -71,15 +92,7 @@ export class AdminMenuItems {
   ) { }
 
   getAll(): Menu[] {
-    // this.apiService.getMovies().subscribe(
-    //   data => {
-    //     console.log(data);
-    //     // this.movies = this.movies.filter(mov => mov.id !== movie.id);
-    //   },
-    //   error => console.log(error)
-
-    // );
-    return MENUITEMS2;
+    return MENUITEMS_DEFAULT;
   }
 }
 

@@ -15,10 +15,6 @@ import { SeeListDialogComponent } from '../AdminPanel/Widget/PopUp/SeeListDialog
 import { DeleteLocationUserComponent } from '../AdminPanel/Widget/PopUp/DeleteLocationUser/DeleteLocationUser.component';
 import { FailTransactionGatewayComponent } from '../AdminPanel/Widget/PopUp/FailTransactionGateway/FailTransactionGateway.component';
 import { FailErrorTransactionGatewayComponent } from '../AdminPanel/Widget/PopUp/FailErrorTransactionGateway/FailErrorTransactionGateway.component';
-
-
-FailTransactionGatewayComponent
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../../src/environments/environment';
@@ -473,7 +469,14 @@ export class ApiService {
 
     PopUpAdminProductsValidate(data: any) {
         let dialogRef: MatDialogRef<AdminProductValidComponent>;
-        dialogRef = this.dialog.open(AdminProductValidComponent, { panelClass: 'custom-dialog-container-productadm' });
+        dialogRef = this.dialog.open(AdminProductValidComponent, {
+            panelClass: 'custom-dialog-container-productadm',
+            width: '95vw',
+            maxWidth: '950px',
+            maxHeight: '95vh',
+            autoFocus: false,
+            disableClose: false
+        });
         dialogRef.componentInstance.data = data;
         return dialogRef.afterClosed();
     }

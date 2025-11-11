@@ -5,14 +5,14 @@ import { MainAdminPanelComponent } from './Main/Main.component';
 
 export const AdminPanelRoutes : Routes = [
    {
-      path : 'admin-panel',
-      redirectTo: 'admin-panel/reports',
-      pathMatch: 'full',
-   }, 
-   {
-      path : "admin-panel",
+      path : "",
       component : MainAdminPanelComponent,
-      children: [ 
+      children: [
+         {
+            path: '',
+            redirectTo: 'reports',
+            pathMatch: 'full',
+         },
          {
             path: 'reports',loadChildren: ()=>
             import('./Reports/Reports.module').then (m => m.ReportsModule)
@@ -26,7 +26,7 @@ export const AdminPanelRoutes : Routes = [
             import('./InvoiceStore/InvoicesStore.module').then (m => m.InvoicesStoreModule)
          },
          {
-            path: '',loadChildren: ()=>
+            path: 'products',loadChildren: ()=>
             import('./Products/Products.module').then(m => m.ProductsModule)
          },
          {
@@ -41,7 +41,7 @@ export const AdminPanelRoutes : Routes = [
             path: 'store',loadChildren: ()=>
             import('./Store/Store.module').then (m => m.StoreModule)
          },
-       
+
          {
             path: 'admin_products',loadChildren: ()=>
             import('./AdminProducts/AdminProducts.module').then (m => m.AdminProductsModule)
@@ -55,8 +55,8 @@ export const AdminPanelRoutes : Routes = [
          {
             path: 'admin_transfers',loadChildren: ()=>
             import('./Transfers/Transfers.module').then (m => m.TransfersModule)
-         }         
-       
+         }
+
       ]
    }
 ]

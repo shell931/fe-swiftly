@@ -29,7 +29,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';         
+import { MatPaginator } from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
@@ -63,11 +63,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
    declarations: [
-      StoreComponent, AddStoreComponent, EditStoreComponent, StoreValidationComponent
-      
+      StoreComponent, AddStoreComponent, EditStoreComponent
    ],
 	imports: [
-      MatExpansionModule, 
+      MatExpansionModule,
 		MatIconModule,
 		MatButtonModule,
 		MatCardModule,
@@ -88,8 +87,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
       // imports to mat-select-search
       SweetAlert2Module.forRoot(),
       NgSelectModule
-      
-	]
+
+	],
+   exports: [
+      StoreComponent, AddStoreComponent, EditStoreComponent
+   ]
 })
 export class StoreModule { }
 

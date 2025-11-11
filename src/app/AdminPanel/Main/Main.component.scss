@@ -1,0 +1,75 @@
+// AdminPanel Main Layout Styles
+
+// App container
+#main-app {
+  height: 100vh;
+  overflow: hidden;
+
+  &.app {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// Sidenav container
+mat-sidenav-container {
+  height: 100vh;
+  background-color: #f5f5f5;
+
+  // Sidebar
+  mat-sidenav {
+    width: 260px !important;
+    min-width: 260px !important;
+    background-color: #1a2226 !important;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+
+    &.sidebar-area {
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // Main content area
+  .mat-drawer-content {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background-color: #f5f5f5;
+  }
+}
+
+// Content containers
+.embryo-base-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.embryo-container {
+  padding: 20px;
+  max-width: 100%;
+
+  // Para que el contenido interno respire
+  > * {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Material overrides para el admin panel
+::ng-deep {
+  // Sidebar en modo móvil
+  .mat-drawer-backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  // Cards en el contenido
+  mat-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
