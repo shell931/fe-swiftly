@@ -47,7 +47,7 @@ export class AdminProductsComponent implements OnInit, AfterViewInit {
 	paginator!: MatPaginator; // Definite assignment assertion
 
 	dataSource = new MatTableDataSource<any>(this.adminProductList);
-	displayedColumns: string[] = ['action','name_store', 'created_at', 'product_code', 'name_product', 'namecategory', 'namesubcategory', 'total_price', 'published', 'name_state'];
+	displayedColumns: string[] = ['action','name_store', 'created_at', 'name_state', 'product_code', 'name_product', 'namecategory', 'namesubcategory', 'total_price', 'published'];
 
 	constructor(
 		private apiService: ApiService,
@@ -94,15 +94,25 @@ export class AdminProductsComponent implements OnInit, AfterViewInit {
 		this.apiService.getProductsConfirmbyId(data.id_product).subscribe((res: any) => this.getProductData(res), (error: any) => console.log(error));
 	}
 
-	getProductData(response: any) {		
+	getProductData(response: any) {
 		let gallery = response.rel_product;
 		this.get_pr = [];
 		for (var i = 0; i < gallery.length; i++) {
-			let image_route = environment.api.baseBucketImageUrl + gallery[i].image;
+			// Verificar si la imagen ya es una URL completa
+			let image_url = gallery[i].image;
+			let image_route = image_url.startsWith('http://') || image_url.startsWith('https://')
+				? image_url  // Ya es una URL completa, usar tal cual
+				: environment.api.baseBucketImageUrl + image_url;  // Es una ruta relativa, concatenar base URL
 			this.get_pr[i] = image_route;
 		}
 
 	let myObj_product: any;
+		// Verificar si la imagen principal ya es una URL completa
+		let main_image = response.image;
+		let main_image_url = main_image && (main_image.startsWith('http://') || main_image.startsWith('https://'))
+			? main_image
+			: environment.api.baseBucketImageUrl + main_image;
+
 		myObj_product = {
 			availablity: true,
 			brand: response.brand,
@@ -112,7 +122,7 @@ export class AdminProductsComponent implements OnInit, AfterViewInit {
 			description: response.description_product,
 			discount_price: response.discount_price,
 			id: response.id_product,
-			image: response.image,
+			image: main_image_url,
 			image_gallery: this.get_pr,
 			name: response.name_product,
 			popular: false,

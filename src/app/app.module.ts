@@ -48,7 +48,7 @@ import { LoadScriptsService } from './load-scripts.service';
 
 
 import { MainModule } from './Main/main.module';
-import { AdminPanelModule } from './AdminPanel/admin-panel.module';
+// Removed AdminPanelModule import - now using lazy loading
 import { AuthModule } from './auth/auth.module';
 import { AppRoutes } from './app-routing.module';
 
@@ -109,8 +109,8 @@ export function createTranslateLoader(http: HttpClient) {
       scrollOffset: [0, 0]
     }),
     LoadingBarModule,
-    
-  
+
+
 
     TranslateModule.forRoot({
       loader: {

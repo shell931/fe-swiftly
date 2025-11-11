@@ -30,6 +30,14 @@
                         <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Fecha</b> </th>
                         <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/yyyy HH:mm'}} </td>
                     </ng-container>
+                    <ng-container matColumnDef="name_state">
+                      <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Estado</b> </th>
+                     <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+                         <div *ngIf="element.name_state === 'Aprobado'" class="class_aprobed">{{element.name_state}}</div>
+                         <div *ngIf="element.name_state === 'Pendiente'" class="class_platform">{{element.name_state}}</div>
+                         <div *ngIf="element.name_state === 'Rechazado'" class="class_reject">{{element.name_state}}</div>
+                     </td>
+                  </ng-container>
                     <ng-container matColumnDef="product_code">
                         <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Cod Prod</b> </th>
                         <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.product_code}} </td>
@@ -52,23 +60,14 @@
                     </ng-container>
 
                     <ng-container matColumnDef="published">
-                        <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Publicado</b> </th>
+                        <th class="px-3 text-nowrap table-right" mat-header-cell *matHeaderCellDef> <b class="title_table">Publicado</b> </th>
                         <td class="px-3 text-nowrap" mat-cell *matCellDef="let element"> {{element.published}} </td>
                     </ng-container>
-                    <ng-container matColumnDef="name_state">
-                        <th class="px-3 text-nowrap table-right" mat-header-cell *matHeaderCellDef> <b class="title_table">Estado</b> </th>
-                        <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
-                            <div *ngIf="element.name_state === 'Aprobado'" class="class_aprobed_state">{{element.name_state}}</div>
-                            <div *ngIf="element.name_state === 'Pendiente'" class="class_aprobed_pending">{{element.name_state}}</div>
-                            <div *ngIf="element.name_state === 'Rechazado'" class="class_aprobed_reject">{{element.name_state}}</div>
-                        </td>
-                    </ng-container>
-
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
             </div>
-            <mat-paginator 
+            <mat-paginator
                 #paginator
                 [length]="dataSource.data.length"
                 [pageSize]="15"

@@ -36,19 +36,37 @@ export class MenuListItemsComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		public translate: TranslateService) { }
 
-	ngOnInit() {		
+	ngOnInit() {
 		this.get_menu = [];
-		this.apiService.getMenus().subscribe((data: any[]) => {
-				this.menulist = data;
-				for (const item of this.menulist) {
-					const get_state = (item && item.route_menu) ? item.route_menu : '';
-					const get_name = (item && item.name_menu) ? item.name_menu : '';
-					const get_type = "link";
-					const get_icon = (item && item.icon_menu) ? item.icon_menu : '';
-					this.get_menu.push({state:get_state,name:get_name,type:get_type,icon:get_icon});
+
+		// Primero cargar el menú por defecto de AdminMenuItems
+		const defaultMenu = this.menuItems.getAll();
+		if (defaultMenu && defaultMenu.length > 0) {
+			this.get_menu = [...defaultMenu];
+		}
+
+		// Luego intentar cargar desde la API (opcional)
+		this.apiService.getMenus().subscribe(
+			(data: any[]) => {
+				if (data && data.length > 0) {
+					this.menulist = data;
+					this.get_menu = []; // Limpiar el menú por defecto
+					for (const item of this.menulist) {
+						const get_state = (item && item.route_menu) ? item.route_menu : '';
+						const get_name = (item && item.name_menu) ? item.name_menu : '';
+						const get_type = "link";
+						const get_icon = (item && item.icon_menu) ? item.icon_menu : '';
+						this.get_menu.push({state:get_state,name:get_name,type:get_type,icon:get_icon});
+					}
 				}
-			}, error => console.log(error));
-		
+				// Si la API no retorna datos, mantener el menú por defecto
+			},
+			error => {
+				console.log('Error cargando menú desde API, usando menú por defecto:', error);
+				// En caso de error, mantener el menú por defecto ya cargado
+			}
+		);
+
 	}
 }
 

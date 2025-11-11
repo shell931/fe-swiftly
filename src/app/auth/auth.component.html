@@ -14,39 +14,36 @@
                                 <p class="login-subtitle">Accede a tu panel de administración</p>
                             </div>
                         </div>
-                        
+
                         <form [formGroup]="authForm" (ngSubmit)="saveForm()" class="login-form">
-                            <!-- Email Field -->
+                            <!-- Username Field -->
                             <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>Correo electrónico</mat-label>
-                                <input matInput 
-                                       type="email" 
-                                       placeholder="darknees931@gmail.com" 
-                                       formControlName="username" 
-                                       autocomplete="email"
+                                <mat-label>Usuario</mat-label>
+                                <input matInput
+                                       type="text"
+                                       placeholder="admin"
+                                       formControlName="username"
+                                       autocomplete="username"
                                        required>
                                 <mat-error *ngIf="authForm.get('username')?.hasError('required') && authForm.get('username')?.touched">
-                                    El correo electrónico es obligatorio
-                                </mat-error>
-                                <mat-error *ngIf="authForm.get('username')?.hasError('email') && authForm.get('username')?.touched">
-                                    Por favor ingresa un correo electrónico válido
+                                    El usuario es obligatorio
                                 </mat-error>
                             </mat-form-field>
 
                             <!-- Password Field -->
                             <mat-form-field appearance="outline" class="full-width">
                                 <mat-label>Contraseña</mat-label>
-                                <input matInput 
-                                       [type]="hidePassword ? 'password' : 'text'" 
-                                       placeholder="••••••••••••" 
-                                       formControlName="password" 
+                                <input matInput
+                                       [type]="hidePassword ? 'password' : 'text'"
+                                       placeholder="••••••••••••"
+                                       formControlName="password"
                                        autocomplete="current-password"
                                        required>
-                                <button mat-icon-button 
-                                        matSuffix 
+                                <button mat-icon-button
+                                        matSuffix
                                         type="button"
-                                        (click)="hidePassword = !hidePassword" 
-                                        [attr.aria-label]="'Ocultar contraseña'" 
+                                        (click)="hidePassword = !hidePassword"
+                                        [attr.aria-label]="'Ocultar contraseña'"
                                         [attr.aria-pressed]="hidePassword">
                                     <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                                 </button>
@@ -75,8 +72,8 @@
                             </div>
 
                             <!-- Submit Button -->
-                            <button mat-raised-button 
-                                    type="submit" 
+                            <button mat-raised-button
+                                    type="submit"
                                     class="login-button"
                                     [disabled]="authForm.invalid || isLoading">
                                 <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
@@ -86,7 +83,7 @@
                             <!-- Register Link -->
                             <div class="register-section">
                                 <p class="register-text">
-                                    ¿No tienes una cuenta? 
+                                    ¿No tienes una cuenta?
                                     <a href="#" class="register-link" (click)="onCreateAccount($event)">
                                         Click aquí para crear cuenta
                                     </a>

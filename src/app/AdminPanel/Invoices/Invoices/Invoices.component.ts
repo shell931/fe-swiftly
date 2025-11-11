@@ -56,7 +56,7 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
 
    dataSource = new MatTableDataSource<any>(this.invoiceList);
 
-   displayedColumns: string[] = ['action2', 'canceled', 'messaje', 'reference_invoice', 'created_at', 'name_store', 'join_name', 'service', 'name_state', 'ScoreValdation', 'number_identifier', 'reference', 'total_price', 'total_balance'];
+   displayedColumns: string[] = ['action2', 'canceled', /* 'messaje', */ 'reference_invoice', 'created_at', 'name_store', 'join_name', 'service', 'name_state', 'ScoreValdation', 'number_identifier', 'reference', 'total_price', 'total_balance'];
 
    constructor(
       public service: AdminPanelServiceService,
@@ -144,9 +144,9 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
          })()
       };
 
-      // console.log(myObj_invoice);      
+      // console.log(myObj_invoice);
       this.invDetailGrid = myObj_invoice;
-      // console.log(this.invDetailGrid);      
+      // console.log(this.invDetailGrid);
       this.apiService.PopUpInvoiceDetail(this.invDetailGrid);
    }
 
@@ -159,16 +159,16 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
       }
    }
 
-   getBinnacles(data: { id: string; }) {     
-      localStorage.removeItem("messajes");             
+   getBinnacles(data: { id: string; }) {
+      localStorage.removeItem("messajes");
       const id_store = localStorage.getItem('id-store');
       localStorage.removeItem("id_invoice_popup");
       localStorage.setItem('id_invoice_popup', data.id);
       // this.embryoService.binnacleSidenavOpen = !this.embryoService.binnacleSidenavOpen;
       let id_invoice = data.id
       this.apiService.getBinnacle(id_invoice, 'adm').subscribe(
-         (         result: { result: number; data: any; }) => {            
-            if (result.result == 200) {               
+         (         result: { result: number; data: any; }) => {
+            if (result.result == 200) {
                let myJSONinvDetail = JSON.stringify(result.data);
                localStorage.setItem('messajes', myJSONinvDetail);
                this.embryoService.binnacleSidenavAdmOpen = !this.embryoService.binnacleSidenavAdmOpen;

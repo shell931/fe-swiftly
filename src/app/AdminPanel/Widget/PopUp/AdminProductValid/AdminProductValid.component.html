@@ -1,24 +1,103 @@
-<div class="text-center">
-    <b>{{data.name}}</b>
-    <p>Codigo: {{data.product_code}}</p>
-</div>
+<div class="product-dialog-container">
+    <!-- Header -->
+    <div class="dialog-header">
+        <h2 class="product-title">{{data.name}}</h2>
+        <p class="product-code">Código: <span>{{data.product_code}}</span></p>
+    </div>
 
-<div class="py-1">
-    <p><b>Imagenes</b></p>
-    <div class="fx-layout-row-wrap fx-layout-align-start-center col-gap">
-        <div *ngFor="let item of data.image_gallery">
-            <img width="626" height="800" class="img_size" src="{{ item }}" alt="cart Image">
+    <!-- Galería de imágenes con carrusel -->
+    <div class="gallery-section">
+        <h3 class="section-title">Imágenes del Producto</h3>
+
+        <div class="image-carousel" *ngIf="data.image_gallery && data.image_gallery.length > 0">
+            <!-- Imagen principal -->
+            <div class="main-image-container">
+                <button class="carousel-btn prev"
+                        (click)="previousImage()"
+                        [disabled]="currentImageIndex === 0"
+                        *ngIf="data.image_gallery.length > 1">
+                    <mat-icon>chevron_left</mat-icon>
+                </button>
+
+                <img [src]="data.image_gallery[currentImageIndex]"
+                     alt="Producto {{data.name}}"
+                     class="main-image">
+
+                <button class="carousel-btn next"
+                        (click)="nextImage()"
+                        [disabled]="currentImageIndex === data.image_gallery.length - 1"
+                        *ngIf="data.image_gallery.length > 1">
+                    <mat-icon>chevron_right</mat-icon>
+                </button>
+
+                <!-- Contador de imágenes -->
+                <div class="image-counter" *ngIf="data.image_gallery.length > 1">
+                    {{currentImageIndex + 1}} / {{data.image_gallery.length}}
+                </div>
+            </div>
+
+            <!-- Thumbnails -->
+            <div class="thumbnails-container" *ngIf="data.image_gallery.length > 1">
+                <div class="thumbnail"
+                     *ngFor="let image of data.image_gallery; let i = index"
+                     [class.active]="i === currentImageIndex"
+                     (click)="selectImage(i)">
+                    <img [src]="image" alt="Thumbnail {{i + 1}}">
+                </div>
+            </div>
         </div>
 
+        <!-- Mensaje si no hay imágenes -->
+        <div class="no-images" *ngIf="!data.image_gallery || data.image_gallery.length === 0">
+            <mat-icon>image_not_supported</mat-icon>
+            <p>No hay imágenes disponibles</p>
+        </div>
     </div>
-</div>
 
-<hr class="spacer">
-<div class="mb-4 fx-layout-row fx-layout-align-space-between-center">
-    <b>Precio total</b><span class="fx-flex"></span> {{data.price|currency}}
-</div>
+    <!-- Información del producto -->
+    <div class="product-info">
+        <div class="info-row">
+            <span class="label">Descripción:</span>
+            <span class="value">{{data.description || 'Sin descripción'}}</span>
+        </div>
 
-<div class="btn-group" fyFlex.xs="100" fyFlex.sm="100" fyFlex.md="100" fyFlex.lg="100" fyFlex.xl="100">
-    <button mat-raised-button color="accent" class="button-lg" (click)="product_reject(data.id)">Rechazar</button>
-    <button mat-raised-button color="accent" class="button-lg" (click)="product_aprobed(data.id)">Aprobar</button>
+        <div class="info-row">
+            <span class="label">Marca:</span>
+            <span class="value">{{data.brand || 'N/A'}}</span>
+        </div>
+
+        <div class="info-row">
+            <span class="label">Stock:</span>
+            <span class="value">{{data.quantity || 0}} unidades</span>
+        </div>
+
+        <div class="info-row price-row">
+            <span class="label">Precio Total:</span>
+            <span class="price">{{data.price | currency}}</span>
+        </div>
+
+        <div class="info-row" *ngIf="data.discount_price">
+            <span class="label">Precio con Descuento:</span>
+            <span class="price discount">{{data.discount_price | currency}}</span>
+        </div>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="action-buttons">
+        <button mat-raised-button
+                color="warn"
+                class="action-btn reject-btn"
+                (click)="product_reject(data.id)">
+            <mat-icon>close</mat-icon>
+            Rechazar
+        </button>
+
+        <button mat-raised-button
+                color="primary"
+                class="action-btn approve-btn"
+                (click)="product_aprobed(data.id)">
+            <mat-icon>check</mat-icon>
+            Aprobar
+        </button>
+    </div>
 </div>

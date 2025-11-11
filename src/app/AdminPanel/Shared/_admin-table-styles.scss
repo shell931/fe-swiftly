@@ -1,0 +1,306 @@
+// ============================================
+// ESTILOS GLOBALES PARA TABLAS DEL ADMIN PANEL
+// ============================================
+// Uso: @use '../../../AdminPanel/Shared/admin-table-styles' as *;
+// O: @import '../../../AdminPanel/Shared/admin-table-styles';
+
+// Contenedor principal de la tabla
+::ng-deep {
+    .table-responsive-x {
+        overflow-x: auto;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+        // Scrollbar horizontal personalizado
+        &::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #f5f5f5;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+            border-radius: 5px;
+
+            &:hover {
+                background: linear-gradient(135deg, #45a049 0%, #5da85d 100%);
+            }
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            background: white;
+            width: max-content;
+            min-width: 100%;
+
+            // Encabezados de la tabla
+            thead tr {
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+
+                th {
+                    color: white !important;
+                    font-weight: 600 !important;
+                    font-size: 13px !important;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    padding: 16px 12px !important;
+                    border-bottom: none !important;
+                    text-align: center !important;
+                    border-left: none !important;
+                    border-right: none !important;
+                    white-space: nowrap !important;
+
+                    .title_table {
+                        color: white !important;
+                        font-weight: 600 !important;
+                    }
+
+                    &.table-left {
+                        border-top-left-radius: 8px;
+                    }
+
+                    &.table-right {
+                        border-top-right-radius: 8px;
+                    }
+                }
+            }
+
+            // Filas del cuerpo de la tabla
+            tbody tr {
+                transition: all 0.2s ease;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+                &:hover {
+                    background-color: #f8f9fa !important;
+                    transform: scale(1.01);
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                td {
+                    padding: 14px 12px !important;
+                    color: #2c3e50 !important;
+                    font-size: 14px;
+                    vertical-align: middle;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+                    text-align: left !important;
+                    border-left: none !important;
+                    border-right: none !important;
+                    white-space: nowrap !important;
+
+                    // Botón de acción
+                    button {
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            transform: scale(1.1);
+
+                            i {
+                                color: #4CAF50 !important;
+                            }
+                        }
+
+                        i {
+                            color: #5c6bc0;
+                            transition: color 0.3s ease;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Paginador
+    mat-paginator {
+        background: white;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 0 0 8px 8px;
+        margin-top: 0;
+
+        .mat-mdc-paginator-container {
+            padding: 16px 12px;
+        }
+    }
+}
+
+// Badges de estado para aprobado/rechazado
+.class_aprobed {
+    background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+    color: white !important;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    margin: 0;
+    border-radius: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 120px;
+    box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    }
+
+    &::before {
+        content: '✓';
+        margin-right: 6px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+}
+
+.class_reject {
+    background: linear-gradient(135deg, #f44336 0%, #ef5350 100%);
+    color: white !important;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    margin: 0;
+    border-radius: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 120px;
+    box-shadow: 0 2px 6px rgba(244, 67, 54, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+    }
+
+    &::before {
+        content: '✕';
+        margin-right: 6px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+}
+
+// Badge para plataforma
+.class_platform {
+    background-color: #715fca !important;
+    color: white !important;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    margin: 0;
+    border-radius: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 100px;
+    box-shadow: 0 2px 6px rgba(113, 95, 202, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(113, 95, 202, 0.4);
+        background-color: #5d4db5 !important;
+    }
+}
+
+// Input de búsqueda estándar
+.buttonIn {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .inputsearch {
+        width: 100%;
+        max-width: 400px;
+        min-height: 42px;
+        padding: 10px 16px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        background-color: white;
+        color: #333;
+        font-family: inherit;
+        box-sizing: border-box;
+
+        &:hover {
+            border-color: #4CAF50;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        &::placeholder {
+            color: #999;
+            font-size: 13px;
+        }
+
+        // Icono de búsqueda integrado
+        &[type="search"] {
+            -webkit-appearance: none;
+            appearance: none;
+
+            &::-webkit-search-cancel-button {
+                -webkit-appearance: none;
+                appearance: none;
+                height: 14px;
+                width: 14px;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
+                background-size: 14px 14px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// Card principal común para AdminPanel
+.matcard_admin {
+    margin: 20px;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    .dash-title {
+        h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #4CAF50;
+            display: inline-block;
+        }
+    }
+}
+
+// Mensaje "No data found"
+h5 {
+    &.ml-5 {
+        color: #999;
+        font-style: italic;
+        text-align: center;
+        padding: 40px;
+        font-size: 16px;
+    }
+}
+

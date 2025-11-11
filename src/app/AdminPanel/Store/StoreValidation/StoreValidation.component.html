@@ -6,47 +6,52 @@
             </div> -->
 
 <mat-card class="matcard_admin">
+
     <div class="div_title">
         <mat-label><b>DATOS DEL COMERCIO</b></mat-label>
     </div>
-    <div class="row">
-        <div class="col-sm">
+    <div class="row" style="display: flex !important; flex-wrap: wrap !important;">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Ciudad</b></mat-label>
             <p>{{city}}</p>
         </div>
-        <div class="col-sm">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Departamento</b></mat-label>
             <p>{{departament}}</p>
         </div>
-        <div class="col-sm">
+    </div>
+    <div class="row" style="display: flex !important; flex-wrap: wrap !important;">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Dirección</b></mat-label>
             <p>{{address}}</p>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Representante</b></mat-label>
             <p>{{manager}}</p>
         </div>
-        <div class="col-sm">
+    </div>
+    <div class="row" style="display: flex !important; flex-wrap: wrap !important;">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Nombre comercial</b></mat-label>
             <p>{{name_store}}</p>
         </div>
-        <div class="col-sm">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Email</b></mat-label>
             <p>{{email}}</p>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm">
+    <div class="row" style="display: flex !important; flex-wrap: wrap !important;">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Número de identificación</b></mat-label>
             <p>{{number_identifier}}</p>
         </div>
-        <div class="col-sm">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Teléfono</b></mat-label>
             <p>{{telephone}}</p>
         </div>
-        <div class="col-sm">
+    </div>
+    <div class="row" style="display: flex !important; flex-wrap: wrap !important;">
+        <div class="data-field-full" style="flex: 0 0 100%; max-width: 100%;">
             <mat-label><b>Categoria del comercio</b></mat-label>
             <p>{{storecategories_description}}</p>
         </div>
@@ -54,33 +59,32 @@
     <div class="div_title">
         <mat-label><b>DATOS DE LA CUENTA BANCARÍA</b></mat-label>
     </div>
-    <div class="row">
-        <div class="col-sm">
+    <div class="row" style="display: flex !important; flex-wrap: wrap !important;">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Número de cuenta</b></mat-label>
             <p>{{account_number}}</p>
         </div>
-        <div class="col-sm">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Titular</b></mat-label>
             <p>{{responsible}}</p>
         </div>
-        <div class="col-sm">
+    </div>
+    <div class="row" style="display: flex !important; flex-wrap: wrap !important;">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Banco</b></mat-label>
             <p>{{bank}}</p>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Tipo de cuenta</b></mat-label>
             <p>{{typeaccount}}</p>
         </div>
-
     </div>
 
     <div class="div_title">
         <mat-label><b>PORCENTAJES DE DESCUENTO</b></mat-label>
     </div>
     <div class="row mb-4">
-        <div class="col-sm">
+        <div class="data-field">
             <mat-label><b>Porcentaje de venta</b><b class="obligatory"> *</b></mat-label>
             <ng-select [items]="percentage_sale$ | async" bindLabel="percentage" bindValue="id" [formControl]="percentagesaleFilterCtrl" [(ngModel)]="selectedPercentageSale" required>
             </ng-select>
@@ -90,7 +94,7 @@
                 </label>
             </div>
         </div>
-        <div class="col-sm">
+        <div class="data-field" style="flex: 0 0 50%; max-width: 50%;">
             <mat-label><b>Porcentaje de pago</b><b class="obligatory"> *</b></mat-label>
             <ng-select [items]="percentage_payment$ | async" bindLabel="percentage" bindValue="id" [formControl]="percentagepaymentFilterCtrl" [(ngModel)]="selectedPercentagePayment" required>
             </ng-select>
@@ -100,73 +104,84 @@
                 </label>
             </div>
         </div>
-        <div class="col-sm">
-        </div>
-
     </div>
 
     <div class="div_title">
-        <mat-label><b>CODIGO UNICO DE TRANSACCIÓN</b></mat-label>
+        <mat-label><b>DOCUMENTOS DEL COMERCIO</b></mat-label>
     </div>
 
-    <div class="row mb-4">
-        <div class="col-sm">
-            <ng-select [items]="cuc$ | async" bindLabel="cuc" bindValue="id" [formControl]="cucFilterCtrl" [(ngModel)]="selectedCuc" required>
-            </ng-select>
-            <div class="mt-2" *ngIf="validate_cuc">
-                <label style="color:red">
-                    Código unico de transacción obligatorio
-                </label>
+    <!-- Documento 1: Cédula de Identidad -->
+    <div class="document-panel">
+        <div class="document-header" (click)="toggleDocument('identidad')">
+            <div class="document-title">
+                <mat-icon class="doc-icon">description</mat-icon>
+                <span>📄 Cédula de Identidad</span>
             </div>
+            <mat-icon class="toggle-icon" [class.rotated]="showDocIdentidad">
+                {{ showDocIdentidad ? 'expand_less' : 'expand_more' }}
+            </mat-icon>
         </div>
-        <div class="col-sm"></div>
-        <div class="col-sm"></div>
-
+        <div class="document-content" *ngIf="showDocIdentidad">
+            <iframe [src]="doc_identifier_doc"></iframe>
+        </div>
     </div>
 
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Cedula de identidad
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <iframe [src]="doc_identifier_doc" width="1000" height="500" style="border: none;"></iframe>
-    </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="expansion_class">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Registro único tributario RUT
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <iframe [src]="rut_doc" width="1000" height="500" style="border: none;"></iframe>
-    </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="expansion_class">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Camara de comercio
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <iframe [src]="cam_com_doc" width="1000" height="500" style="border: none;"></iframe>
-    </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="expansion_class">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Certificación bancaria
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <iframe [src]="certification_url" width="1000" height="500" style="border: none;"></iframe>
-    </mat-expansion-panel>
+    <!-- Documento 2: RUT -->
+    <div class="document-panel">
+        <div class="document-header" (click)="toggleDocument('rut')">
+            <div class="document-title">
+                <mat-icon class="doc-icon">assignment</mat-icon>
+                <span>📋 Registro Único Tributario (RUT)</span>
+            </div>
+            <mat-icon class="toggle-icon" [class.rotated]="showDocRut">
+                {{ showDocRut ? 'expand_less' : 'expand_more' }}
+            </mat-icon>
+        </div>
+        <div class="document-content" *ngIf="showDocRut">
+            <iframe [src]="rut_doc"></iframe>
+        </div>
+    </div>
 
-    <div class="butt" style="margin-top: 15px;" align="center">
-        <div class="row">
-            <div class="col-sm">
-                <button mat-raised-button color="accent" (click)="RechStore()">Rechazar</button>
+    <!-- Documento 3: Cámara de Comercio -->
+    <div class="document-panel">
+        <div class="document-header" (click)="toggleDocument('camara')">
+            <div class="document-title">
+                <mat-icon class="doc-icon">business</mat-icon>
+                <span>🏢 Cámara de Comercio</span>
+            </div>
+            <mat-icon class="toggle-icon" [class.rotated]="showDocCamara">
+                {{ showDocCamara ? 'expand_less' : 'expand_more' }}
+            </mat-icon>
+        </div>
+        <div class="document-content" *ngIf="showDocCamara">
+            <iframe [src]="cam_com_doc"></iframe>
+        </div>
+    </div>
+
+    <!-- Documento 4: Certificación Bancaria -->
+    <div class="document-panel">
+        <div class="document-header" (click)="toggleDocument('banco')">
+            <div class="document-title">
+                <mat-icon class="doc-icon">account_balance</mat-icon>
+                <span>🏦 Certificación Bancaria</span>
+            </div>
+            <mat-icon class="toggle-icon" [class.rotated]="showDocBanco">
+                {{ showDocBanco ? 'expand_less' : 'expand_more' }}
+            </mat-icon>
+        </div>
+        <div class="document-content" *ngIf="showDocBanco">
+            <iframe [src]="certification_url"></iframe>
+        </div>
+    </div>
+
+    <div class="action-buttons-section">
+        <div class="row" style="display: flex !important; flex-wrap: wrap !important;">
+            <div class="data-field" style="flex: 0 0 50%; max-width: 50%; display: flex; justify-content: center; align-items: center;">
+                <button mat-raised-button color="accent" class="action-button" (click)="RechStore()">Rechazar</button>
             </div>
 
-            <div class="col-sm">
-                <swal #AprobeSwal title="Aprobar Comercio" text="Esta seguro que desea aprobar este comercio" icon="success" [showCancelButton]="true" [focusCancel]="true" (confirm)="AproveStore()">
-                </swal>
-                <button mat-raised-button class="green" [swal]="AprobeSwal">Aprobar</button>
+            <div class="data-field" style="flex: 0 0 50%; max-width: 50%; display: flex; justify-content: center; align-items: center;">
+                <button mat-raised-button class="action-button green" (click)="confirmAproveStore()">Aprobar</button>
             </div>
         </div>
     </div>

@@ -1,26 +1,7 @@
-@use '../../../../assets/scss/_input_search.scss';
-@use '../../../../assets/scss/_table_general.scss';
+// ============================================
+// IMPORTAR ESTILOS GLOBALES DE TABLAS ADMIN
+// ============================================
+@use '../../Shared/admin-table-styles' as *;
 
-.class_aprobed {
-    background-color: #c0f48f;
-    color: rgba(0, 0, 0, .87);
-    display: inline-block;
-    vertical-align: baseline;
-    padding: 2px 7px;
-    margin: 0 12px 0 0;
-    border-radius: 5px;
-    font-size: 13px;
-    width: 180px;
-}
-
-.class_reject {
-    background-color: #f25567;
-    color: rgba(0, 0, 0, .87);
-    display: inline-block;
-    vertical-align: baseline;
-    padding: 2px 7px;
-    margin: 0 12px 0 0;
-    border-radius: 5px;
-    font-size: 13px;
-    width: 180px;
-}
+// Estilos específicos de Users (si los necesitas)
+// Aquí puedes agregar estilos adicionales que solo apliquen a Users

@@ -1,0 +1,673 @@
+// ============================================
+// ESTILOS GLOBALES PARA FORMULARIOS Y VISTAS DE DETALLE EN ADMIN PANEL
+// ============================================
+// Uso: @use '../../Shared/admin-form-styles' as *;
+
+// ============================================
+// CARD PRINCIPAL
+// ============================================
+.matcard_admin {
+    padding: 30px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: white;
+}
+
+// ============================================
+// TÍTULOS DE SECCIONES
+// ============================================
+.div_title {
+    margin: 30px 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #4CAF50;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    mat-label, b {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a2226;
+        letter-spacing: 0.5px;
+    }
+}
+
+// Títulos con h2
+.matcard_admin {
+    h2 {
+        color: #1a2226;
+        font-size: 16px;
+        font-weight: 600;
+        margin: 30px 0 20px 0;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #4CAF50;
+        letter-spacing: 0.5px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}
+
+// Clases de margen para secciones
+.mb-2, .mb-3, .mb-4 {
+    h2 {
+        margin-bottom: 16px;
+    }
+}
+
+.mb-2 { margin-bottom: 20px !important; }
+.mb-3 { margin-bottom: 20px !important; }
+.mb-4 { margin-bottom: 20px !important; }
+
+// ============================================
+// FILAS DE DATOS (Scoped para evitar conflictos con Bootstrap)
+// ============================================
+.matcard_admin {
+    // Estilos para todos los rows de datos
+    .row {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        margin-bottom: 20px;
+        margin-left: -5px;
+        margin-right: -5px;
+        gap: 0;
+    }
+
+    // Clase personalizada para campos de datos - 2 COLUMNAS (evita conflictos con Bootstrap)
+    .data-field {
+        padding: 5px;
+        flex: 0 0 50% !important; // 2 columnas
+        max-width: 50% !important;
+        box-sizing: border-box;
+
+        mat-label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+            padding: 8px 12px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            min-height: 38px;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    // Clase para campos que ocupan toda la fila
+    .data-field-full {
+        padding: 5px;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+
+        mat-label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+            padding: 8px 12px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            min-height: 38px;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    // Estilo para col-sm (campos de 3 columnas - usado en InvoiceValidation)
+    .col-sm {
+        padding: 5px;
+        flex: 1 0 0%;
+        box-sizing: border-box;
+
+        mat-label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+            padding: 8px 12px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            min-height: 38px;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    // Responsive: en móviles, cada campo ocupa toda la fila
+    @media (max-width: 576px) {
+        .data-field,
+        .col-sm {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+    }
+}
+
+// Forzar estilos con ::ng-deep para sobrescribir Bootstrap globalmente
+::ng-deep {
+    .matcard_admin {
+        .row {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            margin-bottom: 20px !important;
+        }
+
+        .data-field {
+            flex: 0 0 50% !important;
+            max-width: 50% !important;
+            box-sizing: border-box !important;
+        }
+
+        .data-field-full {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .col-sm {
+            mat-label {
+                display: block;
+                font-size: 12px;
+                color: #666;
+                margin-bottom: 6px;
+                text-transform: uppercase;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+            }
+
+            p {
+                font-size: 14px;
+                color: #333;
+                margin: 0;
+                padding: 8px 12px;
+                background-color: #f5f5f5;
+                border-radius: 6px;
+                min-height: 38px;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+// ============================================
+// SELECTORES NG-SELECT
+// ============================================
+::ng-deep {
+    ng-select {
+        width: 100%;
+
+        .ng-select-container {
+            min-height: 42px;
+            border-radius: 6px;
+            border: 1px solid #ddd !important;
+            background-color: white !important;
+            padding: 4px 8px;
+            transition: all 0.3s ease;
+
+            &:hover {
+                border-color: #4CAF50 !important;
+            }
+
+            &.ng-select-focused {
+                border-color: #4CAF50 !important;
+                box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+            }
+        }
+
+        .ng-value-container {
+            padding-left: 8px;
+
+            .ng-placeholder {
+                color: #999;
+            }
+
+            .ng-value {
+                color: #333;
+                font-size: 14px;
+            }
+        }
+
+        .ng-arrow-wrapper {
+            padding-right: 8px;
+
+            .ng-arrow {
+                border-color: #666 transparent transparent;
+                border-style: solid;
+                border-width: 5px 5px 2.5px;
+            }
+        }
+
+        .ng-clear-wrapper {
+            color: #999;
+
+            &:hover {
+                color: #f44336;
+            }
+        }
+    }
+
+    // Dropdown del ng-select
+    .ng-dropdown-panel {
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        background-color: white;
+        margin-top: 4px;
+
+        .ng-dropdown-panel-items {
+            .ng-option {
+                padding: 10px 12px;
+                color: #333;
+                font-size: 14px;
+                transition: background-color 0.2s ease;
+
+                &:hover {
+                    background-color: rgba(76, 175, 80, 0.08);
+                }
+
+                &.ng-option-selected {
+                    background-color: rgba(76, 175, 80, 0.15);
+                    color: #1a2226;
+                    font-weight: 500;
+                }
+
+                &.ng-option-marked {
+                    background-color: rgba(76, 175, 80, 0.08);
+                }
+            }
+        }
+    }
+}
+
+// ============================================
+// MENSAJES DE ERROR
+// ============================================
+.mt-2 {
+    margin-top: 8px;
+
+    label {
+        font-size: 13px;
+        color: #f44336;
+        font-weight: 500;
+        display: block;
+        padding: 8px 12px;
+        background-color: #ffebee;
+        border-radius: 4px;
+        border-left: 3px solid #f44336;
+    }
+}
+
+li {
+    list-style: none;
+
+    label {
+        font-size: 14px;
+        padding: 10px;
+        display: block;
+        background-color: #ffebee;
+        border-left: 4px solid #f44336;
+        border-radius: 4px;
+        color: #f44336;
+    }
+}
+
+// Label obligatorio
+.obligatory {
+    color: #f44336;
+    margin-left: 2px;
+}
+
+// ============================================
+// PANELES DE DOCUMENTOS PERSONALIZADOS
+// ============================================
+.matcard_admin {
+    .document-panel {
+        margin: 16px 0;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        transition: all 0.3s ease;
+
+        &:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+            border-color: #4CAF50;
+        }
+
+        .document-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            cursor: pointer;
+            background: white;
+            transition: background-color 0.2s ease;
+            user-select: none;
+
+            &:hover {
+                background-color: rgba(76, 175, 80, 0.04);
+            }
+
+            &:active {
+                background-color: rgba(76, 175, 80, 0.08);
+            }
+
+            .document-title {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 15px;
+                font-weight: 500;
+                color: #333;
+
+                .doc-icon {
+                    color: #4CAF50;
+                    font-size: 20px;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                span {
+                    line-height: 1.5;
+                }
+            }
+
+            .toggle-icon {
+                color: #666;
+                transition: transform 0.3s ease, color 0.2s ease;
+                font-size: 24px;
+                width: 24px;
+                height: 24px;
+
+                &.rotated {
+                    transform: rotate(180deg);
+                    color: #4CAF50;
+                }
+            }
+        }
+
+        .document-content {
+            padding: 0;
+            border-top: 1px solid #f0f0f0;
+            animation: slideDown 0.3s ease-out;
+
+            iframe {
+                width: 100%;
+                height: 600px;
+                border: none;
+                display: block;
+                background: #fafafa;
+            }
+        }
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ============================================
+// MAT-EXPANSION-PANEL
+// ============================================
+::ng-deep {
+    mat-expansion-panel {
+        margin: 16px 0 !important;
+        border-radius: 8px !important;
+        border: 1px solid #e0e0e0 !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+        overflow: hidden !important;
+
+        .mat-expansion-panel-header {
+            padding: 16px 24px !important;
+            background: white !important;
+            transition: background-color 0.2s ease !important;
+
+            &:hover {
+                background-color: #f5f5f5 !important;
+            }
+        }
+
+        .mat-expansion-panel-header-title {
+            color: #2c3e50 !important;
+            font-weight: 500 !important;
+        }
+
+        .mat-expansion-panel-body {
+            padding: 20px !important;
+            background: #fafafa !important;
+        }
+
+        &.mat-expanded {
+            .mat-expansion-panel-header {
+                background-color: #f0f7f0 !important;
+                border-bottom: 1px solid #e0e0e0 !important;
+            }
+        }
+
+        iframe {
+            width: 100% !important;
+            height: 500px !important;
+            border: 1px solid #e0e0e0 !important;
+            border-radius: 4px !important;
+        }
+    }
+}
+
+// ============================================
+// BOTONES DE ACCIÓN
+// ============================================
+.action-buttons-section {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+
+    .data-field {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+button {
+    &[mat-raised-button] {
+        border-radius: 6px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        padding: 8px 20px;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        &[color="accent"] {
+            background-color: #ff5252;
+            color: white;
+        }
+    }
+
+    &.action-button {
+        min-width: 200px;
+        height: 44px;
+        font-weight: 500;
+        font-size: 14px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+
+        &.green {
+            background-color: #4CAF50;
+            color: white;
+
+            &:hover {
+                background-color: #45a049;
+                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+                transform: translateY(-2px);
+            }
+        }
+
+        &[color="accent"] {
+            &:hover {
+                box-shadow: 0 4px 12px rgba(255, 82, 82, 0.3);
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
+
+// ============================================
+// CHECKBOXES
+// ============================================
+.class_check {
+    padding-right: 10px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+
+    ::ng-deep {
+        .mat-checkbox-label {
+            color: #333;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .mat-checkbox-checked .mat-checkbox-background {
+            background-color: #4CAF50 !important;
+        }
+
+        .mat-checkbox-frame {
+            border-color: #ccc;
+        }
+    }
+}
+
+// ============================================
+// PROGRESS BAR
+// ============================================
+::ng-deep {
+    mat-progress-bar {
+        margin-bottom: 20px;
+        height: 8px;
+        border-radius: 4px;
+
+        .mat-progress-bar-fill::after {
+            background-color: #4CAF50 !important;
+        }
+
+        .mat-progress-bar-buffer {
+            background-color: #e0e0e0 !important;
+        }
+    }
+}
+
+// ============================================
+// BADGES
+// ============================================
+::ng-deep {
+    .mat-badge-content {
+        background-color: #f44336;
+        color: white;
+        font-weight: 600;
+        font-size: 11px;
+    }
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
+@media (max-width: 768px) {
+    .matcard_admin {
+        padding: 20px 15px;
+        margin: 10px;
+
+        h2 {
+            font-size: 14px;
+            margin: 20px 0 15px 0;
+        }
+
+        .row {
+            flex-direction: column;
+            margin-left: 0;
+            margin-right: 0;
+
+            .col-sm,
+            .data-field {
+                width: 100%;
+                flex: 1 0 100% !important;
+                max-width: 100% !important;
+                padding: 5px 0;
+            }
+        }
+    }
+
+    .action-buttons-section {
+        .row {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .data-field {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+
+            button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    }
+
+    ::ng-deep {
+        mat-expansion-panel,
+        .document-panel {
+            iframe {
+                height: 300px !important;
+            }
+        }
+    }
+}
+

@@ -124,6 +124,7 @@ export class SellComponent implements OnInit {
   selectedBAnk: any;
   selectedAccountType: any;
   public validate_user: boolean = false;
+  public membership_error_message: string = '';
   identifierstlist: Identifiers[] = [];
   identifiers: Identifiers[] = [];
   identifier$!: Observable<Identifiers[]>;
@@ -607,7 +608,8 @@ export class SellComponent implements OnInit {
 
   membership_request() {
 
-    this.validate_user = false
+    this.validate_user = false;
+    this.membership_error_message = '';
     if (this.registerForm.valid) {
       this.show_spinner = true;
       let registerForm = this.registerForm.value;
@@ -702,7 +704,7 @@ export class SellComponent implements OnInit {
                                     "number_identifier": registerForm.number_identifier_person,
 
                                   };
-                                  this.apiService.sendEmailStoreCreationRequest(myObj_user_client).subscribe();
+                                  // this.apiService.sendEmailStoreCreationRequest(myObj_user_client).subscribe();
                                   this.apiService.registerUserFront(myObj_user_client).subscribe(
                                     result => {
                                       myObj_login = { "username": registerForm.email, "password": registerForm.password }
@@ -735,16 +737,27 @@ export class SellComponent implements OnInit {
                         error => console.log(error)
                       );
                     },
-                    error => console.log(error)
+                    error => {
+                      console.log(error);
+                      this.show_spinner = false;
+                      this.membership_error_message = error?.error?.message || 'Error al procesar la solicitud. Por favor, intente nuevamente.';
+                    }
                   );
                 },
-                error => console.log(error)
+                error => {
+                  console.log(error);
+                  this.show_spinner = false;
+                  this.membership_error_message = error?.error?.message || 'Error al procesar la solicitud. Por favor, intente nuevamente.';
+                }
               );
 
             }
           },
-          error =>
-            console.log(error)
+          error => {
+            console.log(error);
+            this.show_spinner = false;
+            this.membership_error_message = error?.error?.message || 'Error al procesar la solicitud. Por favor, intente nuevamente.';
+          }
         );
       } else {
         this.apiService.setMembershipRequest(myObj_MemberShip).subscribe(
@@ -799,30 +812,134 @@ export class SellComponent implements OnInit {
                             );
 
                           },
-                          error => console.log(error)
+                          error => {
+                            console.log(error);
+                            this.show_spinner = false;
+                            this.membership_error_message = error?.error?.message || 'Error al procesar la solicitud. Por favor, intente nuevamente.';
+                          }
                         );
                       },
-                      error => console.log(error)
+                      error => {
+                        console.log(error);
+                        this.show_spinner = false;
+                        this.membership_error_message = error?.error?.message || 'Error al procesar la solicitud. Por favor, intente nuevamente.';
+                      }
                     );
                   },
-                  error => console.log(error)
+                  error => {
+                    console.log(error);
+                    this.show_spinner = false;
+                    this.membership_error_message = error?.error?.message || 'Error al procesar la solicitud. Por favor, intente nuevamente.';
+                  }
                 );
               },
-              error => console.log(error)
+              error => {
+                console.log(error);
+                this.show_spinner = false;
+                this.membership_error_message = error?.error?.message || 'Error al procesar la solicitud. Por favor, intente nuevamente.';
+              }
             );
           },
-          error => console.log(error)
+          error => {
+            console.log(error);
+            this.show_spinner = false;
+            this.membership_error_message = error?.error?.message || 'Error al procesar la solicitud. Por favor, intente nuevamente.';
+          }
         );
       }
 
     } else {
       console.log("fails");
+      // Marcar todos los campos como touched para mostrar los errores
       for (let i in this.registerForm.controls) {
         this.registerForm.controls[i].markAsTouched();
       }
+
+      // Hacer scroll al primer campo inválido
+      this.scrollToFirstInvalidControl();
     }
 
 
+  }
+
+  /**
+   * Método para hacer scroll y enfocar el primer campo inválido del formulario
+   */
+  private scrollToFirstInvalidControl(): void {
+    // Obtener el primer control inválido
+    const firstInvalidControl = Object.keys(this.registerForm.controls).find(
+      key => this.registerForm.controls[key].invalid
+    );
+
+    if (firstInvalidControl) {
+      // Buscar el elemento en el DOM
+      let element = document.querySelector(
+        `[formControlName="${firstInvalidControl}"]`
+      ) as HTMLElement;
+
+      // Si no se encuentra, intenta con ng-select
+      if (!element) {
+        element = document.querySelector(
+          `ng-select[formControlName="${firstInvalidControl}"]`
+        ) as HTMLElement;
+      }
+
+      if (element) {
+        // Hacer scroll suave al elemento
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+
+        // Esperar un momento y luego enfocar el elemento
+        setTimeout(() => {
+          // Para ng-select, hacer click en el contenedor para abrir el dropdown
+          if (element.tagName === 'NG-SELECT') {
+            // Buscar el div con clase ng-select-container y hacer click
+            const selectContainer = element.querySelector('.ng-select-container') as HTMLElement;
+            if (selectContainer) {
+              selectContainer.click();
+            } else {
+              // Si no encuentra el container, intenta con el input interno
+              const input = element.querySelector('input') as HTMLElement;
+              if (input) {
+                input.focus();
+                input.click();
+              }
+            }
+          }
+          // Para inputs normales y textareas
+          else if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.focus();
+          }
+          // Para mat-checkbox
+          else if (element.tagName === 'MAT-CHECKBOX') {
+            const checkbox = element.querySelector('input[type="checkbox"]') as HTMLElement;
+            if (checkbox) {
+              checkbox.focus();
+            }
+          }
+          // Para inputs de archivo
+          else if (element.getAttribute('type') === 'file') {
+            element.focus();
+          }
+          // Para otros elementos, intentar enfocar el primer elemento enfocable
+          else {
+            const focusable = element.querySelector('input, select, textarea') as HTMLElement;
+            if (focusable) {
+              focusable.focus();
+            }
+          }
+        }, 500);
+
+        // Mostrar un mensaje al usuario
+        this.toastyService.warning(
+          'Por favor, completa todos los campos obligatorios',
+          'Formulario incompleto',
+          { timeOut: 4000, closeButton: true, progressBar: true }
+        );
+      }
+    }
   }
 
   // Método para formatear en tiempo real mientras el usuario escribe
