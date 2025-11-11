@@ -9,7 +9,7 @@ import { MatSelect } from '@angular/material/select';
 import { take, takeUntil } from 'rxjs/operators';
 import { StoreAdmin, StoreDocs, StoreBankAccount } from '../../../Models/StoreAdmin';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SweetAlertOptions } from 'sweetalert2';
+import Swal, { SweetAlertOptions } from 'sweetalert2';
 import { environment } from '../../../../../src/environments/environment';
 import { delay } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -99,6 +99,29 @@ export class StoreValidationComponent implements OnInit {
     typeaccount!: StoreBankAccount;
     panelOpenState = false;
     alertOpt: SweetAlertOptions = {};
+
+    // Estados de colapso para documentos
+    showDocIdentidad = false;
+    showDocRut = false;
+    showDocCamara = false;
+    showDocBanco = false;
+
+    toggleDocument(docType: string) {
+        switch(docType) {
+            case 'identidad':
+                this.showDocIdentidad = !this.showDocIdentidad;
+                break;
+            case 'rut':
+                this.showDocRut = !this.showDocRut;
+                break;
+            case 'camara':
+                this.showDocCamara = !this.showDocCamara;
+                break;
+            case 'banco':
+                this.showDocBanco = !this.showDocBanco;
+                break;
+        }
+    }
     public percentagesaleFilterCtrl: UntypedFormControl = new UntypedFormControl();
     public percentagesaleCtrl: UntypedFormControl = new UntypedFormControl(null, [Validators.required]);
     percentage_sale$!: Observable<PercentageSale[]>;
@@ -139,7 +162,7 @@ export class StoreValidationComponent implements OnInit {
     ngOnInit() {
 
         this.addBodyClass();
-        
+
         this.route.params.subscribe(res => {
             this.id_store = res.id_store;
         })
@@ -165,7 +188,7 @@ export class StoreValidationComponent implements OnInit {
                 storecategories_description: StoreAdmin;
             }) => {
                 console.log(res);
-                
+
                 this.id_percentage_sale = res.commission_sale_id;
                 this.id_percentage_payment = res.commission_payment_id;
                 this.id_cuc = res.cuc_id;
@@ -182,7 +205,7 @@ export class StoreValidationComponent implements OnInit {
                             let get_description = this.percentagesalelist[i]['description'];
                             this.percentagesale.push({ id: get_id_percentagesale, percentage: get_percentagesale, description: get_description });
                         }
-                        if (this.id_percentage_sale != null) {                            
+                        if (this.id_percentage_sale != null) {
                             this.setValuePercentageSaleSelect(this.percentagesale, this.id_percentage_sale);
                         }
                         this.percentage_sale$ = this.getPercentageSale("", this.percentagesale);
@@ -190,7 +213,7 @@ export class StoreValidationComponent implements OnInit {
                     },
                     (                    error: any) => console.log(error)
                 );
-                // END ANGULAR MAT SEARCH PERCENTAGE SALES   
+                // END ANGULAR MAT SEARCH PERCENTAGE SALES
 
 
                 // START ANGULAR MAT SEARCH PERCENTAGE PAYMENT
@@ -213,17 +236,17 @@ export class StoreValidationComponent implements OnInit {
                     },
                     (                    error: any) => console.log(error)
                 );
-                // END ANGULAR MAT SEARCH  PERCENTAGE PAYMENT  
+                // END ANGULAR MAT SEARCH  PERCENTAGE PAYMENT
 
 
                 // START ANGULAR MAT SEARCH CUC
                 this.cuc = [];
                 this.apiService.getCuc().subscribe(
-                    (data: { data: Cuc[] }) => {                                              
+                    (data: { data: Cuc[] }) => {
                         this.cuclist = data.data;
                         for (var i in this.cuclist) {
                             console.log(this.cuclist[i].cuc);
-                            
+
                             let get_id_cuc = this.cuclist[i]['id'];
                             let get_cuc_cuc = this.cuclist[i]['cuc'];
                             let get_terminal_cuc = this.cuclist[i]['terminal'];
@@ -237,7 +260,7 @@ export class StoreValidationComponent implements OnInit {
                     },
                     (                    error: any) => console.log(error)
                 );
-                // END ANGULAR MAT SEARCH  CUC  
+                // END ANGULAR MAT SEARCH  CUC
 
 
                 this.apiService.getStoreDocuments(this.id_store).subscribe(
@@ -339,7 +362,7 @@ export class StoreValidationComponent implements OnInit {
         storecategories: StoreAdmin;
         telephone: StoreAdmin;
         storecategories_description: StoreAdmin;
-    }, data_docs: { [key: string]: any; }[], data_bank: { 
+    }, data_docs: { [key: string]: any; }[], data_bank: {
         id_bank_account: StoreBankAccount;
         responsible: StoreBankAccount;
         state: StoreBankAccount;
@@ -394,19 +417,39 @@ export class StoreValidationComponent implements OnInit {
 
     }
 
-    AproveStore() {    
+    confirmAproveStore() {
+        Swal.fire({
+            title: 'Aprobar Comercio',
+            text: '¿Está seguro que desea aprobar este comercio?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, aprobar',
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#4CAF50',
+            cancelButtonColor: '#d33',
+            focusCancel: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.AproveStore();
+            }
+        });
+    }
+
+    AproveStore() {
+        console.log('🎉 AproveStore() ejecutándose...');
         this.validate_percentage_sale = false; this.validate_percentage_payment = false; this.validate_cuc = false;
-        if (this.selectedPercentageSale) {                        
-            if (this.selectedPercentagePayment) {                
-                if(this.selectedCuc){                    
+        if (this.selectedPercentageSale) {
+            if (this.selectedPercentagePayment) {
+
                     let JsonDataPercentage = {
                         "percentage_sale": this.selectedPercentageSale,
                         "percentage_payment": this.selectedPercentagePayment,
-                        "cuc": this.selectedCuc,
+                        "cuc": 1,
                     };
                     let JsonDataEmail = {
                         "email" : this.email
                     }
+                    console.log("JsonDataEmail: "+JSON.stringify(JsonDataEmail));
                     this.apiService.sendEmailWelcomeStore(JsonDataEmail).subscribe();
                     this.apiService.updatePercentagesStore(JsonDataPercentage, this.id_store).subscribe(
                         response => {
@@ -437,9 +480,7 @@ export class StoreValidationComponent implements OnInit {
                             );
                         }
                     );
-                }else{                    
-                    this.validate_cuc = true;
-                }
+
             } else {
                 this.validate_percentage_payment = true;
             }

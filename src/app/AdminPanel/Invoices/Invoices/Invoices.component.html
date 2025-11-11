@@ -58,14 +58,14 @@
                     </ng-container>
 
 
-                    <ng-container matColumnDef="messaje">
+                    <!-- <ng-container matColumnDef="messaje">
                         <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef> <b class="title_table">Mensaje</b></th>
                         <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
                             <button style="height: 25px;" mat-raised-button matBadge="{{element.getBinnacleFalse}}" [matBadgeHidden]="hidden" (click)="getBinnacles(element)">
                                 <i style="margin-bottom: 10px;color: #fff !important;" class="material-icons">chat</i>
                             </button>
                         </td>
-                    </ng-container>
+                    </ng-container> -->
 
 
                     <ng-container matColumnDef="reference_invoice">
@@ -185,7 +185,7 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
             </div>
-            <mat-paginator 
+            <mat-paginator
                 #paginator
                 [length]="dataSource.data.length"
                 [pageSize]="15"

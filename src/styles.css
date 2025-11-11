@@ -1527,3 +1527,89 @@ button.swal2-cancel:focus,
   outline: none !important;
   box-shadow: 0 0 0 3px rgba(110, 120, 129, 0.5) !important;
 }
+
+/* ============================================ */
+/* ESTILOS PARA DIALOG DE PRODUCTO ADMIN */
+/* ============================================ */
+.custom-dialog-container-productadm .mat-mdc-dialog-container,
+.custom-dialog-container-productadm .mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 11px 15px -7px rgba(0,0,0,.2),
+              0 24px 38px 3px rgba(0,0,0,.14),
+              0 9px 46px 8px rgba(0,0,0,.12) !important;
+}
+
+.custom-dialog-container-productadm .mat-mdc-dialog-surface,
+.custom-dialog-container-productadm .mat-dialog-surface {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  max-height: 95vh !important;
+}
+
+/* Prevenir scroll horizontal en el body cuando el dialog está abierto */
+body.cdk-global-scrollblock {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+  .custom-dialog-container-productadm .mat-mdc-dialog-container,
+  .custom-dialog-container-productadm .mat-dialog-container {
+    max-width: 95vw !important;
+    width: 95vw !important;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .custom-dialog-container-productadm .mat-mdc-dialog-container,
+  .custom-dialog-container-productadm .mat-dialog-container {
+    max-width: 100vw !important;
+    width: 100vw !important;
+    max-height: 100vh !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  .custom-dialog-container-productadm .mat-mdc-dialog-surface,
+  .custom-dialog-container-productadm .mat-dialog-surface {
+    max-height: 100vh !important;
+    height: 100vh !important;
+  }
+
+  .cdk-overlay-pane.custom-dialog-container-productadm {
+    max-width: 100vw !important;
+    width: 100vw !important;
+    max-height: 100vh !important;
+    height: 100vh !important;
+    margin: 0 !important;
+  }
+}
+
+/* Scrollbar personalizado para el dialog - más cerca del borde */
+.custom-dialog-container-productadm ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.custom-dialog-container-productadm ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+  margin: 4px 2px; /* Márgenes pequeños */
+}
+
+.custom-dialog-container-productadm ::-webkit-scrollbar-thumb {
+  background: #4CAF50;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box; /* Efecto de padding interno */
+}
+
+.custom-dialog-container-productadm ::-webkit-scrollbar-thumb:hover {
+  background: #45a049;
+  background-clip: content-box;
+}

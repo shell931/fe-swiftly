@@ -13,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 // Material imports
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -40,11 +40,11 @@ interface TokenObj {
     imports: [
         CommonModule,
         RouterModule,
-        ReactiveFormsModule, 
+        ReactiveFormsModule,
         MatCardModule,
-        MatFormFieldModule, 
-        MatInputModule, 
-        MatButtonModule, 
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
         MatIconModule,
         MatCheckboxModule,
         MatProgressSpinnerModule
@@ -86,7 +86,7 @@ export class AuthComponent implements OnInit {
         }
 
         this.authForm = this.formBuilder.group({
-            username: ['', [Validators.required, Validators.email]],
+            username: ['', [Validators.required]],
             password: ['', [Validators.required, Validators.minLength(6)]],
             rememberMe: [false]
         });
@@ -94,18 +94,18 @@ export class AuthComponent implements OnInit {
 
 
     addBodyClass() {
- 
+
         window.addEventListener('load',function(){
-           document.querySelector('body').classList.add("loaded")  
+           document.querySelector('body').classList.add("loaded")
          });
- 
+
       }
 
     saveForm() {
         if (this.authForm.valid) {
             this.isLoading = true;
             if (!this.registerMode) {
-                this.loginUser();                                                
+                this.loginUser();
             } else {
                 this.apiService.registerUser(this.authForm.value).subscribe(
                     result => {
@@ -131,27 +131,27 @@ export class AuthComponent implements OnInit {
             (result: TokenObj) => {
                 this.isLoading = false;
                 this.show = false;
-                
+
                 // Handle remember me functionality
                 if (this.authForm.get('rememberMe')?.value) {
                     this.cookieService.set('mr-token', result.token, 30); // 30 days
                 } else {
                     this.cookieService.set('mr-token', result.token, 1); // 1 day
                 }
-                
+
                 localStorage.setItem('mr-token', result.token);
                 localStorage.setItem('id-store', result.id_store);
                 localStorage.setItem('id-user', result.user_id);
                 localStorage.setItem('personal_name', result.personal_name);
                 localStorage.setItem('user_email', result.user_email);
-                
+
                 if(result.type_user == '2'){
                     localStorage.setItem('mr-token-front', result.token);
                     localStorage.setItem('id_type_user', result.type_user);
                     localStorage.setItem('id_user_front', result.user_id);
-                    localStorage.setItem('personal_name', result.personal_name);                  
+                    localStorage.setItem('personal_name', result.personal_name);
                     localStorage.setItem('user_email', result.user_email);
-                }                   
+                }
 
                 this.router.navigate(['/admin-panel']);
             },

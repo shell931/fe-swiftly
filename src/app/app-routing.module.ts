@@ -13,10 +13,14 @@ export const AppRoutes : Routes = [
       redirectTo: 'home',
       pathMatch: 'full',
    },
- 
+
    {
       path: 'auth',
       loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+   },
+   {
+      path: 'admin-panel',
+      loadChildren: () => import('./AdminPanel/admin-panel.module').then(m => m.AdminPanelModule)
    },
    {
       path : '',

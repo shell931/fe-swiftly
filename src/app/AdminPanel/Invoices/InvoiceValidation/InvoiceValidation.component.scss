@@ -1,3 +1,98 @@
+// ============================================
+// IMPORTAR ESTILOS GLOBALES
+// ============================================
+@use '../../Shared/admin-table-styles' as *;
+@use '../../Shared/admin-form-styles' as *;
+
+// ============================================
+// ESTILOS ESPECÍFICOS DE INVOICE VALIDATION
+// ============================================
+
+// Tabla de productos (estilos específicos adicionales)
+.table-responsive-x {
+    table {
+        border-collapse: separate;
+        border: solid #e0e0e0 1px;
+        border-radius: 8px;
+        -moz-border-radius: 8px;
+        width: 100%;
+        background: white;
+
+        thead tr {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+
+            th {
+                color: black !important;
+                font-weight: 600 !important;
+                text-align: center !important;
+                padding: 12px !important;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+
+                &:first-child {
+                    border-top-left-radius: 8px;
+                }
+
+                &:last-child {
+                    border-top-right-radius: 8px;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                transition: background-color 0.2s ease;
+
+                &:hover {
+                    background-color: #f8f9fa;
+                }
+
+                th, td {
+                    padding: 12px;
+                    border: 1px solid #e0e0e0;
+                    text-align: center;
+
+                    &:first-child {
+                        border-left: none;
+                    }
+
+                    &:last-child {
+                        border-right: none;
+                    }
+
+                    label.color_res {
+                        color: #2c3e50;
+                        font-size: 14px;
+                    }
+
+                    img {
+                        vertical-align: middle;
+                        margin-right: 8px;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    }
+                }
+
+                &:last-child {
+                    td {
+                        font-weight: 600;
+                        background-color: #f0f7f0;
+
+                        &:first-child {
+                            border-bottom-left-radius: 8px;
+                        }
+
+                        &:last-child {
+                            border-bottom-right-radius: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Badges de estado (compatibilidad con estilos existentes)
 .class_aprobed {
     background-color: #c0f48f;
     color: rgba(0, 0, 0, .87);
@@ -31,38 +126,14 @@
     font-size: 13px;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
+// Responsive adicional para tabla de productos
+@media (max-width: 768px) {
+    .table-responsive-x {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
 
-td,
-th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 4px;
-}
-
-table {
-    border-collapse: separate;
-    border: solid #dddddd 1px;
-    border-radius: 6px;
-    -moz-border-radius: 6px;
-}
-
-// td, th {
-//   // border-left:solid black 1px;
-//   // border-top:solid black 1px;
-// }
-th {
-    border-top: none;
-}
-
-td:first-child,
-th:first-child {
-    border-left: none;
-}
-
-.class_check {
-    padding-right: 10px;
+        table {
+            min-width: 600px;
+        }
+    }
 }
