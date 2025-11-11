@@ -148,19 +148,89 @@ export class EditProfileComponent implements OnInit {
    }
 
    /**
+    * Función para limpiar espacios en blanco de un campo cuando pierde el foco
+    */
+   trimField(fieldName: string) {
+      const control = this.card.get(fieldName);
+      if (control && control.value && typeof control.value === 'string') {
+         const trimmed = control.value.trim();
+         if (trimmed !== control.value) {
+            control.setValue(trimmed);
+         }
+      }
+   }
+
+   /**
     * Function is used to submit the profile card.
     * If form value is valid, redirect to card page.
     */
    submitCard() {
-      if (this.card.valid) {
-         this.router.navigate(['/account/card']).then(() => {
-            this.toastyService.success(this.toastOption);
-         });
-      } else {
-         for (let i in this.card.controls) {
-            this.card.controls[i].markAsTouched();
+      // Limpiar espacios en blanco de los campos de texto antes de validar
+      const cardNumberControl = this.card.get('card_number');
+      const cvvControl = this.card.get('cvv');
+      const nameControl = this.card.get('name');
+      
+      if (cardNumberControl) {
+         const value = cardNumberControl.value;
+         if (value && typeof value === 'string') {
+            const trimmed = value.trim();
+            if (trimmed !== value) {
+               cardNumberControl.setValue(trimmed);
+            }
          }
       }
+      
+      if (cvvControl) {
+         const value = cvvControl.value;
+         if (value && typeof value === 'string') {
+            const trimmed = value.trim();
+            if (trimmed !== value) {
+               cvvControl.setValue(trimmed);
+            }
+         }
+      }
+      
+      if (nameControl) {
+         const value = nameControl.value;
+         if (value && typeof value === 'string') {
+            const trimmed = value.trim();
+            if (trimmed !== value) {
+               nameControl.setValue(trimmed);
+            }
+         }
+      }
+      
+      // Actualizar validación después de limpiar
+      this.card.updateValueAndValidity();
+      
+      // Esperar un tick para que Angular actualice el estado del formulario
+      setTimeout(() => {
+         if (this.card.valid) {
+            // Navegar a la página de tarjetas (la ruta correcta es /account/cards con 's')
+            this.router.navigate(['/account/cards']).then(() => {
+               this.toastyService.success(this.toastOption);
+            });
+         } else {
+            // Marcar todos los campos como touched para mostrar errores
+            Object.keys(this.card.controls).forEach(key => {
+               const control = this.card.get(key);
+               if (control) {
+                  control.markAsTouched();
+                  control.updateValueAndValidity();
+               }
+            });
+            
+            // Mostrar mensaje de error si el formulario no es válido
+            console.log('Form errors:', this.card.errors);
+            console.log('Form valid:', this.card.valid);
+            Object.keys(this.card.controls).forEach(key => {
+               const control = this.card.get(key);
+               if (control && control.errors) {
+                  console.log(`Field ${key} errors:`, control.errors);
+               }
+            });
+         }
+      }, 0);
    }
 
 }

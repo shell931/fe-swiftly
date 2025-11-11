@@ -173,21 +173,32 @@ export class AddressCreateComponent implements OnInit {
 
     citieChangeAction(departament: any) {
         // START ANGULAR MAT SEARCH CITIES
-        let get_data_dep = departament;
-        let id_dep = get_data_dep.id_departament;
-        // console.log(id_dep);
-        this.cities = [];
-        this.apiService.getCitiesFrontbyDepartments(id_dep).subscribe(
-            (data: City[]) => {
-                this.citietlist = data;
-                for (var i in this.citietlist) {
-                    let get_id_citie = this.citietlist[i]['id_city'];
-                    let get_citie = this.citietlist[i]['city'];
-                    this.cities.push({ city: get_citie, id_city: get_id_citie });
-                }
-                this.city$ = this.getCity("", this.cities);
-            },
-        );
+        // El evento change de ng-select pasa el valor directamente (id_departament)
+        let id_dep = departament;
+        
+        // Si es un objeto, extraer el id_departament
+        if (departament && typeof departament === 'object' && departament.id_departament) {
+            id_dep = departament.id_departament;
+        }
+        
+        // Limpiar la selección de ciudad cuando cambia el departamento
+        this.formLocationCreate.get('citieCtrl')?.setValue('');
+        this.selectedCity = null;
+        
+        if (id_dep) {
+            this.cities = [];
+            this.apiService.getCitiesFrontbyDepartments(id_dep).subscribe(
+                (data: City[]) => {
+                    this.citietlist = data;
+                    for (var i in this.citietlist) {
+                        let get_id_citie = this.citietlist[i]['id_city'];
+                        let get_citie = this.citietlist[i]['city'];
+                        this.cities.push({ city: get_citie, id_city: get_id_citie });
+                    }
+                    this.city$ = this.getCity("", this.cities);
+                },
+            );
+        }
         // END ANGULAR MAT SEARCH CITIES
     }
 
@@ -201,11 +212,19 @@ export class AddressCreateComponent implements OnInit {
     }
 
     updateLocationUserFront() {             
+        // Actualizar validación antes de verificar
+        this.formLocationCreate.updateValueAndValidity();
+        
+        // Asegurar que selectedCity tenga el valor del formulario si no está establecido
+        if (!this.selectedCity && this.formLocationCreate.get('citieCtrl')?.value) {
+            this.selectedCity = this.formLocationCreate.get('citieCtrl')?.value;
+        }
+        
         if (this.formLocationCreate.valid) {
             let get_values_location = this.formLocationCreate.value;
             const id_user_front = localStorage.getItem('id_user_front');
             let myObj_user_client = {
-                "city": this.selectedCity, "neighborhood": get_values_location.neighborhood, "via": get_values_location.via,
+                "city": this.selectedCity || get_values_location.citieCtrl, "neighborhood": get_values_location.neighborhood, "via": get_values_location.via,
                 "number": get_values_location.number, "sn": get_values_location.sn,
                 "additional_data": get_values_location.additional_data, "phone": get_values_location.phone, "contact": get_values_location.contact,
                 "latitude": 0, "longitude": 0,

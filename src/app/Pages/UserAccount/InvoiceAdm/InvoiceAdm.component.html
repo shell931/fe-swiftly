@@ -57,7 +57,7 @@
                                                  [ngClass]="{
                                                      'status-approved': element.name_state?.toLowerCase().includes('aprobado'),
                                                      'status-validation': element.name_state?.toLowerCase().includes('validacion'),
-                                                     'status-cancelled': element.name_state?.toLowerCase().includes('cancelado')
+                                                     'status-cancelled': element.name_state?.toLowerCase().includes('cancelado') || element.name_state?.toLowerCase().includes('rechazado') || element.name_state?.toLowerCase().includes('declinado')
                                                  }"
                                                  align="center">
                                                 {{element.name_state}}

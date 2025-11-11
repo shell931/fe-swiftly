@@ -309,7 +309,11 @@ export class ApiService {
 
 
     uploadIconStore(requestData: FormData) {
-        return this.httpClient.post<any>(`${this.baseLoadLogoStoreUrl}`, requestData);
+        return this.httpClient.post<any>(`${this.baseLoadLogoStoreUrl}`, requestData, { 
+            headers: this.getAuthHeadersForFormData(),
+            observe: 'body',
+            reportProgress: false
+        });
     }
 
     updateLogoFieldStore(name_logo: string, productId: number) {
@@ -1058,6 +1062,14 @@ export class ApiService {
             'Content-Type': 'multipart/form-data',
             Authorization: `Token ${token}`
 
+        });
+    }
+
+    // Headers for FormData uploads (only Authorization, no Content-Type - browser sets it automatically)
+    getAuthHeadersForFormData() {
+        const token = localStorage.getItem('mr-token');
+        return new HttpHeaders({
+            Authorization: `Token ${token}`
         });
     }
 

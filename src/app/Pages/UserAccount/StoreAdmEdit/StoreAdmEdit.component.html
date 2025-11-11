@@ -178,8 +178,10 @@
                 <div class="logo-upload">
                     <label class="upload-label">Cargar logo de la tienda</label>
                     <ngx-dropzone (change)="selectFile($event)" 
+                                  (filesAdded)="onSelect($event)"
                                   [expandable]="true" 
-                                  [disableClick]="true"
+                                  [disableClick]="false"
+                                  [accept]="'image/*'"
                                   class="dropzone-custom">
                         <ngx-dropzone-label>
                             <i class="material-icons">cloud_upload</i>

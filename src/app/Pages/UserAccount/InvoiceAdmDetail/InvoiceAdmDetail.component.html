@@ -45,75 +45,77 @@
 </div>
 
 
-<div class="">
-    <table>
-        <tr>
-            <td colspan="8"><b>DATOS DEL COMPRADOR</b></td>
-        </tr>
-        <tr>
-            <th>Nombre</th>
-            <th>Tipo identificación</th>
-            <th>Identificación</th>
-            <th>Email</th>
-            <th>Departamento</th>
-            <th>Ciudad</th>
-            <th>Dirección</th>
-            <th>Teléfono</th>
-        </tr>
-        <tr>
-            <td>{{name_client}} {{first_name_client}}</td>
-            <td>{{type_identifier}}</td>
-            <td>{{number_identifier}}</td>
-            <td>{{email}}</td>
-            <td>{{departament}}</td>
-            <td>{{nameci}}</td>
-            <td>{{adress}}</td>
-            <td>{{phone}}</td>
-        </tr>
-        <tr>
-            <td colspan="8"><b>DATOS DE TRANSACCIÓN Y FACTURA</b></td>
-        </tr>
-        <tr>
-            <th>Referencia Tx</th>
-            <th>Método de pago</th>
-            <th>Total</th>
-            <th>Cuotas</th>
-            <th>Estado</th>
-            <th>Franquicia</th>
-            <th>Rete icb</th>
-            <th>Num aprobación</th>
-        </tr>
-        <tr>
-            <td>{{reference_invoice}}</td>
-            <td>{{paymentmethod}}</td>
-            <td>{{total_price|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
-            <td>{{quot}}</td>
-            <td>{{name_state}}</td>
-            <td>{{brand}}</td>
-            <td>{{val_percentage_rete_ica|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
-            <td>{{num_aprob}}</td>
-        </tr>
-        <tr>
-            <th>Rete fuente</th>
-            <th>Cod respuesta</th>
-            <th>Comisión pago</th>
-            <th>Mensaje respuesta</th>
-            <th>Comisión venta</th>
-            <th>Num recibo</th>
-            <th>Iva sobre comisión</th>
-            <th>Estado</th>
-        </tr>
-        <tr>
-            <td>{{val_percentage_rete_fuente|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
-            <td>{{cod_reply}}</td>
-            <td>{{val_percentage_commision_payment|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
-            <td>{{messaje_reply}}</td>
-            <td>{{val_percentage_sale|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
-            <td>{{num_recibo}}</td>
-            <td>{{val_percentage_commision_tax|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
-            <td>{{name_state}}</td>
-        </tr>
-    </table>
+<div class="invoice-data-container">
+    <div class="table-responsive-wrapper">
+        <table class="invoice-data-table">
+            <tr>
+                <td colspan="8"><b>DATOS DEL COMPRADOR</b></td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo identificación</th>
+                <th>Identificación</th>
+                <th>Email</th>
+                <th>Departamento</th>
+                <th>Ciudad</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+            </tr>
+            <tr>
+                <td>{{name_client}} {{first_name_client}}</td>
+                <td>{{type_identifier}}</td>
+                <td>{{number_identifier}}</td>
+                <td>{{email}}</td>
+                <td>{{departament}}</td>
+                <td>{{nameci}}</td>
+                <td>{{adress}}</td>
+                <td>{{phone}}</td>
+            </tr>
+            <tr>
+                <td colspan="8"><b>DATOS DE TRANSACCIÓN Y FACTURA</b></td>
+            </tr>
+            <tr>
+                <th>Referencia Tx</th>
+                <th>Método de pago</th>
+                <th>Total</th>
+                <th>Cuotas</th>
+                <th>Estado</th>
+                <th>Franquicia</th>
+                <th>Rete icb</th>
+                <th>Num aprobación</th>
+            </tr>
+            <tr>
+                <td>{{reference_invoice}}</td>
+                <td>{{paymentmethod}}</td>
+                <td>{{total_price|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+                <td>{{quot}}</td>
+                <td>{{name_state}}</td>
+                <td>{{brand}}</td>
+                <td>{{val_percentage_rete_ica|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+                <td>{{num_aprob}}</td>
+            </tr>
+            <tr>
+                <th>Rete fuente</th>
+                <th>Cod respuesta</th>
+                <th>Comisión pago</th>
+                <th>Mensaje respuesta</th>
+                <th>Comisión venta</th>
+                <th>Num recibo</th>
+                <th>Iva sobre comisión</th>
+                <th>Estado</th>
+            </tr>
+            <tr>
+                <td>{{val_percentage_rete_fuente|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+                <td>{{cod_reply}}</td>
+                <td>{{val_percentage_commision_payment|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+                <td>{{messaje_reply}}</td>
+                <td>{{val_percentage_sale|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+                <td>{{num_recibo}}</td>
+                <td>{{val_percentage_commision_tax|currency : 'USD' : 'symbol' : '1.0-0'}}</td>
+                <td>{{name_state}}</td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 

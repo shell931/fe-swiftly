@@ -1,0 +1,176 @@
+/* Delete Location Dialog - Modern Design */
+.delete-dialog-container {
+  padding: 0;
+  min-width: 400px;
+  max-width: 500px;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  box-shadow: 0 4px 12px rgba(238, 90, 111, 0.3);
+  flex-shrink: 0;
+}
+
+.icon-wrapper i {
+  color: white;
+  font-size: 28px;
+}
+
+.dialog-title {
+  margin: 0 !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #2c3e50 !important;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.dialog-content {
+  padding: 1.5rem !important;
+  margin: 0 !important;
+}
+
+.dialog-message {
+  margin: 0;
+  font-size: 14px;
+  color: #6c757d;
+  line-height: 1.6;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem 1.5rem !important;
+  margin: 0 !important;
+  border-top: 1px solid #e9ecef;
+}
+
+.cancel-btn {
+  background: #f8f9fa !important;
+  color: #495057 !important;
+  border: 1px solid #dee2e6 !important;
+  border-radius: 6px !important;
+  padding: 8px 20px !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
+}
+
+.cancel-btn:hover {
+  background: #e9ecef !important;
+  border-color: #adb5bd !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.confirm-btn {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 8px 20px !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(238, 90, 111, 0.3) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.confirm-btn i {
+  font-size: 18px;
+  margin: 0;
+}
+
+.confirm-btn:hover {
+  background: linear-gradient(135deg, #ee5a6f 0%, #dc4a5f 100%) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(238, 90, 111, 0.4) !important;
+}
+
+.confirm-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(238, 90, 111, 0.3) !important;
+}
+
+/* Override Material Dialog styles */
+::ng-deep .mat-mdc-dialog-container {
+  padding: 0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 12px !important;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .delete-dialog-container {
+    min-width: 90vw;
+    max-width: 90vw;
+  }
+
+  .dialog-header {
+    padding: 1.25rem 1.25rem 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .icon-wrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon-wrapper i {
+    font-size: 24px;
+  }
+
+  .dialog-title {
+    font-size: 16px !important;
+  }
+
+  .dialog-content {
+    padding: 1.25rem !important;
+  }
+
+  .dialog-message {
+    font-size: 13px;
+  }
+
+  .dialog-actions {
+    padding: 0.75rem 1.25rem 1.25rem !important;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+  }
+
+  .cancel-btn,
+  .confirm-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+

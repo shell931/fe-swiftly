@@ -49,6 +49,12 @@
   display: block;
 }
 
+.required {
+  color: #dc3545;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
 .address-input {
   width: 80%;
   padding: 0.375rem;

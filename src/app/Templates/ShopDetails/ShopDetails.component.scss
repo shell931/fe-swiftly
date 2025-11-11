@@ -320,12 +320,29 @@
     background: transparent;
     font-size: 0.75rem;
     font-weight: 400;
-    text-align: center;
+    text-align: center !important;
+    text-align-last: center !important;
+    -moz-text-align-last: center !important;
     transition: all 0.2s ease;
+    
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+    &[type=number] {
+        -moz-appearance: textfield;
+    }
     
     &:focus {
         outline: none;
         box-shadow: none;
+        text-align: center !important;
+    }
+    
+    &::placeholder {
+        text-align: center !important;
     }
 }
 
