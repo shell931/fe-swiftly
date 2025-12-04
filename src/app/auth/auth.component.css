@@ -1,683 +1,440 @@
-/* Layout compacto - siguiendo el mismo patrón que Search */
-.compact-layout {
-    padding: 10px !important;
-    margin: 0 !important;
-    min-height: 100vh;
-    background-color: white;
+/* Container and Layout */
+.container-fluid.compact-layout {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f3f3f3;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .container_login {
-    background-color: white;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
 }
 
-/* Grid compacto para login */
 .login-grid {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    max-width: 650px !important; /* ✅ Ancho máximo del contenedor */
-    margin: 0 auto !important;
-    padding: 20px;
 }
 
-/* Login Card compacto - siguiendo el estilo de product-card */
+/* Login Card */
 .login-card.compact {
-    width: 100% !important;
-    max-width: 100% !important; /* ✅ Usar todo el ancho del grid */
-    min-width: 600px !important; /* ✅ Ancho mínimo de 600px */
-    height: auto;
-    min-height: auto;
-    margin: 0 auto !important;
-    border-radius: 16px !important;
-    background: #fff;
-    display: block !important;
-    position: relative !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
-    border: 1px solid #f0f0f0 !important;
-    overflow: hidden !important;
-    padding: 0 !important;
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
 }
 
-/* Forzar ancho con ::ng-deep */
-::ng-deep .login-card.compact {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 600px !important;
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-::ng-deep mat-card.login-card.compact {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 600px !important;
+.login-content {
+    padding: 40px 32px;
 }
 
-::ng-deep .mat-mdc-card.login-card.compact {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 600px !important;
-}
-
-/* Header compacto */
+/* Header Section */
 .login-header {
-    text-align: center !important;
-    padding: 30px 30px 20px 30px !important;
-    background: transparent !important;
-    border-bottom: none !important;
-    margin: 0 !important;
-    position: relative !important;
-}
-
-.logo-container {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 8px !important;
-}
-
-.logo-icon {
-    width: 50px !important;
-    height: 50px !important;
-    border-radius: 12px !important;
-    background: linear-gradient(135deg, #79dc78, #5cb85c) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: 0 4px 12px rgba(121, 220, 120, 0.2) !important;
-}
-
-.logo-icon mat-icon {
-    font-size: 24px !important;
-    color: white !important;
-    width: 24px !important;
-    height: 24px !important;
+    text-align: center;
+    margin-bottom: 32px;
 }
 
 .login-title {
-    font-size: 20px !important;
-    font-weight: 600 !important;
-    margin: 0 !important;
-    color: #333 !important;
-    font-family: 'Poppins', sans-serif !important;
-    letter-spacing: -0.3px !important;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
 .login-subtitle {
-    font-size: 13px !important;
-    color: #666 !important;
-    margin: 0 !important;
-    font-weight: 400 !important;
-    font-family: 'Poppins', sans-serif !important;
-    opacity: 0.8 !important;
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
-/* Content compacto */
-.login-content {
-    padding: 0 20px 20px 20px !important;
-    background: transparent !important;
-}
-
+/* Form Styling - Matching CommonSignIn */
 .login-form {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-    align-items: center !important; /* ✅ Centrar elementos */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-/* Form Fields - ancho máximo en desktop */
-.full-width {
-    width: 100% !important;
-    max-width: 450px !important; /* ✅ Ancho máximo para inputs */
+/* Field Groups */
+.swiftly-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-/* Material Form Field Overrides - estilo compacto */
-.mat-mdc-form-field {
-    font-size: 15px !important; /* ✅ Aumentado de 14px a 15px */
-    font-family: 'Poppins', sans-serif !important;
-    width: 100% !important;
+/* Labels */
+.swiftly-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
 }
 
-.mat-mdc-form-field .mat-mdc-text-field-wrapper {
-    border-radius: 10px !important; /* ✅ Aumentado de 8px a 10px */
-    border: 1px solid #e0e0e0 !important; /* ✅ Borde más visible */
-    background: #fff !important;
-    padding: 0 16px !important; /* ✅ Aumentado de 12px a 16px */
-    transition: all 0.3s ease !important;
-    min-height: 56px !important; /* ✅ Altura mínima para inputs */
+/* Input Container - Completely Custom */
+.swiftly-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    background: white !important;
+    background-color: white !important;
+    padding: 12px 0;
+    width: 100%;
 }
 
-.mat-mdc-form-field .mat-mdc-text-field-wrapper:hover {
-    border-color: #79dc78 !important;
-    box-shadow: 0 2px 8px rgba(121, 220, 120, 0.1) !important;
+.swiftly-input-container:focus-within {
+    border-bottom-color: #79dc78;
 }
 
-.mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-outline {
-    display: none !important;
+/* Input Icons */
+.swiftly-input-icon {
+    font-size: 18px;
+    color: #999;
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
 }
 
-.mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-outline-start,
-.mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-outline-end,
-.mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-outline-gap {
-    display: none !important;
+.swiftly-input-icon-right {
+    font-size: 18px;
+    color: #999;
+    margin-left: 12px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
 }
 
-.mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
-    border-color: #79dc78 !important;
-    box-shadow: 0 0 0 2px rgba(121, 220, 120, 0.2) !important;
+/* Input Fields - Completely Custom */
+.swiftly-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent !important;
+    background-color: transparent !important;
+    font-size: 14px;
+    color: #333;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+    box-shadow: none;
 }
 
-.mat-mdc-form-field .mat-mdc-form-field-label {
-    color: #333 !important;
-    font-size: 15px !important; /* ✅ Aumentado de 14px a 15px */
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 500 !important;
-    opacity: 0.7 !important;
+.swiftly-input::placeholder {
+    color: #999;
+    font-size: 14px;
+    font-weight: 400;
 }
 
-.mat-mdc-form-field.mat-focused .mat-mdc-form-field-label {
-    color: #79dc78 !important;
-    opacity: 1 !important;
+.swiftly-input:focus {
+    outline: none;
+    border: none;
+    background: transparent !important;
+    box-shadow: none;
 }
 
-.mat-mdc-form-field .mat-mdc-input-element {
-    font-size: 15px !important; /* ✅ Aumentado de 14px a 15px */
-    color: #333 !important;
-    font-family: 'Poppins', sans-serif !important;
-    padding: 14px 0 8px 0 !important; /* ✅ Aumentado para más altura */
-    font-weight: 400 !important;
+/* Remove autofill blue background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #333 !important;
+    background: white !important;
 }
 
-.mat-mdc-form-field .mat-mdc-input-element::placeholder {
-    color: #999 !important;
-    font-size: 15px !important; /* ✅ Aumentado de 14px a 15px */
-    font-weight: 400 !important;
-    opacity: 0.6 !important;
+/* Error Messages */
+.swiftly-error {
+    font-size: 12px;
+    color: #e74c3c;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 500;
+    margin-top: 4px;
 }
 
-.mat-mdc-error {
-    font-size: 12px !important;
-    color: #FD0000 !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 500 !important;
-    margin-top: 4px !important;
+.swiftly-error-message {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.2);
+    border-radius: 6px;
+    color: #e74c3c;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
-/* Error Message compacto */
-.error-message {
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    padding: 12px 16px !important;
-    background: rgba(253, 0, 0, 0.1) !important;
-    border: 1px solid rgba(253, 0, 0, 0.2) !important;
-    border-radius: 8px !important;
-    color: #FD0000 !important;
-    font-size: 13px !important;
-    font-weight: 500 !important;
-    margin: 8px 0 !important;
-    font-family: 'Poppins', sans-serif !important;
-    width: 100% !important;
-    max-width: 450px !important; /* ✅ Mismo ancho que inputs */
+.swiftly-error-icon {
+    font-size: 16px;
+    color: #e74c3c;
 }
 
-.error-icon {
-    font-size: 18px !important;
-    color: #FD0000 !important;
-}
-
-/* Form Options compactos */
+/* Form Options */
 .form-options {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    margin: 16px 0 !important;
-    width: 100% !important;
-    max-width: 450px !important; /* ✅ Mismo ancho que inputs */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
 }
 
 .remember-checkbox {
-    font-size: 13px !important;
-    font-family: 'Poppins', sans-serif !important;
-    color: #333 !important;
-    font-weight: 500 !important;
+    font-size: 14px;
 }
 
-.forgot-password-link {
-    color: #79dc78 !important;
-    text-decoration: none !important;
-    font-size: 13px !important;
-    font-weight: 500 !important;
-    transition: all 0.3s ease !important;
-    font-family: 'Poppins', sans-serif !important;
-    padding: 4px 8px !important;
-    border-radius: 4px !important;
+::ng-deep .remember-checkbox .mdc-checkbox__background {
+    border-color: #79dc78;
 }
 
-.forgot-password-link:hover {
-    color: #5cb85c !important;
-    background: rgba(121, 220, 120, 0.1) !important;
-    text-decoration: none !important;
+::ng-deep .remember-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background {
+    background-color: #79dc78;
+    border-color: #79dc78;
 }
 
-/* Login Button compacto - siguiendo el estilo de btn_comprar */
-.login-button {
-    height: 50px !important;
-    border-radius: 10px !important;
-    font-size: 15px !important;
-    font-weight: 600 !important;
-    text-transform: none !important;
-    margin: 24px 0 !important;
+.swiftly-forgot-link {
+    color: #79dc78;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    transition: all 0.2s ease;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.swiftly-forgot-link:hover {
+    color: #5cb85c;
+    background: rgba(121, 220, 120, 0.1);
+    text-decoration: none;
+}
+
+/* Login Button - Green Primary */
+.swiftly-login-button {
+    height: 48px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: none;
     background: #79dc78 !important;
     color: white !important;
     border: 1px solid #79dc78 !important;
-    transition: all 0.3s ease !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    width: 100% !important;
-    max-width: 450px !important; /* ✅ Ancho máximo igual a los inputs */
-    font-family: 'Poppins', sans-serif !important;
-    box-shadow: 0 2px 8px rgba(121, 220, 120, 0.2) !important;
-    position: relative !important;
-    overflow: hidden !important;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    box-shadow: 0 2px 4px rgba(121, 220, 120, 0.2);
+    position: relative;
+    overflow: hidden;
+    margin-top: 8px;
 }
 
-.login-button:hover:not(:disabled) {
+.swiftly-login-button:hover:not(:disabled) {
     background: #5cb85c !important;
     border-color: #5cb85c !important;
-    box-shadow: 0 4px 12px rgba(121, 220, 120, 0.3) !important;
-    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(121, 220, 120, 0.3);
+    transform: translateY(-1px);
 }
 
-.login-button:active:not(:disabled) {
-    transform: translateY(0) !important;
-    box-shadow: 0 2px 8px rgba(121, 220, 120, 0.2) !important;
+.swiftly-login-button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(121, 220, 120, 0.2);
 }
 
-.login-button:disabled {
-    opacity: 0.6 !important;
-    cursor: not-allowed !important;
-    transform: none !important;
+.swiftly-login-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    background: #aaaaaa !important;
+    border-color: #aaaaaa !important;
 }
 
-/* Ensure button text is always white */
-.login-button,
-.login-button span,
-.login-button mat-icon {
+/* Ensure button text and icons are always white */
+.swiftly-login-button,
+.swiftly-login-button span,
+.swiftly-login-button mat-icon {
     color: white !important;
 }
 
-.login-button:hover,
-.login-button:hover span,
-.login-button:hover mat-icon {
-    color: white !important;
+.swiftly-login-button mat-spinner {
+    display: inline-block;
 }
 
-/* Register Section compacto */
-.register-section {
-    text-align: center !important;
-    margin-top: 20px !important;
-    padding-top: 20px !important;
-    border-top: 1px solid #f0f0f0 !important;
-    width: 100% !important;
-    max-width: 450px !important; /* ✅ Mismo ancho que inputs */
+::ng-deep .swiftly-login-button mat-spinner circle {
+    stroke: white;
 }
 
-.register-text {
-    margin: 0 !important;
-    color: #666 !important;
-    font-size: 13px !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 400 !important;
-    opacity: 0.8 !important;
+/* Button Icon */
+.swiftly-button-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
 }
 
-.register-link {
-    color: #79dc78 !important;
-    text-decoration: none !important;
-    font-weight: 600 !important;
-    transition: all 0.3s ease !important;
-    font-family: 'Poppins', sans-serif !important;
-    padding: 2px 4px !important;
-    border-radius: 4px !important;
+/* Register Section */
+.swiftly-register-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    margin-bottom: 0px;
 }
 
-.register-link:hover {
-    color: #5cb85c !important;
-    background: rgba(121, 220, 120, 0.1) !important;
-    text-decoration: none !important;
+.swiftly-register-text {
+    margin: 0;
+    color: #333;
+    font-size: 13px;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 400;
 }
 
-/* Responsive Design - Tablets */
-@media (max-width: 991px) {
-    .container_login {
-        flex-direction: column;
-        gap: 5px;
-    }
+/* Register Button - White Secondary */
+.swiftly-register-button {
+    height: 48px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: none;
+    background: white;
+    color: #333;
+    border: 1px solid #333;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
 
-    .login-grid {
-        padding: 15px;
-        max-width: 100% !important;
-    }
+.swiftly-register-button:hover {
+    background: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
 
-    .login-card.compact {
-        max-width: 100% !important;
-        min-width: 0 !important;
-        width: 100% !important;
-        border-radius: 12px !important;
-    }
+.swiftly-register-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
 
-    ::ng-deep .login-card.compact,
-    ::ng-deep mat-card.login-card.compact,
-    ::ng-deep .mat-mdc-card.login-card.compact,
-    :host ::ng-deep .login-card.compact,
-    :host ::ng-deep mat-card.login-card.compact {
-        min-width: 0 !important;
-        max-width: 100% !important;
-        width: 100% !important;
-    }
-
-    .login-header {
-        padding: 25px 25px 15px 25px !important;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container-fluid.compact-layout {
+        padding: 16px;
     }
 
     .login-content {
-        padding: 0 25px 25px 25px !important;
+        padding: 32px 24px;
     }
 
     .login-title {
-        font-size: 22px !important;
+        font-size: 22px;
     }
 
     .login-subtitle {
-        font-size: 13px !important;
+        font-size: 13px;
     }
 
-    .logo-icon {
-        width: 56px !important;
-        height: 56px !important;
+    .swiftly-input-container {
+        padding: 14px 0;
     }
 
-    .logo-icon mat-icon {
-        font-size: 28px !important;
-        width: 28px !important;
-        height: 28px !important;
+    .swiftly-input {
+        font-size: 16px;
+        /* Prevents zoom on iOS */
     }
 
-    /* ✅ Permitir ancho completo en tablets */
-    .full-width,
-    .login-button,
-    .form-options,
-    .error-message,
-    .register-section {
-        max-width: 100% !important;
+    .swiftly-input::placeholder {
+        font-size: 16px;
     }
 
-    .form-options {
-        flex-direction: row !important;
-        gap: 10px !important;
-        align-items: center !important;
-    }
-
-    .login-button {
-        height: 46px !important;
-        font-size: 14px !important;
-    }
-
-    .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-        min-height: 52px !important;
-        padding: 0 14px !important;
-    }
-
-    .mat-mdc-form-field .mat-mdc-input-element {
-        font-size: 14px !important;
-        padding: 12px 0 7px 0 !important;
+    .swiftly-label {
+        font-size: 11px;
     }
 }
 
-/* Responsive Design - Móviles */
-@media (max-width: 640px) {
-    .compact-layout {
-        padding: 5px !important;
-    }
-
-    .login-grid {
-        padding: 10px !important;
-        max-width: 100% !important;
-    }
-
-    .login-card.compact {
-        min-width: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        border-radius: 12px !important;
-    }
-
-    ::ng-deep .login-card.compact,
-    ::ng-deep mat-card.login-card.compact,
-    ::ng-deep .mat-mdc-card.login-card.compact,
-    :host ::ng-deep .login-card.compact,
-    :host ::ng-deep mat-card.login-card.compact {
-        min-width: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-
-    .login-header {
-        padding: 20px 20px 12px 20px !important;
-    }
-
-    .login-content {
-        padding: 0 20px 20px 20px !important;
-    }
-
-    .login-title {
-        font-size: 20px !important;
-    }
-
-    .login-subtitle {
-        font-size: 13px !important;
-    }
-
-    .login-form {
-        gap: 16px !important;
-    }
-
-    .logo-icon {
-        width: 52px !important;
-        height: 52px !important;
-    }
-
-    .logo-icon mat-icon {
-        font-size: 26px !important;
-        width: 26px !important;
-        height: 26px !important;
-    }
-
-    .login-button {
-        height: 44px !important;
-        font-size: 14px !important;
-        margin: 20px 0 !important;
-    }
-
-    .mat-mdc-form-field {
-        font-size: 14px !important;
-    }
-
-    .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-        min-height: 50px !important;
-        padding: 0 12px !important;
-    }
-
-    .mat-mdc-form-field .mat-mdc-input-element {
-        font-size: 14px !important;
-        padding: 12px 0 6px 0 !important;
-    }
-
-    .mat-mdc-form-field .mat-mdc-form-field-label {
-        font-size: 14px !important;
-    }
-
-    .mat-mdc-form-field .mat-mdc-input-element::placeholder {
-        font-size: 14px !important;
-    }
-
-    /* ✅ Permitir ancho completo en móviles */
-    .full-width,
-    .login-button,
-    .form-options,
-    .error-message,
-    .register-section {
-        max-width: 100% !important;
-    }
-
-    .form-options {
-        flex-direction: column !important;
-        gap: 12px !important;
-        align-items: flex-start !important;
-        margin: 16px 0 !important;
-    }
-
-    .error-message {
-        padding: 10px 12px !important;
-        font-size: 12px !important;
-    }
-
-    .register-section {
-        margin-top: 16px !important;
-        padding-top: 16px !important;
-    }
-}
-
-/* Responsive Design - Móviles muy pequeños */
 @media (max-width: 480px) {
-    .compact-layout {
-        padding: 5px !important;
-    }
-
-    .login-grid {
-        padding: 8px !important;
-    }
-
-    .login-card.compact {
-        min-width: 0 !important;
-        width: 100% !important;
-        border-radius: 10px !important;
-    }
-
-    .login-header {
-        padding: 18px 18px 10px 18px !important;
+    .container-fluid.compact-layout {
+        padding: 12px;
     }
 
     .login-content {
-        padding: 0 18px 18px 18px !important;
+        padding: 24px 20px;
     }
 
     .login-title {
-        font-size: 18px !important;
+        font-size: 20px;
     }
 
-    .logo-icon {
-        width: 48px !important;
-        height: 48px !important;
+    .swiftly-input-container {
+        padding: 12px 0;
     }
 
-    .logo-icon mat-icon {
-        font-size: 24px !important;
-        width: 24px !important;
-        height: 24px !important;
+    .swiftly-login-button,
+    .swiftly-register-button {
+        height: 46px;
     }
 
-    /* ✅ Permitir ancho completo en móviles pequeños */
-    .full-width,
-    .login-button,
-    .form-options,
-    .error-message,
-    .register-section {
-        max-width: 100% !important;
+    .swiftly-register-text {
+        font-size: 12px;
     }
 
-    .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-        min-height: 48px !important;
-    }
-
-    .login-button {
-        height: 42px !important;
-        font-size: 13px !important;
+    .swiftly-label {
+        font-size: 10px;
     }
 }
 
-/* Loading Spinner */
-.mat-mdc-progress-spinner {
-    margin: 0 6px !important;
+/* Focus Styles */
+.swiftly-input:focus {
+    caret-color: #79dc78;
 }
 
-/* Global Overrides */
-body {
-    background: white !important;
-    padding-top: 0 !important;
+/* Accessibility */
+.swiftly-login-button:focus-visible {
+    outline: 2px solid #79dc78;
+    outline-offset: 2px;
 }
 
-/* Force override any global styles */
-.compact-layout * {
-    box-sizing: border-box !important;
-}
-
-/* Material Card Overrides */
-.mat-mdc-card {
-    background: white !important;
-    border: 1px solid #f0f0f0 !important;
-    border-radius: 16px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
-}
-
-.mat-mdc-card.login-card.compact {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 600px !important;
-}
-
-.mat-mdc-card-header {
-    background: white !important;
-    border-bottom: none !important;
-    padding: 0 !important;
-}
-
-.mat-mdc-card-content {
-    background: white !important;
-    padding: 0 !important;
-}
-
-/* Forzar ancho en el componente */
-:host ::ng-deep .login-card.compact {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 600px !important;
-}
-
-:host ::ng-deep mat-card.login-card.compact {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 600px !important;
-}
-
-/* Legacy Support */
-.conta {
-    display: none !important;
-}
-
-.incorrec_user_pass {
-    display: none !important;
+.swiftly-forgot-link:focus-visible,
+.swiftly-register-button:focus-visible {
+    outline: 2px solid #79dc78;
+    outline-offset: 2px;
+    border-radius: 4px;
 }

@@ -83,7 +83,8 @@ export class AppComponent implements AfterViewInit {
         const isAddAddressBtn = btn.classList.contains('add-address-btn');
         const isCreateProductBtn = btn.classList.contains('create-product-btn');
         const isChatBtn = btn.classList.contains('chat-btn');
-        const shouldUseLowZIndex = isAddCardBtn || isAddAddressBtn || isCreateProductBtn || isChatBtn;
+        const isSaveBtn = btn.classList.contains('save-btn') || btn.classList.contains('address-btn');
+        const shouldUseLowZIndex = isAddCardBtn || isAddAddressBtn || isCreateProductBtn || isChatBtn || isSaveBtn;
         
         // Ensure button has pointer-events
         btn.style.pointerEvents = 'auto';

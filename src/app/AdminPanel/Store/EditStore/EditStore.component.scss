@@ -1,33 +1,173 @@
-/*SPINNER*/
-:host ::ng-deep .mat-progress-spinner circle,
-  .mat-spinner circle {
-      stroke: black;
-  }
-  
-  .center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -moz-transform: translateX(-50%) translateY(-50%);
-      -webkit-transform: translateX(-50%) translateY(-50%);
-      transform: translateX(-50%) translateY(-50%);
-  }
-  
-  .overlay {
-      height: 100vh;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.286);
-      z-index: 10;
-      top: 0;
-      left: 0;
-      position: fixed;
-  }
-  
-  .mat-drawer-container {
-      background-color: #687492;
-      color: rgba(0, 0, 0, 0.87);
-  }
+.store-edit-container {
+    padding: 20px;
+}
 
-  .mat1{
-    margin-left: 0px;
-  }
+.store-edit-header {
+    margin-bottom: 20px;
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+
+        b {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .create-status {
+            color: #666;
+            font-size: 14px;
+        }
+    }
+}
+
+.form-container {
+    width: 100%;
+}
+
+.form-wrapper {
+    position: relative;
+}
+
+.store-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cardpage {
+    padding: 20px;
+
+    .titulo {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+
+        span {
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-bottom: 15px;
+}
+
+.col-sm {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+
+    .obligatory {
+        color: red;
+    }
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+
+    &::placeholder {
+        font-family: inherit;
+        font-size: inherit;
+        opacity: 0.6;
+    }
+}
+
+mat-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+mat-error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+.dropzone-custom {
+    height: 200px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+
+    &.ngx-dz-hovered {
+        border: 2px solid #3f51b5;
+    }
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.color_button_ac {
+    background-color: #3f51b5;
+    color: white;
+    padding: 10px 20px;
+
+    &:disabled {
+        background-color: #ccc;
+    }
+}
+
+.overlay {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.286);
+    z-index: 10;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center_spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: #3f51b5;
+}
+
+.current-logo {
+    text-align: center;
+    margin-bottom: 15px;
+
+    img {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+}

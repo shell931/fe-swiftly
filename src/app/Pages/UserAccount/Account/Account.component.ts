@@ -23,6 +23,7 @@ export class AccountComponent implements OnInit {
     name = '';
     number_invoice_inprocces: any;
     public show_store_pr: boolean = false;
+    public isMobileMenuOpen: boolean = false;
 
     constructor(
         public router: Router,
@@ -65,6 +66,13 @@ export class AccountComponent implements OnInit {
             );
         }
 
+        // Close mobile menu on route change
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                this.closeMobileMenu();
+            }
+        });
+
     }
 
     getDataUser(response) {
@@ -77,6 +85,14 @@ export class AccountComponent implements OnInit {
            window.location.reload();
        });
      }
+
+    toggleMobileMenu() {
+        this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    }
+
+    closeMobileMenu() {
+        this.isMobileMenuOpen = false;
+    }
 
 }
 

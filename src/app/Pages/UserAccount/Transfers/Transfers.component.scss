@@ -9,6 +9,10 @@
 
 mat-card {
     box-shadow: none !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(233, 236, 239, 0.35) !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
 }
 
 mat-card p {
@@ -119,11 +123,43 @@ h4 {
 
 .no-data-message {
     text-align: center;
-    padding: 2rem 1rem;
-    color: #6c757d;
+    padding: 1rem;
+    color: #495057;
+    background: #ffffff !important;
+    border: 1px solid rgba(233, 236, 239, 0.6);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    display: block;
 
     p {
         margin: 0;
         font-size: 14px;
     }
+}
+
+/* Stronger selectors for Material components to ensure white card appearance */
+mat-card.mat-mdc-card.mdc-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(233, 236, 239, 0.35) !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+}
+
+mat-list.mat-mdc-list .no-data-message,
+.mat-mdc-list .no-data-message,
+mat-list > .no-data-message {
+    background: #ffffff !important;
+    border: 1px solid rgba(233, 236, 239, 0.6) !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1rem !important;
+    display: block !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03) !important;
+}
+
+mat-list.mat-mdc-list .no-data-message p,
+.mat-mdc-list .no-data-message p,
+mat-list > .no-data-message p {
+    margin: 0 !important;
+    font-size: 14px !important;
+    color: #495057 !important;
 }

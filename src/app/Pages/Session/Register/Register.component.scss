@@ -1,708 +1,1037 @@
-/* Register Container */
-.register-container {
+/* Form container and wrapper for centering - MORE PADDING */
+.form-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  background: #f8f9fa;
-  padding: 20px;
-  padding-top: 40px;
-  box-sizing: border-box;
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
 }
 
-/* Register Card */
-.register-card {
+.form-wrapper {
   width: 100%;
-  max-width: 800px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  background: white;
-  overflow: hidden;
-  margin: 0;
-  border: none;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* Header */
-.register-header {
-  text-align: center;
-  padding: 30px 30px 20px 30px;
-  background: white;
-  border-bottom: none;
-  margin: 0;
+.ng-select-container {
+  min-height: 2rem !important;
+  height: 2rem !important;
+  font-size: 0.7rem;
+  padding: 0.35rem 0.5rem !important;
 }
 
-.register-title {
-  font-size: 26px;
-  font-weight: 400;
-  margin: 0;
-  color: #1a1a1a;
-  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  line-height: 1.3;
-  position: relative;
-  padding-bottom: 12px;
-  letter-spacing: 0.3px;
+
+.compact-field {
+  margin-bottom: 0.25rem;
+
+  .mat-form-field-infix {
+    min-height: 2rem;
+  }
 }
 
-.register-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 3px;
-  background-color: #79dc78;
-  border-radius: 2px;
-  z-index: 1;
+.custom-file-input {
+  .file-label {
+    height: 2rem;
+  }
 }
 
-.register-title::before {
-  display: none;
+mat-hint,
+mat-error {
+  font-size: 0.65rem !important;
+  margin-top: 0.0625rem !important;
+  margin-bottom: 0.0625rem !important;
 }
 
-/* Content */
-.register-content {
-  padding: 0 30px 30px 30px;
-  background: white;
+.color_button_ac {
+  padding: 0.1875rem 0.625rem;
+  font-size: 0.65rem;
+  margin-top: 0.25rem !important;
 }
 
-/* Form Container - DRAMATIC */
-.register-form {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 40px !important;
+
+// Extra small mobile devices - MORE SPACING FROM EDGES
+@media (max-width: 480px) {
+  .form-container {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .cardpage {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .col-sm,
+  .col-6,
+  .col-4,
+  .col-12 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .form-control {
+    height: 2.2rem;
+    font-size: 0.7rem;
+    padding: 0.4rem 0.6rem;
+    margin-bottom: 0.375rem;
+  }
+
+  ng-select {
+    margin-bottom: 0.375rem;
+
+    .ng-select-container {
+      min-height: 2.2rem !important;
+      height: 2.2rem !important;
+      font-size: 0.7rem;
+      padding: 0.4rem 0.6rem !important;
+    }
+  }
+
+  .compact-field {
+    margin-bottom: 0.375rem;
+
+    .mat-form-field-infix {
+      min-height: 2.2rem;
+    }
+  }
+
+  .custom-file-input {
+    .file-label {
+      height: 2.2rem;
+    }
+  }
+
+  label {
+    font-size: 0.8rem;
+    margin-top: 0.375rem;
+    margin-bottom: 0.25rem;
+  }
 }
 
-/* Form Sections - DRAMATIC */
-.form-section {
-  background: white !important;
-  border: 1px solid #e9ecef !important;
-  border-radius: 12px !important;
-  padding: 25px !important;
-  margin-bottom: 40px !important;
-  position: relative !important;
-  z-index: 1 !important;
-  overflow: hidden !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+/* Clean and simple ng-select styling - COMPACT - Match form-control */
+ng-select {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0.3rem;
+
+  .ng-select-container {
+    width: 100%;
+    box-sizing: border-box;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    min-height: 2rem;
+    height: 2rem;
+    padding: 0 0.5rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      border-color: #79dc78;
+    }
+
+    &.ng-select-focused {
+      border-color: #79dc78;
+      box-shadow: 0 0 0 0.15rem rgba(121, 220, 120, 0.25);
+    }
+  }
+
+  .ng-value-container {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .ng-placeholder {
+    color: #4a4a4a;
+    font-style: italic;
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .ng-value {
+    color: #1a1a1a;
+    font-weight: normal;
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .ng-value-label {
+    color: #1a1a1a;
+    font-weight: normal;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    max-width: none !important;
+    width: auto !important;
+  }
+
+  .ng-arrow-wrapper {
+    display: block !important;
+    color: #666 !important;
+    padding-left: 0.5rem !important;
+  }
+
+  .ng-clear-wrapper {
+    display: none !important; // Ocultar el botón de limpiar (x)
+  }
+
+  .ng-dropdown-panel {
+    background: white !important;
+    background-color: white !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0 !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    .ng-option {
+      padding: 0.75rem 1rem !important;
+      color: #374151 !important;
+      background: white !important;
+      background-color: white !important;
+      transition: all 0.2s ease !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+
+      &:hover {
+        background: #f3f4f6 !important;
+        background-color: #f3f4f6 !important;
+        color: #1f2937 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      &.ng-option-selected {
+        background: white !important;
+        background-color: white !important;
+        color: #374151 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      &.ng-option-highlighted {
+        background: #f3f4f6 !important;
+        background-color: #f3f4f6 !important;
+        color: #1f2937 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+    }
+  }
 }
 
-.section-title {
-  font: 400 18px 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  color: #1a1a1a !important;
-  text-transform: uppercase !important;
-  position: relative !important;
-  margin: 0 0 25px 0 !important;
-  padding-bottom: 12px !important;
-  letter-spacing: 1px !important;
-  line-height: 1.3 !important;
-  text-align: center !important;
-}
-
-.section-title:after {
-  position: absolute;
-  content: "";
-  width: 60px;
-  height: 4px;
-  background-color: #79dc78;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 2px;
-  z-index: 1;
-}
-
-.section-title:before {
-  display: none;
-}
-
-/* Form Layout - DRAMATIC CHANGE */
-.form-row {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 30px !important;
-  margin-bottom: 30px !important;
-  align-items: start !important;
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-.form-row-three {
-  display: grid !important;
-  grid-template-columns: 2fr 1fr 1fr !important;
-  gap: 20px !important;
-  margin-bottom: 30px !important;
-  align-items: start !important;
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-/* Form Fields - UNIFIED */
-.form-field, .form-field-wide, .form-field-narrow, .full-width {
+/* Simple global overrides for ng-select - SMALLER - Match form-control */
+::ng-deep ng-select {
   width: 100% !important;
-  max-width: 100% !important;
-  margin-bottom: 0 !important;
-  position: relative !important;
-  z-index: 1 !important;
+  box-sizing: border-box !important;
 }
 
-.full-width { margin-bottom: 20px !important; }
+::ng-deep .ng-select-container {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: white !important;
+  border: 1px solid #ddd !important;
+  border-radius: 3px !important;
+  padding: 0 0.5rem !important;
+  min-height: 2rem !important;
+  height: 2rem !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: visible !important;
+  max-width: none !important;
+}
 
-/* Field Labels - CONSISTENT */
-.field-label {
+::ng-deep .ng-value-container {
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+  max-width: none !important;
+  width: auto !important;
+}
+
+::ng-deep .ng-placeholder,
+::ng-deep ng-select .ng-placeholder,
+::ng-deep .ng-select .ng-placeholder,
+::ng-deep .ng-select-container .ng-placeholder,
+::ng-deep .ng-value-container .ng-placeholder {
+  color: #4a4a4a !important;
+  font-style: italic !important;
+  line-height: 1.2 !important;
+  font-size: 0.8rem !important;
+  position: absolute !important;
+  z-index: -999 !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  max-width: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  pointer-events: none !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-indent: -9999px !important;
+  color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+}
+
+/* Hide placeholder when input exists (ng-select always has an input) */
+::ng-deep .ng-value-container:has(.ng-input) .ng-placeholder,
+::ng-deep .ng-select-container:has(.ng-input) .ng-placeholder,
+::ng-deep .ng-select:has(.ng-input) .ng-placeholder,
+::ng-deep .ng-select:has(.ng-input) .ng-value-container .ng-placeholder,
+::ng-deep .ng-select:has(.ng-input) .ng-select-container .ng-placeholder,
+::ng-deep .ng-select:has(.ng-input) .ng-select-container .ng-value-container .ng-placeholder {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  z-index: -999 !important;
+  pointer-events: none !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-indent: -9999px !important;
+  color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+}
+
+/* Hide placeholder when value is selected */
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-placeholder {
+  display: none !important;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container:not(.ng-placeholder) .ng-placeholder {
+  display: none !important;
+}
+
+/* More specific selectors to hide placeholder when value exists */
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value~.ng-placeholder {
+  display: none !important;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container:has(.ng-value) .ng-placeholder {
+  display: none !important;
+}
+
+/* Force hide placeholder when ng-value is present */
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
   display: block !important;
-  margin-bottom: 8px !important;
-  font: 400 14px 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  color: #2c3e50 !important;
-  letter-spacing: 0.2px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value+.ng-placeholder {
+  display: none !important;
+}
+
+/* Hide placeholder when ng-select has value */
+::ng-deep .ng-select.ng-select-has-value .ng-placeholder,
+::ng-deep .ng-select.ng-select-has-value .ng-value-container .ng-placeholder,
+::ng-deep .ng-select.ng-select-has-value .ng-select-container .ng-placeholder {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  z-index: -1 !important;
+}
+
+/* Hide placeholder when input is focused or has content */
+::ng-deep .ng-select.ng-select-focused .ng-placeholder,
+::ng-deep .ng-select.ng-select-focused .ng-value-container .ng-placeholder,
+::ng-deep .ng-input input:focus~.ng-placeholder,
+::ng-deep .ng-value-container:has(.ng-input input:not(:placeholder-shown)) .ng-placeholder {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  z-index: -1 !important;
+}
+
+/* Hide placeholder when value container has any children (value, input, etc.) */
+::ng-deep .ng-value-container:not(:empty) .ng-placeholder,
+::ng-deep .ng-value-container:has(*) .ng-placeholder,
+::ng-deep .ng-value-container:has(.ng-value) .ng-placeholder,
+::ng-deep .ng-value-container:has(.ng-input) .ng-placeholder {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  z-index: -1 !important;
+}
+
+/* Hide placeholder when input has any value */
+::ng-deep .ng-input input[value]:not([value=""])~.ng-placeholder,
+::ng-deep .ng-value-container:has(.ng-input input[value]:not([value=""])) .ng-placeholder {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  z-index: -1 !important;
+}
+
+/* Enable ng-input for searchable selects */
+::ng-deep .ng-input {
+  display: flex !important;
+  align-items: center !important;
+  flex: 1 !important;
+  padding: 0 !important;
+}
+
+::ng-deep .ng-input input {
+  width: 100% !important;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0.8rem !important;
+  color: #1a1a1a !important;
   line-height: 1.2 !important;
 }
 
-/* Form Fields - DRAMATIC CHANGE */
-::ng-deep .mat-mdc-form-field {
-  font: 14px 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  width: 100% !important; height: 38px !important; margin: 0 0 12px 0 !important; padding: 0 !important;
-  border: 1px solid #e0e0e0 !important; border-radius: 5px !important; background: white !important;
-  position: relative !important; z-index: 1 !important; display: block !important;
-  overflow: hidden !important; box-sizing: border-box !important; transition: all 0.3s ease !important;
-}
-
-/* Textarea specific styling */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-textarea {
-  height: auto !important;
-  min-height: 100px !important;
-  overflow: hidden !important;
-}
-
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-textarea .mat-mdc-text-field-wrapper {
-  height: auto !important;
-  min-height: 100px !important;
-  background: white !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-textarea .mat-mdc-form-field-flex {
-  height: auto !important;
-  min-height: 100px !important;
-  align-items: center !important;
-  background: white !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-textarea .mat-mdc-form-field-infix {
-  height: auto !important;
-  min-height: 100px !important;
-  align-items: center !important;
-  background: white !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-::ng-deep .mat-mdc-form-field:hover {
-  border-color: #79dc78 !important;
-  background: white !important;
-  box-shadow: 0 2px 8px rgba(121, 220, 120, 0.15) !important;
-}
-::ng-deep .mat-mdc-form-field * { box-sizing: border-box !important; }
-::ng-deep .mat-mdc-form-field::before, ::ng-deep .mat-mdc-form-field::after { display: none !important; content: none !important; }
-
-/* Form Field Components - DRAMATIC */
-::ng-deep .mat-mdc-form-field .mat-mdc-form-field-subscript-wrapper {
-  display: block !important; height: auto !important; min-height: auto !important;
-  margin-top: 6px !important; position: relative !important; z-index: 1 !important;
-}
-::ng-deep .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-  border-radius: 5px !important; border: none !important; background: transparent !important;
-  padding: 0 !important; margin: 0 !important; min-height: 38px !important; height: 38px !important;
-  position: relative !important; z-index: 1 !important; display: block !important;
-  width: 100% !important; overflow: hidden !important; box-sizing: border-box !important;
-}
-::ng-deep .mat-mdc-form-field .mat-mdc-text-field-wrapper * { box-sizing: border-box !important; }
-::ng-deep .mat-mdc-form-field .mat-mdc-text-field-wrapper::before, ::ng-deep .mat-mdc-form-field .mat-mdc-text-field-wrapper::after { display: none !important; content: none !important; }
-
-/* Form Field Layout - DRAMATIC */
-::ng-deep .mat-mdc-form-field .mat-mdc-form-field-flex {
-  align-items: center !important; min-height: 38px !important; height: 38px !important;
-  background: transparent !important; position: relative !important; z-index: 1 !important;
-  display: flex !important; width: 100% !important; margin: 0 !important; padding: 0 !important;
-  border: none !important; overflow: hidden !important; box-sizing: border-box !important;
-}
-
-/* Select specific centering */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-form-field-flex {
-  justify-content: center !important;
-  align-items: center !important;
-}
-
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-form-field-infix {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  height: 38px !important;
-  min-height: 38px !important;
-}
-
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-text-field-wrapper {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-/* Fix dropdown arrow alignment */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-select-arrow-wrapper {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 100% !important;
-}
-
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-select-arrow {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 20px !important;
-  width: 20px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-::ng-deep .mat-mdc-form-field .mat-mdc-form-field-flex * { box-sizing: border-box !important; }
-::ng-deep .mat-mdc-form-field .mat-mdc-form-field-infix {
-  min-height: 38px !important; height: 38px !important; padding: 0 !important; margin: 0 !important;
-  border: none !important; border-top: none !important; display: flex !important;
-  align-items: center !important; position: relative !important; z-index: 1 !important;
-  width: 100% !important; overflow: hidden !important; box-sizing: border-box !important;
-}
-::ng-deep .mat-mdc-form-field .mat-mdc-form-field-infix * { box-sizing: border-box !important; }
-
-
-/* Input Elements - DRAMATIC */
-::ng-deep .mat-mdc-form-field .mat-mdc-input-element {
-  font: 13px 'Inter', 'Segoe UI', system-ui, sans-serif !important; color: #2c3e50 !important;
-  background: transparent !important; border: none !important; outline: none !important;
-  padding: 8px 12px !important; height: 18px !important; line-height: 18px !important;
-  margin: 0 !important; text-align: left !important; font-weight: 400 !important;
-  box-shadow: none !important; position: relative !important; z-index: 1 !important;
-  display: block !important; width: 100% !important; box-sizing: border-box !important;
-}
-
-::ng-deep .mat-mdc-form-field input, ::ng-deep .mat-mdc-form-field textarea {
-  position: relative !important; z-index: 1 !important; display: block !important; width: 100% !important;
-  margin: 0 !important; padding: 8px 12px !important; border: none !important; outline: none !important;
-  background: transparent !important; box-shadow: none !important; box-sizing: border-box !important;
-}
-
-/* Specific textarea input styling */
-::ng-deep .mat-mdc-form-field textarea.mat-mdc-input-element {
-  padding: 25px 12px 15px 12px !important;
-  margin: 0 !important;
-  border: none !important;
-  outline: none !important;
-  background: white !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-  resize: vertical !important;
-  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  font-size: 13px !important;
-  line-height: 20px !important;
-  vertical-align: top !important;
-  text-align: left !important;
-}
-::ng-deep .mat-mdc-form-field input { height: 18px !important; line-height: 18px !important; }
-::ng-deep .mat-mdc-form-field textarea { 
-  height: auto !important; 
-  min-height: 80px !important; 
-  line-height: 20px !important; 
-  resize: vertical !important;
-  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  font-size: 13px !important;
-  padding: 25px 12px 15px 12px !important;
-  background: white !important;
-  border: none !important;
-  outline: none !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-  vertical-align: top !important;
-  text-align: left !important;
-}
-
-::ng-deep .mat-mdc-form-field input::before, ::ng-deep .mat-mdc-form-field input::after,
-::ng-deep .mat-mdc-form-field textarea::before, ::ng-deep .mat-mdc-form-field textarea::after,
-::ng-deep .mat-mdc-form-field .mat-mdc-input-element::before, ::ng-deep .mat-mdc-form-field .mat-mdc-input-element::after { display: none !important; content: none !important; }
-
-/* SIMPLE FIX: Just these two fields */
-::ng-deep input[formControlName="neighborhood"] {
-  text-align: left !important;
-}
-
-::ng-deep textarea[formControlName="aditional_data"] {
-  text-align: left !important;
-}
-
-/* Selection styling - Direct approach */
-::ng-deep .register-form input::selection,
-::ng-deep .register-form textarea::selection {
-  background-color: white !important;
+::ng-deep .ng-value {
   color: #1a1a1a !important;
-  font-weight: 700 !important;
+  font-weight: normal !important;
+  font-size: 0.8rem !important;
+  line-height: 1.2 !important;
+  min-width: auto !important;
+  overflow: visible !important;
+  max-width: 100% !important;
+  width: auto !important;
+  display: inline-flex !important;
+  flex: none !important;
 }
 
-/* Selection for all form elements */
-::ng-deep .register-form ::selection {
-  background-color: white !important;
+/* Simplified: Show full text in ng-value-container and all its children */
+::ng-deep .ng-value-container,
+::ng-deep .ng-value-container * {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  max-width: 100% !important;
+  width: auto !important;
+}
+
+::ng-deep .ng-value .ng-value-label {
+  min-width: auto !important;
+  flex: none !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  max-width: none !important;
+  width: auto !important;
+  display: inline !important;
+}
+
+::ng-deep .ng-value-label {
   color: #1a1a1a !important;
-  font-weight: 700 !important;
+  font-weight: normal !important;
+  font-size: 0.8rem !important;
+  line-height: 1.2 !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  max-width: none !important;
+  width: auto !important;
+  min-width: auto !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  display: inline !important;
 }
 
-/* Material form field selection */
-::ng-deep .mat-mdc-form-field input::selection,
-::ng-deep .mat-mdc-form-field textarea::selection {
-  background-color: white !important;
-  color: #1a1a1a !important;
-  font-weight: 700 !important;
+/* Override any ng-select default styles that might truncate text */
+::ng-deep .ng-select .ng-value-label,
+::ng-deep .ng-select-container .ng-value-label,
+::ng-deep .ng-value-container .ng-value-label,
+::ng-deep .ng-value .ng-value-label,
+::ng-deep span.ng-value-label {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  max-width: none !important;
+  width: auto !important;
+  min-width: auto !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  display: inline !important;
 }
 
-/* Global selection for the entire component */
-::ng-deep ::selection {
-  background-color: white !important;
-  color: #1a1a1a !important;
-  font-weight: 700 !important;
+/* Ocultar el botón de limpiar (x) y mostrar solo la flecha */
+::ng-deep .ng-clear-wrapper {
+  display: none !important;
 }
 
-/* Hint text styling for select fields */
-::ng-deep .mat-mdc-form-field .mat-mdc-hint {
-  font: 12px 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  color: #999 !important;
-  margin-top: 4px !important;
-  display: block !important;
-  position: relative !important;
-  z-index: 1 !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Make hint text visible in select fields */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-hint {
+::ng-deep .ng-arrow-wrapper {
   display: block !important;
   visibility: visible !important;
-  opacity: 1 !important;
-  font: 12px 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  color: #999 !important;
-  margin-top: 4px !important;
+  color: #666 !important;
+  padding-left: 0.5rem !important;
 }
 
-/* Ensure hint text is visible for all form fields */
-::ng-deep .mat-mdc-form-field .mat-mdc-form-field-subscript-wrapper .mat-mdc-hint {
-  display: block !important;
+::ng-deep .ng-arrow {
+  display: inline-block !important;
   visibility: visible !important;
+  border-color: #666 transparent transparent !important;
+  border-style: solid !important;
+  border-width: 5px 5px 2.5px !important;
+}
+
+/* Fix dropdown panel transparency */
+::ng-deep .ng-dropdown-panel {
+  background: white !important;
+  background-color: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 0 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
   opacity: 1 !important;
-  font: 12px 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  color: #999 !important;
-  margin-top: 4px !important;
+  visibility: visible !important;
 }
 
-/* SELECT INPUTS ONLY - Redesign selectable inputs */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select {
-  font: 14px 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  width: 100% !important;
-  height: 42px !important;
-  margin: 0 0 12px 0 !important;
-  padding: 0 !important;
-  border: 1px solid #e0e0e0 !important;
-  border-radius: 5px !important;
+::ng-deep .ng-dropdown-panel .ng-option {
   background: white !important;
-  position: relative !important;
-  z-index: 1 !important;
-  display: block !important;
-  overflow: hidden !important;
-  box-sizing: border-box !important;
-  transition: all 0.3s ease !important;
+  background-color: white !important;
+  color: #374151 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  padding: 0.75rem 1rem !important;
 }
 
-/* Select text field wrapper */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-text-field-wrapper {
-  border-radius: 5px !important;
-  border: none !important;
-  background: transparent !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  min-height: 42px !important;
-  height: 42px !important;
-  position: relative !important;
-  z-index: 1 !important;
-  display: block !important;
-  width: 100% !important;
-  overflow: visible !important;
-  box-sizing: border-box !important;
+::ng-deep .ng-dropdown-panel .ng-option:hover {
+  background: #f3f4f6 !important;
+  background-color: #f3f4f6 !important;
+  color: #1f2937 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* Select flex container */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-form-field-flex {
-  align-items: center !important;
-  min-height: 42px !important;
-  height: 42px !important;
-  background: transparent !important;
-  position: relative !important;
-  z-index: 1 !important;
-  display: flex !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  overflow: visible !important;
-  box-sizing: border-box !important;
-}
-
-/* Select infix */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-form-field-infix {
-  min-height: 42px !important;
-  height: 42px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: none !important;
-  border-top: none !important;
-  display: flex !important;
-  align-items: center !important;
-  position: relative !important;
-  z-index: 1 !important;
-  width: 100% !important;
-  overflow: visible !important;
-  box-sizing: border-box !important;
-}
-
-/* Select element */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-select {
-  font: 13px 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  color: #2c3e50 !important;
-  text-align: left !important;
-  font-weight: 400 !important;
-  position: relative !important;
-  z-index: 1 !important;
-  display: flex !important;
-  align-items: center !important;
-  width: 100% !important;
-  height: 28px !important;
-  line-height: 28px !important;
-  margin: 0 !important;
-  padding: 7px 12px !important;
-  border: none !important;
-  outline: none !important;
+::ng-deep .ng-dropdown-panel .ng-option.ng-option-selected {
   background: white !important;
-  box-shadow: none !important;
-  box-sizing: border-box !important;
+  background-color: white !important;
+  color: #374151 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* Select subscript wrapper - HIDE HINT TEXT */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-form-field-subscript-wrapper {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  margin-top: 0 !important;
-  overflow: hidden !important;
-  position: relative !important;
-  z-index: 1 !important;
+::ng-deep .ng-dropdown-panel .ng-option.ng-option-highlighted {
+  background: #f3f4f6 !important;
+  background-color: #f3f4f6 !important;
+  color: #1f2937 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* Select hint text - HIDE */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-hint {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  margin-top: 0 !important;
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-/* Select placeholder */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-select-placeholder {
-  color: #999 !important;
-  text-align: left !important;
-  font-weight: 400 !important;
-  font-size: 13px !important;
-  position: relative !important;
-  z-index: 1 !important;
-  display: flex !important;
-  align-items: center !important;
-  width: 100% !important;
-  height: 24px !important;
-  line-height: 24px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  outline: none !important;
-  background: white !important;
-  box-shadow: none !important;
-  box-sizing: border-box !important;
-}
-
-/* Select value */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-select-value {
-  color: #2c3e50 !important;
-  text-align: left !important;
-  font-weight: 400 !important;
-  font-size: 13px !important;
-  position: relative !important;
-  z-index: 1 !important;
-  display: flex !important;
-  align-items: center !important;
-  width: 100% !important;
-  height: 24px !important;
-  line-height: 24px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  outline: none !important;
-  background: white !important;
-  box-shadow: none !important;
-  box-sizing: border-box !important;
-}
-
-/* Select arrow */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-select-arrow-wrapper {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 100% !important;
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-select-arrow {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 20px !important;
-  width: 20px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-/* Select hover and focus states */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select:hover {
-  border-color: #79dc78 !important;
-  background: white !important;
-  box-shadow: 0 2px 8px rgba(121, 220, 120, 0.15) !important;
-}
-
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select.mat-focused {
-  border-color: #79dc78 !important;
-  border-width: 1px !important;
-  box-shadow: 0 0 0 3px rgba(121, 220, 120, 0.15) !important;
-  background: white !important;
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select.mat-form-field-invalid {
-  border: 1px solid #e74c3c !important;
-  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1) !important;
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-/* Anti-Duplication */
-::ng-deep .mat-mdc-form-field * { position: relative !important; z-index: 1 !important; display: block !important; box-sizing: border-box !important; }
-::ng-deep .mat-mdc-form-field *::before, ::ng-deep .mat-mdc-form-field *::after { display: none !important; content: none !important; }
-::ng-deep .mat-mdc-form-field { contain: layout style paint !important; isolation: isolate !important; }
-
-/* Placeholders & Selects */
-::ng-deep .mat-mdc-form-field .mat-mdc-input-element::placeholder { color: #999 !important; font: 13px 'Inter', 'Segoe UI', system-ui, sans-serif !important; font-weight: 400 !important; }
-::ng-deep .mat-mdc-select {
-  font: 13px 'Inter', 'Segoe UI', system-ui, sans-serif !important; color: #2c3e50 !important; text-align: center !important; font-weight: 400 !important;
-  position: relative !important; z-index: 1 !important; display: flex !important; align-items: center !important; justify-content: center !important; width: 100% !important; height: 24px !important; line-height: 24px !important;
-  margin: 0 !important; padding: 12px 14px !important; border: none !important; outline: none !important; background: white !important;
-  box-shadow: none !important; box-sizing: border-box !important;
-}
-
-/* Ensure select trigger is properly aligned */
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-select-trigger {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 100% !important;
-  width: 100% !important;
-}
-
-::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-select .mat-mdc-select-value {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 100% !important;
-  line-height: 24px !important;
-}
-::ng-deep .mat-mdc-select::before, ::ng-deep .mat-mdc-select::after { display: none !important; content: none !important; }
-::ng-deep .mat-mdc-select-placeholder {
-  color: #999 !important; text-align: center !important; font-weight: 400 !important; font-size: 13px !important;
-  position: relative !important; z-index: 1 !important; display: flex !important; align-items: center !important; justify-content: center !important; width: 100% !important; height: 24px !important; line-height: 24px !important;
-  margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important;
-  background: white !important; box-shadow: none !important; box-sizing: border-box !important;
-}
-
-/* Error Message */
-.error-message {
-  display: flex !important; align-items: center !important; gap: 8px !important; padding: 12px 16px !important;
-  background-color: #ffebee !important; border: 1px solid #ffcdd2 !important; border-radius: 8px !important;
-  color: #c62828 !important; font: 14px 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  margin: 16px 0 !important; position: relative !important; z-index: 1 !important; width: 100% !important; box-sizing: border-box !important;
-}
-
-/* Button */
-.register-button {
-  height: 48px !important; border-radius: 6px !important; font: 14px 'Inter', 'Segoe UI', system-ui, sans-serif !important;
-  font-weight: 300 !important; text-transform: none !important; margin: 20px auto !important;
-  background: #79dc78 !important; color: white !important; border: 1px solid #79dc78 !important;
-  transition: all 0.2s ease !important; display: flex !important; align-items: center !important;
-  justify-content: center !important; gap: 8px !important; width: auto !important; min-width: 200px !important;
-  max-width: 300px !important; padding: 0 24px !important; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-  position: relative !important; z-index: 1 !important; cursor: pointer !important; box-sizing: border-box !important;
-}
-.register-button:hover:not(:disabled) { background: #6bc86a !important; border-color: #6bc86a !important; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important; transform: translateY(-1px) !important; }
-.register-button:disabled { opacity: 0.6 !important; cursor: not-allowed !important; background: #afafaf !important; border-color: #afafaf !important; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important; transform: none !important; }
-
-/* Login Section */
-.login-section { text-align: center !important; margin-top: 20px !important; padding-top: 0 !important; border-top: none !important; position: relative !important; z-index: 1 !important; width: 100% !important; box-sizing: border-box !important; }
-.login-text { margin: 0 !important; color: #666 !important; font: 14px 'Inter', 'Segoe UI', system-ui, sans-serif !important; font-weight: 300 !important; position: relative !important; z-index: 1 !important; display: block !important; width: 100% !important; box-sizing: border-box !important; }
-.login-link { color: #79dc78 !important; text-decoration: none !important; font-weight: 300 !important; transition: color 0.2s ease !important; font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !important; position: relative !important; z-index: 1 !important; display: inline !important; box-sizing: border-box !important; }
-.login-link:hover { color: #6bc86a !important; text-decoration: underline !important; }
-
-/* Error & Hint */
-::ng-deep .mat-mdc-error { font: 12px 'Inter', 'Segoe UI', system-ui, sans-serif !important; color: #e74c3c !important; margin-top: 4px !important; display: block !important; position: relative !important; z-index: 1 !important; width: 100% !important; box-sizing: border-box !important; }
-::ng-deep .mat-mdc-hint { font: 300 12px 'Inter', 'Segoe UI', system-ui, sans-serif !important; color: #999 !important; margin-top: 4px !important; display: block !important; position: relative !important; z-index: 1 !important; width: 100% !important; box-sizing: border-box !important; }
-
-/* Focus & States */
-::ng-deep .mat-mdc-form-field.mat-focused { border-color: #79dc78 !important; border-width: 1px !important; box-shadow: 0 0 0 3px rgba(121, 220, 120, 0.15) !important; background: white !important; position: relative !important; z-index: 1 !important; }
-::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper, ::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-form-field-flex { background: white !important; position: relative !important; z-index: 1 !important; }
-::ng-deep .mat-mdc-form-field.mat-form-field-invalid { border: 1px solid #e74c3c !important; box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1) !important; position: relative !important; z-index: 1 !important; }
-
-/* Responsive */
+/* Mobile responsive for ng-select - Sincronizado con .form-control */
 @media (max-width: 768px) {
-  .register-container { padding: 15px !important; padding-top: 30px !important; }
-  .register-card { max-width: 100% !important; margin: 0 !important; }
-  .register-header { padding: 20px 20px 15px 20px !important; }
-  .register-content { padding: 0 20px 20px 20px !important; }
-  .register-title { font-size: 22px !important; }
-  .form-row, .form-row-three { grid-template-columns: 1fr !important; gap: 15px !important; }
-  .form-field, .full-width { max-width: 100% !important; }
-  .form-section { margin-bottom: 18px !important; }
-  .section-title { font-size: 15px !important; margin-bottom: 12px !important; }
+  ng-select {
+    .ng-select-container {
+      min-height: 2.2rem !important;
+      height: 2.2rem !important;
+      padding: 0.4rem 0.6rem !important;
+      font-size: 0.75rem !important;
+    }
+
+    .ng-dropdown-panel {
+      .ng-option {
+        padding: 0.6rem 0.8rem !important;
+        font-size: 0.75rem !important;
+      }
+    }
+  }
+
+  ::ng-deep .ng-select-container {
+    min-height: 2.2rem !important;
+    height: 2.2rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+
+  ::ng-deep .ng-placeholder,
+  ::ng-deep .ng-value,
+  ::ng-deep .ng-value-label {
+    font-size: 0.75rem !important;
+  }
 }
+
+@media (max-width: 576px) {
+  ng-select {
+    .ng-select-container {
+      min-height: 2rem !important;
+      height: 2rem !important;
+      padding: 0.35rem 0.5rem !important;
+      font-size: 0.7rem !important;
+    }
+
+    .ng-dropdown-panel {
+      .ng-option {
+        padding: 0.5rem 0.7rem !important;
+        font-size: 0.7rem !important;
+      }
+    }
+  }
+
+  ::ng-deep .ng-select-container {
+    min-height: 2rem !important;
+    height: 2rem !important;
+    padding: 0.35rem 0.5rem !important;
+  }
+
+  ::ng-deep .ng-placeholder,
+  ::ng-deep .ng-value,
+  ::ng-deep .ng-value-label {
+    font-size: 0.7rem !important;
+  }
+}
+
 @media (max-width: 480px) {
-  .register-container { padding: 10px !important; padding-top: 25px !important; }
-  .register-header { padding: 15px 15px 10px 15px !important; }
-  .register-content { padding: 0 15px 15px 15px !important; }
-  .register-title { font-size: 20px !important; }
-  .form-field, .full-width { max-width: 100% !important; }
-  .form-section { margin-bottom: 15px !important; }
-  .section-title { font-size: 14px !important; margin-bottom: 10px !important; }
+  ng-select {
+    .ng-select-container {
+      min-height: 2.2rem !important;
+      height: 2.2rem !important;
+      padding: 0.4rem 0.6rem !important;
+      font-size: 0.7rem !important;
+    }
+
+    .ng-dropdown-panel {
+      .ng-option {
+        padding: 0.5rem 0.7rem !important;
+        font-size: 0.7rem !important;
+      }
+    }
+  }
+
+  ::ng-deep .ng-select-container {
+    min-height: 2.2rem !important;
+    height: 2.2rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+
+  ::ng-deep .ng-placeholder,
+  ::ng-deep .ng-value,
+  ::ng-deep .ng-value-label {
+    font-size: 0.7rem !important;
+  }
+}
+
+/* Compact File Upload Styles - Integrated with Form */
+.file-upload-wrapper {
+  .compact-file-field {
+    width: 100%;
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+
+    .mat-form-field-outline {
+      border-radius: 2px;
+      border: 1px solid #ddd;
+      transition: all 0.2s ease;
+    }
+
+    .mat-form-field-outline-thick {
+      border-color: #ddd;
+      border-width: 1px;
+    }
+
+    .mat-form-field-infix {
+      padding: 0.25rem 0.375rem;
+      border-top: none;
+      min-height: 1.5rem;
+    }
+
+    .mat-input-element {
+      font-size: 0.8rem;
+      color: #374151;
+      font-weight: normal;
+
+      &::placeholder {
+        color: #9ca3af;
+        font-style: italic;
+      }
+    }
+
+    .mat-form-field-label {
+      color: #6b7280;
+      font-weight: normal;
+      font-size: 0.8rem;
+    }
+
+    .mat-form-field-label.mat-focused {
+      color: #6b7280;
+    }
+
+    .mat-icon {
+      color: #34d399;
+      font-size: 1.2rem;
+      transition: all 0.2s ease;
+    }
+
+    .mat-hint {
+      color: #6b7280;
+      font-size: 0.6rem;
+      margin-top: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .mat-error {
+      color: #ef4444;
+      font-size: 0.6rem;
+      margin-top: 0.25rem;
+    }
+
+    &:hover {
+      .mat-form-field-outline {
+        border-color: #ddd;
+      }
+
+      .mat-icon {
+        transform: scale(1.05);
+      }
+    }
+
+    &.mat-focused {
+      .mat-form-field-outline-thick {
+        border-color: #ddd;
+        border-width: 1px;
+      }
+    }
+  }
+}
+
+/* Mobile Responsive for File Uploads - Sincronizado con inputs y ng-select */
+@media (max-width: 768px) {
+  .file-upload-wrapper {
+    .compact-file-field {
+      .mat-form-field-infix {
+        padding: 0.4rem 0.6rem;
+        min-height: 2.2rem;
+      }
+
+      .mat-input-element {
+        font-size: 0.75rem;
+      }
+
+      .mat-form-field-label {
+        font-size: 0.75rem;
+      }
+
+      .mat-icon {
+        font-size: 1.1rem;
+      }
+
+      .mat-hint {
+        font-size: 0.65rem;
+      }
+
+      .mat-error {
+        font-size: 0.65rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .file-upload-wrapper {
+    .compact-file-field {
+      .mat-form-field-infix {
+        padding: 0.35rem 0.5rem;
+        min-height: 2rem;
+      }
+
+      .mat-input-element {
+        font-size: 0.7rem;
+      }
+
+      .mat-form-field-label {
+        font-size: 0.7rem;
+      }
+
+      .mat-icon {
+        font-size: 1rem;
+      }
+
+      font-size: 0.7rem !important;
+    }
+
+    .ng-dropdown-panel {
+      .ng-option {
+        padding: 0.5rem 0.7rem !important;
+        font-size: 0.7rem !important;
+      }
+    }
+  }
+
+  ::ng-deep .ng-select-container {
+    min-height: 2.2rem !important;
+    height: 2.2rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+
+  ::ng-deep .ng-placeholder,
+  ::ng-deep .ng-value,
+  ::ng-deep .ng-value-label {
+    font-size: 0.7rem !important;
+  }
+}
+
+/* Compact File Upload Styles - Integrated with Form */
+.file-upload-wrapper {
+  .compact-file-field {
+    width: 100%;
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+
+    .mat-form-field-outline {
+      border-radius: 2px;
+      border: 1px solid #ddd;
+      transition: all 0.2s ease;
+    }
+
+    .mat-form-field-outline-thick {
+      border-color: #ddd;
+      border-width: 1px;
+    }
+
+    .mat-form-field-infix {
+      padding: 0.25rem 0.375rem;
+      border-top: none;
+      min-height: 1.5rem;
+    }
+
+    .mat-input-element {
+      font-size: 0.8rem;
+      color: #374151;
+      font-weight: normal;
+
+      &::placeholder {
+        color: #9ca3af;
+        font-style: italic;
+      }
+    }
+
+    .mat-form-field-label {
+      color: #6b7280;
+      font-weight: normal;
+      font-size: 0.8rem;
+    }
+
+    .mat-form-field-label.mat-focused {
+      color: #6b7280;
+    }
+
+    .mat-icon {
+      color: #34d399;
+      font-size: 1.2rem;
+      transition: all 0.2s ease;
+    }
+
+    .mat-hint {
+      color: #6b7280;
+      font-size: 0.6rem;
+      margin-top: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .mat-error {
+      color: #ef4444;
+      font-size: 0.6rem;
+      margin-top: 0.25rem;
+    }
+
+    &:hover {
+      .mat-form-field-outline {
+        border-color: #ddd;
+      }
+
+      .mat-icon {
+        transform: scale(1.05);
+      }
+    }
+
+    &.mat-focused {
+      .mat-form-field-outline-thick {
+        border-color: #ddd;
+        border-width: 1px;
+      }
+    }
+  }
+}
+
+/* Mobile Responsive for File Uploads - Sincronizado con inputs y ng-select */
+@media (max-width: 768px) {
+  .file-upload-wrapper {
+    .compact-file-field {
+      .mat-form-field-infix {
+        padding: 0.4rem 0.6rem;
+        min-height: 2.2rem;
+      }
+
+      .mat-input-element {
+        font-size: 0.75rem;
+      }
+
+      .mat-form-field-label {
+        font-size: 0.75rem;
+      }
+
+      .mat-icon {
+        font-size: 1.1rem;
+      }
+
+      .mat-hint {
+        font-size: 0.65rem;
+      }
+
+      .mat-error {
+        font-size: 0.65rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .file-upload-wrapper {
+    .compact-file-field {
+      .mat-form-field-infix {
+        padding: 0.35rem 0.5rem;
+        min-height: 2rem;
+      }
+
+      .mat-input-element {
+        font-size: 0.7rem;
+      }
+
+      .mat-form-field-label {
+        font-size: 0.7rem;
+      }
+
+      .mat-icon {
+        font-size: 1rem;
+      }
+
+      .mat-hint {
+        font-size: 0.65rem;
+      }
+
+      .mat-error {
+        font-size: 0.65rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .file-upload-wrapper {
+    .compact-file-field {
+      .mat-form-field-infix {
+        padding: 0.4rem 0.6rem;
+        min-height: 2.2rem;
+      }
+
+      .mat-input-element {
+        font-size: 0.7rem;
+      }
+
+      .mat-form-field-label {
+        font-size: 0.7rem;
+      }
+
+      .mat-icon {
+        font-size: 1rem;
+      }
+
+      .mat-hint {
+        font-size: 0.65rem;
+      }
+
+      .mat-error {
+        font-size: 0.65rem;
+      }
+    }
+  }
+}
+
+/* Success Icon Styling */
+.success-icon {
+  color: #34d399 !important;
+  font-size: 1.5rem !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  vertical-align: middle !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Global mat-icon improvements */
+::ng-deep mat-icon.success-icon {
+  color: #34d399 !important;
+  font-size: 1.5rem !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  vertical-align: middle !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Mobile responsive for success icon */
+@media (max-width: 768px) {
+
+  .success-icon,
+  ::ng-deep mat-icon.success-icon {
+    font-size: 1.3rem !important;
+    width: 1.3rem !important;
+    height: 1.3rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .success-icon,
+  ::ng-deep mat-icon.success-icon {
+    font-size: 1.2rem !important;
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+  }
 }

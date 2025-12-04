@@ -7,10 +7,10 @@
     </div>
 
     <div class="store-edit-content">
-        <div class="form-section">
+        <div class="form-section cardpage form-container">
             <form [formGroup]="storeForm" class="store-edit-form">
-                <div class="form-container">
-                                <!-- <label for="">Nombre comercio</label>
+                <div>
+                    <!-- <label for="">Nombre comercio</label>
                                 <input placeholder="Nombre comercio" formControlName="name_store" maxlength="100"
                                     class="form-control">
                                 <mat-error
@@ -20,33 +20,25 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label>Departamento <span class="required">*</span></label>
-                            <ng-select [items]="depart$ | async" 
-                                       bindLabel="departament" 
-                                       bindValue="id_departament" 
-                                       [formControl]="departamentFilterCtrl" 
-                                       formControlName="departamentCtrl" 
-                                       (selectionChange)="citieChangeAction($event)"
-                                       required 
-                                       [(ngModel)]="selectedValue"
-                                       placeholder="Seleccionar departamento">
+                            <ng-select [items]="depart$ | async" bindLabel="departament" bindValue="id_departament"
+                                [formControl]="departamentFilterCtrl" formControlName="departamentCtrl"
+                                (selectionChange)="citieChangeAction($event)" required [(ngModel)]="selectedValue"
+                                placeholder="Seleccionar departamento">
                             </ng-select>
-                            <mat-error *ngIf="storeForm.get('departamentCtrl').hasError('required') && storeForm.get('departamentCtrl').touched">
+                            <mat-error
+                                *ngIf="storeForm.get('departamentCtrl').hasError('required') && storeForm.get('departamentCtrl').touched">
                                 Este campo es obligatorio.
                             </mat-error>
                         </div>
-                        
+
                         <div class="form-group">
                             <label>Ciudad <span class="required">*</span></label>
-                            <ng-select [items]="city$ | async" 
-                                       bindLabel="city" 
-                                       bindValue="id_city" 
-                                       [formControl]="citieFilterCtrl" 
-                                       formControlName="citieCtrl" 
-                                       required 
-                                       [(ngModel)]="selectedCityValue"
-                                       placeholder="Seleccionar ciudad">
+                            <ng-select [items]="city$ | async" bindLabel="city" bindValue="id_city"
+                                [formControl]="citieFilterCtrl" formControlName="citieCtrl" required
+                                [(ngModel)]="selectedCityValue" placeholder="Seleccionar ciudad">
                             </ng-select>
-                            <mat-error *ngIf="storeForm.get('citieCtrl').hasError('required') && storeForm.get('citieCtrl').touched">
+                            <mat-error
+                                *ngIf="storeForm.get('citieCtrl').hasError('required') && storeForm.get('citieCtrl').touched">
                                 Este campo es obligatorio.
                             </mat-error>
                         </div>
@@ -55,22 +47,20 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label>Dirección <span class="required">*</span></label>
-                            <input placeholder="Dirección" 
-                                   formControlName="address" 
-                                   maxlength="150" 
-                                   class="form-control">
-                            <mat-error *ngIf="storeForm.get('address').hasError('required') && storeForm.get('address').touched">
+                            <input placeholder="Dirección" formControlName="address" maxlength="150"
+                                class="form-control">
+                            <mat-error
+                                *ngIf="storeForm.get('address').hasError('required') && storeForm.get('address').touched">
                                 Este campo es obligatorio.
                             </mat-error>
                         </div>
-                        
+
                         <div class="form-group">
                             <label>Teléfono <span class="required">*</span></label>
-                            <input placeholder="Teléfono" 
-                                   formControlName="telephone" 
-                                   maxlength="60" 
-                                   class="form-control">
-                            <mat-error *ngIf="storeForm.get('telephone').hasError('required') && storeForm.get('telephone').touched">
+                            <input placeholder="Teléfono" formControlName="telephone" maxlength="60"
+                                class="form-control">
+                            <mat-error
+                                *ngIf="storeForm.get('telephone').hasError('required') && storeForm.get('telephone').touched">
                                 Este campo es obligatorio.
                             </mat-error>
                         </div>
@@ -79,56 +69,43 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label>Email <span class="required">*</span></label>
-                            <input placeholder="Email" 
-                                   formControlName="email" 
-                                   maxlength="100" 
-                                   class="form-control">
-                            <mat-error *ngIf="storeForm.get('email').hasError('required') && storeForm.get('email').touched">
+                            <input placeholder="Email" formControlName="email" maxlength="100" class="form-control">
+                            <mat-error
+                                *ngIf="storeForm.get('email').hasError('required') && storeForm.get('email').touched">
                                 Este campo es obligatorio.
                             </mat-error>
                             <mat-error *ngIf="storeForm.controls['email'].hasError('pattern')">
                                 Debes incluir un formato de email válido.
                             </mat-error>
                         </div>
-                        
+
                         <div class="form-group">
                             <label>Representante <span class="required">*</span></label>
-                            <input placeholder="Representante" 
-                                   formControlName="manager" 
-                                   maxlength="100" 
-                                   class="form-control">
-                            <mat-error *ngIf="storeForm.get('manager').hasError('required') && storeForm.get('manager').touched">
+                            <input placeholder="Representante" formControlName="manager" maxlength="100"
+                                class="form-control">
+                            <mat-error
+                                *ngIf="storeForm.get('manager').hasError('required') && storeForm.get('manager').touched">
                                 Este campo es obligatorio.
                             </mat-error>
                         </div>
                     </div>
 
-                                <!-- <label for="">Número identificación</label>
+                    <!-- <label for="">Número identificación</label>
                                 <input placeholder="Número identificación" formControlName="number_identifier"
                                     maxlength="100" class="form-control">
                                 <mat-error
                                     *ngIf="storeForm.get('number_identifier').hasError('required') && storeForm.get('number_identifier').touched">
                                     Este campo es obligatorio.</mat-error> -->
 
-                                <label for=""><b>Representante</b><b class="obligatory"> *</b></label>
-                                <input placeholder="Representante" formControlName="manager" maxlength="100" class="form-control">
-                                <mat-error *ngIf="storeForm.get('manager').hasError('required') && storeForm.get('manager').touched">
-                                    Este campo es obligatorio.</mat-error>
-
-
                     <div class="form-row">
                         <div class="form-group">
                             <label>Categoría o clasificación <span class="required">*</span></label>
-                            <ng-select [items]="catego$ | async" 
-                                       bindLabel="name_category" 
-                                       bindValue="id" 
-                                       [formControl]="categorystoreFilterCtrl" 
-                                       formControlName="categorystoreCtrl" 
-                                       required 
-                                       [(ngModel)]="selectedCategoryValue"
-                                       placeholder="Seleccionar categoría">
+                            <ng-select [items]="catego$ | async" bindLabel="name_category" bindValue="id"
+                                [formControl]="categorystoreFilterCtrl" formControlName="categorystoreCtrl" required
+                                [(ngModel)]="selectedCategoryValue" placeholder="Seleccionar categoría">
                             </ng-select>
-                            <mat-error *ngIf="storeForm.get('categorystoreCtrl').hasError('required') && storeForm.get('categorystoreCtrl').touched">
+                            <mat-error
+                                *ngIf="storeForm.get('categorystoreCtrl').hasError('required') && storeForm.get('categorystoreCtrl').touched">
                                 Este campo es obligatorio.
                             </mat-error>
                         </div>
@@ -137,21 +114,17 @@
                     <div class="form-row">
                         <div class="form-group full-width">
                             <label>Descripción de tu comercio <span class="required">*</span></label>
-                            <textarea placeholder="Descripción de tu comercio" 
-                                      formControlName="description" 
-                                      maxlength="100" 
-                                      class="form-control textarea-field"
-                                      rows="3"></textarea>
-                            <mat-error *ngIf="storeForm.get('description').hasError('required') && storeForm.get('description').touched">
+                            <textarea placeholder="Descripción de tu comercio" formControlName="description"
+                                maxlength="100" class="form-control textarea-field" rows="3"></textarea>
+                            <mat-error
+                                *ngIf="storeForm.get('description').hasError('required') && storeForm.get('description').touched">
                                 Este campo es obligatorio.
                             </mat-error>
                         </div>
                     </div>
 
                     <div class="form-actions">
-                        <button class="update-btn" 
-                                mat-raised-button 
-                                (click)="submitStoreInfo()">
+                        <button class="update-btn" mat-raised-button (click)="submitStoreInfo()">
                             <i class="material-icons">save</i>
                             Actualizar información
                         </button>
@@ -164,42 +137,37 @@
                 <div class="logo-preview" *ngIf="show_img">
                     <img class="store-logo-image" [src]="logo_store" alt="Logo de la tienda">
                 </div>
-                
+
                 <div class="no-logo-warning" *ngIf="show_sin_img">
                     <div class="warning-content">
                         <i class="material-icons">warning</i>
                         <div class="warning-text">
                             <strong>{{logo_store}}</strong>
-                            <p>¡Debes cargar un logo para que tu tienda sea publicada y comiences a vender tus productos o servicios!</p>
+                            <p>¡Debes cargar un logo para que tu tienda sea publicada y comiences a vender tus productos
+                                o servicios!</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="logo-upload">
                     <label class="upload-label">Cargar logo de la tienda</label>
-                    <ngx-dropzone (change)="selectFile($event)" 
-                                  (filesAdded)="onSelect($event)"
-                                  [expandable]="true" 
-                                  [disableClick]="false"
-                                  [accept]="'image/*'"
-                                  class="dropzone-custom">
+                    <ngx-dropzone (change)="selectFile($event)" (filesAdded)="onSelect($event)" [expandable]="true"
+                        [disableClick]="false" [accept]="'image/*'" class="dropzone-custom">
                         <ngx-dropzone-label>
                             <i class="material-icons">cloud_upload</i>
                             <p>Arrastra el logo de tu comercio aquí</p>
                             <small>Formatos: JPG, PNG | Mínimo: 700px</small>
                         </ngx-dropzone-label>
-                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" 
-                                                  *ngFor="let f of files" 
-                                                  [file]="f" 
-                                                  [removable]="true" 
-                                                  (removed)="onRemove(f)">
+                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
+                            [file]="f" [removable]="true" (removed)="onRemove(f)">
                             <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                         </ngx-dropzone-image-preview>
                     </ngx-dropzone>
-                    
+
                     <div class="upload-error" *ngIf="validate_img">
                         <i class="material-icons">error</i>
-                        <span>La imagen debe tener formato JPG o PNG y tener más de 700 píxeles en uno de sus lados.</span>
+                        <span>La imagen debe tener formato JPG o PNG y tener más de 700 píxeles en uno de sus
+                            lados.</span>
                     </div>
                 </div>
             </div>

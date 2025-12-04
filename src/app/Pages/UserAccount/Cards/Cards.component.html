@@ -15,16 +15,12 @@
             </div>
             <div class="card-number">{{card.number}}</div>
             <div class="card-actions">
-                <button class="edit-card-btn" 
-                        mat-raised-button 
-                        [routerLink]="['/account/profile/edit']" 
-                        [queryParams]="{type:'card'}">
+                <button class="edit-card-btn" mat-raised-button [routerLink]="['/account/profile/edit']"
+                    [queryParams]="{type:'card', id: card.id}">
                     <i class="material-icons">edit</i>
                     Editar
                 </button>
-                <button class="delete-card-btn" 
-                        title="Eliminar tarjeta"
-                        (click)="deleteCard(card.id)">
+                <button class="delete-card-btn" title="Eliminar tarjeta" (click)="deleteCard(card.id)">
                     <i class="material-icons">delete</i>
                 </button>
             </div>
@@ -32,10 +28,8 @@
     </div>
 
     <div class="cards-actions">
-        <button class="add-card-btn" 
-                mat-raised-button 
-                [routerLink]="['/account/profile/edit']" 
-                [queryParams]="{type:'add-card'}">
+        <button class="add-card-btn" mat-raised-button [routerLink]="['/account/profile/edit']"
+            [queryParams]="{type:'add-card'}">
             <i class="material-icons">add</i>
             Agregar tarjeta
         </button>

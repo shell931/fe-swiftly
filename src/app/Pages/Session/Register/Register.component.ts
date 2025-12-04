@@ -173,9 +173,9 @@ export class RegisterComponent implements OnInit {
         if (departament && departament.id_departament) {
             let id_dep = departament.id_departament;
             this.cities = [];
-            this.registerForm.get('citieCtrl')?.setValue('');
+            this.registerForm.get('citieCtrl')?.setValue(null);
             this.selectedCity = null;
-            
+
             this.apiService.getCitiesFrontbyDepartments(id_dep).subscribe(
                 (data: City[]) => {
                     this.citietlist = data;
@@ -225,10 +225,10 @@ export class RegisterComponent implements OnInit {
         if (localStorage.getItem('store-modal-first-visit-shown') === '1') {
             return;
         }
-        
+
         // Marcar que ya se mostró
         localStorage.setItem('store-modal-first-visit-shown', '1');
-        
+
         // Abrir el diálogo después de un pequeño delay para que la página cargue
         setTimeout(() => {
             this.dialog.open(PromoDialogComponent, {
@@ -252,21 +252,21 @@ export class RegisterComponent implements OnInit {
     register_user_front() {
         this.validate_user = false;
         this.isLoading = true;
-        
+
         if (this.registerForm.valid) {
             let values_register = this.registerForm.value;
-            let myObj_user_client = { 
-                "username": values_register.email, 
-                "password": values_register.password, 
-                "first_name": values_register.name, 
-                "last_name": values_register.second_name, 
-                "email": values_register.email, 
-                "is_active": "true", 
-                "group_id": 2, 
-                "store": '', 
-                "type_user": 3, 
-                "type_identifier": this.selectIdentifiers, 
-                "number_identifier": values_register.number_identifier 
+            let myObj_user_client = {
+                "username": values_register.email,
+                "password": values_register.password,
+                "first_name": values_register.name,
+                "last_name": values_register.second_name,
+                "email": values_register.email,
+                "is_active": "true",
+                "group_id": 2,
+                "store": '',
+                "type_user": 3,
+                "type_identifier": values_register.identifiersCtrl,
+                "number_identifier": values_register.number_identifier
             };
 
             this.apiService.ValidateUserExist(values_register.email).subscribe(
@@ -288,7 +288,7 @@ export class RegisterComponent implements OnInit {
                                         localStorage.setItem('personal_name', login.personal_name);
                                         localStorage.setItem('user_email', login.user_email);
                                         localStorage.setItem('id-store', login.id_store);
-                                        
+
                                         this.toastyService.success('¡Registro exitoso! Bienvenido a nuestra plataforma.', 'Éxito');
                                         this.router.navigate(['/sell/response']).then(() => {
                                             window.location.reload();

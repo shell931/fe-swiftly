@@ -91,6 +91,8 @@ export class StoreListComponent implements OnInit {
     id: any;
     get_product: Prod[] = [];
     loaded = false;
+    // Mobile categories drawer state
+    mobileCategoriesOpen: boolean = false;
     @Output() addToCart: EventEmitter<any> = new EventEmitter();
     @Output() addToWishList: EventEmitter<any> = new EventEmitter();
     get_subca: any[] = [];
@@ -137,6 +139,8 @@ export class StoreListComponent implements OnInit {
         localStorage.removeItem("id_category");
         localStorage.setItem('id_category', id_category);
         this.apiService.getStorebyCategory(id_category).subscribe((res: any) => this.getStoreData(res));        
+        // close mobile drawer after selecting a category
+        this.mobileCategoriesOpen = false;
     }
 
     getCategoriesMenu(response: string | any[], id_store: any) {
@@ -295,6 +299,11 @@ export class StoreListComponent implements OnInit {
 
     public onLoad() {
         this.loaded = true;
+    }
+
+    /** Toggle mobile categories drawer */
+    toggleMobileCategories(): void {
+        this.mobileCategoriesOpen = !this.mobileCategoriesOpen;
     }
 
     trackByStoreId(index: number, store: Store): string {

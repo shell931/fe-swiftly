@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 // CDK imports
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -55,7 +56,7 @@ interface subcategoryNode {
     name_category: string;
     children?: subcategoryNode[];
     type: string;
-    icon:any;
+    icon: any;
 }
 
 interface ExampleFlatNode {
@@ -86,6 +87,7 @@ interface ExampleFlatNode {
         MatPaginatorModule,
         MatFormFieldModule,
         MatInputModule,
+        MatButtonModule,
         CdkTreeModule,
         GlobalModule,
         TemplatesModule
@@ -104,8 +106,8 @@ export class SearchComponent implements OnInit {
             name: node.name_category,
             level: level,
             id: node.id,
-            name_category: node.name_category,            
-            icon: node.icon,            
+            name_category: node.name_category,
+            icon: node.icon,
             type: node.type
         };
     }
@@ -146,9 +148,12 @@ export class SearchComponent implements OnInit {
     get_categories: subcategoryNode[] = [];
     loaded = false;
     get_subca: any[] = [];
-    p:any;
+    p: any;
     product: any; // Added for template compatibility
     rate: number = 0; // Added for rating component
+
+    // Mobile categories drawer state
+    mobileCategoriesOpen: boolean = false;
 
     constructor(private route: ActivatedRoute,
         private router: Router,
@@ -166,6 +171,11 @@ export class SearchComponent implements OnInit {
         this.treeControlN.toggle(node);
     }
 
+    /** Toggle mobile categories drawer */
+    toggleMobileCategories(): void {
+        this.mobileCategoriesOpen = !this.mobileCategoriesOpen;
+    }
+
     ngOnInit() {
         this.route.params.subscribe((res: any) => {
             this.id = res.id;
@@ -174,15 +184,15 @@ export class SearchComponent implements OnInit {
         this.apiService.getCategories().subscribe((res: any) => this.getCategoriesMenu(res), (error: any) => console.log(error));
     }
 
-    SearchByCategories(type: any, id_category: any){
-    localStorage.removeItem("id_category_prod_search");
-    localStorage.removeItem("type_cate_subcate_search");
-    localStorage.setItem('id_category_prod_search', String(id_category));
-    localStorage.setItem('type_cate_subcate_search', String(type));
+    SearchByCategories(type: any, id_category: any) {
+        localStorage.removeItem("id_category_prod_search");
+        localStorage.removeItem("type_cate_subcate_search");
+        localStorage.setItem('id_category_prod_search', String(id_category));
+        localStorage.setItem('type_cate_subcate_search', String(type));
 
-        if(type=="category"){
+        if (type == "category") {
             this.apiService.getProductsbyCategory(id_category).subscribe((res: any) => this.getProductData(res));
-        }else{
+        } else {
             this.apiService.getProductsbySubcategory(id_category).subscribe((res: any) => this.getProductData(res));
         }
     }
@@ -194,7 +204,7 @@ export class SearchComponent implements OnInit {
             if (response[i].name_category && response[i].name_category.toLowerCase().includes('escobillas')) {
                 break; // Detener cuando llegue a escobillas
             }
-            
+
             let subcategor = this.createSubcategories(response[i].rel_categories);
             this.get_categories.push(
                 {
@@ -204,7 +214,7 @@ export class SearchComponent implements OnInit {
                     children: subcategor,
                     icon: response[i].icon,
                 });
-        }            
+        }
         this.dataSourceN.data = this.get_categories;
     }
 
@@ -285,8 +295,8 @@ export class SearchComponent implements OnInit {
             "route_product": value.route_product
         };
 
-    const cartString = localStorage.getItem("cart_item") || '[]';
-    let products = JSON.parse(cartString) || [];
+        const cartString = localStorage.getItem("cart_item") || '[]';
+        let products = JSON.parse(cartString) || [];
         if (products.length > 0) {
             this.embryoService.addToCart(myObj_product);
             // let id_store_storage;

@@ -1,22 +1,30 @@
-<div class="edit-profile-container" *ngIf="type == 'info'">
+<div class="edit-profile-container" *ngIf="type === 'info'">
     <div class="edit-profile-header">
         <b>Edita tu información</b>
     </div>
-    
+
     <form [formGroup]="info" class="edit-profile-form">
         <div class="form-row">
             <div class="form-group">
                 <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre" formControlName="first_name" maxlength="50">
-                <div class="error-message" *ngIf="info.get('first_name').hasError('required') && info.get('first_name').touched">Este campo es obligatorio.</div>
+                <input type="text" class="form-control" placeholder="Nombre" formControlName="first_name"
+                    maxlength="50">
+                <div class="error-message"
+                    *ngIf="info.get('first_name')?.hasError('required') && info.get('first_name')?.touched">
+                    Este campo es obligatorio.
+                </div>
             </div>
             <div class="form-group">
                 <label>Apellidos</label>
-                <input type="text" class="form-control" placeholder="Apellidos" formControlName="last_name" maxlength="50">
-                <div class="error-message" *ngIf="info.get('last_name').hasError('required') && info.get('last_name').touched">Este campo es obligatorio.</div>
+                <input type="text" class="form-control" placeholder="Apellidos" formControlName="last_name"
+                    maxlength="50">
+                <div class="error-message"
+                    *ngIf="info.get('last_name')?.hasError('required') && info.get('last_name')?.touched">
+                    Este campo es obligatorio.
+                </div>
             </div>
         </div>
-        
+
         <div class="form-actions">
             <button class="save-btn" (click)="submitProfileInfo(id_user)">
                 <i class="material-icons">save</i>
@@ -26,134 +34,54 @@
     </form>
 </div>
 
-<div class="edit-profile-container address-form" *ngIf="type == 'address' || type == 'ship-address'">
-    <div class="edit-profile-header address-header">
-        <b *ngIf="type == 'address'">Crear nueva ubicación</b>
-        <b *ngIf="type == 'ship-address'">Crear ubicación de envío</b>
-    </div>
-    
-    <form [formGroup]="address" class="edit-profile-form address-form-content">
-        <div class="form-row">
-            <div class="form-group">
-                <label class="address-label">Dirección</label>
-                <input type="text" class="form-control address-input" placeholder="Dirección" formControlName="address">
-                <div class="error-message" *ngIf="address.get('address').hasError('required') && address.get('address').touched">Este campo es obligatorio.</div>
-            </div>
-            <div class="form-group">
-                <label class="address-label">Nombre del Edificio</label>
-                <input type="text" class="form-control address-input" placeholder="Nombre del edificio" formControlName="buiding_name">
-                <div class="error-message" *ngIf="address.get('buiding_name').hasError('required') && address.get('buiding_name').touched">Este campo es obligatorio.</div>
-            </div>
-        </div>
-        
-        <div class="form-row">
-            <div class="form-group">
-                <label class="address-label">Número de Calle</label>
-                <input type="text" class="form-control address-input" placeholder="Número de calle" formControlName="street_no">
-                <div class="error-message" *ngIf="address.get('street_no').hasError('required') && address.get('street_no').touched">Este campo es obligatorio.</div>
-            </div>
-            <div class="form-group">
-                <label class="address-label">Estado/Provincia</label>
-                <input type="text" class="form-control address-input" placeholder="Estado o provincia" formControlName="state">
-                <div class="error-message" *ngIf="address.get('state').hasError('required') && address.get('state').touched">Este campo es obligatorio.</div>
-            </div>
-        </div>
-        
-        <div class="form-row">
-            <div class="form-group">
-                <label class="address-label">Código Postal</label>
-                <input type="text" class="form-control address-input" placeholder="Código postal" formControlName="zip_code">
-                <div class="error-message" *ngIf="address.get('zip_code').hasError('required') && address.get('zip_code').touched">Este campo es obligatorio.</div>
-            </div>
-            <div class="form-group">
-                <label class="address-label">País</label>
-                <input type="text" class="form-control address-input" placeholder="País" formControlName="country">
-                <div class="error-message" *ngIf="address.get('country').hasError('required') && address.get('country').touched">Este campo es obligatorio.</div>
-            </div>
-        </div>
-        
-        <div class="form-actions">
-            <button class="save-btn address-btn" (click)="submitAddress()">
-                <i class="material-icons">location_on</i>
-                Crear ubicación
-            </button>
-        </div>
-    </form>
-</div>
 
-<div class="edit-profile-container" *ngIf="type == 'card' || type == 'add-card'">
-    <div class="edit-profile-header">
-        <b *ngIf="type == 'card'">Editar información de tarjeta</b>
-        <b *ngIf="type == 'add-card'">Agregar nueva tarjeta</b>
+<div class="edit-profile-container compact-desktop" *ngIf="type === 'card' || type === 'add-card'">
+    <!-- Header -->
+    <div class="compact-header">
+        <b>{{ type === 'card' ? 'Editar Tarjeta' : 'Nueva Tarjeta' }}</b>
+        <button class="save-btn-micro" (click)="submitCard()">
+            <i class="material-icons">check</i> Guardar
+        </button>
     </div>
-    
-    <form [formGroup]="card" class="edit-profile-form">
-        <div class="form-row">
-            <div class="form-group form-group-large">
-                <label>Número de Tarjeta <span class="required">*</span></label>
-                <input type="text" class="form-control" placeholder="Número de tarjeta" formControlName="card_number" (blur)="trimField('card_number')">
-                <div class="error-message" *ngIf="card.get('card_number')?.hasError('required') && card.get('card_number')?.touched && !card.get('card_number')?.value?.toString()?.trim()">El número de tarjeta es obligatorio.</div>
-            </div>
-            <div class="form-group form-group-small">
-                <label>CVV <span class="required">*</span></label>
-                <input type="text" class="form-control" placeholder="CVV" formControlName="cvv" maxlength="4" (blur)="trimField('cvv')">
-                <div class="error-message" *ngIf="card.get('cvv')?.hasError('required') && card.get('cvv')?.touched && !card.get('cvv')?.value?.toString()?.trim()">El CVV es obligatorio.</div>
-            </div>
+
+    <form [formGroup]="card" class="compact-form-grid">
+        <!-- FILA 1 -->
+        <div class="form-field-group span-2">
+            <label>Número de Tarjeta <span class="required">*</span></label>
+            <input type="text" class="compact-input" placeholder="0000 0000 0000 0000" formControlName="card_number"
+                (blur)="trimField('card_number')" maxlength="19">
         </div>
-        
-        <div class="form-group">
-            <label>Nombre en la Tarjeta <span class="required">*</span></label>
-            <input type="text" class="form-control" placeholder="Nombre en la tarjeta" formControlName="name" (blur)="trimField('name')">
-            <div class="error-message" *ngIf="card.get('name')?.hasError('required') && card.get('name')?.touched && !card.get('name')?.value?.toString()?.trim()">El nombre en la tarjeta es obligatorio.</div>
+
+        <div class="form-field-group span-1">
+            <label>CVV <span class="required">*</span></label>
+            <input type="text" class="compact-input center-text" placeholder="123" formControlName="cvv" maxlength="4"
+                (blur)="trimField('cvv')">
         </div>
-        
-        <div class="form-row">
-            <div class="form-group">
-                <label>Mes de Expiración <span class="required">*</span></label>
-                <mat-form-field class="full-width">
-                    <mat-select placeholder="Seleccionar mes" formControlName="month">
-                        <mat-option value="01">Enero</mat-option>
-                        <mat-option value="02">Febrero</mat-option>
-                        <mat-option value="03">Marzo</mat-option>
-                        <mat-option value="04">Abril</mat-option>
-                        <mat-option value="05">Mayo</mat-option>
-                        <mat-option value="06">Junio</mat-option>
-                        <mat-option value="07">Julio</mat-option>
-                        <mat-option value="08">Agosto</mat-option>
-                        <mat-option value="09">Septiembre</mat-option>
-                        <mat-option value="10">Octubre</mat-option>
-                        <mat-option value="11">Noviembre</mat-option>
-                        <mat-option value="12">Diciembre</mat-option>
+
+        <!-- FILA 2 -->
+        <div class="form-field-group span-2">
+            <label>Nombre Titular <span class="required">*</span></label>
+            <input type="text" class="compact-input" placeholder="Como en tarjeta" formControlName="name"
+                (blur)="trimField('name')">
+        </div>
+
+        <div class="form-field-group span-1">
+            <label>Vencimiento <span class="required">*</span></label>
+            <div class="date-row">
+                <mat-form-field appearance="outline" class="compact-mat-field white-bg">
+                    <mat-select placeholder="MM" formControlName="month">
+                        <mat-option *ngFor="let m of ['01','02','03','04','05','06','07','08','09','10','11','12']"
+                            [value]="m">{{m}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="card.get('month').hasError('required') && card.get('month').touched">El mes de expiración es obligatorio.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="compact-mat-field white-bg">
+                    <mat-select placeholder="YY" formControlName="year">
+                        <mat-option *ngFor="let y of ['24','25','26','27','28','29','30']"
+                            [value]="y">{{y}}</mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
-            <div class="form-group">
-                <label>Año de Expiración <span class="required">*</span></label>
-                <mat-form-field class="full-width">
-                    <mat-select placeholder="Seleccionar año" formControlName="year">
-                        <mat-option value="2024">2024</mat-option>
-                        <mat-option value="2025">2025</mat-option>
-                        <mat-option value="2026">2026</mat-option>
-                        <mat-option value="2027">2027</mat-option>
-                        <mat-option value="2028">2028</mat-option>
-                        <mat-option value="2029">2029</mat-option>
-                        <mat-option value="2030">2030</mat-option>
-                        <mat-option value="2031">2031</mat-option>
-                        <mat-option value="2032">2032</mat-option>
-                        <mat-option value="2033">2033</mat-option>
-                        <mat-option value="2034">2034</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="card.get('year').hasError('required') && card.get('year').touched">El año de expiración es obligatorio.</mat-error>
-                </mat-form-field>
-            </div>
-        </div>
-        
-        <div class="form-actions">
-            <button class="save-btn" (click)="submitCard()">
-                <i class="material-icons">credit_card</i>
-                Guardar tarjeta
-            </button>
         </div>
     </form>
 </div>

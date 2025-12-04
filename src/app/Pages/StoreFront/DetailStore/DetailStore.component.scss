@@ -281,6 +281,7 @@
   justify-content: center;
   transition: all 0.3s ease;
   cursor: pointer;
+  z-index: 10 !important;
   
   &:hover {
     background: #dc3545;
@@ -305,7 +306,7 @@
 }
 
 .product-name {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #222;
   margin: 0 0 2px 0;
@@ -315,8 +316,9 @@
   white-space: nowrap;
   
   .product-link {
+    font-size: 0.9rem;
     color: #222;
-    text-decoration: none;
+    max-height: 160px; /* allow one extra line for product name when needed */
     transition: color 0.2s ease;
     
     &:hover {
@@ -374,8 +376,8 @@
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 0.3rem 0.5rem;
-  font-size: 0.7rem;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -383,7 +385,10 @@
   align-items: center;
   justify-content: center;
   gap: 0.2rem;
-  max-width: 100px;
+  min-width: 110px;
+  max-width: none;
+  position: relative;
+  z-index: 1 !important;
   
   &:hover {
     background: #6bc86a;
@@ -392,7 +397,8 @@
   }
   
   i {
-    font-size: 0.65rem;
+    font-size: 0.95rem;
+    margin-right: 0.25rem;
   }
 }
 
@@ -613,6 +619,7 @@ mat-paginator {
     white-space: normal !important;
     display: -webkit-box !important;
     -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
@@ -624,6 +631,7 @@ mat-paginator {
     height: 36px;
     top: 0.5rem;
     right: 0.5rem;
+    z-index: 10 !important;
   }
 }
 
@@ -649,6 +657,98 @@ mat-paginator {
   .view-product-btn {
     width: 100%;
   }
+
+  /* Compact adjustments: reduce paddings, fonts and visual weight */
+  .product-card {
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .product-image-container {
+    height: 120px;
+  }
+
+  .product-info {
+    padding: 6px;
+    gap: 0.4rem;
+    max-height: 140px;
+  }
+
+  .product-name { font-size: 0.85rem; }
+
+  /* Make product-link slightly smaller on small screens */
+  .product-name .product-link { font-size: 0.85rem; }
+
+  .current-price { font-size: 0.88rem; }
+
+  .payment-info .payment-cards { height: 14px; }
+
+  .wishlist-button {
+    width: 32px;
+    height: 32px;
+    top: 0.4rem;
+    right: 0.4rem;
+    i { font-size: 0.9rem; }
+  }
+
+  .action-buttons { gap: 0.25rem; }
+
+  .add-to-cart-btn,
+  .view-product-btn {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.9rem;
+    max-width: none;
+    min-width: 0; /* allow full width but keep comfortable padding */
+    position: relative;
+    z-index: 1 !important;
+
+    i { font-size: 0.95rem; margin-right: 0.25rem; }
+  }
+
+  /* Allow product-link to wrap more lines and avoid being cut on mobile */
+  .product-name {
+    white-space: normal !important;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .product-name .product-link {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* allow up to 3 lines on small screens */
+    line-clamp: 3;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Very small screens: keep layout tight and use single column if necessary */
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .product-image-container { height: 110px; }
+
+
+  .product-info { padding: 6px 6px; max-height: 180px; }
+
+  .product-name { font-size: 0.82rem; -webkit-line-clamp: 3; line-clamp: 3; }
+
+  /* product-link size for very small screens */
+  .product-name .product-link { font-size: 0.82rem; -webkit-line-clamp: 3; line-clamp: 3; white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
+
+  /* product-link size for very small screens */
+  .product-name .product-link { font-size: 0.82rem; }
+
+  .current-price { font-size: 0.86rem; }
+
+  .payment-info { display: none; }
 }
 
 /* ===== UTILITY CLASSES ===== */

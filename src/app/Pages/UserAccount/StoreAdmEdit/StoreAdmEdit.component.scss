@@ -46,11 +46,19 @@
   z-index: 0;
 }
 
+// Override global form-container styles for this component's layout
+.form-section.form-container {
+  display: block !important; // Override global flex display
+  min-height: auto !important; // Override global min-height
+  padding: 0 !important; // Remove global padding, cardpage will handle it
+  background-color: transparent !important; // Remove global background, cardpage will handle it
+  justify-content: initial !important; // Override global justify-content
+  align-items: initial !important; // Override global align-items
+}
+
 .form-section {
-  background: #fff;
-  border-radius: 6px;
-  border: 1px solid #e9ecef;
-  padding: 2rem;
+  // Global form styles will be applied via .form-container class
+  // Keep component-specific overrides minimal
 }
 
 .store-edit-form {
@@ -82,58 +90,49 @@
   grid-column: 1 / -1;
 }
 
+// Labels will use global form-container styles
 .form-group label {
-  font-size: 11px;
-  font-weight: 500;
-  color: #495057;
-  margin-bottom: 0.5rem;
-  display: block;
+  // Global styles from .form-container label will apply
 }
 
 .required {
-  color: #dc3545;
+  color: #1a1a1a; // Black color for asterisks
   font-weight: 500;
 }
 
-.form-control {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 400;
-  color: #495057;
-  background: #fff;
-  transition: all 0.2s ease;
-  margin-bottom: 0.5rem;
-  height: 32px;
-}
-
-.form-control:focus {
-  outline: none;
-  border-color: #79dc78;
-  box-shadow: 0 0 0 2px rgba(121, 220, 120, 0.1);
-}
-
-.form-control::placeholder {
-  color: #adb5bd;
-  font-weight: 400;
-}
+// Form controls will use global .form-container .form-control styles
+// Only override textarea-specific styles
 
 .textarea-field {
   height: auto;
   min-height: 80px;
   resize: vertical;
+  font-family: inherit;
+  font-size: inherit;
+
+  &::placeholder {
+    font-family: inherit;
+    font-size: inherit;
+    opacity: 0.6;
+  }
+
+  &::-webkit-input-placeholder {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  &::-moz-placeholder {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  &:-ms-input-placeholder {
+    font-family: inherit;
+    font-size: inherit;
+  }
 }
 
-mat-error {
-  color: #dc3545;
-  font-size: 9px;
-  font-weight: 400;
-  margin-top: 0.375rem;
-  margin-bottom: 0.375rem;
-  display: block;
-}
+// mat-error styles will use global .form-container mat-error styles
 
 .form-actions {
   display: flex;
@@ -280,7 +279,7 @@ mat-error {
   border: 2px dashed #dee2e6 !important;
   border-radius: 6px !important;
   background: #f8f9fa !important;
-  padding: 2rem !important;
+  padding: 1rem !important;
   text-align: center !important;
   transition: all 0.2s ease !important;
 }
@@ -294,24 +293,24 @@ mat-error {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   color: #6c757d !important;
 }
 
 .dropzone-custom ngx-dropzone-label i {
-  font-size: 32px;
+  font-size: 24px;
   color: #79dc78;
 }
 
 .dropzone-custom ngx-dropzone-label p {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   margin: 0;
   color: #495057;
 }
 
 .dropzone-custom ngx-dropzone-label small {
-  font-size: 10px;
+  font-size: 9px;
   color: #6c757d;
 }
 
@@ -332,99 +331,8 @@ mat-error {
   color: #dc3545;
 }
 
-/* ng-select styling */
-::ng-deep .ng-select {
-  width: 100% !important;
-  
-  .ng-select-container {
-    border: 1px solid #dee2e6 !important;
-    border-radius: 4px !important;
-    min-height: 32px !important;
-    font-size: 11px !important;
-    padding: 0.5rem !important;
-  }
-  
-  &.ng-select-focused .ng-select-container {
-    border-color: #79dc78 !important;
-    box-shadow: 0 0 0 2px rgba(121, 220, 120, 0.1) !important;
-  }
-  
-  .ng-placeholder {
-    color: #adb5bd !important;
-    font-size: 11px !important;
-    padding: 0 !important;
-    position: absolute !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    left: 0.5rem !important;
-    right: 2rem !important;
-    pointer-events: none !important;
-  }
-  
-  .ng-value {
-    color: #495057 !important;
-    font-size: 11px !important;
-    padding: 0 !important;
-    position: relative !important;
-    z-index: 1 !important;
-  }
-  
-  .ng-arrow-wrapper {
-    color: #79dc78 !important;
-    position: absolute !important;
-    right: 0.5rem !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 2 !important;
-  }
-  
-  .ng-input {
-    padding: 0 !important;
-    position: relative !important;
-  }
-  
-  .ng-input input {
-    padding: 0 !important;
-    margin: 0 !important;
-    height: auto !important;
-    border: none !important;
-    background: transparent !important;
-    outline: none !important;
-  }
-  
-  &.ng-select-single .ng-select-container .ng-value-container {
-    padding-left: 0.5rem !important;
-    padding-right: 2rem !important;
-  }
-  
-  &.ng-select-single .ng-select-container .ng-value-container .ng-placeholder {
-    display: none !important;
-  }
-  
-  &.ng-select-single .ng-select-container .ng-value-container .ng-value {
-    display: block !important;
-  }
-}
-
-::ng-deep .ng-dropdown-panel {
-  border: 1px solid #dee2e6 !important;
-  border-radius: 4px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-  background: #fff !important;
-}
-
-::ng-deep .ng-option {
-  color: #495057 !important;
-  font-size: 11px !important;
-  padding: 4px 8px !important;
-  background: #fff !important;
-  min-height: 24px !important;
-}
-
-::ng-deep .ng-option.ng-option-highlighted {
-  background: rgba(121, 220, 120, 0.1) !important;
-  color: #79dc78 !important;
-}
+// ng-select styling will use global .form-container ng-select styles
+// Only component-specific overrides if needed
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -432,36 +340,32 @@ mat-error {
     padding: 0.75rem;
     margin: 0;
   }
-  
+
   .store-edit-content {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .form-section,
   .logo-section {
     padding: 1rem;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .form-group {
     margin-bottom: 0.75rem;
   }
-  
-  .form-control {
-    font-size: 10px;
-    height: 28px;
-    padding: 0.375rem;
-  }
-  
+
+  // Form controls will use global responsive styles
+
   .textarea-field {
     min-height: 60px;
   }
-  
+
   .form-actions {
     justify-content: center;
     margin-top: 0.75rem;
@@ -470,7 +374,7 @@ mat-error {
     z-index: 1;
     width: 100%;
   }
-  
+
   .update-btn {
     width: 100%;
     justify-content: center;
@@ -481,26 +385,26 @@ mat-error {
     z-index: 1 !important;
     margin-bottom: 1rem;
   }
-  
+
   .store-logo-image {
     max-width: 150px;
     max-height: 150px;
   }
-  
+
   .dropzone-custom {
-    padding: 1rem !important;
+    padding: 0.75rem !important;
   }
-  
+
   .dropzone-custom ngx-dropzone-label i {
-    font-size: 24px;
+    font-size: 20px;
   }
-  
+
   .dropzone-custom ngx-dropzone-label p {
-    font-size: 11px;
+    font-size: 10px;
   }
-  
+
   .dropzone-custom ngx-dropzone-label small {
-    font-size: 9px;
+    font-size: 8px;
   }
 }
 
@@ -509,64 +413,51 @@ mat-error {
     padding: 0.5rem;
     margin: 0;
   }
-  
+
   .store-edit-header {
     margin-bottom: 0.5rem;
     padding-bottom: 0.375rem;
   }
-  
+
   .header-content b {
     font-size: 14px !important;
   }
-  
+
   .edit-status {
     font-size: 10px;
   }
-  
+
   .form-section,
   .logo-section {
     padding: 0.75rem;
   }
-  
-  .form-container {
-    gap: 0.5rem;
-  }
-  
+
   .form-row {
     gap: 0.75rem;
     margin-bottom: 1rem;
   }
-  
+
   .form-group {
     margin-bottom: 0.5rem;
   }
-  
-  .form-group label {
-    font-size: 10px;
-    margin-bottom: 0.25rem;
-  }
-  
-  .form-control {
-    font-size: 9px;
-    height: 24px;
-    padding: 0.375rem;
-  }
-  
+
+  // Form controls and labels will use global responsive styles
+
   .textarea-field {
     min-height: 50px;
   }
-  
+
   mat-error {
     font-size: 8px;
     margin-top: 0.125rem;
     margin-bottom: 0.125rem;
   }
-  
+
   .form-actions {
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
   }
-  
+
   .update-btn {
     padding: 4px 8px;
     font-size: 10px;
@@ -575,49 +466,49 @@ mat-error {
     z-index: 1 !important;
     margin-bottom: 0.5rem;
   }
-  
+
   .store-logo-image {
     max-width: 120px;
     max-height: 120px;
   }
-  
+
   .no-logo-warning {
     padding: 0.5rem;
   }
-  
+
   .warning-content i {
     font-size: 16px;
   }
-  
+
   .warning-text strong {
     font-size: 11px;
   }
-  
+
   .warning-text p {
     font-size: 10px;
   }
-  
+
   .dropzone-custom {
-    padding: 0.75rem !important;
+    padding: 0.5rem !important;
   }
-  
+
   .dropzone-custom ngx-dropzone-label i {
-            font-size: 20px;
+    font-size: 18px;
   }
-  
+
   .dropzone-custom ngx-dropzone-label p {
-    font-size: 10px;
+    font-size: 9px;
   }
-  
+
   .dropzone-custom ngx-dropzone-label small {
-    font-size: 8px;
+    font-size: 7px;
   }
-  
+
   .upload-error {
     font-size: 9px;
     padding: 0.375rem;
   }
-  
+
   .upload-error i {
     font-size: 14px;
   }
@@ -631,8 +522,8 @@ mat-card {
 }
 
 mat-card p {
-            box-shadow: none !important;
-        }
+  box-shadow: none !important;
+}
 
 /* Global text styling */
 b {
@@ -653,7 +544,7 @@ span {
     z-index: 1 !important;
     position: relative !important;
   }
-  
+
   .form-section {
     overflow: visible;
     padding-bottom: 2rem;

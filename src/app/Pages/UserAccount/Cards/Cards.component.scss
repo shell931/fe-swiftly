@@ -50,9 +50,9 @@
   color: white !important;
   border: none;
   border-radius: 6px;
-  padding: 10px 18px;
+  padding: 8px 12px;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 12px;
   text-transform: none;
   letter-spacing: 0;
   transition: all 0.2s ease;
@@ -60,8 +60,8 @@
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  height: 36px;
+  gap: 6px;
+  height: 32px;
   position: static !important;
   z-index: 1 !important;
   pointer-events: auto !important;
@@ -175,7 +175,7 @@
   color: white !important;
   border: none;
   border-radius: 4px;
-  padding: 6px 12px;
+  padding: 4px 8px;
   font-size: 11px;
   font-weight: 500;
   text-transform: none;
@@ -184,7 +184,7 @@
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   height: 28px;
 }
 
@@ -205,6 +205,7 @@
 
 .edit-card-btn i {
   color: white !important;
+  font-size: 14px;
 }
 
 .edit-card-btn span {
@@ -393,52 +394,93 @@ mat-card p {
   .cards-container {
     padding: 1rem;
     margin: 0;
-    padding-bottom: 6rem; /* Espacio para el footer móvil */
-    margin-top: 4rem; /* Espacio para el header móvil */
+    padding-bottom: 6rem;
+    /* Espacio para el footer móvil */
+    margin-top: 4rem;
+    /* Espacio para el header móvil */
   }
-  
+
   .cards-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .cards-list {
     gap: 0.5rem;
   }
-  
+
   .card-item {
     padding: 0.75rem;
   }
-  
+
   .card-actions {
     flex-direction: column;
     gap: 8px;
     position: relative;
-    z-index: 1; /* Menor que header (99999) y footer (1000) */
+    z-index: 1;
+    /* Menor que header (99999) y footer (1000) */
   }
-  
+
   .edit-card-btn {
     width: 100%;
     position: relative;
     z-index: 1;
     pointer-events: auto;
   }
-  
+
   .delete-card-btn {
     align-self: flex-end;
     position: relative;
     z-index: 1;
     pointer-events: auto;
   }
-  
+
   .add-card-btn {
     position: static !important;
-    z-index: 1 !important; /* Menor que header (99999) y footer (1000) */
+    z-index: 1 !important;
+    /* Menor que header (99999) y footer (1000) */
     pointer-events: auto !important;
     margin-bottom: 1rem;
     margin-top: 1rem;
     width: 100%;
     justify-content: center;
+  }
+
+  /* Compact button sizes on small screens */
+  .add-card-btn,
+  .edit-card-btn,
+  .delete-card-btn,
+  .edit-store-btn {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    height: 30px !important;
+    gap: 6px !important;
+  }
+
+  .add-card-btn i,
+  .edit-card-btn i,
+  .delete-card-btn i,
+  .edit-store-btn i {
+    font-size: 14px !important;
+  }
+
+  @media (max-width: 360px) {
+
+    .add-card-btn,
+    .edit-card-btn,
+    .delete-card-btn,
+    .edit-store-btn {
+      min-width: 40px !important;
+      width: 40px !important;
+      padding: 6px !important;
+      justify-content: center !important;
+    }
+
+    .add-card-btn .mdc-button__label,
+    .edit-card-btn .mdc-button__label,
+    .edit-store-btn .mdc-button__label {
+      display: none !important;
+    }
   }
 }

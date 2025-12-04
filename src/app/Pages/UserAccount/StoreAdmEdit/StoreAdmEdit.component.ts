@@ -105,17 +105,17 @@ export class StoreAdmEditComponent implements OnInit {
     files: File[] = [];
     widthMin = 700;
     heightMin = 700;
-   toastRejectPixelsImg: any = this.toastyService.warning(
-  "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
-  "Dimension de imagen",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+    toastRejectPixelsImg: any = this.toastyService.warning(
+        "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
+        "Dimension de imagen",
+        { timeOut: 8000, closeButton: true, progressBar: true }
+    );
     toastIconMax: any = this.toastyService.warning(
-  "Subir solo un logo para el comercio!",
-  "Logo comercio",
-  { timeOut: 4000, closeButton: true, progressBar: true }
-);
-   
+        "Subir solo un logo para el comercio!",
+        "Logo comercio",
+        { timeOut: 4000, closeButton: true, progressBar: true }
+    );
+
     public validate_img: boolean = false;
 
     public departamentCtrl: UntypedFormControl = new UntypedFormControl(null, [Validators.required]);
@@ -211,7 +211,7 @@ export class StoreAdmEditComponent implements OnInit {
                 this.depart$ = this.getDepartment("", this.departments);
 
             },
-            (            error: any) => console.log(error)
+            (error: any) => console.log(error)
         );
         // END ANGULAR MAT SEARCH DEPARTAMENT
 
@@ -281,7 +281,7 @@ export class StoreAdmEditComponent implements OnInit {
                 // this.citieCtrl.setValue(this.cities[10]);
                 this.city$ = this.getCity("", this.cities);
             },
-            (            error: any) => console.log(error)
+            (error: any) => console.log(error)
         );
         // END ANGULAR MAT SEARCH CITIES
 
@@ -327,7 +327,7 @@ export class StoreAdmEditComponent implements OnInit {
                 this.toastyService.error(this.toastIconMax);
                 return;
             }
-            
+
             // Validar y agregar archivos
             const firstFile = event.addedFiles[0];
             if (firstFile) {

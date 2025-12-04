@@ -115,23 +115,23 @@ export class AddProductComponent implements OnInit {
    category: Category[] = [];
 
    toastvalidateimg: any = this.toastyService.warning(
-  "Ingresar por lo menos una imagen!",
-  "Imagen",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+      "Ingresar por lo menos una imagen!",
+      "Imagen",
+      { timeOut: 8000, closeButton: true, progressBar: true }
+   );
 
    toastsaveproduct: any = this.toastyService.success(
-  "el producto o servicio ha sido registrado!",
-  "Producto registrado!",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+      "el producto o servicio ha sido registrado!",
+      "Producto registrado!",
+      { timeOut: 8000, closeButton: true, progressBar: true }
+   );
 
 
    toastRejectPixelsImg: any = this.toastyService.warning(
-  "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
-  "Dimension de imagen",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+      "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
+      "Dimension de imagen",
+      { timeOut: 8000, closeButton: true, progressBar: true }
+   );
 
    public show: boolean = false;
 
@@ -253,14 +253,24 @@ export class AddProductComponent implements OnInit {
       this.apiService.getSubCategories(id_category).subscribe(
          (data: Subcategory[]) => {
             this.subcategorieslist = data;
-            for (var i in this.subcategorieslist) {
-               let get_id_subcategory = this.subcategorieslist[i]['id'];
-               let get_name_subcategory = this.subcategorieslist[i]['name_subcategory'];
-               this.subcategories.push({ id: get_id_subcategory, name_subcategory: get_name_subcategory });
+            if (this.subcategorieslist && this.subcategorieslist.length > 0) {
+               for (var i in this.subcategorieslist) {
+                  let get_id_subcategory = this.subcategorieslist[i]['id'];
+                  let get_name_subcategory = this.subcategorieslist[i]['name_subcategory'];
+                  this.subcategories.push({ id: get_id_subcategory, name_subcategory: get_name_subcategory });
+               }
+            } else {
+               // Si no hay subcategorías, agregar opción "Otros" con id 0
+               this.subcategories.push({ id: 0, name_subcategory: 'Otros' });
             }
             this.sub_catego$ = this.getSubcategories("", this.subcategories);
          },
-         (         error: any) => console.log(error)
+         (error: any) => {
+            console.log(error);
+            // En caso de error, agregar opción "Otros" con id 0
+            this.subcategories = [{ id: 0, name_subcategory: 'Otros' }];
+            this.sub_catego$ = this.getSubcategories("", this.subcategories);
+         }
       );
       // END ANGULAR MAT SEARCH SUBCATEGORIES
 
@@ -297,12 +307,21 @@ export class AddProductComponent implements OnInit {
 
       if (this.files.length > 0) {
          if (this.productForm.valid) {
+            // Validar que se haya seleccionado una subcategoría válida (permite 0, rechaza null/undefined/negativos)
+            if (this.selectedSubcategory === null || this.selectedSubcategory === undefined || this.selectedSubcategory < 0) {
+               this.toastyService.error('Por favor selecciona una subcategoría válida');
+               return;
+            }
+
             this.btnDisabled = true;
             this.show = !this.show;
             let myObj_product;
             let values_productForm = this.productForm.value;
 
             const id_store = localStorage.getItem('id-store');
+            // Convertir subcategory_id 0 a null para el backend
+            const subcategoryId = this.selectedSubcategory === 0 ? null : this.selectedSubcategory;
+
             myObj_product = {
                "name_product": values_productForm.name_product,
                "description_product": values_productForm.description_product,
@@ -312,7 +331,7 @@ export class AddProductComponent implements OnInit {
                "stock": values_productForm.stock,
                "store": id_store,
                "brand": values_productForm.brand,
-               "subcategory_id": this.selectedSubcategory,
+               "subcategory_id": subcategoryId,
                "discount_price": values_productForm.discount_price,
                "features": 'na',
                "state": 1,
@@ -342,7 +361,7 @@ export class AddProductComponent implements OnInit {
                      var dateTime = date + ' ' + time;
                      var dates_as_int = [dateTime];
                      const dates = dates_as_int.map(date => new Date(date).getTime());
-                     const namefile = id_store + '-' + this.selectedSubcategory.id + '-' + dates + i + '.' + get_type_img;
+                     const namefile = id_store + '-' + this.selectedSubcategory + '-' + dates + i + '.' + get_type_img;
 
                      if (i == 0) {
                         get_first_image_name = namefile;
