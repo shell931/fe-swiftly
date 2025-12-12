@@ -22,7 +22,7 @@
                             <label>Departamento <span class="required">*</span></label>
                             <ng-select [items]="depart$ | async" bindLabel="departament" bindValue="id_departament"
                                 [formControl]="departamentFilterCtrl" formControlName="departamentCtrl"
-                                (selectionChange)="citieChangeAction($event)" required [(ngModel)]="selectedValue"
+                                (change)="citieChangeAction($event)" required [(ngModel)]="selectedValue"
                                 placeholder="Seleccionar departamento">
                             </ng-select>
                             <mat-error

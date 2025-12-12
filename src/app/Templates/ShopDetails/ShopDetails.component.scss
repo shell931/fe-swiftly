@@ -86,7 +86,7 @@
     height: 320px;
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
     background: #f8f9fa;
     display: flex;
     align-items: center;
@@ -117,15 +117,15 @@
     padding: 5px 0;
     scrollbar-width: thin;
     scrollbar-color: #dee2e6 transparent;
-    
+
     &::-webkit-scrollbar {
         height: 2px;
     }
-    
+
     &::-webkit-scrollbar-track {
         background: transparent;
     }
-    
+
     &::-webkit-scrollbar-thumb {
         background: #dee2e6;
         border-radius: 1px;
@@ -142,17 +142,17 @@
     transition: all 0.2s ease;
     background: #f8f9fa;
     flex-shrink: 0;
-    
+
     &:hover {
         transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
-    
+
     &.active {
         border-color: #007bff;
         box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.1);
     }
-    
+
     img {
         width: 100%;
         height: 100%;
@@ -218,12 +218,12 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    
+
     .payment-cards {
         height: 18px;
         opacity: 0.6;
     }
-    
+
     &::before {
         content: 'Métodos de pago:';
         font-size: 0.75rem;
@@ -268,12 +268,12 @@
     color: #2c3e50;
     font-size: 0.8rem;
     text-align: center;
-    
+
     &.available {
         color: #28a745;
         font-weight: 500;
     }
-    
+
     &.unavailable {
         color: #dc3545;
         font-weight: 500;
@@ -324,23 +324,23 @@
     text-align-last: center !important;
     -moz-text-align-last: center !important;
     transition: all 0.2s ease;
-    
+
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
-    
+
     &[type=number] {
         -moz-appearance: textfield;
     }
-    
+
     &:focus {
         outline: none;
         box-shadow: none;
         text-align: center !important;
     }
-    
+
     &::placeholder {
         text-align: center !important;
     }
@@ -366,14 +366,15 @@
 }
 
 .qty-btn:hover {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .qty-btn:active {
     transform: scale(0.96);
 }
 
-.error-message, .stock-error {
+.error-message,
+.stock-error {
     margin-top: 8px;
 }
 
@@ -442,7 +443,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    
+
     li {
         padding: 2px 6px;
         color: #495057;
@@ -451,7 +452,7 @@
         border-radius: 3px;
         border: 1px solid #e9ecef;
         position: relative;
-        
+
         &:before {
             content: "✓";
             margin-right: 4px;
@@ -461,7 +462,9 @@
     }
 }
 
-.btn-primary, .btn-secondary, .btn-wishlist {
+.btn-primary,
+.btn-secondary,
+.btn-wishlist {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -480,7 +483,7 @@
     min-width: auto;
     flex: 1;
     margin-top: 0.3rem;
-    
+
     &:hover {
         transform: translateY(-1px);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
@@ -490,7 +493,7 @@
 .btn-primary {
     background: #79dc78 !important;
     color: white !important;
-    
+
     &:hover {
         background: #6bc86a !important;
     }
@@ -499,7 +502,7 @@
 .btn-secondary {
     background: #6c757d;
     color: white;
-    
+
     &:hover {
         background: #5a6268;
     }
@@ -513,7 +516,7 @@
     height: 34px;
     border-radius: 50%;
     flex: none;
-    
+
     &:hover {
         background: #dc3545;
         color: white;
@@ -554,13 +557,13 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    
+
     li {
         padding: 8px 0;
         color: #495057;
         position: relative;
         padding-left: 20px;
-        
+
         &:before {
             content: "✓";
             position: absolute;
@@ -579,7 +582,8 @@
     margin-top: 30px;
 }
 
-.questions-section, .reviews-section {
+.questions-section,
+.reviews-section {
     background: #ffffff;
     border-radius: 8px;
     padding: 24px;
@@ -606,7 +610,7 @@
     font-size: 0.9rem;
     resize: vertical;
     transition: all 0.2s ease;
-    
+
     &:focus {
         outline: none;
         border-color: #007bff;
@@ -614,7 +618,10 @@
     }
 }
 
-.btn-submit, .btn-review {
+.btn-submit,
+.btn-review {
+    position: relative;
+    z-index: 1 !important;
     background: #28a745;
     color: white;
     border: none;
@@ -624,7 +631,7 @@
     font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    
+
     &:hover {
         background: #218838;
         transform: translateY(-1px);
@@ -643,49 +650,50 @@
     .modern-product-page {
         padding: 0.5rem 0.75rem;
     }
-    
+
     .product-main-content {
         grid-template-columns: 1fr;
         gap: 0.75rem;
         padding: 0.75rem;
     }
-    
+
     .product-header {
         padding: 0.75rem;
     }
-    
+
     .product-title {
         font-size: 0.75rem;
         margin-bottom: 0.2rem;
     }
-    
+
     .main-image-container {
         height: 260px;
     }
-    
+
     .thumbnails-gallery {
         gap: 4px;
     }
-    
+
     .thumbnail-item {
         width: 40px;
         height: 40px;
     }
-    
+
     .product-info-container {
         padding: 0.75rem;
     }
-    
+
     .product-interaction-section {
         grid-template-columns: 1fr;
         gap: 0.75rem;
     }
-    
+
     .action-buttons {
         flex-direction: column;
     }
-    
-    .btn-primary, .btn-secondary {
+
+    .btn-primary,
+    .btn-secondary {
         width: 100%;
         padding: 0.3rem 0.7rem;
         font-size: 0.75rem;
@@ -698,37 +706,37 @@
     .modern-product-page {
         padding: 0.5rem 0.75rem;
     }
-    
+
     .product-container {
         margin: 0;
     }
-    
+
     .product-header {
         padding: 0.75rem;
     }
-    
+
     .product-title {
         font-size: 0.7rem;
         margin-bottom: 0.15rem;
     }
-    
+
     .main-image-container {
         height: 240px;
     }
-    
+
     .main-image.zoomed {
         transform: scale(1.25);
     }
-    
+
     .thumbnail-item {
         width: 35px;
         height: 35px;
     }
-    
+
     .product-info-container {
         padding: 0.75rem;
     }
-    
+
     /* Precio + acciones inline */
     .price-container {
         display: grid;
@@ -736,12 +744,14 @@
         align-items: center;
         gap: 6px;
     }
+
     .price-actions-inline {
         display: flex;
         align-items: center;
         gap: 4px;
         flex-wrap: nowrap;
     }
+
     .modern-product-page .price-actions-inline .btn-primary,
     .modern-product-page .price-actions-inline .btn-secondary {
         flex: none !important;
@@ -749,8 +759,10 @@
         height: 28px !important;
         min-height: 28px !important;
         font-size: 0.75rem !important;
-        margin-top: 0 !important; /* anula margen superior genérico */
+        margin-top: 0 !important;
+        /* anula margen superior genérico */
     }
+
     /* Oculta bloque de acciones grande en móvil */
     .action-buttons {
         display: none !important;
@@ -759,8 +771,9 @@
     .price-current {
         font-size: 1.3rem;
     }
-    
-    .btn-primary, .btn-secondary {
+
+    .btn-primary,
+    .btn-secondary {
         padding: 0.3rem 0.7rem;
         font-size: 0.7rem;
         min-height: 30px;
@@ -769,19 +782,23 @@
 }
 
 @media (max-width: 420px) {
+
     /* Mantener textos visibles y legibles */
     .price-actions-inline .btn-label {
         display: inline;
     }
+
     .price-actions-inline .btn-primary,
     .price-actions-inline .btn-secondary {
         padding: 0.3rem 0.5rem;
         width: auto;
         height: 30px;
     }
+
     .price-current {
         font-size: 1.15rem;
     }
+
     .payment-info {
         display: none;
     }
@@ -791,34 +808,35 @@
     .modern-product-page {
         padding: 0.5rem 0.75rem;
     }
-    
+
     .product-header {
         padding: 0.75rem;
     }
-    
+
     .product-title {
         font-size: 0.7rem;
         margin-bottom: 0.15rem;
     }
-    
+
     .main-image-container {
         height: 230px;
     }
-    
+
     .thumbnail-item {
         width: 35px;
         height: 35px;
     }
-    
+
     .product-info-container {
         padding: 0.75rem;
     }
-    
+
     .price-current {
         font-size: 1.2rem;
     }
-    
-    .btn-primary, .btn-secondary {
+
+    .btn-primary,
+    .btn-secondary {
         padding: 0.3rem 0.7rem;
         font-size: 0.7rem;
         min-height: 30px;

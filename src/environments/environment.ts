@@ -7,8 +7,8 @@ export const environment = {
   api: {
     // baseUrl: 'https://ofertas-swiftly.com/api/',
     // baseAuthUrl: 'https://ofertas-swiftly.com/auth/',
-    baseUrl: 'http://192.168.1.4:8000/api/',
-    baseAuthUrl: 'http://192.168.1.4:8000/auth/',
+    baseUrl: 'http://192.168.1.5:8000/api/',
+    baseAuthUrl: 'http://192.168.1.5:8000/auth/',
 
     baseBucketImageUrl: 'https://market-docus-v2.s3.us-east-2.amazonaws.com/',
     // baseAuthGateway: 'http://52.44.5.11:1700/marketgateway/public/'

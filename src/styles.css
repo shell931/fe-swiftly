@@ -4724,3 +4724,1162 @@ thead.ng-star-inserted tr.mat-mdc-header-row th {
     font-size: 6px !important;
   }
 }
+
+/* ===== DECORACIÓN NAVIDEÑA ===== */
+
+/* Contenedor de nieve - cubre toda la pantalla */
+.snowflakes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Estilos base para copos de nieve */
+.snowflake {
+  position: fixed;
+  top: -10%;
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  z-index: 9999;
+  animation: snowfall linear infinite;
+  opacity: 0.9;
+}
+
+/* Animación de caída de nieve */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+/* Animación de balanceo lateral */
+@keyframes sway {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(20px);
+  }
+}
+
+/* Diferentes copos con variaciones */
+.snowflake:nth-child(1) {
+  left: 5%;
+  animation-duration: 10s;
+  animation-delay: 0s;
+  font-size: 0.8em;
+}
+
+.snowflake:nth-child(2) {
+  left: 15%;
+  animation-duration: 12s;
+  animation-delay: 1s;
+  font-size: 1.2em;
+}
+
+.snowflake:nth-child(3) {
+  left: 25%;
+  animation-duration: 8s;
+  animation-delay: 2s;
+  font-size: 0.6em;
+}
+
+.snowflake:nth-child(4) {
+  left: 35%;
+  animation-duration: 14s;
+  animation-delay: 0.5s;
+  font-size: 1em;
+}
+
+.snowflake:nth-child(5) {
+  left: 45%;
+  animation-duration: 9s;
+  animation-delay: 3s;
+  font-size: 0.9em;
+}
+
+.snowflake:nth-child(6) {
+  left: 55%;
+  animation-duration: 11s;
+  animation-delay: 1.5s;
+  font-size: 1.1em;
+}
+
+.snowflake:nth-child(7) {
+  left: 65%;
+  animation-duration: 13s;
+  animation-delay: 2.5s;
+  font-size: 0.7em;
+}
+
+.snowflake:nth-child(8) {
+  left: 75%;
+  animation-duration: 7s;
+  animation-delay: 4s;
+  font-size: 1.3em;
+}
+
+.snowflake:nth-child(9) {
+  left: 85%;
+  animation-duration: 15s;
+  animation-delay: 0.8s;
+  font-size: 0.5em;
+}
+
+.snowflake:nth-child(10) {
+  left: 95%;
+  animation-duration: 10s;
+  animation-delay: 3.5s;
+  font-size: 1em;
+}
+
+.snowflake:nth-child(11) {
+  left: 10%;
+  animation-duration: 11s;
+  animation-delay: 4.5s;
+  font-size: 0.85em;
+}
+
+.snowflake:nth-child(12) {
+  left: 20%;
+  animation-duration: 9s;
+  animation-delay: 5s;
+  font-size: 1.15em;
+}
+
+.snowflake:nth-child(13) {
+  left: 30%;
+  animation-duration: 13s;
+  animation-delay: 1.2s;
+  font-size: 0.75em;
+}
+
+.snowflake:nth-child(14) {
+  left: 40%;
+  animation-duration: 8s;
+  animation-delay: 2.8s;
+  font-size: 0.95em;
+}
+
+.snowflake:nth-child(15) {
+  left: 50%;
+  animation-duration: 12s;
+  animation-delay: 0.3s;
+  font-size: 1.05em;
+}
+
+.snowflake:nth-child(16) {
+  left: 60%;
+  animation-duration: 10s;
+  animation-delay: 3.2s;
+  font-size: 0.65em;
+}
+
+.snowflake:nth-child(17) {
+  left: 70%;
+  animation-duration: 14s;
+  animation-delay: 1.8s;
+  font-size: 1.25em;
+}
+
+.snowflake:nth-child(18) {
+  left: 80%;
+  animation-duration: 9s;
+  animation-delay: 4.2s;
+  font-size: 0.55em;
+}
+
+.snowflake:nth-child(19) {
+  left: 90%;
+  animation-duration: 11s;
+  animation-delay: 2.2s;
+  font-size: 0.9em;
+}
+
+.snowflake:nth-child(20) {
+  left: 3%;
+  animation-duration: 13s;
+  animation-delay: 5.5s;
+  font-size: 1.1em;
+}
+
+/* Luces navideñas en la parte superior */
+.christmas-lights {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  z-index: 10000;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent);
+  padding: 2px 0;
+}
+
+.light {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: twinkle 1.5s ease-in-out infinite alternate;
+  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+}
+
+.light:nth-child(5n+1) {
+  background: #ff0000;
+  color: #ff0000;
+  animation-delay: 0s;
+}
+
+.light:nth-child(5n+2) {
+  background: #00ff00;
+  color: #00ff00;
+  animation-delay: 0.3s;
+}
+
+.light:nth-child(5n+3) {
+  background: #ffff00;
+  color: #ffff00;
+  animation-delay: 0.6s;
+}
+
+.light:nth-child(5n+4) {
+  background: #00bfff;
+  color: #00bfff;
+  animation-delay: 0.9s;
+}
+
+.light:nth-child(5n+5) {
+  background: #ff69b4;
+  color: #ff69b4;
+  animation-delay: 1.2s;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Efecto de brillo navideño en botones principales */
+.btn-primary,
+.mat-raised-button,
+.buttonGray:hover {
+  position: relative;
+}
+
+.btn-primary::after,
+.mat-raised-button::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff0000, #00ff00, #ff0000, #00ff00);
+  background-size: 400% 400%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: christmas-glow 3s ease infinite;
+}
+
+.btn-primary:hover::after,
+.mat-raised-button:hover::after {
+  opacity: 0.6;
+}
+
+@keyframes christmas-glow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Cursor con tema navideño */
+body {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E🎄%3C/text%3E%3C/svg%3E"), auto;
+}
+
+/* Decoración en esquinas - copos de nieve estáticos */
+body::after {
+  content: '❄️';
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 2rem;
+  opacity: 0.6;
+  animation: float 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(10deg);
+  }
+}
+
+/* Efecto de escarcha en cards */
+.card,
+.mat-card {
+  position: relative;
+}
+
+.card::before,
+.mat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.8) 20%,
+      rgba(200, 230, 255, 0.6) 40%,
+      rgba(255, 255, 255, 0.8) 60%,
+      rgba(200, 230, 255, 0.6) 80%,
+      transparent 100%);
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Responsive - reducir animaciones en móvil para rendimiento */
+@media (max-width: 768px) {
+  .snowflake {
+    font-size: 0.7em;
+  }
+
+  .snowflake:nth-child(n+11) {
+    display: none;
+    /* Mostrar menos copos en móvil */
+  }
+
+  .christmas-lights .light {
+    width: 6px;
+    height: 6px;
+  }
+
+  body::after {
+    font-size: 1.5rem;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+/* Preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+
+  .snowflake,
+  .light,
+  .btn-primary::after,
+  .mat-raised-button::after,
+  body::after,
+  .card::before,
+  .mat-card::before {
+    animation: none !important;
+  }
+
+  .snowflake {
+    display: none;
+  }
+}
+
+/* ===== ANIMACIONES NAVIDEÑAS SUTILES ===== */
+
+/* Efecto de brillo suave en enlaces al hover */
+a {
+  position: relative;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+  text-shadow: 0 0 8px rgba(121, 220, 120, 0.4);
+}
+
+/* Borde festivo sutil en inputs cuando están enfocados */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #79dc78 !important;
+  box-shadow:
+    0 0 0 2px rgba(121, 220, 120, 0.15),
+    0 0 15px rgba(200, 50, 50, 0.1),
+    0 0 20px rgba(50, 200, 50, 0.1) !important;
+  transition: all 0.3s ease;
+}
+
+/* Efecto de "regalo" sutil en productos/cards al hover */
+.card:hover,
+.mat-card:hover,
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(200, 50, 50, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Pequeño lazo/ribbon decorativo en esquinas de cards importantes */
+.featured-card::before,
+.promo-card::before {
+  content: '🎁';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 1.2rem;
+  z-index: 10;
+  animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+@keyframes gentle-bounce {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-3px) scale(1.05);
+  }
+}
+
+/* Efecto de estrella brillante sutil en headers/títulos */
+h1,
+h2,
+.section-title {
+  position: relative;
+}
+
+h1::after,
+h2::after {
+  content: '✦';
+  position: absolute;
+  top: 0;
+  right: -20px;
+  font-size: 0.5em;
+  color: #ffd700;
+  opacity: 0;
+  animation: star-twinkle 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes star-twinkle {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.8) rotate(0deg);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1) rotate(15deg);
+  }
+}
+
+/* Hover suave con tono navideño en filas de tabla */
+tr:hover {
+  background: linear-gradient(90deg,
+      rgba(121, 220, 120, 0.05) 0%,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(200, 50, 50, 0.05) 100%) !important;
+  transition: background 0.3s ease;
+}
+
+/* Efecto de resplandor navideño en el logo al hover */
+.logo:hover img,
+.logo img:hover {
+  filter: drop-shadow(0 0 8px rgba(121, 220, 120, 0.5));
+  transition: filter 0.3s ease;
+}
+
+/* Pequeños puntos de luz en el fondo - muy sutiles */
+.main::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.03) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(200, 50, 50, 0.03) 0%, transparent 20%),
+    radial-gradient(circle at 50% 50%, rgba(50, 200, 50, 0.02) 0%, transparent 30%);
+}
+
+/* Transición suave de colores en botones */
+.btn,
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:active,
+button:active {
+  transform: scale(0.97);
+}
+
+/* Efecto de nieve sutil en el borde del footer/header */
+header::after,
+footer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.8) 10%,
+      rgba(200, 230, 255, 0.5) 20%,
+      transparent 30%,
+      rgba(255, 255, 255, 0.6) 40%,
+      transparent 50%,
+      rgba(200, 230, 255, 0.7) 60%,
+      transparent 70%,
+      rgba(255, 255, 255, 0.5) 80%,
+      transparent 90%,
+      rgba(200, 230, 255, 0.8) 100%);
+  pointer-events: none;
+  animation: snow-border 8s linear infinite;
+}
+
+header::after {
+  bottom: 0;
+}
+
+footer::before {
+  top: 0;
+}
+
+@keyframes snow-border {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* Efecto de pulso suave en badges/notificaciones */
+.badge,
+.notification-count,
+.cart-count {
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes gentle-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(200, 50, 50, 0.4);
+  }
+
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px rgba(200, 50, 50, 0);
+  }
+}
+
+/* Efecto de cinta decorativa en el precio */
+.price-current,
+.product-price {
+  position: relative;
+}
+
+.price-current::before,
+.product-price::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #c8102e, #ffd700, #c8102e);
+  background-size: 200% 100%;
+  opacity: 0.6;
+  animation: price-underline 3s linear infinite;
+}
+
+@keyframes price-underline {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* Hover festivo en iconos */
+.material-icons:hover,
+.fa:hover {
+  color: #c8102e;
+  text-shadow: 0 0 10px rgba(200, 50, 50, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Efecto de confeti muy sutil en fondo de modales */
+.mat-dialog-container,
+.modal-content {
+  background:
+    radial-gradient(circle at 20% 80%, rgba(200, 50, 50, 0.03) 0%, transparent 15%),
+    radial-gradient(circle at 80% 20%, rgba(50, 200, 50, 0.03) 0%, transparent 15%),
+    radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.02) 0%, transparent 10%),
+    #fff !important;
+}
+
+/* Scroll suave global */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Efecto de "unwrap" en imágenes de productos al hover */
+.product-image:hover,
+.thumbnail-item:hover img {
+  filter: brightness(1.05) saturate(1.1);
+  transition: filter 0.3s ease;
+}
+
+/* Pequeño destello en esquina de imágenes */
+.main-image-container::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: sparkle 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sparkle {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+}
+
+/* Animación suave de entrada para elementos */
+.card,
+.mat-card,
+.product-card {
+  animation: fade-in-up 0.5s ease-out;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive - desactivar algunas animaciones en móvil */
+@media (max-width: 768px) {
+
+  h1::after,
+  h2::after {
+    display: none;
+  }
+
+  .main::before {
+    opacity: 0.5;
+  }
+
+  .card,
+  .mat-card,
+  .product-card {
+    animation: none;
+  }
+}
+
+/* ===== EFECTOS DE FONDO NAVIDEÑOS ===== */
+
+/* Fondo con gradiente animado tipo aurora boreal navideña */
+body {
+  background:
+    linear-gradient(135deg,
+      rgba(248, 249, 250, 1) 0%,
+      rgba(248, 249, 250, 1) 100%);
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(200, 50, 50, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 0%, rgba(50, 150, 50, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 100%, rgba(200, 50, 50, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 0% 100%, rgba(50, 150, 50, 0.06) 0%, transparent 50%);
+  animation: aurora-shift 15s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-shift {
+  0% {
+    opacity: 0.6;
+    filter: hue-rotate(0deg);
+  }
+
+  50% {
+    opacity: 0.8;
+    filter: hue-rotate(10deg);
+  }
+
+  100% {
+    opacity: 0.6;
+    filter: hue-rotate(-10deg);
+  }
+}
+
+/* Orbes flotantes de luz navideña */
+.christmas-orbs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.15;
+  animation: float-orb 20s ease-in-out infinite;
+}
+
+.orb:nth-child(1) {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(200, 50, 50, 0.6) 0%, transparent 70%);
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 25s;
+}
+
+.orb:nth-child(2) {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(50, 180, 50, 0.5) 0%, transparent 70%);
+  top: 60%;
+  right: 15%;
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+.orb:nth-child(3) {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
+  bottom: 20%;
+  left: 20%;
+  animation-delay: -10s;
+  animation-duration: 22s;
+}
+
+.orb:nth-child(4) {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(200, 50, 50, 0.5) 0%, transparent 70%);
+  top: 30%;
+  right: 30%;
+  animation-delay: -7s;
+  animation-duration: 18s;
+}
+
+.orb:nth-child(5) {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(50, 150, 200, 0.4) 0%, transparent 70%);
+  bottom: 40%;
+  right: 5%;
+  animation-delay: -12s;
+  animation-duration: 23s;
+}
+
+@keyframes float-orb {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  75% {
+    transform: translate(20px, 30px) scale(1.05);
+  }
+}
+
+/* Efecto bokeh - círculos desenfocados navideños */
+.bokeh-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bokeh {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: bokeh-fade 8s ease-in-out infinite;
+}
+
+.bokeh:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 0, 0, 0.15);
+  top: 15%;
+  left: 25%;
+  animation-delay: 0s;
+}
+
+.bokeh:nth-child(2) {
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 255, 0, 0.12);
+  top: 45%;
+  left: 75%;
+  animation-delay: 1s;
+}
+
+.bokeh:nth-child(3) {
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 215, 0, 0.1);
+  top: 70%;
+  left: 15%;
+  animation-delay: 2s;
+}
+
+.bokeh:nth-child(4) {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 0, 0, 0.13);
+  top: 25%;
+  left: 85%;
+  animation-delay: 3s;
+}
+
+.bokeh:nth-child(5) {
+  width: 70px;
+  height: 70px;
+  background: rgba(0, 200, 100, 0.11);
+  top: 80%;
+  left: 60%;
+  animation-delay: 4s;
+}
+
+.bokeh:nth-child(6) {
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 100, 100, 0.1);
+  top: 5%;
+  left: 55%;
+  animation-delay: 5s;
+}
+
+.bokeh:nth-child(7) {
+  width: 55px;
+  height: 55px;
+  background: rgba(100, 255, 100, 0.12);
+  top: 55%;
+  left: 35%;
+  animation-delay: 6s;
+}
+
+.bokeh:nth-child(8) {
+  width: 75px;
+  height: 75px;
+  background: rgba(255, 215, 0, 0.1);
+  top: 35%;
+  left: 5%;
+  animation-delay: 7s;
+}
+
+@keyframes bokeh-fade {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+    filter: blur(20px);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+    filter: blur(30px);
+  }
+}
+
+/* Estrellas parpadeantes en el fondo */
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.8);
+  animation: twinkle-star 3s ease-in-out infinite;
+}
+
+.star:nth-child(1) {
+  top: 8%;
+  left: 12%;
+  animation-delay: 0s;
+}
+
+.star:nth-child(2) {
+  top: 15%;
+  left: 78%;
+  animation-delay: 0.5s;
+}
+
+.star:nth-child(3) {
+  top: 25%;
+  left: 45%;
+  animation-delay: 1s;
+}
+
+.star:nth-child(4) {
+  top: 35%;
+  left: 92%;
+  animation-delay: 1.5s;
+}
+
+.star:nth-child(5) {
+  top: 42%;
+  left: 5%;
+  animation-delay: 2s;
+}
+
+.star:nth-child(6) {
+  top: 55%;
+  left: 68%;
+  animation-delay: 2.5s;
+}
+
+.star:nth-child(7) {
+  top: 65%;
+  left: 22%;
+  animation-delay: 0.3s;
+}
+
+.star:nth-child(8) {
+  top: 72%;
+  left: 88%;
+  animation-delay: 0.8s;
+}
+
+.star:nth-child(9) {
+  top: 82%;
+  left: 35%;
+  animation-delay: 1.3s;
+}
+
+.star:nth-child(10) {
+  top: 90%;
+  left: 55%;
+  animation-delay: 1.8s;
+}
+
+.star:nth-child(11) {
+  top: 12%;
+  left: 32%;
+  animation-delay: 2.3s;
+}
+
+.star:nth-child(12) {
+  top: 48%;
+  left: 52%;
+  animation-delay: 2.8s;
+}
+
+@keyframes twinkle-star {
+
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Gradiente animado sutil en la parte inferior */
+.gradient-wave {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(0deg,
+      rgba(200, 50, 50, 0.05) 0%,
+      rgba(50, 150, 50, 0.03) 50%,
+      transparent 100%);
+  animation: wave-pulse 10s ease-in-out infinite;
+}
+
+@keyframes wave-pulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scaleY(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scaleY(1.2);
+  }
+}
+
+/* Responsive - reducir efectos de fondo en móvil */
+@media (max-width: 768px) {
+  .orb {
+    opacity: 0.08;
+    filter: blur(60px);
+  }
+
+  .bokeh {
+    display: none;
+  }
+
+  .star:nth-child(n+7) {
+    display: none;
+  }
+
+  .gradient-wave {
+    height: 80px;
+    opacity: 0.3;
+  }
+
+  body::before {
+    opacity: 0.4;
+  }
+}
+
+/* Preferencia de movimiento reducido - desactivar efectos de fondo */
+@media (prefers-reduced-motion: reduce) {
+
+  body::before,
+  .orb,
+  .bokeh,
+  .star,
+  .gradient-wave {
+    animation: none !important;
+  }
+
+  .orb,
+  .bokeh {
+    display: none;
+  }
+}

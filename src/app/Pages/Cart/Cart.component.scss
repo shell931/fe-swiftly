@@ -1546,38 +1546,56 @@ body {
   }
 
   .pay-button {
-    padding: 0.65rem !important;
+    padding: 0.4rem !important;
+    min-height: auto !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0 !important;
   }
 
   .pay-button-content {
-    margin-bottom: 0.15rem !important;
-    gap: 0.4rem !important;
+    margin-bottom: 0 !important;
+    gap: 0.3rem !important;
+    display: flex !important;
+    align-items: center !important;
+    line-height: 1 !important;
 
     svg {
-      width: 16px !important;
-      height: 16px !important;
+      width: 14px !important;
+      height: 14px !important;
     }
 
     span {
-      font-size: 0.9rem !important;
-      font-weight: 500 !important;
+      font-size: 0.85rem !important;
+      font-weight: 600 !important;
+      line-height: 1 !important;
     }
   }
 
   .pay-button-security {
-    font-size: 0.45rem !important;
-    gap: 0.1rem !important;
-    margin-top: 0.1rem !important;
-    max-width: 90px !important;
+    font-size: 0.6rem !important;
+    gap: 0.2rem !important;
+    margin-top: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    opacity: 0.9 !important;
+    line-height: 1 !important;
+    padding-top: 0.1rem !important;
 
     svg {
-      width: 7px !important;
-      height: 7px !important;
+      width: 8px !important;
+      height: 8px !important;
+      margin-right: 1px !important;
     }
 
     span {
-      font-size: 0.45rem !important;
-      font-weight: 300 !important;
+      font-size: 0.6rem !important;
+      font-weight: 400 !important;
     }
   }
 }
