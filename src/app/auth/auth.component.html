@@ -6,58 +6,51 @@
                 <mat-card class="login-card compact">
                     <mat-card-content class="login-content">
                         <div class="login-header">
-                            <div class="logo-container">
-                                <div class="logo-icon">
-                                    <mat-icon>storefront</mat-icon>
-                                </div>
-                                <h4 class="login-title">Ingresa a tu cuenta</h4>
-                                <p class="login-subtitle">Accede a tu panel de administración</p>
-                            </div>
+                            <h4 class="login-title">Ingresa a tu cuenta</h4>
+                            <p class="login-subtitle">Accede a tu panel de administración</p>
                         </div>
 
                         <form [formGroup]="authForm" (ngSubmit)="saveForm()" class="login-form">
                             <!-- Username Field -->
-                            <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>Usuario</mat-label>
-                                <input matInput
-                                       type="text"
-                                       placeholder="admin"
-                                       formControlName="username"
-                                       autocomplete="username"
-                                       required>
-                                <mat-error *ngIf="authForm.get('username')?.hasError('required') && authForm.get('username')?.touched">
+                            <div class="swiftly-field-group">
+                                <label class="swiftly-label">USUARIO</label>
+                                <div class="swiftly-input-container">
+                                    <mat-icon class="swiftly-input-icon">person</mat-icon>
+                                    <input type="text" placeholder="Usuario" formControlName="username"
+                                        autocomplete="username" class="swiftly-input" required>
+                                </div>
+                                <div *ngIf="authForm.get('username')?.hasError('required') && authForm.get('username')?.touched"
+                                    class="swiftly-error">
                                     El usuario es obligatorio
-                                </mat-error>
-                            </mat-form-field>
+                                </div>
+                            </div>
 
                             <!-- Password Field -->
-                            <mat-form-field appearance="outline" class="full-width">
-                                <mat-label>Contraseña</mat-label>
-                                <input matInput
-                                       [type]="hidePassword ? 'password' : 'text'"
-                                       placeholder="••••••••••••"
-                                       formControlName="password"
-                                       autocomplete="current-password"
-                                       required>
-                                <button mat-icon-button
-                                        matSuffix
-                                        type="button"
-                                        (click)="hidePassword = !hidePassword"
-                                        [attr.aria-label]="'Ocultar contraseña'"
-                                        [attr.aria-pressed]="hidePassword">
-                                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                </button>
-                                <mat-error *ngIf="authForm.get('password')?.hasError('required') && authForm.get('password')?.touched">
+                            <div class="swiftly-field-group">
+                                <label class="swiftly-label">CONTRASEÑA</label>
+                                <div class="swiftly-input-container">
+                                    <mat-icon class="swiftly-input-icon">lock</mat-icon>
+                                    <input [type]="hidePassword ? 'password' : 'text'" placeholder="Contraseña"
+                                        formControlName="password" autocomplete="current-password" class="swiftly-input"
+                                        required>
+                                    <mat-icon class="swiftly-input-icon-right" (click)="hidePassword = !hidePassword"
+                                        style="cursor: pointer;">
+                                        {{ hidePassword ? 'visibility_off' : 'visibility' }}
+                                    </mat-icon>
+                                </div>
+                                <div *ngIf="authForm.get('password')?.hasError('required') && authForm.get('password')?.touched"
+                                    class="swiftly-error">
                                     La contraseña es obligatoria
-                                </mat-error>
-                                <mat-error *ngIf="authForm.get('password')?.hasError('minlength') && authForm.get('password')?.touched">
+                                </div>
+                                <div *ngIf="authForm.get('password')?.hasError('minlength') && authForm.get('password')?.touched"
+                                    class="swiftly-error">
                                     La contraseña debe tener al menos 6 caracteres
-                                </mat-error>
-                            </mat-form-field>
+                                </div>
+                            </div>
 
                             <!-- Error Message -->
-                            <div class="error-message" *ngIf="show">
-                                <mat-icon class="error-icon">error</mat-icon>
+                            <div class="swiftly-error-message" *ngIf="show">
+                                <mat-icon class="swiftly-error-icon">error</mat-icon>
                                 <span>Usuario o contraseña incorrectos</span>
                             </div>
 
@@ -66,28 +59,26 @@
                                 <mat-checkbox formControlName="rememberMe" class="remember-checkbox">
                                     Recordar
                                 </mat-checkbox>
-                                <a href="#" class="forgot-password-link" (click)="onForgotPassword($event)">
+                                <a href="#" class="swiftly-forgot-link" (click)="onForgotPassword($event)">
                                     ¿Olvidaste tu contraseña?
                                 </a>
                             </div>
 
                             <!-- Submit Button -->
-                            <button mat-raised-button
-                                    type="submit"
-                                    class="login-button"
-                                    [disabled]="authForm.invalid || isLoading">
+                            <button class="swiftly-login-button" mat-raised-button type="submit"
+                                [disabled]="authForm.invalid || isLoading">
                                 <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
                                 <span>{{isLoading ? 'Ingresando...' : 'Iniciar sesión'}}</span>
+                                <mat-icon class="swiftly-button-icon" *ngIf="!isLoading">arrow_forward</mat-icon>
                             </button>
 
-                            <!-- Register Link -->
-                            <div class="register-section">
-                                <p class="register-text">
-                                    ¿No tienes una cuenta?
-                                    <a href="#" class="register-link" (click)="onCreateAccount($event)">
-                                        Click aquí para crear cuenta
-                                    </a>
-                                </p>
+                            <!-- Register Section -->
+                            <div class="swiftly-register-section">
+                                <p class="swiftly-register-text">¿No tienes una cuenta?</p>
+                                <button class="swiftly-register-button" type="button" (click)="onCreateAccount($event)">
+                                    <span>Crear cuenta</span>
+                                    <mat-icon class="swiftly-button-icon">arrow_forward</mat-icon>
+                                </button>
                             </div>
                         </form>
                     </mat-card-content>

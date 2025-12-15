@@ -1,139 +1,117 @@
-<div class="cart-page" *ngIf="(embryoService.localStorageCartProducts && embryoService.localStorageCartProducts.length>0); else elseBlock">
+<div class="cart-page"
+    *ngIf="(embryoService.localStorageCartProducts && embryoService.localStorageCartProducts.length>0); else elseBlock">
     <div class="container">
-        <!-- Cart Header -->
         <div class="cart-header">
-            <h1 class="cart-title">Mi Carrito</h1>
-            <div class="cart-count">{{embryoService.localStorageCartProducts.length}} producto(s)</div>
+            <h1 class="cart-title">Tu Carrito</h1>
+            <div class="cart-count">{{embryoService.localStorageCartProducts.length}} productos</div>
         </div>
 
         <div class="cart-content">
-            <!-- Products List -->
             <div class="products-section">
+                <div class="cart-table-header">
+                    <div class="col-product">Producto</div>
+                    <div class="col-price">Precio</div>
+                    <div class="col-quantity">Cantidad</div>
+                    <div class="col-total">Total</div>
+                    <div class="col-remove"></div>
+                </div>
+
                 <div class="product-card" *ngFor="let product of embryoService.localStorageCartProducts; let i = index">
-                    <div class="product-image-container">
-                        <img class="product-image" [src]="product.image" [alt]="product.name" loading="lazy">
-                        <div class="product-quantity-badge">{{getQuantityValue(product)}}</div>
-                    </div>
-                    
-                    <div class="product-details">
-                        <h3 class="product-name">{{product?.name}}</h3>
-                        <div class="product-price-info">
-                            <span class="unit-price">{{product.price | currency : 'USD' : 'symbol' : '1.0-0'}} c/u</span>
-                            <span class="total-price">{{ calculateProductSinglePrice(product, getQuantityValue(product)) | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+
+                    <div class="product-col-main">
+                        <div class="product-image-container">
+                            <img class="product-image" [src]="product.image" [alt]="product.name" loading="lazy">
                         </div>
                     </div>
-                    
-                    <div class="product-actions">
-                        <div class="quantity-controls" [class.updating]="updatingProductId === (product.id_product || product.id)">
-                            <button type="button" class="qty-btn minus" (click)="decrement(product)" [disabled]="getQuantityValue(product) <= 1 || isUpdating">
+
+                    <div class="product-info">
+                        <h3 class="product-name">{{product?.name}}</h3>
+                        <span class="unit-price mobile-only">{{product.price | currency : 'USD' : 'symbol' :
+                            '1.0-0'}}</span>
+                    </div>
+
+                    <div class="product-col-price desktop-only">
+                        <span>{{product.price | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+                    </div>
+
+                    <div class="product-col-quantity">
+                        <div class="quantity-controls"
+                            [class.updating]="updatingProductId === (product.id_product || product.id)">
+                            <button type="button" class="qty-btn minus" (click)="decrement(product)"
+                                [disabled]="getQuantityValue(product) <= 1 || isUpdating">
                                 <span>−</span>
                             </button>
-                            <span class="qty-display" [class.updating]="updatingProductId === (product.id_product || product.id)">
-                                <span *ngIf="updatingProductId === (product.id_product || product.id)" class="loading-spinner"></span>
-                                <span *ngIf="updatingProductId !== (product.id_product || product.id)">{{getQuantityValue(product)}}</span>
+                            <span class="qty-display">
+                                <span *ngIf="updatingProductId === (product.id_product || product.id)"
+                                    class="loading-spinner"></span>
+                                <span
+                                    *ngIf="updatingProductId !== (product.id_product || product.id)">{{getQuantityValue(product)}}</span>
                             </span>
-                            <button type="button" class="qty-btn plus" (click)="increment(product)" [disabled]="getQuantityValue(product) >= 10 || isUpdating">
+                            <button type="button" class="qty-btn plus" (click)="increment(product)"
+                                [disabled]="getQuantityValue(product) >= 10 || isUpdating">
                                 <span>+</span>
                             </button>
                         </div>
-                        
-                        <button type="button" class="remove-btn" (click)="removeProduct(product)" title="Eliminar producto">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                    </div>
+
+                    <div class="product-col-total desktop-only">
+                        <span>{{ calculateProductSinglePrice(product, getQuantityValue(product)) | currency : 'USD' :
+                            'symbol' : '1.0-0'}}</span>
+                    </div>
+
+                    <div class="product-col-total-mobile mobile-only">
+                        <span>{{ calculateProductSinglePrice(product, getQuantityValue(product)) | currency : 'USD' :
+                            'symbol' : '1.0-0'}}</span>
+                    </div>
+
+                    <div class="product-col-remove">
+                        <button type="button" class="remove-btn" (click)="removeProduct(product)">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                </path>
                             </svg>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Cart Summary -->
             <div class="cart-summary">
-                <div class="summary-header">
-                    <h3>Resumen del Pedido</h3>
-                </div>
-                
                 <div class="summary-details">
-                    <div class="summary-row">
-                        <span class="label">Subtotal</span>
-                        <span class="value">{{getTotalPrice() | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="label">Envío</span>
-                        <span class="value">Gratis</span>
-                    </div>
-                    <div class="summary-divider"></div>
                     <div class="summary-row total-row">
-                        <span class="label">Total</span>
-                        <span class="value total-amount">{{getTotalPrice() | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+                        <span class="label">Total a pagar</span>
+                        <span class="total-amount">{{getTotalPrice() | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
                     </div>
                 </div>
-                
-                <button class="checkout-btn" (click)="updateLocalCartProduct()">
-                    <span>Proceder al Pago</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
-                    </svg>
+
+                <button class="pay-button" (click)="updateLocalCartProduct()">
+                    <div class="pay-button-content">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z">
+                            </path>
+                        </svg>
+                        <span>Pagar {{getTotalPrice() | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
+                    </div>
+                    <div class="pay-button-security">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z">
+                            </path>
+                        </svg>
+                        <span>Pago seguro</span>
+                    </div>
                 </button>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Diálogo de Eliminación -->
-<div class="delete-dialog-overlay" [class.show]="showDeleteDialog" (click)="closeDeleteDialog()" *ngIf="showDeleteDialog">
-    <div class="delete-dialog" (click)="$event.stopPropagation()" (keydown.escape)="closeDeleteDialog()">
-        <div class="dialog-header">
-            <div class="dialog-icon">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#f87171" stroke-width="2"/>
-                    <path d="m15 9-6 6" stroke="#f87171" stroke-width="2"/>
-                    <path d="m9 9 6 6" stroke="#f87171" stroke-width="2"/>
-                </svg>
-            </div>
-        </div>
-        
-        <div class="dialog-content">
-            <h3>¿Eliminar producto?</h3>
-            <p>Se eliminará <strong>{{productToDelete?.name}}</strong> del carrito</p>
-            <div class="product-preview" *ngIf="productToDelete">
-                <img [src]="productToDelete.image" [alt]="productToDelete.name" class="preview-image">
-                <div class="preview-info">
-                    <span class="preview-name">{{productToDelete.name}}</span>
-                    <span class="preview-price">{{productToDelete.price | currency : 'USD' : 'symbol' : '1.0-0'}}</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="dialog-actions">
-            <button class="cancel-btn" (click)="closeDeleteDialog()">
-                <span>Cancelar</span>
-            </button>
-            <button class="confirm-delete-btn" (click)="confirmDelete()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
-                </svg>
-                <span>Eliminar</span>
-            </button>
-        </div>
-    </div>
-</div>
-
 <ng-template #elseBlock>
     <div class="empty-cart-state">
         <div class="empty-cart-content">
-            <div class="empty-cart-icon">
-                <svg width="120" height="120" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="#e5e7eb"/>
-                </svg>
-            </div>
             <h2 class="empty-cart-title">Tu carrito está vacío</h2>
-            <p class="empty-cart-description">¡Agrega algunos productos increíbles y vuelve aquí para finalizar tu compra!</p>
-            <button class="continue-shopping-btn" [routerLink]="['/']">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                </svg>
-                <span>Continuar Comprando</span>
-            </button>
         </div>
     </div>
 </ng-template>

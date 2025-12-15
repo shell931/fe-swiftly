@@ -181,18 +181,12 @@ export class HeaderOneComponent implements OnInit, OnDestroy {
       const store = localStorage.getItem('id-store');
       this.id_store = store;
 
-      console.log('=== DEBUG AUTHENTICATION ===');
-      console.log('token_front:', token_front);
-      console.log('id_type_user:', id_type_user);
-      console.log('store:', store);
-
       if (token_front) {
          this.show_add = false;
          if (id_type_user == "2") {
             // it's a store
             this.show_store_pr = true;
             this.show = false;
-            console.log('User is a store - showing store menu');
             this.apiService.getStoreData(this.id_store).subscribe(res => {
                this.getDataStore(res)
             }, error => console.log(error));
@@ -200,7 +194,6 @@ export class HeaderOneComponent implements OnInit, OnDestroy {
             // it's not a store
             this.show = true;
             this.show_store_pr = false;
-            console.log('User is not a store - showing regular menu');
          }
          if (store == "null") {
             this.show_acces_sell = true;
@@ -213,13 +206,7 @@ export class HeaderOneComponent implements OnInit, OnDestroy {
          this.show_add = true;
          this.show_acces_store = false;
          this.show_acces_sell = true;
-         console.log('No token - showing login menu');
       }
-
-      console.log('Final menu state:');
-      console.log('show:', this.show);
-      console.log('show_store_pr:', this.show_store_pr);
-      console.log('show_add:', this.show_add);
    }
    private blurSearchInput() {
       try { this.searchInput?.nativeElement.blur(); } catch {}
@@ -305,7 +292,6 @@ trackByCategoryId(index: number, item: any): any {
    }
 
    exit_store_front() {
-      console.log('=== EJECUTANDO EXIT_STORE_FRONT ===');
       localStorage.removeItem('mr-token-front');
       localStorage.removeItem('id_type_user');
       localStorage.removeItem('id_user_front');
@@ -332,7 +318,6 @@ trackByCategoryId(index: number, item: any): any {
    }
 
    public toggleMobileMenu() {
-      console.log('=== TOGGLE MOBILE MENU ===', this.isMobileMenuOpen);
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
    }
 
@@ -349,13 +334,9 @@ trackByCategoryId(index: number, item: any): any {
 
 
    public onMenuClick(menuItem: string) {
-      console.log('=== MENU CLICK ===', menuItem);
    }
 
    public onCommerceMenuClick(menuItem: string) {
-      console.log('=== COMERCIO MENU CLICK ===', menuItem);
-      console.log('show_store_pr:', this.show_store_pr);
-      console.log('validate_img:', this.validate_img);
    }
 
    public closeMobileMenuOnBackdrop(event: Event) {
@@ -375,38 +356,21 @@ trackByCategoryId(index: number, item: any): any {
    }
 
    public directRemoveProduct(value: any) {
-      console.log('=== ELIMINANDO PRODUCTO DIRECTAMENTE EN HEADER ===');
-      console.log('Value:', value);
-
       // ELIMINAR DIRECTAMENTE
       this.embryoService.removeLocalCartProduct(value);
-
-      console.log('=== PRODUCTO ELIMINADO DEL SERVICIO ===');
    }
 
    public handleUpdateQuantity(value: any) {
-      console.log('=== ACTUALIZANDO CANTIDAD EN HEADER ===');
-      console.log('Producto con nueva cantidad:', value);
-
       // Actualizar cantidad sin mostrar notificaciones
       this.embryoService.updateCartProductQuantity(value);
-
-      console.log('=== CANTIDAD ACTUALIZADA EN EL SERVICIO ===');
-      console.log('Nueva cantidad:', value.quantity);
    }
 
    public handleEditProduct(value: any) {
-      console.log('=== EDITANDO PRODUCTO EN HEADER ===');
-      console.log('Producto editado:', value);
-
       // Primero remover el producto anterior
       this.embryoService.removeLocalCartProduct(value);
 
       // Luego agregar el producto con la nueva cantidad
       this.embryoService.addToCart(value);
-
-      console.log('=== PRODUCTO ACTUALIZADO EN EL SERVICIO ===');
-      console.log('Nueva cantidad:', value.quantity);
    }
 
    public openConfirmationPopup(value: any) {
@@ -451,8 +415,6 @@ trackByCategoryId(index: number, item: any): any {
 
    public search($event: any) {
       if ($event.timeStamp - this.lastkeypress > 200) {
-         // defensive: event may not have target/value
-         try{ console.log($event.target?.value); }catch(e){}
          this.apiService.getProductsWithoutAuth().subscribe((res: any) => this.getProductData(res));
       }
       this.lastkeypress = $event.timeStamp
@@ -529,7 +491,6 @@ trackByCategoryId(index: number, item: any): any {
       }
 
       this.dataSourceTree.data = this.get_categories;
-      console.log(this.dataSourceTree.data);
   }
 
 

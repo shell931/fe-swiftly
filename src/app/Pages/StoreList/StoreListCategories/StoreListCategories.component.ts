@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 // import { NgxPaginationModule } from 'ngx-pagination'; // Temporarily disabled for standalone compatibility
 
 const { isArray } = Array;
@@ -70,6 +71,7 @@ export interface Store {
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
+        MatSelectModule,
         MatPaginatorModule,
         MatTreeModule
     ],
@@ -96,8 +98,31 @@ export class StoreListCategoriesComponent implements OnInit {
     storeGrid: Store[] = [];
     obsStore: Observable<any>;
     dataSourceStore = new MatTableDataSource<Store>(this.storeGrid);
-    searchText:any;
-    p:any;
+    searchText: any;
+    p: any;
+    isCategoriesOpen: boolean = false;
+
+    toggleCategories() {
+        this.isCategoriesOpen = !this.isCategoriesOpen;
+    }
+
+    /** Navigate when a category is selected from mobile dropdown */
+    onCategoryMobile(categoryId: number | string) {
+        if (!categoryId) return;
+        try {
+            this.router.navigate(['/storelist/searchstorebycategories', categoryId]);
+        } catch (e) {
+            console.error('Navigation error on mobile category select', e);
+        }
+    }
+
+    /** Close categories dropdown when a category is clicked (mobile) */
+    onCategoryClick() {
+        // Close dropdown on mobile when category is selected
+        if (window.innerWidth <= 768) {
+            this.isCategoriesOpen = false;
+        }
+    }
 
     constructor(private route: ActivatedRoute,
         private router: Router,
@@ -106,7 +131,7 @@ export class StoreListCategoriesComponent implements OnInit {
         private changeDetectorRef: ChangeDetectorRef
     ) { }
 
-    ngOnInit() {        
+    ngOnInit() {
 
         this.route.params.subscribe(res => {
             this.id = res.id;
@@ -135,10 +160,10 @@ export class StoreListCategoriesComponent implements OnInit {
 
         this.dataSourceTree.data = this.get_categories;
 
-        
+
     }
 
- 
+
 
     // createSubcategories(subcate, id_store) {
     //     this.get_subca = [];
@@ -189,7 +214,7 @@ export class StoreListCategoriesComponent implements OnInit {
 
     public onLoad() {
         this.loaded = true;
-     }
+    }
 
     trackByStoreId(index: number, item: Store): any {
         return item?.id_store || index;
@@ -207,10 +232,10 @@ export class StoreListCategoriesComponent implements OnInit {
                 this.obsStore = this.dataSourceStore.connect();
                 return;
             }
-            
+
             // Obtener el texto de búsqueda de forma segura
             const searchValue = (this.searchText || '').trim().toLowerCase();
-            
+
             // Si no hay texto, mostrar todas
             if (!searchValue) {
                 this.dataSourceStore.data = this.storeGrid;
@@ -218,22 +243,22 @@ export class StoreListCategoriesComponent implements OnInit {
                 // Filtrar por nombre, descripción o estado
                 const filtered = this.storeGrid.filter(store => {
                     if (!store) return false;
-                    
+
                     // Convertir a string antes de toLowerCase
                     const name = String(store.name_store || '').toLowerCase();
                     const desc = String(store.description || '').toLowerCase();
                     const state = String(store.state_store || '').toLowerCase();
                     const city = String(store.city || '').toLowerCase();
-                    
-                    return name.includes(searchValue) || 
-                           desc.includes(searchValue) || 
-                           state.includes(searchValue) ||
-                           city.includes(searchValue);
+
+                    return name.includes(searchValue) ||
+                        desc.includes(searchValue) ||
+                        state.includes(searchValue) ||
+                        city.includes(searchValue);
                 });
-                
+
                 this.dataSourceStore.data = filtered;
             }
-            
+
             // Actualizar el paginador
             this.dataSourceStore.paginator = this.paginator;
             this.obsStore = this.dataSourceStore.connect();
@@ -308,7 +333,7 @@ export class StoreListCategoriesComponent implements OnInit {
 //         this.dataSourceStore.paginator = this.paginator;
 //         this.obsStore = this.dataSourceStore.connect();
 //     }
-    
+
 // }
 
 

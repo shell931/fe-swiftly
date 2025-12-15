@@ -120,23 +120,23 @@ export class ProductEditAdmComponent implements OnInit {
 
 
     toastvalidateimg: any = this.toastyService.error(
-  "La imagen es requerida",
-  "ingresa una imagen",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+        "La imagen es requerida",
+        "ingresa una imagen",
+        { timeOut: 8000, closeButton: true, progressBar: true }
+    );
 
 
     toastsaveproduct: any = this.toastyService.success(
-  "Producto registrado",
-  "El producto o servicio ha sido registrado!",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+        "Producto registrado",
+        "El producto o servicio ha sido registrado!",
+        { timeOut: 8000, closeButton: true, progressBar: true }
+    );
 
     toastRejectPixelsImg: any = this.toastyService.error(
-  "Dimensiones de imagen",
-  "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+        "Dimensiones de imagen",
+        "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
+        { timeOut: 8000, closeButton: true, progressBar: true }
+    );
 
 
     constructor(
@@ -189,7 +189,7 @@ export class ProductEditAdmComponent implements OnInit {
         this.availability = response.availability;
 
         this.apiService.FindCategoryBySubcategory(this.subcategory).subscribe(
-            (            dataCategory: { [x: string]: { [x: string]: any; }; }) => {
+            (dataCategory: { [x: string]: { [x: string]: any; }; }) => {
                 let id_category: number = 0; // Initialize with a default value
                 for (var i in dataCategory) {
                     id_category = dataCategory[i]['category'];
@@ -207,7 +207,7 @@ export class ProductEditAdmComponent implements OnInit {
                         this.setValueCategoriesSelect(this.category, id_category);
                         this.prod_category$ = this.getCategoriesProd("", this.category);
                     },
-                    (                    error: any) => console.log(error)
+                    (error: any) => console.log(error)
                 );
 
                 this.subcategories = [];
@@ -223,11 +223,11 @@ export class ProductEditAdmComponent implements OnInit {
                         this.setValueSubCategoriesSelect(this.subcategories, this.subcategory);
                         this.sub_catego$ = this.getSubcategories("", this.subcategories);
                     },
-                    (                    error: any) => console.log(error)
+                    (error: any) => console.log(error)
                 );
 
             },
-            (            error: any) => console.log(error)
+            (error: any) => console.log(error)
         );
 
         if (this.availability == true) {
@@ -358,10 +358,10 @@ export class ProductEditAdmComponent implements OnInit {
         console.log('selectFile called with event:', event);
         this.validate_img = false;
         this.obligatory_img = false;
-        
+
         // ngx-dropzone can pass files in different ways
         let addedFiles: File[] = [];
-        
+
         if (Array.isArray(event)) {
             // If event is directly an array of files
             addedFiles = event;
@@ -372,28 +372,28 @@ export class ProductEditAdmComponent implements OnInit {
             // If event is an array
             addedFiles = event;
         }
-        
+
         console.log('Processed files count:', addedFiles.length);
-        
+
         if (Array.isArray(addedFiles) && addedFiles.length > 0) {
             // Validate and add each file
             addedFiles.forEach((file: File) => {
                 console.log('Processing file:', file.name, file.type, file.size);
-                
+
                 // Verificar que sea una imagen
                 if (!file.type || !file.type.startsWith('image/')) {
                     this.validate_img = true;
                     this.toastyService.error('Solo se permiten archivos de imagen (JPG, PNG)');
                     return;
                 }
-                
+
                 // Check if file is already in the array
                 const fileExists = this.files.some(f => f.name === file.name && f.size === file.size && f.lastModified === file.lastModified);
                 if (fileExists) {
                     console.log('File already exists:', file.name);
                     return;
                 }
-                
+
                 // Validar dimensiones
                 this.onValidatePixels(file)
                     .then((isValid) => {
@@ -444,7 +444,7 @@ export class ProductEditAdmComponent implements OnInit {
         if (this.get_id_image.length > 0) {
             let consec_del = 0;
             let deleteErrors = 0;
-            
+
             for (var a = 0; a < this.get_id_image.length; a++) {
                 console.log("Elimina imagen" + a);
                 let myObj_product = {
@@ -501,7 +501,7 @@ export class ProductEditAdmComponent implements OnInit {
                 }
                 this.sub_catego$ = this.getSubcategories("", this.subcategories);
             },
-            (            error: any) => console.log(error)
+            (error: any) => console.log(error)
         );
         // END ANGULAR MAT SEARCH SUBCATEGORIES
 
@@ -526,12 +526,12 @@ export class ProductEditAdmComponent implements OnInit {
         if (this.productForm.valid) {
             this.validate_coun_img = false;
             this.apiService.getCountImagesProducts(this.id_product).subscribe(
-                (                result: any) => {
+                (result: any) => {
 
                     let count_images_product = result;
                     let count_images_to_upload = this.files.length;
                     let count_images_to_delete = this.get_id_image.length;
-                    
+
                     console.log('Image counts:', {
                         current: count_images_product,
                         toUpload: count_images_to_upload,
@@ -559,9 +559,9 @@ export class ProductEditAdmComponent implements OnInit {
                         // let total = values_productForm.total_price.replace(/\./g,'');
                         console.log(this.selectedValueAvailable);
                         let total = values_productForm.total_price;
-                        if(this.selectedValueAvailable=="Si"){
+                        if (this.selectedValueAvailable == "Si") {
                             this.selectedValueAvailable = true;
-                        }else if(this.selectedValueAvailable=="No"){
+                        } else if (this.selectedValueAvailable == "No") {
                             this.selectedValueAvailable = false;
                         }
                         console.log(this.selectedValueAvailable);
@@ -612,7 +612,7 @@ export class ProductEditAdmComponent implements OnInit {
                                         formDataDocIde.append('image', file);
                                         formDataDocIde.append('product', product_id);
                                         formDataDocIde.append('image_name', namefile);
-                                        
+
                                         console.log('Uploading file:', namefile);
 
                                         this.apiService.uploadFile(formDataDocIde).subscribe(
@@ -654,7 +654,7 @@ export class ProductEditAdmComponent implements OnInit {
                     }
 
                 },
-                (                error: any) => console.log(error)
+                (error: any) => console.log(error)
             );
 
 

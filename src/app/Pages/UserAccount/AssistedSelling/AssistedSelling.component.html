@@ -1,13 +1,4 @@
 <style type="text/css">
-    .contenedor {
-        width: 90%;
-        max-width: 1000px;
-        padding: 40px 20px;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
     /* ---------- Estilos Generales de las Tarjetas ----------*/
 
     .tarjeta {
@@ -21,6 +12,7 @@
         cursor: pointer;
         z-index: 2;
     }
+
     /* .tarjeta.active {
         transform: rotateY(180deg);
     } */
@@ -34,6 +26,7 @@
         justify-content: space-between;
         box-shadow: 0 10px 10px 0 rgba(90, 116, 148, 0.3);
     }
+
     /* ---------- Tarjeta Delantera ----------*/
     /* Moved to component SCSS file for proper asset path resolution */
 
@@ -74,6 +67,7 @@
         justify-content: space-between;
         margin-top: 20px;
     }
+
     /* ---------- Tarjeta Trasera ----------*/
     /* Moved to component SCSS file for proper asset path resolution */
 
@@ -135,6 +129,7 @@
         font-size: 14px;
         color: #fff;
     }
+
     /* ---------- Contenedor Boton ----------*/
 
     .contenedor-btn .btn-abrir-formulario {
@@ -162,6 +157,7 @@
     .contenedor-btn .btn-abrir-formulario.active {
         transform: rotate(45deg);
     }
+
     /* ---------- Formulario Tarjeta ----------*/
 
     .formulario-tarjeta {
@@ -296,12 +292,15 @@
             /* display: block; */
             width: 80px;
         }
+
         .button-pay {
             width: 100%;
         }
+
         .size-form-payment {
             width: 100%;
         }
+
         .tarjet-dim {
             margin-top: 20px;
         }
@@ -311,7 +310,7 @@
 
 <mat-card>
     <div fxLayout="row wrap" class="col-gap">
-        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100" style="margin-top: 0px;">
+        <div>
             <div class="size-form-payment">
                 <div class="dash-title ml-3">
                     <form [formGroup]="assistedsellingForm">
@@ -321,42 +320,60 @@
                                 <div class="row mb-3 mt-3">
                                     <div class="col-md-6">
                                         <p class="class_label">Nombres *</p>
-                                        <input type="text" placeholder="Nombres completos" formControlName="tag_first_name" class="form-control" required maxlength="30" val="jose">
-                                        <mat-error *ngIf="assistedsellingForm.get('tag_first_name').hasError('required') && assistedsellingForm.get('tag_first_name').touched">
+                                        <input type="text" placeholder="Nombres completos"
+                                            formControlName="tag_first_name" class="form-control" required
+                                            maxlength="30" val="jose">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.get('tag_first_name').hasError('required') && assistedsellingForm.get('tag_first_name').touched">
                                             Este campo es obligatorio.</mat-error>
                                     </div>
                                     <div class="col-md-6">
                                         <p class="class_label">Apellidos *</p>
-                                        <input type="text" placeholder="Apellidos completos" formControlName="tag_last_name" class="form-control" required maxlength="30">
-                                        <mat-error *ngIf="assistedsellingForm.get('tag_last_name').hasError('required') && assistedsellingForm.get('tag_last_name').touched">
+                                        <input type="text" placeholder="Apellidos completos"
+                                            formControlName="tag_last_name" class="form-control" required
+                                            maxlength="30">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.get('tag_last_name').hasError('required') && assistedsellingForm.get('tag_last_name').touched">
                                             Este campo es obligatorio.</mat-error>
                                     </div>
                                     <div class="col-6">
                                         <p class="class_label">Tipo de identificación *</p>
-                                        <ng-select placeholder="Seleccione" [items]="identifier$ | async" bindLabel="type_identifier" bindValue="id" formControlName="identifiersCtrl" [(ngModel)]="selectIdentifiers" required>
+                                        <ng-select placeholder="Seleccione" [items]="identifier$ | async"
+                                            bindLabel="type_identifier" bindValue="id" formControlName="identifiersCtrl"
+                                            [(ngModel)]="selectIdentifiers" required>
                                         </ng-select>
-                                        <mat-error *ngIf="assistedsellingForm.get('identifiersCtrl').hasError('required') && assistedsellingForm.get('identifiersCtrl').touched">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.get('identifiersCtrl').hasError('required') && assistedsellingForm.get('identifiersCtrl').touched">
                                             Este campo es obligatorio.</mat-error>
                                     </div>
 
                                     <div class="col-6">
                                         <p class="class_label">Número de identificación *</p>
-                                        <input type="text" placeholder="Digite el número de identificación" formControlName="number_identifier" class="form-control" required maxlength="10">
-                                        <mat-error *ngIf="assistedsellingForm.get('number_identifier').hasError('required') && assistedsellingForm.get('number_identifier').touched">
+                                        <input type="text" placeholder="Digite el número de identificación"
+                                            formControlName="number_identifier" class="form-control" required
+                                            maxlength="10">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.get('number_identifier').hasError('required') && assistedsellingForm.get('number_identifier').touched">
                                             Este campo es obligatorio.</mat-error>
-                                        <mat-error *ngIf="assistedsellingForm.controls['number_identifier'].hasError('pattern')">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.controls['number_identifier'].hasError('pattern')">
                                             Solo se aceptan números
                                         </mat-error>
                                     </div>
 
                                     <div class="col-md-6">
                                         <p class="class_label">Correo electrónico *</p>
-                                        <input type="text" placeholder="tucorreo@mail.com" formControlName="tag_email" class="form-control" required maxlength="30">
-                                        <mat-error *ngIf="assistedsellingForm.controls['tag_email'].touched && !assistedsellingForm.controls['tag_email'].valid">
-                                            <mat-error *ngIf="assistedsellingForm.controls['tag_email'].hasError('required')" class="required alert-error">
+                                        <input type="text" placeholder="tucorreo@mail.com" formControlName="tag_email"
+                                            class="form-control" required maxlength="30">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.controls['tag_email'].touched && !assistedsellingForm.controls['tag_email'].valid">
+                                            <mat-error
+                                                *ngIf="assistedsellingForm.controls['tag_email'].hasError('required')"
+                                                class="required alert-error">
                                                 Deberas ingresar un email
                                             </mat-error>
-                                            <mat-error *ngIf="assistedsellingForm.controls['tag_email'].hasError('pattern')">
+                                            <mat-error
+                                                *ngIf="assistedsellingForm.controls['tag_email'].hasError('pattern')">
                                                 Debes incluir un formato de email valido.
                                             </mat-error>
                                         </mat-error>
@@ -364,33 +381,45 @@
 
                                     <div class="col-md-6">
                                         <p class="class_label">Número de celular *</p>
-                                        <input type="text" placeholder="celular" formControlName="tag_cellphone" class="form-control" required maxlength="30">
-                                        <mat-error *ngIf="assistedsellingForm.get('tag_cellphone').hasError('required') && assistedsellingForm.get('tag_cellphone').touched">
+                                        <input type="text" placeholder="celular" formControlName="tag_cellphone"
+                                            class="form-control" required maxlength="30">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.get('tag_cellphone').hasError('required') && assistedsellingForm.get('tag_cellphone').touched">
                                             Este campo es obligatorio.</mat-error>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Departamento</label>
-                                        <ng-select [items]="depart$ | async" bindLabel="departament" bindValue="id_departament" [formControl]="departamentFilterCtrl" formControlName="departamentCtrll" (change)="citieChangeAction($event)" (selectionChange)="citieChangeAction(departamentCtrl)"
-                                            required>
+                                        <ng-select [items]="depart$ | async" bindLabel="departament"
+                                            bindValue="id_departament" [formControl]="departamentFilterCtrl"
+                                            formControlName="departamentCtrll" (change)="citieChangeAction($event)"
+                                            (selectionChange)="citieChangeAction(departamentCtrl)" required>
                                         </ng-select>
-                                        <mat-error *ngIf="assistedsellingForm.get('departamentCtrll').hasError('required') && assistedsellingForm.get('departamentCtrll').touched">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.get('departamentCtrll').hasError('required') && assistedsellingForm.get('departamentCtrll').touched">
                                             Este campo es obligatorio.</mat-error>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Ciudad</label>
-                                        <ng-select [items]="city$ | async" bindLabel="city" bindValue="id_city" [formControl]="citieCtrl" formControlName="citieCtrl" [(ngModel)]="selectedCity" required>
+                                        <ng-select [items]="city$ | async" bindLabel="city" bindValue="id_city"
+                                            [formControl]="citieCtrl" formControlName="citieCtrl"
+                                            [(ngModel)]="selectedCity" required>
                                         </ng-select>
-                                        <mat-error *ngIf="assistedsellingForm.get('citieCtrl').hasError('required') && assistedsellingForm.get('citieCtrl').touched">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.get('citieCtrl').hasError('required') && assistedsellingForm.get('citieCtrl').touched">
                                             Este campo es obligatorio.</mat-error>
                                     </div>
 
                                     <div class="col-md-12">
                                         <p class="class_label">Dirección *</p>
-                                        <input type="text" placeholder="Escribe direccipon de comprador" formControlName="address" class="form-control" required maxlength="200">
-                                        <mat-error *ngIf="assistedsellingForm.controls['address'].touched && !assistedsellingForm.controls['address'].valid">
-                                            <mat-error *ngIf="assistedsellingForm.controls['address'].hasError('required')" class="required alert-error">
+                                        <input type="text" placeholder="Escribe direccipon de comprador"
+                                            formControlName="address" class="form-control" required maxlength="200">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.controls['address'].touched && !assistedsellingForm.controls['address'].valid">
+                                            <mat-error
+                                                *ngIf="assistedsellingForm.controls['address'].hasError('required')"
+                                                class="required alert-error">
                                                 Deberas ingresar una direccion
                                             </mat-error>
                                         </mat-error>
@@ -402,22 +431,31 @@
                                 <div class="row mb-3 mt-3">
                                     <div class="col-md-6">
                                         <p class="class_label">Total *</p>
-                                        <input type="text" placeholder="Total" formControlName="total_tx" class="form-control" required maxlength="8" (keypress)="numberOnly($event)">
-                                        <mat-error *ngIf="assistedsellingForm.get('total_tx').hasError('required') && assistedsellingForm.get('total_tx').touched">
+                                        <input type="text" placeholder="Total" formControlName="total_tx"
+                                            class="form-control" required maxlength="8" (keypress)="numberOnly($event)">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.get('total_tx').hasError('required') && assistedsellingForm.get('total_tx').touched">
                                             Este campo es obligatorio o formato numerico</mat-error>
 
                                         <p class="class_label">Impuesto Iva *</p>
-                                        <ng-select placeholder="IVA" [items]="percentage_tax$ | async" bindLabel="percentage" bindValue="id" formControlName="percentagetaxCtrl" [formControl]="percentagetaxFilterCtrl" [(ngModel)]="selectedPercentageTax" required>
+                                        <ng-select placeholder="IVA" [items]="percentage_tax$ | async"
+                                            bindLabel="percentage" bindValue="id" formControlName="percentagetaxCtrl"
+                                            [formControl]="percentagetaxFilterCtrl" [(ngModel)]="selectedPercentageTax"
+                                            required>
                                         </ng-select>
-                                        <mat-error *ngIf="assistedsellingForm.get('percentagetaxCtrl').hasError('required') && assistedsellingForm.get('percentagetaxCtrl').touched">
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.get('percentagetaxCtrl').hasError('required') && assistedsellingForm.get('percentagetaxCtrl').touched">
                                             Este campo es obligatorio.</mat-error>
 
                                     </div>
 
                                     <div class="col-md-6">
                                         <p class="class_label">Descripcion venta</p>
-                                        <textarea type="text" placeholder="Descripcion de la venta" formControlName="tag_desc_selling" class="form-control" required maxlength="100" style="height: 104px;"></textarea>
-                                        <mat-error *ngIf="assistedsellingForm.get('tag_desc_selling').hasError('required') && assistedsellingForm.get('tag_desc_selling').touched">
+                                        <textarea type="text" placeholder="Descripcion de la venta"
+                                            formControlName="tag_desc_selling" class="form-control" required
+                                            maxlength="100" style="height: 104px;"></textarea>
+                                        <mat-error
+                                            *ngIf="assistedsellingForm.get('tag_desc_selling').hasError('required') && assistedsellingForm.get('tag_desc_selling').touched">
                                             Este campo es obligatorio.</mat-error>
                                     </div>
                                 </div>
@@ -428,10 +466,14 @@
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <div>
-                                <img class="imd-styles m-1" style="width: 70px; height: 45px;" src="assets/images/cards_brand/amex.svg" alt="card">
-                                <img class="imd-styles m-1" style="width: 70px; height: 45px;" src="assets/images/cards_brand/dinersclub.svg" alt="card">
-                                <img class="imd-styles m-1" style="width: 70px; height: 45px;" src="assets/images/cards_brand/mastercard.svg" alt="card">
-                                <img class="imd-styles m-1" style="width: 70px; height: 45px;" src="assets/images/cards_brand/visa.svg" alt="card">
+                                <img class="imd-styles m-1" style="width: 70px; height: 45px;"
+                                    src="assets/images/cards_brand/amex.svg" alt="card">
+                                <img class="imd-styles m-1" style="width: 70px; height: 45px;"
+                                    src="assets/images/cards_brand/dinersclub.svg" alt="card">
+                                <img class="imd-styles m-1" style="width: 70px; height: 45px;"
+                                    src="assets/images/cards_brand/mastercard.svg" alt="card">
+                                <img class="imd-styles m-1" style="width: 70px; height: 45px;"
+                                    src="assets/images/cards_brand/visa.svg" alt="card">
                             </div>
                             <!-- Formulario -->
                             <form id="formulario-tarjeta" [formGroup]="paymentForm">
@@ -439,16 +481,22 @@
                                     <div class="col-md-12">
                                         <div class="grupo">
                                             <p class="class_label">Número de Tarjeta *</p>
-                                            <input type="text" placeholder="Digite el número de tarjeta" formControlName="inputNumero" id="inputNumero" maxlength="19" autocomplete="off" class="form-control">
-                                            <mat-error *ngIf="paymentForm.get('inputNumero').hasError('required') && paymentForm.get('inputNumero').touched">
+                                            <input type="text" placeholder="Digite el número de tarjeta"
+                                                formControlName="inputNumero" id="inputNumero" maxlength="19"
+                                                autocomplete="off" class="form-control">
+                                            <mat-error
+                                                *ngIf="paymentForm.get('inputNumero').hasError('required') && paymentForm.get('inputNumero').touched">
                                                 Este campo es obligatorio.</mat-error>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="grupo">
                                             <p class="class_label">Nombre *</p>
-                                            <input type="text" placeholder="Nombre en la tarjeta" formControlName="inputNombre" id="inputNombre" maxlength="19" autocomplete="off" class="form-control">
-                                            <mat-error *ngIf="paymentForm.get('inputNombre').hasError('required') && paymentForm.get('inputNombre').touched">
+                                            <input type="text" placeholder="Nombre en la tarjeta"
+                                                formControlName="inputNombre" id="inputNombre" maxlength="19"
+                                                autocomplete="off" class="form-control">
+                                            <mat-error
+                                                *ngIf="paymentForm.get('inputNombre').hasError('required') && paymentForm.get('inputNombre').touched">
                                                 Este campo es obligatorio.</mat-error>
                                         </div>
                                     </div>
@@ -458,40 +506,44 @@
                                     <div class="col-md-6">
                                         <div class="grupo-select">
                                             <p class="class_label">Mes *</p>
-                                            <select name="mes" id="selectMes" class="form-control" [(ngModel)]="selectedMonth" formControlName="selectMesFc">
-                                                    <!-- <option disabled selected>Mes</option> -->
-                                                    <option value="01">01</option>
-                                                    <option value="02">02</option>
-                                                    <option value="03">03</option>
-                                                    <option value="04">04</option>
-                                                    <option value="05">05</option>
-                                                    <option value="06">06</option>
-                                                    <option value="07">07</option>
-                                                    <option value="08">08</option>
-                                                    <option value="09">09</option>
-                                                    <option value="10">10</option>
-                                                    <option value="11">11</option>
-                                                    <option value="12">12</option>
-                                                </select>
-                                            <mat-error *ngIf="paymentForm.get('selectMesFc').hasError('required') && paymentForm.get('selectMesFc').touched">
+                                            <select name="mes" id="selectMes" class="form-control"
+                                                [(ngModel)]="selectedMonth" formControlName="selectMesFc">
+                                                <!-- <option disabled selected>Mes</option> -->
+                                                <option value="01">01</option>
+                                                <option value="02">02</option>
+                                                <option value="03">03</option>
+                                                <option value="04">04</option>
+                                                <option value="05">05</option>
+                                                <option value="06">06</option>
+                                                <option value="07">07</option>
+                                                <option value="08">08</option>
+                                                <option value="09">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                            <mat-error
+                                                *ngIf="paymentForm.get('selectMesFc').hasError('required') && paymentForm.get('selectMesFc').touched">
                                                 Este campo es obligatorio.</mat-error>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="grupo-select">
                                             <p class="class_label">Año *</p>
-                                            <select name="year" id="selectYear" class="form-control" [(ngModel)]="selectedYear" formControlName="selectYearFc">
-                                                    <!-- <option disabled selected>Año</option> -->
-                                                    <option value="2021">2021</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2023">2023</option>
-                                                    <option value="2024">2024</option>
-                                                    <option value="2025">2025</option>
-                                                    <option value="2026">2026</option>
-                                                    <option value="2027">2027</option>
-                                                    <option value="2028">2028</option>
-                                                </select>
-                                            <mat-error *ngIf="paymentForm.get('selectYearFc').hasError('required') && paymentForm.get('selectYearFc').touched">
+                                            <select name="year" id="selectYear" class="form-control"
+                                                [(ngModel)]="selectedYear" formControlName="selectYearFc">
+                                                <!-- <option disabled selected>Año</option> -->
+                                                <option value="2021">2021</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2024">2024</option>
+                                                <option value="2025">2025</option>
+                                                <option value="2026">2026</option>
+                                                <option value="2027">2027</option>
+                                                <option value="2028">2028</option>
+                                            </select>
+                                            <mat-error
+                                                *ngIf="paymentForm.get('selectYearFc').hasError('required') && paymentForm.get('selectYearFc').touched">
                                                 Este campo es obligatorio.</mat-error>
                                         </div>
                                     </div>
@@ -500,16 +552,20 @@
                                     <div class="col-md-6">
                                         <div class="grupo ccv">
                                             <p class="class_label">CCV *</p>
-                                            <input type="text" placeholder="ccv" formControlName="inputCCV" id="inputCCV" maxlength="3" class="form-control">
-                                            <mat-error *ngIf="paymentForm.get('inputCCV').hasError('required') && paymentForm.get('inputCCV').touched">
+                                            <input type="text" placeholder="ccv" formControlName="inputCCV"
+                                                id="inputCCV" maxlength="3" class="form-control">
+                                            <mat-error
+                                                *ngIf="paymentForm.get('inputCCV').hasError('required') && paymentForm.get('inputCCV').touched">
                                                 Este campo es obligatorio.</mat-error>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="grupo ccv">
                                             <p class="class_label">Cuotas *</p>
-                                            <input type="text" placeholder="Numero cuotas" formControlName="quote" id="quote" maxlength="3" class="form-control">
-                                            <mat-error *ngIf="paymentForm.get('quote').hasError('required') && paymentForm.get('quote').touched">
+                                            <input type="text" placeholder="Numero cuotas" formControlName="quote"
+                                                id="quote" maxlength="3" class="form-control">
+                                            <mat-error
+                                                *ngIf="paymentForm.get('quote').hasError('required') && paymentForm.get('quote').touched">
                                                 Este campo es obligatorio.</mat-error>
                                         </div>
                                     </div>
@@ -545,7 +601,8 @@
 
                                                 <div class="grupo" id="expiracion">
                                                     <p class="label">Expiracion</p>
-                                                    <p class="expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
+                                                    <p class="expiracion"><span class="mes">MM</span> / <span
+                                                            class="year">AA</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -571,23 +628,26 @@
                                 </section>
                             </div>
                             <div class="mt-3" align="center">
-                                <p class="font-leyend">Pague de manera segura<img src="assets/images/pci/pci.svg" class="chip image-leyend" alt=""></p>
+                                <p class="font-leyend">Pague de manera segura<img src="assets/images/pci/pci.svg"
+                                        class="chip image-leyend" alt=""></p>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-3">
-                        <swal #deleteSwal title="Crear transaccion" text="Esta seguro de crear esta transaccion" [showCancelButton]="true" [focusCancel]="true" (confirm)="selling_execute()">
+                        <swal #deleteSwal title="Crear transaccion" text="Esta seguro de crear esta transaccion"
+                            [showCancelButton]="true" [focusCancel]="true" (confirm)="selling_execute()">
                         </swal>
                         <button mat-raised-button color="primary" [swal]="deleteSwal" class="button-pay">Realizar
-                                venta</button>
+                            venta</button>
                     </div>
                 </div>
 
             </div>
             <hr>
             <div class="buttonIn">
-                <input class="inputsearch" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar transacciones" autocomplete="off" type="search">
+                <input class="inputsearch" matInput (keyup)="applyFilter($event.target.value)"
+                    placeholder="Buscar transacciones" autocomplete="off" type="search">
             </div>
             <ng-container *ngIf="transactionsList && transactionsList.length>0; else elseBlock">
                 <div fxLayout="column">
@@ -596,14 +656,15 @@
                             <table mat-table [dataSource]="dataSource" class="w-100 table-scroll-wrap">
 
                                 <ng-container matColumnDef="action">
-                                    <th class="px-3 text-nowrap table-left" mat-header-cell *matHeaderCellDef><span class="material-icons-outlined">
-                                                settings
-                                            </span>
+                                    <th class="px-3 text-nowrap table-left" mat-header-cell *matHeaderCellDef><span
+                                            class="material-icons-outlined">
+                                            settings
+                                        </span>
                                     </th>
                                     <td class="px-3 text-nowrap" mat-cell *matCellDef="let element;let i = index;">
                                         <button mat-icon-button (click)="onSeeDialog(element)" color="primary">
-                                                <i class="material-icons">remove_red_eye</i>
-                                            </button>
+                                            <i class="material-icons">remove_red_eye</i>
+                                        </button>
                                     </td>
                                 </ng-container>
 
@@ -654,7 +715,8 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="total_tx">
-                                    <th class="px-3 text-nowrap table-right" mat-header-cell *matHeaderCellDef> Total </th>
+                                    <th class="px-3 text-nowrap table-right" mat-header-cell *matHeaderCellDef> Total
+                                    </th>
                                     <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
                                         {{element.total_tx|currency : 'USD' : 'symbol' : '1.0-0'}}
                                     </td>
@@ -664,10 +726,7 @@
                                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                             </table>
                         </div>
-                        <mat-paginator 
-                            #paginator
-                            [length]="dataSource.data.length"
-                            [pageSize]="15"
+                        <mat-paginator #paginator [length]="dataSource.data.length" [pageSize]="15"
                             [pageSizeOptions]="[15, 30, 45, 60]">
                         </mat-paginator>
                     </mat-card>

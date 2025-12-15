@@ -37,7 +37,7 @@ export interface CategoryStore {
     selector: 'app-EditStore',
     templateUrl: './EditStore.component.html',
     styleUrls: ['./EditStore.component.scss'],
-    standalone: true,
+    standalone: true, // Force rebuild
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -52,7 +52,7 @@ export interface CategoryStore {
     ]
 })
 export class EditStoreComponent implements OnInit {
-  
+
 
     departamentlist: Departament[] = [];
     departments: Departament[] = [];
@@ -102,7 +102,7 @@ export class EditStoreComponent implements OnInit {
     storeForm!: UntypedFormGroup;
     emailPattern: any = /\S+@\S+\.\S+/;
     formBuilder: any;
-   
+
 
     constructor(
         private route: ActivatedRoute,
@@ -112,8 +112,8 @@ export class EditStoreComponent implements OnInit {
         private apiService: ApiService,
         private _formBuilder: UntypedFormBuilder) { }
 
-        
- toastOption:  any = this.toastyService.success(
+
+    toastOption: any = this.toastyService.success(
         "La tienda ha sido actualizada en el sistema!",
         "Tienda actualizada",
         { timeOut: 4000, closeButton: true, progressBar: true }
@@ -123,19 +123,19 @@ export class EditStoreComponent implements OnInit {
         "Logo comercio",
         { timeOut: 4000, closeButton: true, progressBar: true }
     );
-       
-    
+
+
     toastvalidateimg: any = this.toastyService.warning(
         "Ingresar logo!",
-      "Logo",
+        "Logo",
         { timeOut: 4000, closeButton: true, progressBar: true }
     );
 
     toastRejectPixelsImg: any = this.toastyService.warning(
-  "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
-  "Dimension de imagen",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+        "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
+        "Dimension de imagen",
+        { timeOut: 8000, closeButton: true, progressBar: true }
+    );
 
     ngOnInit() {
         this.route.params.subscribe((res: Params) => {
@@ -204,7 +204,7 @@ export class EditStoreComponent implements OnInit {
                         this.filterDepartament();
                     });
             },
-            (            error: any) => console.log(error)
+            (error: any) => console.log(error)
         );
         // END ANGULAR MAT SEARCH DEPARTAMENT
 
@@ -221,7 +221,7 @@ export class EditStoreComponent implements OnInit {
                 this.setValueCitiSelect(this.cities, this.id_city);
                 this.citieCtrl.setValue(this.cities[10]);
             },
-            (            error: any) => console.log(error)
+            (error: any) => console.log(error)
         );
         // END ANGULAR MAT SEARCH CITIES
 
@@ -280,8 +280,8 @@ export class EditStoreComponent implements OnInit {
 
     //START SET EVENT FROM DROPZONE COMPLEMENT
     selectFile(event: NgxDropzoneChangeEvent) {
-    // event.addedFiles is an array of File; index variable not needed
-    console.log(this.files.length);
+        // event.addedFiles is an array of File; index variable not needed
+        console.log(this.files.length);
         if (this.files.length > 0) {
             this.toastyService.error(this.toastIconMax);
         } else if (Array.isArray(event.addedFiles)) {
@@ -369,7 +369,7 @@ export class EditStoreComponent implements OnInit {
                 }
                 this.citieCtrl.setValue(this.cities[10]);
             },
-            (            error: any) => console.log(error)
+            (error: any) => console.log(error)
         );
         // END ANGULAR MAT SEARCH CITIES
 
@@ -389,11 +389,11 @@ export class EditStoreComponent implements OnInit {
                 "number_identifier": values_store.number_identifier, "manager": values_store.manager,
                 "state_store": "true", "city": values_store.cityControl.id_city,
                 "description": values_store.description,
-                "logo_store": this.logo_store_save, "storecategories":values_store.categorystoreCtrl.id
+                "logo_store": this.logo_store_save, "storecategories": values_store.categorystoreCtrl.id
             };
 
             this.apiService.updateStore(myObj_store, this.id_store).subscribe(
-                (                result: { [x: string]: any; }) => {
+                (result: { [x: string]: any; }) => {
 
                     if (this.files.length > 0) {
                         let store_id = result["id_store"];
@@ -410,7 +410,7 @@ export class EditStoreComponent implements OnInit {
                     }
 
                 },
-                (                error: any) => console.log(error)
+                (error: any) => console.log(error)
             );
             // END UPDATE STORE ON DB
             if (this.files.length > 0) {

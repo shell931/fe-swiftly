@@ -3,7 +3,7 @@
     <div class="page-header">
         <div class="container">
             <div class="header-content">
-                <h1 class="page-title">Buscar tiendas por categoría</h1>
+                <h1 class="page-title">Categorías</h1>
                 <p class="page-subtitle">Explora nuestras categorías y encuentra las mejores tiendas</p>
             </div>
         </div>
@@ -13,32 +13,34 @@
         <div class="main-layout">
             <!-- Sidebar - Categories -->
             <aside class="sidebar">
-                <div class="categories-card">
-                    <h3 class="categories-title">
-                        <i class="material-icons">category</i>
-                        Categorías
-                    </h3>
-                    <mat-tree [dataSource]="dataSourceTree" [treeControl]="treeControl" class="categories-tree">
-                        <mat-nested-tree-node *matTreeNodeDef="let node;">
-                            <div class="category-item">
-                                <button 
-                                    mat-icon-button 
-                                    matTreeNodeToggle 
-                                    [attr.aria-label]="'toggle ' + node.name_category"
-                                    class="category-toggle">
-                                    <mat-icon class="mat-icon-rtl-mirror">
-                                        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                                    </mat-icon>
-                                </button>
-                                <a 
-                                    [routerLink]="['/storelist/searchstorebycategories/', node.id]"
-                                    class="category-link"
-                                    routerLinkActive="active">
-                                    {{node.name_category}}
-                                </a>
+                <div class="categories-card" [class.mobile-open]="isCategoriesOpen">
+                    <div class="categories-header" (click)="toggleCategories()">
+                        <h3 class="categories-title">
+                            <div class="title-content">
+                                <i class="material-icons">category</i>
+                                Categorías
                             </div>
-                        </mat-nested-tree-node>
-                    </mat-tree>
+                        </h3>
+
+
+                        <!-- Icon toggle (desktop / fallback) -->
+                        <button type="button" mat-icon-button class="mobile-toggle-btn" aria-label="Toggle categories"
+                            [attr.aria-expanded]="isCategoriesOpen" aria-controls="categories-list">
+                            <mat-icon>{{isCategoriesOpen ? 'expand_less' : 'expand_more'}}</mat-icon>
+                        </button>
+                    </div>
+                    <div id="categories-list" class="categories-content" [class.show]="isCategoriesOpen">
+                        <mat-tree [dataSource]="dataSourceTree" [treeControl]="treeControl" class="categories-tree">
+                            <mat-nested-tree-node *matTreeNodeDef="let node;">
+                                <div class="category-item">
+                                    <a [routerLink]="['/storelist/searchstorebycategories/', node.id]"
+                                        class="category-link" routerLinkActive="active" (click)="onCategoryClick()">
+                                        {{node.name_category}}
+                                    </a>
+                                </div>
+                            </mat-nested-tree-node>
+                        </mat-tree>
+                    </div>
                 </div>
             </aside>
 
@@ -48,15 +50,9 @@
                 <div class="search-section">
                     <div class="search-container">
                         <mat-form-field appearance="outline" class="full-width">
-                            <input 
-                                matInput 
-                                [(ngModel)]="searchText" 
-                                (ngModelChange)="applyFilter()"
-                                (input)="applyFilter()"
-                                (keyup.enter)="applyFilter()"
-                                placeholder="Buscar tiendas..." 
-                                autocomplete="off"
-                                type="search">
+                            <input matInput [(ngModel)]="searchText" (ngModelChange)="applyFilter()"
+                                (input)="applyFilter()" (keyup.enter)="applyFilter()" placeholder="Buscar tiendas..."
+                                autocomplete="off" type="search">
                             <button mat-icon-button matSuffix (click)="applyFilter()" type="button" aria-label="Buscar">
                                 <mat-icon>search</mat-icon>
                             </button>
@@ -72,11 +68,8 @@
                                 <!-- Store Logo -->
                                 <div class="store-logo-container">
                                     <a class="store-link" [routerLink]="[card?.route_store]">
-                                        <img 
-                                            class="store-logo" 
-                                            [src]="card?.logo_store" 
-                                            [ngClass]="{ transparent: !loaded }" 
-                                            (load)="onLoad()" 
+                                        <img class="store-logo" [src]="card?.logo_store"
+                                            [ngClass]="{ transparent: !loaded }" (load)="onLoad()"
                                             [alt]="card?.name_store">
                                     </a>
                                 </div>
@@ -89,7 +82,7 @@
                                         </a>
                                     </h4>
                                     <p class="store-description">{{card?.description}}</p>
-                                    
+
                                     <!-- Action Button -->
                                     <div class="store-actions">
                                         <a class="store-action-button" [routerLink]="[card?.route_store]">
@@ -105,10 +98,7 @@
 
                 <!-- Pagination -->
                 <div class="pagination-section">
-                    <mat-paginator 
-                        #paginator
-                        class="stores-paginator" 
-                        [pageSizeOptions]="[8, 16, 24, 32]"
+                    <mat-paginator #paginator class="stores-paginator" [pageSizeOptions]="[8, 16, 24, 32]"
                         showFirstLastButtons="true">
                     </mat-paginator>
                 </div>

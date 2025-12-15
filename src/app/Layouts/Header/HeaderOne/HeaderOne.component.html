@@ -176,14 +176,14 @@
   </mat-menu>
 
   <!-- Commerce Menu -->
-  <mat-menu #loginuser_commerce="matMenu">
-    <a mat-menu-item [routerLink]="['/account/profile']" (click)="onCommerceMenuClick('Tu Información')"><i class="material-icons mr-1 col_icon">account_circle</i><span>Tu Información</span></a>
-    <a mat-menu-item [routerLink]="['/account/order-history']" (click)="onCommerceMenuClick('Compras')"><i class="material-icons mr-1 col_icon">history</i><span>Compras</span></a>
-    <a mat-menu-item [routerLink]="['/account/address']" (click)="onCommerceMenuClick('Ubicaciones')"><i class="material-icons mr-1 col_icon">location_on</i><span>Ubicaciones</span></a>
-    <a mat-menu-item [routerLink]="['/account/invoice_adm']" (click)="onCommerceMenuClick('Facturas')"><i class="material-icons mr-1 col_icon">fact_check</i><span>Facturas</span></a>
-    <a mat-menu-item [routerLink]="['/account/store_adm']" (click)="onCommerceMenuClick('Tu tienda')"><i class="material-icons mr-1 col_icon">account_balance</i><span>Tu tienda<span *ngIf="validate_img" class="material-icons" style="color:red;margin-left: 5px;">warning</span></span></a>
-    <a mat-menu-item [routerLink]="['/account/product_adm']" (click)="onCommerceMenuClick('Productos')"><i class="material-icons mr-1 col_icon">add_shopping_cart</i><span>Productos</span></a>
-    <button mat-menu-item (click)="exit_store_front(); onCommerceMenuClick('Salir')"><i class="material-icons mr-1 col_icon">power_settings_new</i><span>Salir</span></button>
+  <mat-menu #loginuser_commerce="matMenu" class="custom-menu">
+    <a mat-menu-item [routerLink]="['/account/profile']" (click)="onCommerceMenuClick('Tu Información')">Tu Información</a>
+    <a mat-menu-item [routerLink]="['/account/order-history']" (click)="onCommerceMenuClick('Compras')">Compras</a>
+    <a mat-menu-item [routerLink]="['/account/address']" (click)="onCommerceMenuClick('Ubicaciones')">Ubicaciones</a>
+    <a mat-menu-item [routerLink]="['/account/invoice_adm']" (click)="onCommerceMenuClick('Facturas')">Facturas</a>
+    <a mat-menu-item [routerLink]="['/account/store_adm']" (click)="onCommerceMenuClick('Tu tienda')">Tu tienda<span *ngIf="validate_img" class="material-icons" style="color:red;margin-left: 5px;">warning</span></a>
+    <a mat-menu-item [routerLink]="['/account/product_adm']" (click)="onCommerceMenuClick('Productos')">Productos</a>
+    <button mat-menu-item (click)="exit_store_front(); onCommerceMenuClick('Salir')">Salir</button>
   </mat-menu>
 
   <!-- Categorías -->

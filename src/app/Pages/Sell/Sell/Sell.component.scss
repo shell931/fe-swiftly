@@ -668,6 +668,12 @@ ng-select {
     font-weight: normal;
     font-size: 0.8rem;
     line-height: 1.2;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    max-width: none !important;
+    width: auto !important;
   }
 
   .ng-arrow-wrapper {
@@ -707,9 +713,9 @@ ng-select {
       }
 
       &.ng-option-selected {
-        background: #34d399 !important;
-        background-color: #34d399 !important;
-        color: white !important;
+        background: white !important;
+        background-color: white !important;
+        color: #374151 !important;
         opacity: 1 !important;
         visibility: visible !important;
       }
@@ -742,6 +748,8 @@ ng-select {
   height: 2.6rem !important;
   display: flex !important;
   align-items: center !important;
+  overflow: visible !important;
+  max-width: none !important;
 }
 
 ::ng-deep .ng-value-container {
@@ -749,13 +757,75 @@ ng-select {
   display: flex !important;
   align-items: center !important;
   height: 100% !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+  max-width: none !important;
+  width: auto !important;
 }
 
-::ng-deep .ng-placeholder {
+::ng-deep .ng-placeholder,
+::ng-deep ng-select .ng-placeholder,
+::ng-deep .ng-select .ng-placeholder,
+::ng-deep .ng-select-container .ng-placeholder,
+::ng-deep .ng-value-container .ng-placeholder {
   color: #4a4a4a !important;
   font-style: italic !important;
   line-height: 1.2 !important;
   font-size: 0.8rem !important;
+  position: absolute !important;
+  z-index: -999 !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  max-width: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  pointer-events: none !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-indent: -9999px !important;
+  color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+}
+
+/* Hide placeholder when input exists (ng-select always has an input) */
+::ng-deep .ng-value-container:has(.ng-input) .ng-placeholder,
+::ng-deep .ng-select-container:has(.ng-input) .ng-placeholder,
+::ng-deep .ng-select:has(.ng-input) .ng-placeholder,
+::ng-deep .ng-select:has(.ng-input) .ng-value-container .ng-placeholder,
+::ng-deep .ng-select:has(.ng-input) .ng-select-container .ng-placeholder,
+::ng-deep .ng-select:has(.ng-input) .ng-select-container .ng-value-container .ng-placeholder {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  z-index: -999 !important;
+  pointer-events: none !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-indent: -9999px !important;
+  color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
 }
 
 /* Hide placeholder when value is selected */
@@ -779,10 +849,88 @@ ng-select {
 /* Force hide placeholder when ng-value is present */
 ::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
   display: block !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 ::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value + .ng-placeholder {
   display: none !important;
+}
+
+/* Hide placeholder when ng-select has value */
+::ng-deep .ng-select.ng-select-has-value .ng-placeholder,
+::ng-deep .ng-select.ng-select-has-value .ng-value-container .ng-placeholder,
+::ng-deep .ng-select.ng-select-has-value .ng-select-container .ng-placeholder {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  z-index: -1 !important;
+}
+
+/* Hide placeholder when input is focused or has content */
+::ng-deep .ng-select.ng-select-focused .ng-placeholder,
+::ng-deep .ng-select.ng-select-focused .ng-value-container .ng-placeholder,
+::ng-deep .ng-input input:focus ~ .ng-placeholder,
+::ng-deep .ng-value-container:has(.ng-input input:not(:placeholder-shown)) .ng-placeholder {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  z-index: -1 !important;
+}
+
+/* Hide placeholder when value container has any children (value, input, etc.) */
+::ng-deep .ng-value-container:not(:empty) .ng-placeholder,
+::ng-deep .ng-value-container:has(*) .ng-placeholder,
+::ng-deep .ng-value-container:has(.ng-value) .ng-placeholder,
+::ng-deep .ng-value-container:has(.ng-input) .ng-placeholder {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  z-index: -1 !important;
+}
+
+/* Hide placeholder when input has any value */
+::ng-deep .ng-input input[value]:not([value=""]) ~ .ng-placeholder,
+::ng-deep .ng-value-container:has(.ng-input input[value]:not([value=""])) .ng-placeholder {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  z-index: -1 !important;
+}
+
+/* Hide ng-input completely */
+::ng-deep .ng-input {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  pointer-events: none !important;
+}
+
+::ng-deep .ng-input input {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  position: absolute !important;
+  left: -9999px !important;
+  pointer-events: none !important;
 }
 
 ::ng-deep .ng-value {
@@ -790,6 +938,37 @@ ng-select {
   font-weight: normal !important;
   font-size: 0.8rem !important;
   line-height: 1.2 !important;
+  min-width: auto !important;
+  overflow: visible !important;
+  max-width: 100% !important;
+  width: auto !important;
+  display: inline-flex !important;
+  flex: none !important;
+}
+
+/* Simplified: Show full text in ng-value-container and all its children */
+::ng-deep .ng-value-container,
+::ng-deep .ng-value-container * {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  max-width: 100% !important;
+  width: auto !important;
+}
+
+::ng-deep .ng-value .ng-value-label {
+  min-width: auto !important;
+  flex: none !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  max-width: none !important;
+  width: auto !important;
+  display: inline !important;
 }
 
 ::ng-deep .ng-value-label {
@@ -797,6 +976,36 @@ ng-select {
   font-weight: normal !important;
   font-size: 0.8rem !important;
   line-height: 1.2 !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  max-width: none !important;
+  width: auto !important;
+  min-width: auto !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  display: inline !important;
+}
+
+/* Override any ng-select default styles that might truncate text */
+::ng-deep .ng-select .ng-value-label,
+::ng-deep .ng-select-container .ng-value-label,
+::ng-deep .ng-value-container .ng-value-label,
+::ng-deep .ng-value .ng-value-label,
+::ng-deep span.ng-value-label {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  max-width: none !important;
+  width: auto !important;
+  min-width: auto !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  display: inline !important;
 }
 
 /* Ocultar el botón de limpiar (x) y mostrar solo la flecha */
@@ -848,9 +1057,9 @@ ng-select {
 }
 
 ::ng-deep .ng-dropdown-panel .ng-option.ng-option-selected {
-  background: #34d399 !important;
-  background-color: #34d399 !important;
-  color: white !important;
+  background: white !important;
+  background-color: white !important;
+  color: #374151 !important;
   opacity: 1 !important;
   visibility: visible !important;
 }

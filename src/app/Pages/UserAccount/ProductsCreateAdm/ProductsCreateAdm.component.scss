@@ -1,76 +1,54 @@
-/* Product Create Component - Modern Design */
+/* Contenedor Principal */
 .product-create-container {
-  background: transparent;
-  border-radius: 4px;
-  padding: 0.75rem;
-  box-shadow: none;
-  border: 1px solid rgba(233, 236, 239, 0.3);
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  min-height: 100vh;
+  /* Asegura altura */
 }
 
-.product-create-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.5rem;
+/* Header */
+.create-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid #e9ecef;
 }
 
-.header-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
 .header-content b {
-  font-size: 16px !important;
-  font-weight: 500 !important;
+  display: block;
+  font-size: 18px;
   color: #2c3e50;
-  margin: 0;
+  margin-bottom: 4px;
 }
 
 .create-status {
-  font-size: 11px;
-  color: #6c757d;
-  font-weight: 400;
-  background: #f8f9fa;
-  padding: 2px 6px;
-  border-radius: 8px;
-}
-
-.back-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #79dc78;
-  text-decoration: none;
   font-size: 12px;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  color: #6c757d;
+  background: #e9ecef;
+  padding: 4px 10px;
+  border-radius: 12px;
 }
 
-.back-link:hover {
-  color: #6bc86a;
-  text-decoration: none;
-}
-
-.back-link i {
-  font-size: 16px;
-}
-
-.product-create-content {
-  display: flex;
-  flex-direction: column;
+/* Grid Layout: Form (Auto) | Imagenes (320px) */
+.create-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
   gap: 1.5rem;
+  align-items: start;
 }
 
-.product-create-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+/* Tarjetas Blancas (Form y Dropzone) */
+.form-card,
+.images-card {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
-.form-container {
+/* Formulario */
+.create-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -79,477 +57,431 @@
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.form-row.full {
+  grid-template-columns: 1fr;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0.75rem;
 }
 
-.form-group.full-width {
-  grid-column: 1 / -1;
-}
-
-.form-group label {
+label {
   font-size: 11px;
-  font-weight: 500;
-  color: #495057;
-  margin-bottom: 0.5rem;
-  display: block;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .required {
-  color: #dc3545;
-  font-weight: 500;
+  color: #000;
 }
 
+/* Inputs Estilizados */
 .form-control {
+  height: 40px;
+  border: 1px solid #ced4da;
+  border-radius: 2px;
+  padding: 0 10px;
+  font-size: 13px;
+  transition: all 0.2s;
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 400;
-  color: #495057;
-  background: #fff;
-  transition: all 0.2s ease;
-  margin-bottom: 0.5rem;
-  height: 32px;
+  box-sizing: border-box;
 }
 
 .form-control:focus {
-  outline: none;
   border-color: #79dc78;
-  box-shadow: 0 0 0 2px rgba(121, 220, 120, 0.1);
+  box-shadow: 0 0 0 3px rgba(121, 220, 120, 0.1);
+  outline: none;
 }
 
-.form-control::placeholder {
-  color: #adb5bd;
-  font-weight: 400;
-}
-
-.textarea-field {
+textarea.form-control.textarea {
   height: auto;
   min-height: 100px;
+  padding: 10px;
   resize: vertical;
 }
 
-mat-error {
-  color: #dc3545;
-  font-size: 9px;
-  font-weight: 400;
-  margin-top: 0.375rem;
-  margin-bottom: 0.375rem;
-  display: block;
+/* Overrides de ng-select para igualar inputs */
+::ng-deep .ng-select .ng-select-container {
+  min-height: 40px !important;
+  border-radius: 2px !important;
+  border-color: #ced4da !important;
+  font-size: 13px !important;
 }
 
+/* Dropzone (Columna Derecha) */
+.section-label {
+  display: block;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.custom-dropzone {
+  border: 2px dashed #dee2e6 !important;
+  background: #f8f9fa !important;
+  border-radius: 2px !important;
+  min-height: 200px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.custom-dropzone:hover {
+  border-color: #79dc78 !important;
+  background: #f0fff4 !important;
+}
+
+.dropzone-content {
+  text-align: center;
+  color: #adb5bd;
+}
+
+.dropzone-content i {
+  font-size: 36px;
+  color: #79dc78;
+  margin-bottom: 5px;
+}
+
+.dropzone-content p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: #495057;
+}
+
+.dropzone-content small {
+  font-size: 10px;
+}
+
+/* Validaciones */
+mat-error {
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+.validation-msg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #e67e22;
+  margin-top: 10px;
+  background: #fff3cd;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.validation-msg.error {
+  color: #dc3545;
+  background: #f8d7da;
+}
+
+.validation-msg i {
+  font-size: 16px;
+}
+
+/* Botón Crear */
 .form-actions {
+  margin-top: 1rem;
   display: flex;
   justify-content: flex-end;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid #e9ecef;
 }
 
 .create-btn {
   background: #79dc78 !important;
   color: white !important;
-  border: none !important;
-  border-radius: 6px;
-  padding: 8px 16px;
-  font-weight: 500;
-  font-size: 12px;
-  text-transform: none;
-  letter-spacing: 0;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(121, 220, 120, 0.3);
-  cursor: pointer;
+  border-radius: 2px !important;
+  padding: 0 20px !important;
+  height: 40px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  box-shadow: 0 4px 6px rgba(121, 220, 120, 0.2) !important;
+}
+
+/* Spinner Overlay */
+.overlay-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 999;
   display: flex;
   align-items: center;
-  gap: 4px;
-  height: 32px;
+  justify-content: center;
 }
 
-.create-btn:hover {
-  background: #6bc86a !important;
-  transform: translateY(-1px);
-  box-shadow: 0 3px 6px rgba(121, 220, 120, 0.3);
-}
-
-.create-btn:focus {
-  background: #79dc78 !important;
-  color: white !important;
-}
-
-.create-btn:active {
-  background: #5cb85c !important;
-  color: white !important;
-}
-
-.create-btn i {
-  color: white !important;
-  font-size: 16px;
-}
-
-/* Images Section */
-.images-section {
-  background: #fff;
-  border-radius: 6px;
-  border: 1px solid #e9ecef;
-  padding: 1.5rem;
-  margin-top: 1rem;
-}
-
-.images-upload {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.upload-label {
-  font-size: 11px;
-  font-weight: 500;
-  color: #495057;
-  margin-bottom: 0.25rem;
-}
-
-.dropzone-custom {
-  border: 2px dashed #dee2e6 !important;
-  border-radius: 6px !important;
-  background: #f8f9fa !important;
-  padding: 2rem !important;
-  text-align: center !important;
-  transition: all 0.2s ease !important;
-}
-
-.dropzone-custom:hover {
-  border-color: #79dc78 !important;
-  background: rgba(121, 220, 120, 0.05) !important;
-}
-
-.dropzone-custom ngx-dropzone-label {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: #6c757d !important;
-}
-
-.dropzone-custom ngx-dropzone-label i {
-  font-size: 32px;
-  color: #79dc78;
-}
-
-.dropzone-custom ngx-dropzone-label p {
-  font-size: 12px;
-  font-weight: 500;
-  margin: 0;
-  color: #495057;
-}
-
-.dropzone-custom ngx-dropzone-label small {
-  font-size: 10px;
-  color: #6c757d;
-}
-
-.upload-error {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  background: #f8d7da;
-  border: 1px solid #f5c6cb;
-  border-radius: 4px;
-  color: #721c24;
-  font-size: 10px;
-}
-
-.upload-error i {
-  font-size: 16px;
-  color: #dc3545;
-}
-
-/* ng-select styling */
-::ng-deep .ng-select {
-  width: 100% !important;
-  
-  .ng-select-container {
-    border: 1px solid #dee2e6 !important;
-    border-radius: 4px !important;
-    min-height: 32px !important;
-    font-size: 11px !important;
-    padding: 0.5rem !important;
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .create-content-grid {
+    grid-template-columns: 1fr;
+    /* 1 Columna en tablet */
   }
-  
-  &.ng-select-focused .ng-select-container {
-    border-color: #79dc78 !important;
-    box-shadow: 0 0 0 2px rgba(121, 220, 120, 0.1) !important;
-  }
-  
-  .ng-placeholder {
-    color: #adb5bd !important;
-    font-size: 11px !important;
-    padding: 0 !important;
-    position: absolute !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    left: 0.5rem !important;
-    right: 2rem !important;
-    pointer-events: none !important;
-  }
-  
-  .ng-value {
-    color: #495057 !important;
-    font-size: 11px !important;
-    padding: 0 !important;
-    position: relative !important;
-    z-index: 1 !important;
-  }
-  
-  .ng-arrow-wrapper {
-    color: #79dc78 !important;
-    position: absolute !important;
-    right: 0.5rem !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 2 !important;
-  }
-  
-  .ng-input {
-    padding: 0 !important;
-    position: relative !important;
-  }
-  
-  .ng-input input {
-    padding: 0 !important;
-    margin: 0 !important;
-    height: auto !important;
-    border: none !important;
-    background: transparent !important;
-    outline: none !important;
-  }
-  
-  &.ng-select-single .ng-select-container .ng-value-container {
-    padding-left: 0.5rem !important;
-    padding-right: 2rem !important;
-  }
-  
-  &.ng-select-single .ng-select-container .ng-value-container .ng-placeholder {
-    display: none !important;
-  }
-  
-  &.ng-select-single .ng-select-container .ng-value-container .ng-value {
-    display: block !important;
+
+  .images-card {
+    order: -1;
+    /* Imágenes arriba */
   }
 }
 
-::ng-deep .ng-dropdown-panel {
-  border: 1px solid #dee2e6 !important;
-  border-radius: 4px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-  background: #fff !important;
-}
-
-::ng-deep .ng-option {
-  color: #495057 !important;
-  font-size: 11px !important;
-  padding: 4px 8px !important;
-  background: #fff !important;
-  min-height: 24px !important;
-}
-
-::ng-deep .ng-option.ng-option-highlighted {
-  background: rgba(121, 220, 120, 0.1) !important;
-  color: #79dc78 !important;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 500px) {
   .product-create-container {
-    padding: 0.75rem;
-    margin: 0;
+    padding: 10px;
+    background: #fff;
   }
-  
-  .product-create-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+
+  .form-card,
+  .images-card {
+    border: none;
+    box-shadow: none;
+    padding: 0;
   }
-  
-  .back-link {
-    align-self: flex-end;
-  }
-  
-  .product-create-content {
-    gap: 1rem;
-  }
-  
+
   .form-row {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    /* Inputs apilados en móvil */
+    gap: 0.8rem;
   }
-  
-  .form-group {
-    margin-bottom: 0.75rem;
-  }
-  
-  .form-control {
-    font-size: 10px;
-    height: 28px;
-    padding: 0.375rem;
-  }
-  
-  .textarea-field {
-    min-height: 80px;
-  }
-  
-  .form-actions {
-    justify-content: center;
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-  }
-  
+
   .create-btn {
     width: 100%;
-    justify-content: center;
-    padding: 6px 12px;
-    font-size: 11px;
-    height: 28px;
-  }
-  
-  .dropzone-custom {
-    padding: 1rem !important;
-  }
-  
-  .dropzone-custom ngx-dropzone-label i {
-    font-size: 24px;
-  }
-  
-  .dropzone-custom ngx-dropzone-label p {
-    font-size: 11px;
-  }
-  
-  .dropzone-custom ngx-dropzone-label small {
-    font-size: 9px;
   }
 }
 
-@media (max-width: 480px) {
-  .product-create-container {
-    padding: 0.5rem;
-    margin: 0;
-  }
-  
-  .product-create-header {
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.375rem;
-  }
-  
-  .header-content b {
-    font-size: 14px !important;
-  }
-  
-  .create-status {
-    font-size: 10px;
-  }
-  
-  .back-link {
-    font-size: 11px;
-  }
-  
-  .product-create-content {
-    gap: 0.75rem;
-  }
-  
-  .form-container {
-    gap: 0.75rem;
-  }
-  
-  .form-row {
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .form-group {
-    margin-bottom: 0.5rem;
-  }
-  
-  .form-group label {
-    font-size: 10px;
-    margin-bottom: 0.375rem;
-  }
-  
-  .form-control {
-    font-size: 9px;
-    height: 24px;
-    padding: 0.375rem;
-  }
-  
-  .textarea-field {
-    min-height: 60px;
-  }
-  
-  mat-error {
-    font-size: 8px;
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
-  }
-  
-  .create-btn {
-    padding: 4px 8px;
-    font-size: 10px;
-    height: 24px;
-  }
-  
-  .dropzone-custom {
-    padding: 0.75rem !important;
-  }
-  
-  .dropzone-custom ngx-dropzone-label i {
-    font-size: 20px;
-  }
-  
-  .dropzone-custom ngx-dropzone-label p {
-    font-size: 10px;
-  }
-  
-  .dropzone-custom ngx-dropzone-label small {
-    font-size: 8px;
-  }
-  
-  .upload-error {
-    font-size: 9px;
-    padding: 0.375rem;
-  }
-  
-  .upload-error i {
-    font-size: 14px;
-  }
+
+.form-control::placeholder,
+.form-control::-webkit-input-placeholder {
+  font-family: inherit !important;
+  font-size: 12px;
+  font-weight: 400;
+  color: #adb5bd !important;
+  opacity: 1;
 }
 
-/* Override Material Card styles */
-mat-card {
+::ng-deep .ng-select .ng-select-container {
+  min-height: 40px !important;
+  background-color: #ffffff !important;
+  border: 1px solid #ced4da !important;
+  /* Borde visible gris */
+  border-radius: 2px !important;
   box-shadow: none !important;
-  background: transparent !important;
+  /* Quitar sombras raras si las hay */
+  color: #495057 !important;
+  /* Texto oscuro */
+}
+
+/* Placeholder del dropdown (cuando está vacío) */
+::ng-deep .ng-select .ng-select-container .ng-placeholder {
+  color: #adb5bd !important;
+  /* Mismo gris que los inputs */
+  font-size: 12px !important;
+  font-family: inherit !important;
+}
+
+/* Flecha del dropdown */
+::ng-deep .ng-select .ng-arrow-wrapper .ng-arrow {
+  border-color: #999 transparent transparent !important;
+  /* Flecha gris visible */
+}
+
+/* Estado FOCUSED (cuando haces clic) */
+::ng-deep .ng-select.ng-select-focused .ng-select-container {
+  border-color: #79dc78 !important;
+  /* Borde verde al activar */
+  box-shadow: 0 0 0 3px rgba(121, 220, 120, 0.1) !important;
+  /* Glow verde suave */
+}
+
+/* Lista desplegable (Opciones) */
+::ng-deep .ng-dropdown-panel {
+  background: #ffffff !important;
+  border: 1px solid #dee2e6 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  background-color: #fff !important;
+  /* Opciones con fondo blanco */
+  color: #333 !important;
+  font-size: 13px !important;
+}
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover,
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: #f8f9fa !important;
+  /* Hover gris muy claro */
+  color: #000 !important;
+}
+
+
+/* 1. CENTRADO VERTICAL DEL CONTENIDO */
+::ng-deep .ng-select .ng-select-container {
+  display: flex !important;
+  align-items: center !important;
+  /* Centra verticalmente el texto */
+  min-height: 40px !important;
+  height: 40px !important;
+  /* Altura fija para asegurar centrado */
+  padding-left: 8px !important;
+  /* Espacio a la izquierda */
+}
+
+::ng-deep .ng-select .ng-value-container:has(.ng-value) .ng-placeholder {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* 2. CORREGIR PLACEHOLDER QUE NO DESAPARECE */
+/* Cuando hay un valor seleccionado (.ng-has-value), OCULTAR el placeholder */
+::ng-deep .ng-select.ng-has-value .ng-placeholder {
+  display: none !important;
+  /* Fuerza bruta para ocultarlo */
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Asegurar que el VALOR SELECCIONADO se vea bien y centrado */
+::ng-deep .ng-select .ng-value-container .ng-value {
+  margin-bottom: 0 !important;
+  /* Quitar margenes viejos */
+  font-size: 13px !important;
+  color: #495057 !important;
+  line-height: normal !important;
+}
+
+/* Ajuste fino del input de texto dentro del select (para búsquedas) */
+::ng-deep .ng-select .ng-value-container .ng-input {
+  top: auto !important;
+  /* Resetear posición absoluta si molesta */
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .ng-select .ng-value-container .ng-input>input {
+  height: 100% !important;
+  line-height: normal !important;
   padding: 0 !important;
 }
 
-mat-card p {
-  box-shadow: none !important;
+/* Contenedor de botones limpio */
+.form-actions {
+  margin-top: 2rem;
+  /* Más aire arriba */
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  /* Asegurar contexto */
+  z-index: 10;
+  /* Que flote sobre otros elementos si es necesario */
 }
 
-/* Global text styling */
-b {
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  color: #2c3e50;
+/* Botón Crear Producto */
+.create-btn {
+  /* Aseguramos que no tenga márgenes negativos ni posiciones raras */
+  margin: 0 !important;
+  position: relative !important;
+  /* Estilo */
+  background: #79dc78 !important;
+  color: white !important;
+  height: 42px !important;
+  padding: 0 24px !important;
+  box-shadow: 0 4px 6px rgba(121, 220, 120, 0.25) !important;
 }
 
-span {
-  font-size: 11px !important;
+/* Forzar estilo en todos los placeholders, incluyendo textarea */
+.form-control::placeholder,
+.form-control::-webkit-input-placeholder,
+textarea.form-control::placeholder {
+  font-family: inherit !important;
+  /* Heredar la fuente del label */
+  font-size: 12px !important;
+  /* Tamaño exacto */
   font-weight: 400 !important;
-  color: #6c757d;
+  /* Peso normal */
+  color: #adb5bd !important;
+  /* Color gris suave unificado */
+  opacity: 1 !important;
+}
+
+/* Asegurarse que el propio texto al escribir también coincida */
+textarea.form-control {
+  font-family: inherit !important;
+  font-size: 13px !important;
+  color: #495057 !important;
+}
+
+.create-content-grid {
+  display: grid;
+  /* Aquí mantenemos tu ancho grande para PC */
+  grid-template-columns: 1fr 420px !important;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* 2. TABLET (Pantallas medianas 768px - 992px) */
+@media (max-width: 992px) {
+  .create-content-grid {
+    /* Cambiamos a una sola columna fluida */
+    grid-template-columns: 100% !important;
+    gap: 1.5rem;
+  }
+
+  /* La tarjeta de imágenes pasa arriba o abajo (según prefieras) */
+  .images-card {
+    order: -1;
+    /* Pone las imágenes al principio en tablet */
+    width: 100% !important;
+  }
+}
+
+/* 3. MÓVIL (Pantallas pequeñas < 768px) */
+@media (max-width: 768px) {
+  .create-content-grid {
+    display: flex;
+    /* Flex es más seguro en móvil que Grid para stacks simples */
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-card,
+  .images-card {
+    width: 100% !important;
+    /* Ocupar todo el ancho de la pantalla */
+    padding: 1rem !important;
+    /* Reducir padding interno */
+    box-sizing: border-box;
+    /* Evitar scroll horizontal */
+  }
+
+  /* Dropzone fluido en móvil */
+  .custom-dropzone {
+    width: 100% !important;
+    min-height: 150px !important;
+    /* Un poco menos alto en móvil */
+  }
+}
+
+/* Hacer que el dropzone ocupe todo ese nuevo espacio */
+.images-card {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.custom-dropzone {
+  width: 100% !important;
+  max-width: 100% !important;
 }

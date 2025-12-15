@@ -112,24 +112,24 @@ export class EditProductComponent implements OnInit {
 	selectedAvaila: any;
 
 
-   toastvalidateimg: any = this.toastyService.warning(
-  "Ingresar por lo menos una imagen!",
-  "Imagen",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+	toastvalidateimg: any = this.toastyService.warning(
+		"Ingresar por lo menos una imagen!",
+		"Imagen",
+		{ timeOut: 8000, closeButton: true, progressBar: true }
+	);
 
-   toastsaveproduct: any = this.toastyService.success(
-  "el producto o servicio ha sido registrado!",
-  "Producto registrado!",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+	toastsaveproduct: any = this.toastyService.success(
+		"el producto o servicio ha sido registrado!",
+		"Producto registrado!",
+		{ timeOut: 8000, closeButton: true, progressBar: true }
+	);
 
 
-   toastRejectPixelsImg: any = this.toastyService.warning(
-  "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
-  "Dimension de imagen",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+	toastRejectPixelsImg: any = this.toastyService.warning(
+		"No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
+		"Dimension de imagen",
+		{ timeOut: 8000, closeButton: true, progressBar: true }
+	);
 
 
 	public show: boolean = false;
@@ -184,7 +184,7 @@ export class EditProductComponent implements OnInit {
 		this.availability = response.availability;
 
 		this.apiService.FindCategoryBySubcategory(this.subcategory).subscribe(
-			(			dataCategory: { [x: string]: { [x: string]: any; }; }) => {
+			(dataCategory: { [x: string]: { [x: string]: any; }; }) => {
 				let id_category: number;
 				for (var i in dataCategory) {
 					id_category = dataCategory[i]['category'];
@@ -202,7 +202,7 @@ export class EditProductComponent implements OnInit {
 						this.setValueCategoriesSelect(this.category, id_category);
 						this.prod_category$ = this.getCategoriesProd("", this.category);
 					},
-					(					error: any) => console.log(error)
+					(error: any) => console.log(error)
 				);
 
 				this.subcategories = [];
@@ -218,11 +218,11 @@ export class EditProductComponent implements OnInit {
 						this.setValueSubCategoriesSelect(this.subcategories, this.subcategory);
 						this.sub_catego$ = this.getSubcategories("", this.subcategories);
 					},
-					(					error: any) => console.log(error)
+					(error: any) => console.log(error)
 				);
 
 			},
-			(			error: any) => console.log(error)
+			(error: any) => console.log(error)
 		);
 
 		if (this.availability == true) {
@@ -301,24 +301,24 @@ export class EditProductComponent implements OnInit {
 
 	//START SET EVENT FROM DROPZONE COMPLEMENT
 	selectFile(event: { addedFiles: number | any[]; }) {
-        let index = this.files_identifier_doc.length != event.addedFiles ? 0 : this.files_identifier_doc.length;
-        console.log(this.files_identifier_doc.length);
-        if (this.files_identifier_doc.length > 0) {
-            this.toastyService.error(this.toastIconMax);
-        } else if (Array.isArray(event.addedFiles)) {
-            event.addedFiles.forEach((item: File) => {
-                this.onValidatePixels(item)
-                    .then((value: boolean) => {
-                        if (value === true) {
-                            this.files_identifier_doc.push(item);
-                        } else {
-                            this.toastyService.error(this.toastRejectPixelsImg);
-                        }
-                    });
-            });
+		let index = this.files_identifier_doc.length != event.addedFiles ? 0 : this.files_identifier_doc.length;
+		console.log(this.files_identifier_doc.length);
+		if (this.files_identifier_doc.length > 0) {
+			this.toastyService.error(this.toastIconMax);
+		} else if (Array.isArray(event.addedFiles)) {
+			event.addedFiles.forEach((item: File) => {
+				this.onValidatePixels(item)
+					.then((value: boolean) => {
+						if (value === true) {
+							this.files_identifier_doc.push(item);
+						} else {
+							this.toastyService.error(this.toastRejectPixelsImg);
+						}
+					});
+			});
 
-        }
-    }
+		}
+	}
 	onValidatePixels(file: File): Promise<boolean> {
 		return new Promise((resolve, reject) => {
 			const Img = new Image();
@@ -347,10 +347,10 @@ export class EditProductComponent implements OnInit {
 	getCategoriesProd(term: string = '', algo: Category[]): Observable<Category[]> {
 		let items = algo;
 		if (term) {
-		   items = items.filter((x: { name_category: string; }) => x.name_category.toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
+			items = items.filter((x: { name_category: string; }) => x.name_category.toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
 		}
 		return of(items).pipe(delay(500));
-	 }
+	}
 
 
 	subcategoriesChangeAction(categori_id: { value: { id: any; }; }) {
@@ -368,7 +368,7 @@ export class EditProductComponent implements OnInit {
 				}
 				this.sub_catego$ = this.getSubcategories("", this.subcategories);
 			},
-			(			error: any) => console.log(error)
+			(error: any) => console.log(error)
 		);
 		// END ANGULAR MAT SEARCH SUBCATEGORIES
 
@@ -378,10 +378,10 @@ export class EditProductComponent implements OnInit {
 	getSubcategories(term: string = '', algo: Subcategory[]): Observable<Subcategory[]> {
 		let items = algo;
 		if (term) {
-		   items = items.filter((x: { name_subcategory: string; }) => x.name_subcategory.toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
+			items = items.filter((x: { name_subcategory: string; }) => x.name_subcategory.toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
 		}
 		return of(items).pipe(delay(500));
-	 }
+	}
 
 
 	submitProductInfo() {

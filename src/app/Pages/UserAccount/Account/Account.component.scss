@@ -5,7 +5,7 @@
     opacity: 1 !important;
     max-width: 100%;
     margin: 0;
-    background: transparent;
+    background: #ffffff !important;
     border-radius: 12px;
     box-shadow: none;
     padding: 0;
@@ -25,7 +25,7 @@
     visibility: visible !important;
     opacity: 1 !important;
     background: transparent;
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 1.5rem 1rem 1.5rem; /* aumentar padding-top */
     border-bottom: 1px solid rgba(233, 236, 239, 0.3);
 }
 
@@ -41,19 +41,21 @@
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-    width: 40px;
-    height: 40px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     background: #e9ecef;
     align-items: center;
     justify-content: center;
-    margin-right: 1rem;
+    margin-right: 2rem;
+    padding: 2px; /* pequeño padding para separar el icono del borde */
 }
 
 .login-user-img::before {
     content: '👤';
-    font-size: 18px;
+    font-size: 24px;
     color: #6c757d;
+    margin-left: 2px; /* dar un poco de respiro al icono dentro del circulo */
 }
 
 .bienvenida {
@@ -87,9 +89,9 @@
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    background: transparent;
-    border-bottom: 1px solid rgba(233, 236, 239, 0.3);
-    padding: 0.5rem 0;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(233, 236, 239, 0.5);
+    padding: 0.375rem 0;
     overflow-x: auto !important;
     overflow-y: hidden !important;
     scrollbar-width: none;
@@ -101,22 +103,130 @@
     white-space: nowrap;
     touch-action: pan-x !important; /* Permitir paneo horizontal */
     overscroll-behavior-x: auto !important; /* Permitir scroll horizontal */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .horizontal-nav::-webkit-scrollbar {
     display: none;
 }
 
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    margin: 0 0.75rem;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    color: #495057;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: auto;
+    min-width: 88px;
+    max-width: 520px;
+    box-sizing: border-box;
+}
+
+.mobile-menu-toggle:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.mobile-menu-toggle i {
+    font-size: 20px;
+}
+
 .nav-container {
     display: inline-flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-    gap: 0.25rem;
-    padding: 0 1rem;
+    gap: 0.125rem;
+    padding: 0 0.75rem;
     min-width: max-content;
     flex-wrap: nowrap;
     width: max-content;
     white-space: nowrap;
+    align-items: center;
+}
+
+/* Mobile Dropdown Menu */
+.mobile-nav-dropdown {
+    display: none;
+    flex-direction: column;
+    background: white;
+    border-top: 1px solid #e9ecef;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.mobile-nav-dropdown.open {
+    max-height: 600px;
+    opacity: 1;
+}
+
+.mobile-nav-item {
+    display: flex !important;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    color: #495057;
+    border-bottom: 1px solid #f1f3f5;
+    transition: all 0.3s ease;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.mobile-nav-item:hover {
+    background: rgba(121, 220, 120, 0.08);
+    color: #212529;
+    padding-left: 1.5rem;
+}
+
+.mobile-nav-item.nav-active {
+    background: rgba(121, 220, 120, 0.12);
+    color: #79dc78;
+    border-left: 3px solid #79dc78;
+    font-weight: 600;
+}
+
+.mobile-nav-item i {
+    font-size: 20px;
+    color: #6c757d;
+    min-width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(121, 220, 120, 0.05);
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-item:hover i {
+    background: rgba(121, 220, 120, 0.15);
+    transform: scale(1.05);
+}
+
+.mobile-nav-item.nav-active i {
+    color: #79dc78;
+    background: rgba(121, 220, 120, 0.2);
+}
+
+.mobile-nav-item .badge {
+    margin-left: auto;
+    position: static;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
 }
 
 .nav-item {
@@ -125,52 +235,96 @@
     opacity: 1 !important;
     flex-direction: column;
     align-items: center;
-    padding: 0.5rem 0.75rem;
+    justify-content: center;
+    padding: 0.375rem 0.5rem;
     text-decoration: none;
     color: #6c757d;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    min-width: 70px;
+    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 60px;
+    max-width: 60px;
     position: relative;
     background: transparent;
     border: 1px solid transparent;
     flex-shrink: 0;
+    gap: 3px;
 }
 
 .nav-item:hover {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-    background: #f8f9fa;
+    background: rgba(121, 220, 120, 0.08);
     color: #495057;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(121, 220, 120, 0.12);
 }
 
 .nav-item.nav-active {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-    background: #e9ecef;
-    color: #495057;
-    border-color: #dee2e6;
+    background: #79dc78;
+    color: #ffffff;
+    border-color: rgba(121, 220, 120, 0.3);
+    box-shadow: 0 1px 6px rgba(121, 220, 120, 0.18);
+}
+
+.nav-item.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px 2px 0 0;
 }
 
 .nav-item i {
-    display: block !important;
+    display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-    font-size: 20px;
-    margin-bottom: 4px;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 0;
+    color: inherit;
+    transition: all 0.3s ease;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    background: rgba(121, 220, 120, 0.06);
+    flex-shrink: 0;
+}
+
+.nav-item:hover i {
+    background: rgba(121, 220, 120, 0.15);
+    transform: scale(1.05);
+    color: #79dc78;
+}
+
+.nav-item.nav-active i {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    transform: scale(1.02);
 }
 
 .nav-item span {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 10px;
+    font-weight: 500;
     text-align: center;
-    line-height: 1.2;
+    line-height: 1.1;
     white-space: nowrap;
+    color: inherit;
+    transition: color 0.3s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .badge {
@@ -178,17 +332,41 @@
     visibility: visible !important;
     opacity: 1 !important;
     position: absolute;
-    top: 4px;
-    right: 4px;
+    top: 2px;
+    right: 2px;
     background: #dc3545;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
+    color: #ffffff !important;
+    border-radius: 9px;
+    min-width: 18px;
     height: 18px;
-    align-items: center;
-    justify-content: center;
+    padding: 1px 4px 0 4px;
+    align-items: center !important;
+    justify-content: center !important;
     font-size: 10px;
-    font-weight: 400;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(220, 53, 69, 0.4);
+    border: 1.5px solid white;
+    z-index: 10;
+    animation: pulse 2s infinite;
+    line-height: 16px !important;
+    text-align: center !important;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.nav-item.nav-active .badge {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 /* Content Area */
@@ -198,6 +376,18 @@
     opacity: 1 !important;
     padding: 1.5rem;
     min-height: 60vh;
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+}
+
+/* Products status badge/label: ensure white background like other cards */
+.products-status {
+    display: inline-block;
+    background: #ffffff !important;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    color: #495057;
+    border: 1px solid rgba(233, 236, 239, 0.6);
 }
 
 /* Global text styling improvements */
@@ -227,7 +417,7 @@ span {
     
     .user-info-header {
         border-radius: 0;
-        padding: 1rem;
+        padding: 1.25rem 1rem 0.75rem 1rem; /* aumentar padding-top en móvil */
     }
     
     .user-info {
@@ -237,59 +427,28 @@ span {
     
     .login-user-img {
         margin-right: 0;
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
     }
     
     .horizontal-nav {
-        padding: 0.5rem 0;
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        width: 100%;
-        max-width: 100%;
-        white-space: nowrap;
-        touch-action: pan-x !important; /* Permitir paneo horizontal */
-        overscroll-behavior-x: auto !important; /* Permitir scroll horizontal */
+        padding: 0;
+        overflow: visible !important;
+        border-bottom: 1px solid rgba(233, 236, 239, 0.3);
     }
     
-    .horizontal-nav::-webkit-scrollbar {
-        display: none;
+    /* Show mobile toggle button */
+    .mobile-menu-toggle {
+        display: flex;
     }
     
-    .nav-container {
-        display: inline-flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        padding: 0 0.5rem;
-        gap: 0.25rem;
-        min-width: max-content;
-        width: max-content;
-        flex-wrap: nowrap;
-        white-space: nowrap;
+    /* Hide desktop navigation */
+    .desktop-nav {
+        display: none !important;
     }
     
-    .nav-item {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        min-width: 70px;
-        max-width: 70px;
-        padding: 0.5rem 0.5rem;
-        flex-shrink: 0;
-        flex-grow: 0;
-    }
-    
-    .nav-item i {
-        font-size: 18px;
-        display: block !important;
-    }
-    
-    .nav-item span {
-        font-size: 11px;
-        display: block !important;
-        white-space: nowrap;
+    /* Show mobile dropdown */
+    .mobile-nav-dropdown {
+        display: flex;
     }
     
     .content-wrapper {
@@ -298,64 +457,51 @@ span {
 }
 
 @media (max-width: 480px) {
-    .horizontal-nav {
-        padding: 0.5rem 0;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-        -webkit-overflow-scrolling: touch;
-        white-space: nowrap;
-        touch-action: pan-x !important; /* Permitir paneo horizontal */
-        overscroll-behavior-x: auto !important; /* Permitir scroll horizontal */
+    .mobile-menu-toggle {
+        padding: 0.8rem 1.2rem;
+        font-size: 15px;
+        margin: 0 0.75rem;
+        width: auto;
+        max-width: 480px;
     }
     
-    .nav-container {
-        display: inline-flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        padding: 0 0.5rem;
-        gap: 0.25rem;
-        min-width: max-content;
-        width: max-content;
-        flex-wrap: nowrap;
-        white-space: nowrap;
+    .mobile-menu-toggle i {
+        font-size: 18px;
     }
     
-    .nav-item {
+    .mobile-nav-item {
+        padding: 0.875rem 1.25rem;
+        font-size: 13px;
+    }
+    
+    .mobile-nav-item i {
+        font-size: 20px;
+        min-width: 22px;
+    }
+    
+    .mobile-nav-item .badge {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+    }
+}
+
+/* === FIX: evitar que el botón del menú mobile se superponga al header al scrollear === */
+/* Forzar z-index bajo para que el header (fixed) se muestre encima */
+.mobile-menu-toggle {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Si el header obtiene la clase .fixedheader, ocultar el toggle para evitar solapamientos */
+.fixedheader ~ .inner-container .mobile-menu-toggle,
+.fixedheader + .inner-container .mobile-menu-toggle {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    /* mantener estilo móvil cuando no está oculto por el header */
+    .mobile-menu-toggle {
         display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        min-width: 60px;
-        max-width: 60px;
-        padding: 0.5rem 0.4rem;
-        flex-shrink: 0;
-        flex-grow: 0;
-    }
-    
-    .nav-item span {
-        font-size: 9px;
-        white-space: nowrap;
-        overflow: visible;
-        text-overflow: ellipsis;
-        max-width: 100%;
-    }
-    
-    .nav-item i {
-        font-size: 16px;
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-    
-    .badge {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        width: 14px;
-        height: 14px;
-        font-size: 8px;
-        top: 2px;
-        right: 2px;
     }
 }

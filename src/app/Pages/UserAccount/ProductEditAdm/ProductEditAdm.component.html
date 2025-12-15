@@ -7,30 +7,27 @@
     </div>
 
     <div class="product-edit-content">
-        <form [formGroup]="productForm" class="product-edit-form">
-            <div class="form-container">
+        <!-- Left Column: Form Fields -->
+        <div class="form-section cardpage form-container">
+            <form [formGroup]="productForm" class="product-edit-form">
 
                 <div class="form-row">
                     <div class="form-group">
                         <label>Nombre <span class="required">*</span></label>
-                        <input placeholder="Nombre del producto" 
-                               formControlName="name_product" 
-                               class="form-control" 
-                               required 
-                               maxlength="40">
-                        <mat-error *ngIf="productForm.get('name_product').hasError('required') && productForm.get('name_product').touched">
+                        <input placeholder="Nombre del producto" formControlName="name_product" class="form-control"
+                            required maxlength="40">
+                        <mat-error
+                            *ngIf="productForm.get('name_product').hasError('required') && productForm.get('name_product').touched">
                             Este campo es obligatorio.
                         </mat-error>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Código (EAN, UPC, GTIN) <span class="required">*</span></label>
-                        <input placeholder="Código del producto" 
-                               formControlName="product_code" 
-                               class="form-control" 
-                               required 
-                               maxlength="14">
-                        <mat-error *ngIf="productForm.get('product_code').hasError('required') && productForm.get('product_code').touched">
+                        <input placeholder="Código del producto" formControlName="product_code" class="form-control"
+                            required maxlength="14">
+                        <mat-error
+                            *ngIf="productForm.get('product_code').hasError('required') && productForm.get('product_code').touched">
                             Este campo es obligatorio.
                         </mat-error>
                     </div>
@@ -39,27 +36,23 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Disponible <span class="required">*</span></label>
-                        <ng-select formControlName="availa" 
-                                   [(ngModel)]="selectedValueAvailable" 
-                                   required
-                                   placeholder="Seleccionar disponibilidad">
+                        <ng-select formControlName="availa" [(ngModel)]="selectedValueAvailable" required
+                            placeholder="Seleccionar disponibilidad">
                             <ng-option [value]="true">Sí</ng-option>
                             <ng-option [value]="false">No</ng-option>
                         </ng-select>
-                        <mat-error *ngIf="productForm.get('availa').hasError('required') && productForm.get('availa').touched">
+                        <mat-error
+                            *ngIf="productForm.get('availa').hasError('required') && productForm.get('availa').touched">
                             Este campo es obligatorio.
                         </mat-error>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Stock <span class="required">*</span></label>
-                        <input placeholder="Cantidad en stock" 
-                               formControlName="stock" 
-                               class="form-control" 
-                               required 
-                               type="text" 
-                               maxlength="7">
-                        <mat-error *ngIf="productForm.get('stock').hasError('required') && productForm.get('stock').touched">
+                        <input placeholder="Cantidad en stock" formControlName="stock" class="form-control" required
+                            type="text" maxlength="7">
+                        <mat-error
+                            *ngIf="productForm.get('stock').hasError('required') && productForm.get('stock').touched">
                             Este campo es obligatorio.
                         </mat-error>
                         <mat-error *ngIf="productForm.controls['stock'].hasError('pattern')">
@@ -71,33 +64,25 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Categoría <span class="required">*</span></label>
-                        <ng-select [items]="prod_category$ | async" 
-                                   bindLabel="name_category" 
-                                   bindValue="id" 
-                                   [formControl]="categoryFilterCtrl" 
-                                   formControlName="categoryCtrl" 
-                                   (change)="subcategoriesChangeAction($event)" 
-                                   [(ngModel)]="selectedValueCategory" 
-                                   required
-                                   placeholder="Seleccionar categoría">
+                        <ng-select [items]="prod_category$ | async" bindLabel="name_category" bindValue="id"
+                            [formControl]="categoryFilterCtrl" formControlName="categoryCtrl"
+                            (change)="subcategoriesChangeAction($event)" [(ngModel)]="selectedValueCategory" required
+                            placeholder="Seleccionar categoría">
                         </ng-select>
-                        <mat-error *ngIf="productForm.get('categoryCtrl').hasError('required') && productForm.get('categoryCtrl').touched">
+                        <mat-error
+                            *ngIf="productForm.get('categoryCtrl').hasError('required') && productForm.get('categoryCtrl').touched">
                             Este campo es obligatorio.
                         </mat-error>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Subcategoría <span class="required">*</span></label>
-                        <ng-select [items]="sub_catego$ | async" 
-                                   bindLabel="name_subcategory" 
-                                   bindValue="id" 
-                                   [formControl]="subcategoryFilterCtrl" 
-                                   formControlName="subcategoryCtrl" 
-                                   [(ngModel)]="selectedValueSubcategory" 
-                                   required
-                                   placeholder="Seleccionar subcategoría">
+                        <ng-select [items]="sub_catego$ | async" bindLabel="name_subcategory" bindValue="id"
+                            [formControl]="subcategoryFilterCtrl" formControlName="subcategoryCtrl"
+                            [(ngModel)]="selectedValueSubcategory" required placeholder="Seleccionar subcategoría">
                         </ng-select>
-                        <mat-error *ngIf="productForm.get('subcategoryCtrl').hasError('required') && productForm.get('subcategoryCtrl').touched">
+                        <mat-error
+                            *ngIf="productForm.get('subcategoryCtrl').hasError('required') && productForm.get('subcategoryCtrl').touched">
                             Este campo es obligatorio.
                         </mat-error>
                     </div>
@@ -106,24 +91,20 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Marca <span class="required">*</span></label>
-                        <input placeholder="Marca del producto" 
-                               formControlName="brand" 
-                               class="form-control" 
-                               required 
-                               maxlength="50">
-                        <mat-error *ngIf="productForm.get('brand').hasError('required') && productForm.get('brand').touched">
+                        <input placeholder="Marca del producto" formControlName="brand" class="form-control" required
+                            maxlength="50">
+                        <mat-error
+                            *ngIf="productForm.get('brand').hasError('required') && productForm.get('brand').touched">
                             Este campo es obligatorio.
                         </mat-error>
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Precio <span class="required">*</span></label>
-                        <input placeholder="Precio del producto" 
-                               formControlName="total_price" 
-                               class="form-control" 
-                               required 
-                               maxlength="9">
-                        <mat-error *ngIf="productForm.get('total_price').hasError('required') && productForm.get('total_price').touched">
+                        <input placeholder="Precio del producto" formControlName="total_price" class="form-control"
+                            required maxlength="9">
+                        <mat-error
+                            *ngIf="productForm.get('total_price').hasError('required') && productForm.get('total_price').touched">
                             Este campo es obligatorio.
                         </mat-error>
                         <mat-error *ngIf="productForm.controls['total_price'].hasError('pattern')">
@@ -132,125 +113,99 @@
                     </div>
                 </div>
 
-                                <div class="row">
-
-                                    <!-- <div class="col-sm">
-                                        <label>Descuento</label>
-                                        <input placeholder="Descuento" formControlName="discount_price"
-                                            class="form-control" required>
-                                        <mat-error
-                                            *ngIf="productForm.get('discount_price').hasError('required') && productForm.get('discount_price').touched">
-                                            Este campo es obligatorio.</mat-error>
-                                    </div> -->
-                                    <div class="col-sm"></div>
-                                    <div class="col-sm"></div>
-                                </div>
-
                 <div class="form-row">
                     <div class="form-group full-width">
                         <label>Descripción <span class="required">*</span></label>
-                        <textarea placeholder="Descripción detallada del producto" 
-                                  formControlName="description_product" 
-                                  class="form-control textarea-field" 
-                                  required 
-                                  maxlength="500"
-                                  rows="4"></textarea>
-                        <mat-error *ngIf="productForm.get('description_product').hasError('required') && productForm.get('description_product').touched">
+                        <textarea placeholder="Descripción detallada del producto" formControlName="description_product"
+                            class="form-control textarea-field" required maxlength="500" rows="4"></textarea>
+                        <mat-error
+                            *ngIf="productForm.get('description_product').hasError('required') && productForm.get('description_product').touched">
                             Este campo es obligatorio.
                         </mat-error>
                     </div>
                 </div>
 
-
-                <div class="images-section">
-                    <div class="images-upload">
-                        <label class="upload-label">Imágenes del producto</label>
-                        <ngx-dropzone (change)="selectFile($event)"
-                                      (filesAdded)="onSelect($event)"
-                                      [multiple]="true"
-                                      [expandable]="true"
-                                      [disableClick]="false"
-                                      [accept]="'image/*'"
-                                      [maxFileSize]="10000000"
-                                      class="dropzone-custom">
-                            <ngx-dropzone-label>
-                                <i class="material-icons">cloud_upload</i>
-                                <p>Arrastra las imágenes del producto aquí</p>
-                                <small>Formatos: JPG, PNG | Mínimo: 700px | Máximo: 10MB</small>
-                            </ngx-dropzone-label>
-                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" 
-                                                      *ngFor="let f of files" 
-                                                      [file]="f" 
-                                                      [removable]="true" 
-                                                      (removed)="onRemove(f)">
-                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                            </ngx-dropzone-image-preview>
-                        </ngx-dropzone>
-                        
-                        <div class="upload-error" *ngIf="validate_img">
-                            <i class="material-icons">error</i>
-                            <span>La imagen debe tener formato JPG o PNG y tener más de 700 píxeles en uno de sus lados.</span>
-                        </div>
-                        
-                        <!-- Mostrar imágenes seleccionadas -->
-                        <div class="selected-images" *ngIf="files && files.length > 0">
-                            <label class="selected-images-label">Imágenes seleccionadas ({{ files.length }})</label>
-                            <div class="selected-images-grid">
-                                <div class="selected-image-item" *ngFor="let file of files; let i = index">
-                                    <div class="image-preview">
-                                        <img [src]="getImagePreview(file)" alt="Preview">
-                                        <button class="remove-image-btn" (click)="onRemove(file)">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                    </div>
-                                    <div class="image-info">
-                                        <span class="image-name">{{ file.name }}</span>
-                                        <span class="image-size">{{ formatFileSize(file.size) }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    <div class="current-images">
-                        <label class="current-images-label">Imágenes actuales</label>
-                        <div class="images-grid" *ngIf="get_pr && get_pr.length > 0">
-                            <div class="image-card" *ngFor="let card of get_pr">
-                                <div class="image-container">
-                                    <img class="product-image" 
-                                         [src]="card?.image" 
-                                         [ngClass]="{ transparent: !loaded }" 
-                                         alt="Imagen del producto">
-                                    <div class="image-overlay">
-                                        <button class="delete-btn" (click)="deleteProduct(card)">
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="no-images-message" *ngIf="!get_pr || get_pr.length === 0">
-                            <i class="material-icons">image</i>
-                            <p>No hay imágenes cargadas</p>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="form-actions">
-                    <button class="update-btn" 
-                            mat-raised-button 
-                            (click)="submitProductInfo()" 
-                            [disabled]="btnDisabled">
+                    <button class="update-btn" mat-raised-button (click)="submitProductInfo()" [disabled]="btnDisabled">
                         <i class="material-icons">save</i>
                         Actualizar producto
                     </button>
                 </div>
-        </form>
+            </form>
+        </div>
 
-        <div class="validation-error" *ngIf="validate_coun_img">
-            <i class="material-icons">warning</i>
-            <span>El producto debe tener por lo menos una imagen. Estás eliminando todas las imágenes.</span>
+        <!-- Right Column: Images -->
+        <div class="images-section-wrapper">
+            <div class="images-section">
+                <div class="images-upload">
+                    <label class="upload-label">Imágenes del producto</label>
+                    <ngx-dropzone (change)="selectFile($event)" (filesAdded)="onSelect($event)" [multiple]="true"
+                        [expandable]="true" [disableClick]="false" [accept]="'image/*'" [maxFileSize]="10000000"
+                        class="dropzone-custom">
+                        <ngx-dropzone-label>
+                            <i class="material-icons">cloud_upload</i>
+                            <p>Arrastra las imágenes del producto aquí</p>
+                            <small>Formatos: JPG, PNG | Mínimo: 700px | Máximo: 10MB</small>
+                        </ngx-dropzone-label>
+                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
+                            [file]="f" [removable]="true" (removed)="onRemove(f)">
+                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                        </ngx-dropzone-image-preview>
+                    </ngx-dropzone>
+
+                    <div class="upload-error" *ngIf="validate_img">
+                        <i class="material-icons">error</i>
+                        <span>La imagen debe tener formato JPG o PNG y tener más de 700 píxeles en uno de sus
+                            lados.</span>
+                    </div>
+
+                    <!-- Mostrar imágenes seleccionadas -->
+                    <div class="selected-images" *ngIf="files && files.length > 0">
+                        <label class="selected-images-label">Imágenes seleccionadas ({{ files.length }})</label>
+                        <div class="selected-images-grid">
+                            <div class="selected-image-item" *ngFor="let file of files; let i = index">
+                                <div class="image-preview">
+                                    <img [src]="getImagePreview(file)" alt="Preview">
+                                    <button class="remove-image-btn" (click)="onRemove(file)">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                </div>
+                                <div class="image-info">
+                                    <span class="image-name">{{ file.name }}</span>
+                                    <span class="image-size">{{ formatFileSize(file.size) }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="current-images">
+                <label class="current-images-label">Imágenes actuales</label>
+                <div class="images-grid" *ngIf="get_pr && get_pr.length > 0">
+                    <div class="image-card" *ngFor="let card of get_pr">
+                        <div class="image-container">
+                            <img class="product-image" [src]="card?.image" [ngClass]="{ transparent: !loaded }"
+                                alt="Imagen del producto">
+                            <div class="image-overlay">
+                                <button class="delete-btn" (click)="deleteProduct(card)">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="no-images-message" *ngIf="!get_pr || get_pr.length === 0">
+                    <i class="material-icons">image</i>
+                    <p>No hay imágenes cargadas</p>
+                </div>
+            </div>
+
+            <div class="validation-error" *ngIf="validate_coun_img">
+                <i class="material-icons">warning</i>
+                <span>El producto debe tener por lo menos una imagen. Estás eliminando todas las imágenes.</span>
+            </div>
         </div>
     </div>
 </div>

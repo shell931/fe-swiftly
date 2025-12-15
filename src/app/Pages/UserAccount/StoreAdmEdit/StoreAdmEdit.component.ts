@@ -105,17 +105,17 @@ export class StoreAdmEditComponent implements OnInit {
     files: File[] = [];
     widthMin = 700;
     heightMin = 700;
-   toastRejectPixelsImg: any = this.toastyService.warning(
-  "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
-  "Dimension de imagen",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+    toastRejectPixelsImg: any = this.toastyService.warning(
+        "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
+        "Dimension de imagen",
+        { timeOut: 8000, closeButton: true, progressBar: true }
+    );
     toastIconMax: any = this.toastyService.warning(
-  "Subir solo un logo para el comercio!",
-  "Logo comercio",
-  { timeOut: 4000, closeButton: true, progressBar: true }
-);
-   
+        "Subir solo un logo para el comercio!",
+        "Logo comercio",
+        { timeOut: 4000, closeButton: true, progressBar: true }
+    );
+
     public validate_img: boolean = false;
 
     public departamentCtrl: UntypedFormControl = new UntypedFormControl(null, [Validators.required]);
@@ -211,7 +211,7 @@ export class StoreAdmEditComponent implements OnInit {
                 this.depart$ = this.getDepartment("", this.departments);
 
             },
-            (            error: any) => console.log(error)
+            (error: any) => console.log(error)
         );
         // END ANGULAR MAT SEARCH DEPARTAMENT
 
@@ -265,26 +265,48 @@ export class StoreAdmEditComponent implements OnInit {
         return of(items).pipe(delay(500));
     }
 
-    citieChangeAction(departament_id: any) {
+    citieChangeAction(selectedDepartament: any) {
+        // Limpiar la selección de ciudad anterior
         this.selectedCityValue = null;
-        // START ANGULAR MAT SEARCH CITIES
-        let id_dep = departament_id;
+
+        // Limpiar la lista de ciudades anterior
         this.cities = [];
-        this.apiService.getCitiesFrontbyDepartments(id_dep).subscribe(
+        this.citietlist = [];
+        this.city$ = of([]);
+
+        // Si no hay departamento seleccionado, salir
+        if (!selectedDepartament) {
+            return;
+        }
+
+        // Obtener el ID del departamento (puede venir como objeto o string)
+        let id_dep: string;
+        if (typeof selectedDepartament === 'object' && selectedDepartament !== null) {
+            id_dep = selectedDepartament.id_departament;
+        } else {
+            id_dep = selectedDepartament;
+        }
+
+        // Si no tenemos un ID válido, salir
+        if (!id_dep) {
+            return;
+        }
+
+        // START ANGULAR MAT SEARCH CITIES
+        this.apiService.getCitiesFrontbyDepartments(Number(id_dep)).subscribe(
             (data: City[]) => {
                 this.citietlist = data;
+                this.cities = [];
                 for (var i in this.citietlist) {
                     let get_id_citie = this.citietlist[i]['id_city'];
                     let get_citie = this.citietlist[i]['city'];
                     this.cities.push({ city: get_citie, id_city: get_id_citie });
                 }
-                // this.citieCtrl.setValue(this.cities[10]);
                 this.city$ = this.getCity("", this.cities);
             },
-            (            error: any) => console.log(error)
+            (error: any) => console.log(error)
         );
         // END ANGULAR MAT SEARCH CITIES
-
     }
 
     getCity(term: string = '', algo: City[]): Observable<City[]> {
@@ -327,7 +349,7 @@ export class StoreAdmEditComponent implements OnInit {
                 this.toastyService.error(this.toastIconMax);
                 return;
             }
-            
+
             // Validar y agregar archivos
             const firstFile = event.addedFiles[0];
             if (firstFile) {

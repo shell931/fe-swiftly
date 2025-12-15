@@ -1,77 +1,73 @@
 .example-card {
     max-width: 200px;
-  }
-  
-  .product-card {
+}
+
+.product-card {
     max-width: 200px;
-  }
-  
-  .card_store_prod{
+}
+
+.card_store_prod {
     margin-top: 20px;
     margin-left: 20px;
-  }
-  
-  .container_store_prod{
+}
+
+.container_store_prod {
     margin-left: 193px;
     padding-left: 200px;
     margin-top: 60px;
-  }
-  
-  .style_toolbar{
+}
+
+.style_toolbar {
     border-radius: 25px;
-  }
-  .div_produc{
+}
+
+.div_produc {
     margin-left: 15px;
-  }
-  
-  @media (max-width: 767px) {
+}
+
+@media (max-width: 767px) {
     .container_store_prod {
-      margin-left: 0px;
-      padding-left: 0px;
+        margin-left: 0px;
+        padding-left: 0px;
     }
-    .div_produc{
-      margin-left: 15px;
+
+    .div_produc {
+        margin-left: 15px;
     }
-  }
-  
-  .img_size {
+}
+
+.img_size {
     height: 170px;
     max-width: 100%;
     vertical-align: middle;
-  }
-  
-  .mat-mini-fab .mat-button-wrapper {
+}
+
+.mat-mini-fab .mat-button-wrapper {
     display: inline;
-  }
-  
-  .product-card {
-    max-width: 200px;
-    // max-height: 300px;
-  }
-  
-  .rowprod{
+}
+
+.rowprod {
     margin-top: 20px;
-  }
-  
-  .borderdiv {
+}
+
+.borderdiv {
     border: 2px solid red;
     padding: 10px;
     border-radius: 25px;
-  }
-  
-  .example-tree-invisible {
+}
+
+.example-tree-invisible {
     display: none;
-  }
-  
-  .example-tree ul,
-  .example-tree li {
+}
+
+.example-tree ul,
+.example-tree li {
     margin-top: 0;
     margin-bottom: 0;
     list-style-type: none;
-  }
-  
-  
-  .wishlist-icon a {
+}
+
+.wishlist-icon a {
     color: rgba(0, 0, 0, 0.8);
 }
 
@@ -84,10 +80,9 @@
     width: 24px;
     border-radius: 6px;
 }
-  
-  
-.title-edit-pr{
-  margin-left: 90px;
+
+.title-edit-pr {
+    margin-left: 90px;
 }
 
 :host ::ng-deep .mat-progress-spinner circle,
@@ -119,11 +114,99 @@
     color: rgba(0, 0, 0, 0.87);
 }
 
+.header {
+    text-align: center;
+    background: blue;
+    color: white;
+    font-size: 20px;
+}
 
-  
-  .header {    
-    text-align: center;    
-    background:blue;    
-    color: white;    
-    font-size: 20px;    
-  }   
+.textarea-field {
+    font-family: inherit;
+    font-size: inherit;
+
+    &::placeholder {
+        font-family: inherit;
+        font-size: inherit;
+        opacity: 0.6;
+    }
+
+    &::-webkit-input-placeholder {
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    &::-moz-placeholder {
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    &:-ms-input-placeholder {
+        font-family: inherit;
+        font-size: inherit;
+    }
+}
+
+// Estilos de inputs copiados de EditStore
+.form-control {
+    width: 100% !important;
+    padding: 8px 12px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 2px !important;
+    box-sizing: border-box !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+
+    &::placeholder {
+        font-family: inherit !important;
+        font-size: inherit !important;
+        opacity: 0.6 !important;
+    }
+}
+
+label {
+    display: block !important;
+    margin-bottom: 5px !important;
+    font-weight: 400 !important;
+    color: #000 !important;
+
+    .obligatory {
+        color: #000 !important;
+    }
+}
+
+mat-select {
+    width: 100% !important;
+    padding: 8px 12px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 2px !important;
+    box-sizing: border-box !important;
+}
+
+mat-error {
+    color: red !important;
+    font-size: 12px !important;
+    margin-top: 5px !important;
+    display: block !important;
+}
+
+.row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin-right: -15px !important;
+    margin-left: -15px !important;
+    margin-bottom: 15px !important;
+}
+
+.col-sm {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+    box-sizing: border-box !important;
+
+    @media (max-width: 768px) {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}

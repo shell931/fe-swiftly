@@ -1,6 +1,37 @@
+@use '../../Shared/admin-table-styles' as *;
+
+// RADICAL OVERRIDE for Table Header
+::ng-deep {
+
+    .table-responsive-x,
+    table {
+
+        thead tr,
+        tr[mat-header-row],
+        .mat-mdc-header-row,
+        .mdc-data-table__header-row,
+        .cdk-header-row {
+            background: #2c3e50 !important;
+            /* Fallback */
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+            color: white !important;
+
+            th,
+            .mat-mdc-header-cell,
+            .mdc-data-table__header-cell,
+            .cdk-header-cell {
+                background: transparent !important;
+                /* Ensure cell background doesn't cover row */
+                color: white !important;
+                font-weight: bold !important;
+            }
+        }
+    }
+}
+
 .class_aprobed {
     background-color: #c0f48f;
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
     display: inline-block;
     vertical-align: baseline;
     padding: 2px 7px;
@@ -11,7 +42,7 @@
 
 .class_platform {
     background-color: #acc3f6;
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
     display: inline-block;
     vertical-align: baseline;
     padding: 2px 7px;
@@ -22,7 +53,7 @@
 
 .class_reject {
     background-color: #f25567;
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
     display: inline-block;
     vertical-align: baseline;
     padding: 2px 7px;

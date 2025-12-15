@@ -31,11 +31,12 @@
 
 .store-status {
   font-size: 11px;
-  color: #6c757d;
+  color: #495057;
   font-weight: 400;
-  background: #f8f9fa;
-  padding: 2px 6px;
-  border-radius: 8px;
+  background: #ffffff !important;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(233, 236, 239, 0.6);
 }
 
 .edit-store-btn {
@@ -43,7 +44,7 @@
   color: white !important;
   border: none !important;
   border-radius: 6px;
-  padding: 8px 16px;
+  padding: 6px 10px;
   font-weight: 500;
   font-size: 12px;
   text-transform: none;
@@ -54,7 +55,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  height: 32px;
+  height: 30px;
 }
 
 .edit-store-btn:hover {
@@ -84,7 +85,7 @@
 
 
 .edit-store-btn i {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .store-content {
@@ -156,8 +157,8 @@
 }
 
 .logo-container {
-  width: 100px;
-  height: 100px;
+  width: 160px;
+  height: 160px;
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid #e9ecef;
@@ -297,8 +298,8 @@ mat-card p {
   }
   
   .logo-container {
-    width: 80px;
-    height: 80px;
+    width: 140px;
+    height: 140px;
   }
   
   .no-logo-warning {
@@ -378,8 +379,43 @@ mat-card p {
   }
   
   .logo-container {
-    width: 60px;
-    height: 60px;
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Compact buttons for very small screens */
+  .edit-store-btn,
+  .edit-card-btn,
+  .add-card-btn {
+    padding: 4px 6px !important;
+    font-size: 11px !important;
+    height: 28px !important;
+    gap: 6px !important;
+  }
+
+  .edit-store-btn i,
+  .edit-card-btn i,
+  .add-card-btn i {
+    font-size: 14px !important;
+  }
+
+  /* Under very small devices hide label and show icon-only if desired */
+  @media (max-width: 360px) {
+    .edit-store-btn .mdc-button__label,
+    .edit-card-btn .mdc-button__label,
+    .add-card-btn .mdc-button__label {
+      display: none !important;
+    }
+
+    .edit-store-btn,
+    .edit-card-btn,
+    .add-card-btn {
+      min-width: 40px !important;
+      width: 40px !important;
+      border-radius: 6px !important;
+      justify-content: center !important;
+      padding: 6px !important;
+    }
   }
   
   .no-logo-warning {

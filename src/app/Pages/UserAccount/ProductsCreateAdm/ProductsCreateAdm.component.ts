@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { UntypedFormControl, UntypedFormGroup, UntypedFormBuilder, FormArray, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
@@ -35,7 +36,7 @@ export interface Subcategory {
 
 @Component({
 	selector: 'app-ProductsCreateAdm',
-	standalone: true,
+	standalone: true, // Force rebuild
 	imports: [
 		CommonModule,
 		FormsModule,
@@ -47,7 +48,8 @@ export interface Subcategory {
 		MatCardModule,
 		MatListModule,
 		NgSelectModule,
-		NgxDropzoneModule
+		NgxDropzoneModule,
+		MatProgressSpinnerModule
 	],
 	templateUrl: './ProductsCreateAdm.component.html',
 	styleUrls: ['./ProductsCreateAdm.component.scss']
@@ -98,23 +100,23 @@ export class ProductsCreateAdmComponent implements OnInit {
 	category: Category[] = [];
 
 	toastvalidateimg: any = this.toastyService.info(
-  "ingresar por lo menos una imagen!",
-  "Imagen",
-  { timeOut: 4000, closeButton: true, progressBar: true }
-);
+		"ingresar por lo menos una imagen!",
+		"Imagen",
+		{ timeOut: 4000, closeButton: true, progressBar: true }
+	);
 
 
 	toastsaveproduct: any = this.toastyService.success(
-  "el producto ha sido registrado!",
-  "Producto registrado",
-  { timeOut: 4000, closeButton: true, progressBar: true }
-);
+		"el producto ha sido registrado!",
+		"Producto registrado",
+		{ timeOut: 4000, closeButton: true, progressBar: true }
+	);
 
 	toastRejectPixelsImg: any = this.toastyService.error(
-  "No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
-  "Dimension de imagen",
-  { timeOut: 8000, closeButton: true, progressBar: true }
-);
+		"No pudimos subir algunas de tus imágenes\n Deben tener formato jpg o png\n Deben tener más de 700 píxeles en uno de sus lados.",
+		"Dimension de imagen",
+		{ timeOut: 8000, closeButton: true, progressBar: true }
+	);
 
 
 
@@ -133,7 +135,7 @@ export class ProductsCreateAdmComponent implements OnInit {
 			name_product: ['', [Validators.required]],
 			description_product: ['', [Validators.required]],
 			product_code: ['', [Validators.required]],
-			stock: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
+			stock: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
 			categoryCtrl: new UntypedFormControl('', [Validators.required]),
 			subcategoryCtrl: new UntypedFormControl('', [Validators.required]),
 			brand: ['', [Validators.required]],
@@ -159,7 +161,7 @@ export class ProductsCreateAdmComponent implements OnInit {
 				this.prod_category$ = this.getCategoriesProd("", this.category);
 
 			},
-			(			error: any) => console.log(error)
+			(error: any) => console.log(error)
 		);
 		// END ANGULAR MAT SEARCH CATEGORIES
 
@@ -191,10 +193,10 @@ export class ProductsCreateAdmComponent implements OnInit {
 		console.log('Event keys:', event ? Object.keys(event) : 'null');
 		this.validate_img = false;
 		this.obligatory_img = false;
-		
+
 		// Handle different event types from ngx-dropzone
 		let addedFiles: File[] = [];
-		
+
 		// ngx-dropzone puede pasar los archivos de diferentes formas
 		if (event && event.addedFiles && Array.isArray(event.addedFiles)) {
 			addedFiles = event.addedFiles;
@@ -205,28 +207,28 @@ export class ProductsCreateAdmComponent implements OnInit {
 		} else {
 			console.log('Unknown event structure:', event);
 		}
-		
+
 		console.log('Processed files count:', addedFiles.length);
-		
+
 		if (Array.isArray(addedFiles) && addedFiles.length > 0) {
 			// Validate and add each file
 			addedFiles.forEach((file: File) => {
 				console.log('Processing file:', file.name, file.type, file.size);
-				
+
 				// Verificar que sea una imagen
 				if (!file.type || !file.type.startsWith('image/')) {
 					this.validate_img = true;
 					this.toastyService.error('Solo se permiten archivos de imagen (JPG, PNG)');
 					return;
 				}
-				
+
 				// Check if file is already in the array
 				const fileExists = this.files.some(f => f.name === file.name && f.size === file.size && f.lastModified === file.lastModified);
 				if (fileExists) {
 					console.log('File already exists:', file.name);
 					return;
 				}
-				
+
 				// Validar dimensiones
 				this.onValidatePixels(file)
 					.then((isValid) => {
@@ -254,7 +256,7 @@ export class ProductsCreateAdmComponent implements OnInit {
 	selectFileOld(event: any) {
 		this.obligatory_img = false;
 		this.validate_img = false;
-		
+
 		// Handle the event properly - event should have addedFiles property
 		const addedFiles = event.addedFiles || [];
 		Promise.all(addedFiles.map(async (item: File) => {
@@ -303,7 +305,7 @@ export class ProductsCreateAdmComponent implements OnInit {
 		// START ANGULAR MAT SEARCH SUBCATEGORIES
 		// Extraer el ID de la categoría - puede venir como número directo o como objeto
 		let id_category: any;
-		
+
 		if (typeof categori_id === 'number' || typeof categori_id === 'string') {
 			// Si viene como número o string directo
 			id_category = categori_id;
@@ -313,50 +315,53 @@ export class ProductsCreateAdmComponent implements OnInit {
 		} else {
 			id_category = null;
 		}
-		
+
 		// Convertir a número si es string
 		if (id_category && typeof id_category === 'string') {
 			id_category = parseInt(id_category, 10);
 		}
-		
+
 		console.log('Category ID received:', categori_id, 'Extracted ID:', id_category);
-		
+
 		// Limpiar la subcategoría seleccionada cuando se cambia la categoría
 		this.selectedSubcategory = null;
 		this.subcategoryCtrl.setValue(null);
 		this.subcategoryFilterCtrl.setValue(null);
-		
+
 		// Inicializar con array vacío mientras se cargan las subcategorías
 		this.subcategories = [];
 		this.sub_catego$ = of([]);
-		
+
 		if (!id_category || isNaN(id_category)) {
 			console.log('No valid category ID provided:', id_category);
 			return;
 		}
-		
+
 		this.apiService.getSubCategories(id_category).subscribe(
 			(data: Subcategory[]) => {
 				this.subcategorieslist = data || [];
 				this.subcategories = [];
-				
+
 				if (this.subcategorieslist.length > 0) {
 					for (var i in this.subcategorieslist) {
 						let get_id_subcategory = this.subcategorieslist[i]['id'];
 						let get_name_subcategory = this.subcategorieslist[i]['name_subcategory'];
 						this.subcategories.push({ id: get_id_subcategory, name_subcategory: get_name_subcategory });
 					}
+				} else {
+					// Si no hay subcategorías, agregar opción "Otros" con id 0
+					this.subcategories.push({ id: 0, name_subcategory: 'Otros' });
 				}
-				
+
 				// Actualizar el observable con las subcategorías (puede estar vacío)
 				this.sub_catego$ = this.getSubcategories("", this.subcategories);
 				console.log('Subcategorías cargadas:', this.subcategories.length);
 			},
 			(error: any) => {
 				console.error('Error loading subcategories:', error);
-				// En caso de error, inicializar con array vacío
-				this.subcategories = [];
-				this.sub_catego$ = of([]);
+				// En caso de error, agregar opción "Otros" con id 0
+				this.subcategories = [{ id: 0, name_subcategory: 'Otros' }];
+				this.sub_catego$ = this.getSubcategories("", this.subcategories);
 			}
 		);
 		// END ANGULAR MAT SEARCH SUBCATEGORIES
@@ -384,7 +389,7 @@ export class ProductsCreateAdmComponent implements OnInit {
 	submitProductInfo() {
 		this.obligatory_img = false;
 		this.validate_img = false;
-		
+
 		// Validar que hay al menos una imagen
 		if (this.files.length === 0) {
 			this.obligatory_img = true;
@@ -402,9 +407,9 @@ export class ProductsCreateAdmComponent implements OnInit {
 			return;
 		}
 
-		// Validar que se haya seleccionado una subcategoría
-		if (!this.selectedSubcategory) {
-			this.toastyService.error('Por favor selecciona una subcategoría');
+		// Validar que se haya seleccionado una subcategoría válida (permite 0, rechaza null/undefined/negativos)
+		if (this.selectedSubcategory === null || this.selectedSubcategory === undefined || this.selectedSubcategory < 0) {
+			this.toastyService.error('Por favor selecciona una subcategoría válida');
 			return;
 		}
 
@@ -416,7 +421,7 @@ export class ProductsCreateAdmComponent implements OnInit {
 
 		this.btnDisabled = true;
 		this.show = !this.show;
-		
+
 		let myObj_product;
 		let values_productForm = this.productForm.value;
 		const id_store = localStorage.getItem('id-store');
@@ -427,6 +432,9 @@ export class ProductsCreateAdmComponent implements OnInit {
 			return;
 		}
 
+		// Convertir subcategory_id 0 a null para el backend
+		const subcategoryId = this.selectedSubcategory === 0 ? null : this.selectedSubcategory;
+
 		myObj_product = {
 			"name_product": values_productForm.name_product,
 			"description_product": values_productForm.description_product,
@@ -436,7 +444,7 @@ export class ProductsCreateAdmComponent implements OnInit {
 			"stock": values_productForm.stock,
 			"store": id_store,
 			"brand": values_productForm.brand,
-			"subcategory_id": this.selectedSubcategory,
+			"subcategory_id": subcategoryId,
 			"features": 'na',
 			"state": 1,
 			"image": '1',
@@ -460,7 +468,7 @@ export class ProductsCreateAdmComponent implements OnInit {
 					let consec = 0;
 					let uploadErrors = 0;
 					var today = new Date();
-					
+
 					for (var i = 0; i < this.files.length; i++) {
 						const file = this.files[i];
 						let type = file.type;
@@ -532,17 +540,17 @@ export class ProductsCreateAdmComponent implements OnInit {
 	public getImagePath(imgPath: string, index: number) {
 		const borderActiveElement = document.querySelector('.border-active');
 		if (borderActiveElement) {
-		    borderActiveElement.classList.remove('border-active');
+			borderActiveElement.classList.remove('border-active');
 		}
 		if (imgPath !== null && imgPath !== undefined) {
-		    this.mainImgPath = imgPath;
+			this.mainImgPath = imgPath;
 		}
-		
+
 		if (index !== null && index !== undefined) {
-		    const element = document.getElementById(`${index}_img`);
-		    if (element) {
-		        element.className += " border-active";
-		    }
+			const element = document.getElementById(`${index}_img`);
+			if (element) {
+				element.className += " border-active";
+			}
 		}
 	}
 

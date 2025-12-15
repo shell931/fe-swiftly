@@ -219,6 +219,9 @@ $light-gray: #e0e0e0;
   }
 }
 
+/* === TABLET STYLES FOR MEGAMENU === */
+/* Removed - tablet now uses hamburger menu instead of megamenu */
+
 .header-bottom {
   display: none;
 }
@@ -565,6 +568,55 @@ $light-gray: #e0e0e0;
     z-index: 1010;
   }
 
+  /* Autocomplete Panel Styling */
+  .mat-autocomplete-panel,
+  .mat-mdc-autocomplete-panel {
+    background: #f8f9fa !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    margin-top: 4px !important;
+    max-height: 400px !important;
+    overflow-y: auto !important;
+  }
+
+  /* Autocomplete Options */
+  .mat-option,
+  .mat-mdc-option {
+    background: transparent !important;
+    color: #333 !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    transition: all 0.2s ease !important;
+
+    &:last-child {
+      border-bottom: none !important;
+    }
+
+    &:hover,
+    &.mat-active,
+    &.mat-mdc-option-active {
+      background: rgba($primary, 0.1) !important;
+      color: $primary !important;
+    }
+
+    &.mat-selected,
+    &.mat-mdc-option-selected {
+      background: rgba($primary, 0.15) !important;
+      color: $primary !important;
+      font-weight: 500 !important;
+    }
+  }
+
+  /* Autocomplete option text */
+  .mat-option .mdc-list-item__primary-text,
+  .mat-mdc-option .mdc-list-item__primary-text {
+    color: inherit !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+  }
+
   .cdk-overlay-container {
     z-index: 1020;
   }
@@ -848,32 +900,98 @@ $light-gray: #e0e0e0;
 }
 
 /* === CUSTOM MENU === */
-::ng-deep .custom-menu {
-  background: $bg-dark;
-  padding: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+::ng-deep .custom-menu,
+::ng-deep .mat-menu-panel.custom-menu,
+::ng-deep .mat-mdc-menu-panel.custom-menu {
+  background: #ffffff !important;
+  padding: 0 !important;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 220px;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 4px;
+}
 
-  a,
-  .mat-menu-item {
-    color: $white;
-    border-radius: 10px;
-    @include transition;
-    padding: 0.3rem 0.1rem;
-    display: block;
-    line-height: 34px;
+::ng-deep .custom-menu .mat-mdc-menu-content,
+::ng-deep .mat-menu-panel.custom-menu .mat-mdc-menu-content,
+::ng-deep .mat-mdc-menu-panel.custom-menu .mat-mdc-menu-content,
+::ng-deep .custom-menu .mdc-list,
+::ng-deep .mat-menu-panel.custom-menu .mdc-list,
+::ng-deep .mat-mdc-menu-panel.custom-menu .mdc-list {
+  background: #ffffff !important;
+  padding: 0.5rem !important;
+  border-radius: 6px;
+}
 
-    &:hover {
-      background: rgba(221, 221, 221, 0.692);
-      color: #111;
-      font-weight: 500;
-    }
+::ng-deep .custom-menu a,
+::ng-deep .custom-menu button,
+::ng-deep .custom-menu .mat-menu-item,
+::ng-deep .custom-menu .mat-mdc-menu-item,
+::ng-deep .mat-menu-panel.custom-menu a,
+::ng-deep .mat-menu-panel.custom-menu button,
+::ng-deep .mat-menu-panel.custom-menu .mat-menu-item,
+::ng-deep .mat-menu-panel.custom-menu .mat-mdc-menu-item,
+::ng-deep .mat-mdc-menu-panel.custom-menu a,
+::ng-deep .mat-mdc-menu-panel.custom-menu button,
+::ng-deep .mat-mdc-menu-panel.custom-menu .mat-menu-item,
+::ng-deep .mat-mdc-menu-panel.custom-menu .mat-mdc-menu-item {
+  color: #333 !important;
+  border-radius: 4px;
+  @include transition;
+  padding: 0.625rem 0.75rem !important;
+  display: block;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-bottom: 0.125rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 400;
+  border: 1px solid transparent;
+  background: transparent !important;
+  width: 100% !important;
+  text-align: left !important;
+  cursor: pointer !important;
+
+  &:hover {
+    background: rgba(121, 220, 120, 0.1) !important;
+    color: #79dc78 !important;
+    font-weight: 500;
+    border-color: rgba(121, 220, 120, 0.2);
   }
 
-  .mat-menu-item {
-    height: auto;
-    line-height: auto;
+  &:active {
+    background: rgba(121, 220, 120, 0.15) !important;
   }
+}
+
+::ng-deep .custom-menu button,
+::ng-deep .mat-menu-panel.custom-menu button,
+::ng-deep .mat-mdc-menu-panel.custom-menu button {
+  border: none !important;
+  outline: none !important;
+}
+
+::ng-deep .custom-menu .material-icons,
+::ng-deep .custom-menu i,
+::ng-deep .mat-menu-panel.custom-menu .material-icons,
+::ng-deep .mat-menu-panel.custom-menu i,
+::ng-deep .mat-mdc-menu-panel.custom-menu .material-icons,
+::ng-deep .mat-mdc-menu-panel.custom-menu i {
+  display: none !important;
+}
+
+::ng-deep .custom-menu .mat-menu-item,
+::ng-deep .custom-menu .mat-mdc-menu-item,
+::ng-deep .mat-menu-panel.custom-menu .mat-menu-item,
+::ng-deep .mat-menu-panel.custom-menu .mat-mdc-menu-item,
+::ng-deep .mat-mdc-menu-panel.custom-menu .mat-menu-item,
+::ng-deep .mat-mdc-menu-panel.custom-menu .mat-mdc-menu-item {
+  height: auto;
+  line-height: 1.5;
+  min-height: 40px;
 }
 
 /* === USER ACTIONS CONTAINER === */
@@ -1235,7 +1353,7 @@ $light-gray: #e0e0e0;
 }
 
 /* === DESKTOP LAYOUT === */
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
   .mobile-layout {
     display: none !important;
   }
@@ -1453,7 +1571,7 @@ $mobile-search-height: 36px;
 $mobile-gap: 8px;
 
 /* === MOBILE AND TABLET LAYOUT === */
-@media (max-width: 991px) {
+@media (max-width: 1399px) {
 
 
   .header-middle {
@@ -1643,7 +1761,20 @@ $mobile-gap: 8px;
   }
 }
 
-@media (max-width: 991px) {
+/* Update breakpoint for mobile/tablet to include up to 1399px */
+@media (max-width: 1399px) {
+  .desktop-layout {
+    display: none !important;
+  }
+
+  .navigation-bar {
+    display: none !important;
+  }
+
+  .megamenu { display: none; }
+}
+
+@media (max-width: 1399px) {
   .menuBtn { display: block; }
   .mobile-actions {
     display: flex;
@@ -1672,7 +1803,7 @@ $mobile-gap: 8px;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
   .menuBtn { display: none; }
   .mobile-actions { display: none; }
   .desktop-actions { display: flex; }
@@ -2148,7 +2279,7 @@ $mobile-gap: 8px;
 }
 
 /* === FORCE MOBILE AND TABLET HEADER HEIGHT === */
-@media (max-width: 991px) {
+@media (max-width: 1399px) {
   header.kompraloheader,
   .header-middle {
     min-height: 85px !important;
@@ -2337,7 +2468,7 @@ $mobile-gap: 8px;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
   .header-middle .logo-container ::ng-deep embryo-applogo img,
   .header-middle .logo-container ::ng-deep .logoimg,
   .header-middle .logo-container img,
@@ -2365,7 +2496,7 @@ $mobile-gap: 8px;
 }
 
 /* === ULTRA SPECIFIC MOBILE AND TABLET OVERRIDES === */
-@media (max-width: 991px) {
+@media (max-width: 1399px) {
   header#header.kompraloheader {
     min-height: 85px !important;
     height: 85px !important;
@@ -2714,7 +2845,7 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
 /* ===== CLEAN SOLUTION - MOBILE AND DESKTOP SPECIFIC ===== */
 
 /* MOBILE AND TABLET - Search button inside search bar */
-@media (max-width: 991px) {
+@media (max-width: 1399px) {
   .mobile-search-row .search-wrapper {
     position: relative !important;
   }
@@ -2741,7 +2872,7 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
 }
 
 /* DESKTOP - Normal positioning with optimized button width */
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
   .search-button {
     position: static !important;
     margin: 0 !important;
@@ -2765,7 +2896,7 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
 }
 
 /* REMOVE EMPTY OVERLAPPING CONTAINER ON DESKTOP */
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
   /* Hide mobile footer on desktop - this might be the overlapping container */
   .footermobile,
   .footermobile.hidden-md.hidden-lg,
@@ -2857,7 +2988,7 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
 }
 
 /* NUCLEAR OPTION - Force hide overlapping elements globally */
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
   /* Hide all potential overlapping elements */
   .footermobile,
   .mobile-layout,
@@ -2937,7 +3068,7 @@ input[placeholder="Buscar productos"]:-moz-placeholder,
 }
 
 /* === VISUAL TWEAK: nudge mobile logo slightly to the left for balance === */
-@media (max-width: 991px) {
+@media (max-width: 1399px) {
   .mobile-logo {
     /* keep centered logic but move ~8px to the left */
     transform: translateX(calc(-50% - 14px)) !important;

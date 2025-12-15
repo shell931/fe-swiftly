@@ -9,10 +9,11 @@
 
 /* Page Header */
 .page-header {
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
     border-bottom: 1px solid #e9ecef;
     padding: 2rem 0;
     margin-bottom: 2rem;
+    backdrop-filter: saturate(110%) blur(4px);
 }
 
 .header-content {
@@ -48,32 +49,146 @@
 }
 
 .categories-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.65);
     border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(222, 226, 230, 0.7);
+    backdrop-filter: saturate(105%) blur(3px);
+}
+
+/* If the categories panel is shown as a mobile drawer, use solid white background */
+.sidebar.mobile-open .categories-card,
+.categories-card.mobile-open {
+    background: #ffffff;
     border: 1px solid #e9ecef;
+    backdrop-filter: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Make categories card a fixed-height panel with scrollable content */
+.categories-card {
+    display: flex;
+    flex-direction: column;
+    max-height: 56vh;
+    /* keep it reasonably short */
+    overflow: hidden;
+}
+
+.categories-card .categories-content,
+.categories-card .categories-tree {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.categories-card .categories-tree {
+    max-height: calc(56vh - 3.5rem);
+    /* leave space for header/title */
+    padding-right: 0.25rem;
+    /* avoid content under scrollbar */
+}
+
+/* scrollbar styling */
+.categories-card .categories-tree::-webkit-scrollbar {
+    width: 8px;
+}
+
+.categories-card .categories-tree::-webkit-scrollbar-thumb {
+    background: rgba(47, 57, 64, 0.12);
+    border-radius: 6px;
+}
+
+.categories-card .categories-tree::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+@media (max-width: 991px) {
+    .categories-card {
+        max-height: calc(100vh - 140px);
+        /* more vertical space on smaller screens */
+    }
+
+    .categories-card .categories-tree {
+        max-height: calc(100vh - 140px - 3.5rem);
+    }
+}
+
+.categories-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #79dc78;
 }
 
 .categories-title {
     color: #333;
     font-size: 1.1rem;
     font-weight: 600;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.title-content {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid #79dc78;
 }
 
-.categories-title i {
-    color: #79dc78;
-    font-size: 1.25rem;
+.categories-select {
+    display: none;
+}
+
+.categories-content {
+    display: block;
 }
 
 .categories-tree {
     margin-top: 0;
+}
+
+/* Make each tree node look like a compact category card */
+.categories-tree {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.categories-tree ::ng-deep .mat-tree-node,
+.categories-tree ::ng-deep .mat-nested-tree-node {
+    padding: 0;
+    /* keep outer padding zero; the .category-item will provide internal padding */
+    background: transparent !important;
+}
+
+.categories-tree .category-item {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 0.6rem 0.75rem;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(233, 236, 239, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.categories-tree .category-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.categories-tree .category-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.categories-tree .category-name {
+    color: #333;
+    font-weight: 500;
 }
 
 .category-item {
@@ -88,7 +203,7 @@
 }
 
 .category-item:hover {
-    background: #f0f8f0;
+    background: rgba(121, 220, 120, 0.10);
     border-color: #79dc78;
 }
 
@@ -132,11 +247,11 @@
 
 /* Main Content */
 .main-content {
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(233, 236, 239, 0.7);
 }
 
 /* Search Section */
@@ -207,10 +322,10 @@
 
 /* Store Cards */
 .store-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    border: 1px solid #e9ecef;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(233, 236, 239, 0.8);
     overflow: hidden;
     transition: all 0.2s ease;
     display: flex;
@@ -220,7 +335,7 @@
 
 .store-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     border-color: #79dc78;
 }
 
@@ -421,6 +536,52 @@
     .store-action-button i {
         font-size: 0.8rem;
     }
+
+    /* Compact layout for mobile: reduce paddings and icon sizes */
+    .mobile-categories-bar .mobile-categories-toggle,
+    .mobile-categories-toggle {
+        padding: 0.45rem 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .hamburger-icon {
+        width: 14px;
+        height: 10px;
+    }
+
+    .hamburger-icon::before,
+    .hamburger-icon::after,
+    .hamburger-icon span {
+        height: 2px;
+    }
+
+    .categories-card {
+        padding: 0.9rem 0.75rem;
+        max-height: calc(100vh - 140px);
+    }
+
+    .categories-card .categories-tree {
+        max-height: calc(100vh - 140px - 3rem);
+    }
+
+    .categories-tree .category-item {
+        padding: 0.22rem 0.4rem;
+        gap: 0.45rem;
+        border-radius: 8px;
+    }
+
+    .categories-tree .category-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+    }
+
+    /* Ensure mobile toggle shows compactly when displayed */
+    .mobile-toggle-btn {
+        display: inline-flex;
+        width: auto !important;
+        min-width: 0 !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -469,6 +630,7 @@
         font-size: 0.75rem;
         margin-bottom: 0.5rem;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
     }
 
     .store-action-button {
@@ -486,10 +648,12 @@
 .categories-tree ::ng-deep .mat-tree-node {
     padding: 0;
     min-height: auto;
+    background: transparent !important;
 }
 
 .categories-tree ::ng-deep .mat-nested-tree-node {
     padding: 0;
+    background: transparent !important;
 }
 
 .categories-tree ::ng-deep ul {
@@ -506,4 +670,76 @@
     padding: 3rem 1rem;
     color: #6c757d;
     font-size: 1rem;
+}
+
+@media (max-width: 991px) {
+
+    /* Collapsible Menu Styles */
+    .categories-header {
+        margin-bottom: 0;
+        border-bottom: none;
+        cursor: pointer;
+        padding: 0.25rem 0;
+    }
+
+    .categories-card.mobile-open .categories-header {
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid #79dc78;
+    }
+
+    /* On smaller screens show the dropdown and hide the icon toggle */
+    .mobile-toggle-btn {
+        display: none;
+    }
+
+    .categories-select {
+        display: block;
+        width: 100%;
+        margin-left: 0.5rem;
+    }
+
+    .categories-select ::ng-deep .mat-mdc-form-field-infix {
+        padding: 0 0.25rem;
+    }
+
+    .categories-select ::ng-deep .mat-mdc-form-field-infix {
+        padding: 0;
+    }
+
+    .categories-select ::ng-deep .mat-mdc-select-trigger {
+        width: 100%;
+    }
+
+    .categories-content {
+        display: none;
+    }
+
+    .categories-content.show {
+        display: block;
+        animation: slideDown 0.3s ease-out;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: calc(100vh - 140px);
+        overflow: auto;
+    }
+
+    /* Make category items flow into responsive columns on smaller viewports */
+    .categories-tree {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.5rem;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
